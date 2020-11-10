@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.PatientFileActivity">
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_background"/>
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Files"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/img_back_arrow"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:visibility="gone"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_delete_in_white"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_layout">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/file_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_file_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/colorDarkBlue"/>
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    >
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="174dp"
+        android:layout_height="45dp"
+        android:text="Delete Files"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:textColor="#fff"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/colorDarkBlue"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/new_login_boarder"
+        />
+
+</RelativeLayout>
+
+</RelativeLayout>

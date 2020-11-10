@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    tools:context=".activities.AppointmentsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorpink">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:id="@+id/back_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:src="@drawable/icon_ionic_ios_arrow_white"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Book Appointments"
+                    android:textSize="16sp"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/montserrat_bold"/>
+                <ImageView
+                    android:id="@+id/img_alert_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/more_vertical_1"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="6dp"
+                    android:layout_marginRight="20dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="85dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/title_up_appointments"
+                    android:background="@color/colorDarkBlue"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Book New Appointments"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerInParent="true"
+                        android:textSize="14sp"
+                        android:textColor="#fff"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+                </RelativeLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/title_up_appointments">
+                    <RelativeLayout
+                        android:layout_below="@id/title_up_appointments"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:id="@+id/rl1"
+                            android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/txt_title_appoint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Appointment"
+                            android:textColor="@color/colorDarkBlue"
+                            android:fontFamily="@font/montserrat_semi_bold"/>
+                        <RadioGroup
+                            android:id="@+id/radio_group"
+                            android:layout_below="@id/txt_title_appoint"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:id="@+id/btn_on_line"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On-line"
+                                android:paddingLeft="20dp"
+                                android:checked="true"
+                                android:button="@drawable/square_radio_btn"
+                                android:layout_weight="1"
+                                android:textColor="@color/colorAccent"
+                                android:fontFamily="@font/montserrat_regular"/>
+                            <RadioButton
+                                android:id="@+id/btn_on_site"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On-site"
+                                android:paddingLeft="20dp"
+                                android:button="@drawable/square_radio_btn"
+                                android:layout_weight="1"
+                                android:textColor="@color/colorAccent"
+                                android:fontFamily="@font/montserrat_regular"/>
+
+                        </RadioGroup>
+                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:id="@+id/rl2"
+                            android:layout_below="@+id/rl1"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/txt_select_doc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorDarkBlue"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:text="Select Doctor"/>
+                            <TextView
+                                android:id="@+id/edt_doctor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:padding="10dp"
+                                android:hint="Doctor"
+                                android:layout_below="@id/txt_select_doc"
+                                android:layout_marginLeft="3dp"
+                                android:background="#F3F3F3"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:textColor="#545870"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+                            <TextView
+                                android:id="@+id/edt_depart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:padding="10dp"
+                                android:hint="Department"
+                                android:layout_below="@id/edt_doctor"
+                                android:layout_marginLeft="3dp"
+                                android:background="#F3F3F3"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:textColor="#545870"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:id="@+id/rl3"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@+id/rl2"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:id="@+id/title_select"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/colorDarkBlue"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:layout_height="wrap_content"
+                                android:text="Select Date and Time"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/title_select"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                android:id="@+id/layout_time"
+                                >
+                                <TextView
+                                    android:id="@+id/txt_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:padding="10dp"
+                                    android:background="#F3F3F3"
+                                    android:inputType="number"
+                                    android:layout_weight="1"
+                                    android:hint="Date"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:layout_marginRight="3dp"
+                                    android:singleLine="true"
+                                    android:textColor="#545870"
+                                    android:textSize="16sp"
+                                    android:textStyle="normal" />
+<!--
+                                <TextView
+                                    android:id="@+id/txt_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:padding="10dp"
+                                    android:hint="From Time"
+                                    android:layout_marginLeft="3dp"
+                                    android:background="#F3F3F3"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="#545870"
+                                    android:textSize="16sp"
+                                    android:textStyle="normal" />
+-->
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txt_time"
+                                    android:layout_width="175dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="90dp"
+                                    android:padding="10dp"
+                                    android:hint="From Time"
+                                    android:layout_marginRight="3dp"
+                                    android:background="#F3F3F3"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="#545870"
+                                    android:textSize="16sp"
+                                    android:textStyle="normal" />
+                                <TextView
+                                    android:id="@+id/txt_totime"
+                                    android:layout_width="175dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="90dp"
+                                    android:padding="10dp"
+                                    android:hint="To Time"
+                                    android:layout_marginLeft="3dp"
+                                    android:background="#F3F3F3"
+                                    android:singleLine="true"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="#545870"
+                                    android:textSize="16sp"
+                                    android:textStyle="normal" />
+<!--
+                                <TextView
+                                    android:layout_width="175dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="90dp"
+                                    android:padding="10dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:singleLine="true"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="#545870"
+                                    android:textSize="16sp"
+                                    android:textStyle="normal" />
+-->
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/rl4"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <Button
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/btn_booknow"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:textColor="#ffffff"
+                                android:backgroundTint="@color/colorDarkBlue"
+                                android:text="Book Now"
+                                android:layout_marginBottom="50dp"
+                                android:background="@drawable/new_login_boarder"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/rl3"
+                            android:id="@+id/rl4"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/txt_reason_for_visit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorDarkBlue"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:layout_marginTop="15dp"
+                                android:text="Reason For Visit"/>
+                            <EditText
+                                android:id="@+id/edt_visiting_reason"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:padding="10dp"
+                                android:hint="Reason"
+                                android:layout_below="@id/txt_reason_for_visit"
+                                android:layout_marginLeft="3dp"
+                                android:background="#F3F3F3"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:textColor="#545870"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+
+                </ScrollView>
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</LinearLayout>

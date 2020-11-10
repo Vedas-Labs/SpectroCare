@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:id="@+id/layout_main"
+    android:background="@drawable/edt_txt_background">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_margin="15dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UTRS 001"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorpink"
+        android:fontFamily="@font/montserrat_semi_bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="094302938r092"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/txt_id"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginTop="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Connected"
+        android:layout_toLeftOf="@id/img_info"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/info"
+        android:padding="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>
+</RelativeLayout>

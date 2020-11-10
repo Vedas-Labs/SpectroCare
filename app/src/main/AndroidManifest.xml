@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.vedas.spectrocare">
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_logo_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".PatientChat.ChatActivity"></activity>
+        <activity android:name=".PatientChat.FullImageActivity"></activity>
+
+        <activity android:name="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity"/>
+        <activity android:name="com.vedas.spectrocare.PatientVideoCallModule.SettingsActivity"
+            android:parentActivityName="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity" />
+        </activity>
+
+        <activity android:name=".PatientMoreModule.CalenderNew" />
+        <activity android:name=".PatientModule.PatientPhysicalRecordActivity" />
+        <activity android:name=".PatientModule.PatientPhysicalActivity" />
+        <activity android:name=".PatientModule.PatientForgotPassordActivity" />
+        <activity android:name=".PatientMoreModule.PatientLanguageActivity" />
+        <activity android:name=".PatientNotificationModule.PatientNotificationTimeActivity" />
+        <activity android:name=".PatientMyDeviceModule.MyDevicesActivity" />
+        <activity android:name=".PatientMyDeviceModule.AboutDeviceActiivty" />
+        <activity android:name=".PatientMyDeviceModule.SoftwareActivity" />
+        <activity android:name=".PatientModule.PatientChatActivity" />
+        <activity android:name=".PatientModule.PatientBookAppointmentActivity" />
+        <activity android:name=".PatientMyDeviceModule.PatientMyDeviceActivity" />
+        <activity android:name=".PatientMoreModule.SettingsActivity" />
+        <activity android:name=".PatientMoreModule.NotificationActivity" />
+        <activity android:name=".PatientMoreModule.FeedbackActivity" />
+        <activity android:name=".PatientMoreModule.AboutActivity" />
+        <activity android:name=".PatientModule.DateTimeActivity" />
+        <activity android:name=".PatientModule.AppointmentCancelActivity" />
+        <activity android:name=".PatientModule.AppointmentDetailsActivity" />
+        <activity
+            android:name=".PatientModule.PatientTestRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.InvoiceDetailsActivity" />
+        <activity android:name=".PatientModule.CollectSampleActivity" />
+        <activity android:name=".PatientModule.ResultPageViewActivity" />
+        <activity android:name=".PatientModule.TestMenuStartactivity" />
+        <activity android:name=".PatientModule.BleScanningActivity" />
+        <activity android:name=".PatientModule.PatientMedicinesRecordActivity" />
+        <activity android:name=".PatientModule.PatientAddMedicineActivity" />
+        <activity
+            android:name=".PatientModule.PatientSearchDoctorActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.PatientMessageActivity" />
+        <activity android:name=".PatientModule.DiseasesListActivity" />
+        <activity android:name=".PatientModule.PatientCalanderActivity" />
+        <activity android:name=".PatientModule.PatientEditMedicationsRecordActivity" />
+        <activity
+            android:name=".PatientModule.PatientMedicationsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.SelectFileActivity" />
+        <activity android:name=".PatientModule.PatientFileActivity" />
+        <activity
+            android:name=".PatientModule.PatientDiagnosisRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.PatientDiagnosisActivity" />
+        <activity android:name=".PatientModule.PatientHospitalActivity" />
+        <activity android:name=".PatientModule.PatientSelfExamEditActivity" />
+        <activity android:name=".PatientModule.PatientSelfExamActivity" />
+        <activity android:name=".PatientModule.PatientPhysicalExamActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".PatientModule.PatientMedicalHistoryAddAcitivity" />
+        <activity
+            android:name=".PatientModule.AddPatientImmunizationActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientSurgeryActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientAllergyActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.AddPatientFamilyHistoryActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientDiseaseActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".PatientModule.PatientAllergeyActivity" />
+        <activity
+            android:name=".PatientModule.PatientImmunizationActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientSurgeryActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientFamilyHistoryActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientDiseaseActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientDoctorRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientMedicalHistoryActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".PatientModule.AddPatientDiagnosisActivity" />
+        <activity
+            android:name=".PatientModule.PatientProfileActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".PatientModule.DoctorSummeryActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".PatientModule.PatientHomeActivity" />
+        <activity android:name=".activities.OtpActivity" />
+        <activity android:name=".activities.PasswordChangedActivity" />
+        <activity android:name=".activities.ResetPasswordActivity" />
+        <activity android:name=".activities.FiltersActivity" />
+        <activity
+            android:name=".activities.AppointmentsActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.SelectUserActivity" />
+        <activity android:name=".activities.AllSurgicalRecordActivity" />
+        <activity android:name=".activities.SurgicalRecordActivity" />
+        <activity android:name=".activities.ScreeningRecordForMedicalActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.AddMedicalRecordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activities.MedicalRecordActivity" />
+        <activity
+            android:name=".activities.PatientGeneralProfileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.MyPatientActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.ChangePasswordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.ForgotActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.MedicalPersonSignupActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.CategoryActivity" />
+        <activity android:name=".activities.PhysicalExamActivity" />
+        <activity
+            android:name=".activities.PhysicalExamRecordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.FamilyRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.AllergiesActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activities.AttachmentActivity" />
+        <activity android:name=".activities.VaccinationRecordActivity" />
+        <activity android:name=".activities.ScreeningRecordActivity" />
+        <activity android:name=".activities.MedicalHistoryActivity" />
+        <activity android:name=".activities.MedicationRecordActivity" />
+        <activity android:name=".activities.MedicinesRecordActivity" />
+        <activity
+            android:name=".activities.BookAppointmentsActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.AppointmentSummaryActivity" />
+        <activity android:name=".activities.CalendarActivity" />
+        <activity android:name=".PatientModule.PatientAppointmentsTabsActivity" />
+        <activity android:name=".PatientModule.AddPaymentMethodAactivity" />
+        <activity android:name=".PatientModule.PatientMedicationRecordActivity" />
+        <activity
+            android:name=".PatientModule.DoctorsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.CategoryInPatientModuleActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.DoctorsDepartmentActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.PatientPaymentActivity" />
+        <activity android:name=".PatientModule.PaymentStatusActivity" />
+        <activity
+            android:name=".PatientModule.SearchResultsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vedas.spectrocare.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

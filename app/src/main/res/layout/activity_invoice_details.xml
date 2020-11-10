@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorpink"
+    tools:context=".PatientModule.InvoiceDetailsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="40dp"
+            android:text="Invoice # 01234"/>
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:padding="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_total_paid"
+            android:layout_centerHorizontal="true">
+            <RelativeLayout
+                android:layout_width="304dp"
+                android:layout_height="158dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/colorWhite"
+                android:background="@drawable/btn_background">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Paid"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paid on May, 18, 2020"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginTop="43dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transaction Number"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginTop="83dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paid by"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginTop="111dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$ 50"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_marginTop="20dp"/>
+
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/card_1"
+                    android:layout_marginTop="111dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="70dp"
+                    />
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="111dp"
+                    android:text="4959"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginRight="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1029843932"
+                    android:layout_marginRight="25dp"
+                    android:textSize="12sp"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_marginTop="83dp"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layout_disease"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/layout_total_paid"
+            android:background="@drawable/btn_top_radius"
+            android:backgroundTint="@color/colorWhite"
+            >
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Invoice Details"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginLeft="30dp"
+                        />
+                    <TextView
+                        android:id="@+id/text_disease"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Invoice Date"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginTop="96dp"
+                        android:layout_marginLeft="21dp"
+                        android:textColor="@color/colorpink"
+                        />
+                    <TextView
+                        android:id="@+id/edt_surgery_name"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:text="May, 11, 2020"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="96dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_line0"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorDarkBlue"
+                        android:layout_below="@id/edt_surgery_name"
+                        />
+                    <TextView
+                        android:id="@+id/txt_payment_due"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Payment Due Date"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginTop="158dp"
+                        android:layout_marginLeft="21dp"
+                        android:textColor="@color/colorpink"
+                        />
+                    <TextView
+                        android:id="@+id/txt_due_date"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:text="May, 11, 2020"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="158dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_line1"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorDarkBlue"
+                        android:layout_below="@id/txt_due_date"
+                        />
+                    <TextView
+                        android:id="@+id/txt_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="221dp"
+                        android:layout_marginLeft="21dp"
+                        />
+                    <TextView
+                        android:id="@+id/txt_urinalysis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Urinalysis Routine"
+                        android:textSize="16sp"
+                        android:layout_below="@id/txt_details"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginLeft="21dp"
+                        android:textColor="@color/colorpink"
+                        />
+                    <TextView
+                        android:id="@+id/txt_amount"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:layout_below="@id/txt_details"
+                        android:text="$ 20.00"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="23dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorDarkBlue"
+                        android:layout_below="@id/txt_amount"
+                        />
+                    <TextView
+                        android:id="@+id/txt_consultation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Onsite consultation"
+                        android:textSize="16sp"
+                        android:layout_below="@id/txt_details"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginTop="85dp"
+                        android:layout_marginLeft="21dp"
+                        android:textColor="@color/colorpink"
+                        />
+                    <TextView
+                        android:id="@+id/txt_consultent_amount"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:layout_below="@id/txt_details"
+                        android:text="$ 20.00"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="85dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorDarkBlue"
+                        android:layout_below="@id/txt_consultent_amount"
+                        />
+                    <TextView
+                        android:id="@+id/txt_survice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Onsite consultation"
+                        android:textSize="16sp"
+                        android:layout_below="@id/txt_details"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginTop="147dp"
+                        android:layout_marginLeft="21dp"
+                        android:textColor="@color/colorpink"
+                        />
+                    <TextView
+                        android:id="@+id/txt_survice_fee"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:layout_below="@id/txt_details"
+                        android:text="$ 20.00"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="147dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorDarkBlue"
+                        android:layout_below="@id/txt_survice_fee"
+                        />
+                    <TextView
+                        android:id="@+id/txt_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="18sp"
+                        android:layout_below="@id/txt_details"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:layout_marginTop="198dp"
+                        android:layout_marginLeft="21dp"
+                        />
+                    <TextView
+                        android:id="@+id/txt_totla_fee"
+                        android:layout_width="136dp"
+                        android:layout_height="26dp"
+                        android:layout_below="@id/txt_details"
+                        android:text="$ 50.00"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:layout_marginLeft="221dp"
+                        android:gravity="right"
+                        android:layout_marginTop="198dp"
+                        />
+
+                </RelativeLayout>
+            </ScrollView>
+                   </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

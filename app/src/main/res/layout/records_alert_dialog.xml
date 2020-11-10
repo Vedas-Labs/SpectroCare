@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</androidx.core.widget.NestedScrollView>
+-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+            <RelativeLayout
+                android:id="@+id/heading_layout"
+                android:layout_width="match_parent"
+                android:background="@color/colorpink"
+                android:layout_height="60dp">
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="4dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/bottomsheethint"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Allergies Record"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="42dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp"
+                    android:id="@+id/record_title"
+                    android:layout_gravity="center_horizontal"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/img_cancel"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:visibility="visible"
+                    android:src="@drawable/cancel_white"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/heading_layout">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/titles_layout"
+                    android:weightSum="2">
+                    <TextView
+                        android:id="@+id/txt_co_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorBorderGrey"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:layout_marginLeft="45dp"
+                        android:text="Condition"/>
+                    <TextView
+                        android:id="@+id/txt_rele"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorBorderGrey"
+                        android:text="Relationship"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:id="@+id/faily_record_layout"
+                    android:layout_below="@id/titles_layout"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/txt_no_records"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:textColor="@color/colorpink"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="No Records found"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/record_recyclerview"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/txt_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/colorBorderGrey"
+                    android:layout_below="@id/faily_record_layout"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_line"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/add_list_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img_add"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/add_circle"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginLeft="50dp"
+                            />
+                        <TextView
+                            android:id="@+id/txt_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorDarkBlue"
+                            android:layout_marginLeft="20dp"
+                            android:text="Add new list"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:layout_toRightOf="@id/img_add"
+
+                            />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_save_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:weightSum="2"
+                        android:layout_below="@id/add_list_layout">
+                        <Button
+                            android:id="@+id/btn_record_edit"
+                            android:layout_width="300dp"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/colorDarkBlue"
+                            android:text="Edit"
+                            android:background="@drawable/btn_radius"
+                            android:textAllCaps="false"
+                            android:layout_marginLeft="25dp"
+                            android:layout_weight="1"/>
+
+                        <Button
+                            android:id="@+id/btn_record_save"
+                            android:layout_width="300dp"
+                            android:layout_height="45dp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/btn_radius"
+                            android:text="Save"
+                            android:textColor="@color/colorDarkBlue"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_cancel_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:weightSum="2"
+                        android:layout_below="@id/add_list_layout">
+                        <Button
+                            android:id="@+id/btn_record_cancel"
+                            android:layout_width="300dp"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/colorDarkBlue"
+                            android:text="cancel"
+                            android:background="@drawable/btn_radius"
+                            android:textAllCaps="false"
+                            android:layout_marginLeft="25dp"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:id="@+id/btn_record_save_changes"
+                            android:layout_width="300dp"
+                            android:layout_height="45dp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/btn_radius"
+                            android:text="Save Changes"
+                            android:textColor="@color/colorDarkBlue"
+
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_cancel_record"
+                        android:layout_width="140dp"
+                        android:layout_height="45dp"
+                        android:textAllCaps="false"
+                        android:layout_below="@id/add_list_layout"
+                        android:background="@drawable/btn_radius"
+                        android:text="Cancel"
+                        android:visibility="gone"
+                        android:textColor="@color/colorDarkBlue"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"/>
+
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.cardview.widget.CardView>

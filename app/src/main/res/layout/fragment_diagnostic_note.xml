@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_fragment.DiagnosticNoteFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text_waistline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Date of Diagnosis"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="37dp"
+            android:textColor="@color/colorpink"
+            />
+
+        <EditText
+            android:id="@+id/txt_waist_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="05/15/2020"
+            android:textSize="12sp"
+            android:focusable="false"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/text_waistline"
+            />
+<!--
+        <TextView
+            android:id="@+id/txt_line1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorDarkBlue"
+            android:layout_below="@id/txt_waist_line"
+            />
+-->
+        <TextView
+            android:id="@+id/text_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diagnosis"
+            android:layout_below="@id/txt_waist_line"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="37dp"
+            android:textColor="@color/colorpink"
+            />
+        <EditText
+            android:id="@+id/txt_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Need to take CT scan."
+            android:layout_marginLeft="37dp"
+            android:focusable="false"
+            android:paddingBottom="15dp"
+            android:textSize="12sp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/text_bmi"
+            />
+<!--
+        <TextView
+            android:id="@+id/txt_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorDarkBlue"
+            android:layout_below="@id/txt_bmi"
+            />
+-->
+        <TextView
+            android:id="@+id/text_bmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prescriptions"
+            android:layout_below="@id/txt_bmi"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="37dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorpink"
+            />
+        <EditText
+            android:id="@+id/txt_bmr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="N/A"
+            android:paddingBottom="15dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:focusable="false"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/text_bmr"
+            />
+<!--
+        <TextView
+            android:fontFamily="@font/montserrat_regular"
+            android:id="@+id/txt_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorDarkBlue"
+            android:layout_below="@id/txt_bmr"
+            />
+-->
+        <TextView
+            android:id="@+id/text_blood_pre"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remarks"
+            android:layout_below="@id/txt_bmr"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="37dp"
+            android:textColor="@color/colorpink"
+            />
+        <EditText
+            android:id="@+id/txt_blood_pre"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:text="Come back in one week for CT report checking"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="15dp"
+            android:textSize="12sp"
+            android:focusable="false"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginRight="35dp"
+            android:layout_below="@id/text_blood_pre"
+            />
+<!--
+        <TextView
+            android:id="@+id/txt_line4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorDarkBlue"
+            android:layout_below="@id/txt_blood_pre"
+            />
+-->
+
+    </RelativeLayout>
+   </ScrollView>
+
+</RelativeLayout>

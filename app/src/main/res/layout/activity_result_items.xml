@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false">
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        card_view:cardBackgroundColor="@color/colorWhite"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="7dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeone"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:focusable="false"
+                android:background="@color/colorGreen"
+                android:focusableInTouchMode="false" />
+
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:background="#F2F2F2">
+                <ImageView
+                    android:id="@+id/img_icon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:clickable="false"
+                    android:background="@drawable/happiness"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false" />
+
+                <TextView
+                    android:id="@+id/testCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="47dp"
+                    android:clickable="false"
+                    android:textColor="@color/colorGreen"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:focusable="false"
+                    android:text="Normal"
+                    android:focusableInTouchMode="false"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/testName"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="5dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="Total Cholestero(mg/dL)"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorblack"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/testrsult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                android:clickable="false"
+                android:textSize="14sp"
+                android:text="+++"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorblack" />
+
+            <TextView
+                android:id="@+id/unitsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textSize="12sp"
+                android:text="59.0"
+                android:layout_marginLeft="100dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorblack" />
+
+            <TextView
+                android:id="@+id/testVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="9dp"
+                android:clickable="false"
+                android:layout_toRightOf="@id/unitsName"
+                android:text="1000"
+                android:visibility="gone"
+                android:textSize="12sp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColor="@color/colorblack" />
+
+
+            <Button
+                android:id="@+id/btn_down"
+                android:layout_width="12dp"
+                android:layout_height="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/dropdown"
+                android:clickable="false"
+                android:focusable="false" />
+
+            <Button
+                android:id="@+id/btn_up"
+                android:layout_width="12dp"
+                android:layout_height="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                android:background="@drawable/ic_arrow_drop_up"
+                android:clickable="false"
+                android:focusable="false"
+
+                />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/rl_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/card_view"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:background="@color/colorGreen"
+            android:focusableInTouchMode="false" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/test_discription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/occultblood"
+                android:textColor="@color/colorblack" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
+

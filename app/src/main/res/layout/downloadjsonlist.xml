@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_boarder"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginBottom="10dp"
+        card_view:cardElevation="4dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorWhite">
+            <TextView
+                android:id="@+id/testName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:clickable="false"
+                android:fontFamily="@font/montserrat_bold"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:focusableInTouchMode="false"
+                android:text="UTSR 001"
+                android:textColor="@color/colorpink"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:clickable="false"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_below="@+id/testName"
+                android:text="098877676555555"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:clickable="false"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_alignParentRight="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_below="@+id/testName"
+                android:text="Not Connected"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

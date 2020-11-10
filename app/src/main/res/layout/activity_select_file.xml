@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.SelectFileActivity">
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_background"/>
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Files"
+            android:textSize="16sp"
+            android:layout_margin="15dp"
+            android:layout_toRightOf="@id/img_back_arrow"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/file_icon"
+            android:layout_width="55dp"
+            android:layout_height="72dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/pdf"
+            />
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="174dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="60dp"
+            android:text="Select Files"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:layout_below="@id/file_icon"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorDarkBlue"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/new_login_boarder"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

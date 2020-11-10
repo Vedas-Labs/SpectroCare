@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_sno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="1. "/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:id="@+id/img_record_delete"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/delete"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/txt_item_condition"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:enabled="true"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:text="Allergy Name"
+            android:background="@drawable/text_boarder"/>
+        <EditText
+            android:id="@+id/txt_item_relation"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:text="Note "
+            android:textColor="@color/colorDarkBlue"
+            android:background="@drawable/text_boarder"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

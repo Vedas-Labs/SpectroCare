@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="10dp"
+    android:background="@color/colorWhite"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/layout_more_img"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:id="@+id/more_img"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+                android:layout_marginRight="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/more_vertical"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/color"
+        android:background="@color/colorDarkBlue"
+        android:layout_height="5dp"></RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/medical_issue_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:id="@+id/relationship_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:id="@+id/age"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More Info :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:id="@+id/info"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:id="@+id/rl"
+            android:visibility="gone"
+            android:layout_margin="3dp">
+            <TextView
+                android:id="@+id/txt_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#094053"
+                android:textSize="13sp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Created by"/>
+            <TextView
+                android:id="@+id/medical_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View medical record"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textColor="#545870"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:layout_toRightOf="@id/txt_created"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"></RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_toRightOf="@id/medical_issue_title"
+            android:text="jjjjjj" />
+        <TextView
+            android:id="@+id/vaccinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorDarkBlue"
+            />
+
+        <TextView
+            android:id="@+id/vaccine_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/age"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="jjjjjjj"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:id="@+id/vaccine_description"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sddsds"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:weightSum="4">
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit" />
+        <ImageView
+            android:id="@+id/img_attach"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_attachment" />
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_eye" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:elevation="0dp"
+    android:layout_margin="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/rl"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/vaccine_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vaccine name :"
+                    android:visibility="gone"
+                    android:layout_margin="5dp"
+                    android:textSize="15sp"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:id="@+id/vaccinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="jjjjjj"
+                    android:textSize="15sp"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/vaccine_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:layout_below="@id/vaccinName"
+                    android:layout_margin="5dp"
+                    android:textSize="15sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/vaccine_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginRight="130dp"
+                    android:text="hahalhah;lfhl"
+                    android:textSize="16sp"
+                    android:layout_below="@id/vaccine_date"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_layout"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="3dp">
+            <TextView
+                android:id="@+id/txt_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#094053"
+                android:textSize="13sp"
+                android:text="Created by"/>
+            <TextView
+                android:id="@+id/medical_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View medical record"
+                android:textColor="#545870"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:layout_toRightOf="@id/txt_created"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentRight="true"
+            android:weightSum="4">
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_edit" />
+            <ImageView
+                android:id="@+id/img_attach"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_attachment" />
+            <ImageView
+                android:id="@+id/img_view"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_eye" />
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_delete" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+-->

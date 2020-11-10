@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="10dp"
+    android:padding="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorpink">
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="4dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/bottomsheethint"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Please fill medication details below"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_centerHorizontal="true"/>
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cancel"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:padding="5dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/edt_file_path"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:hint="Select prescription 1"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:layout_marginTop="20dp"
+                    android:singleLine="true"
+                    android:textColor="#545870"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/img_attachment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_attachment"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:padding="15dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/edt_screen_medic_record_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:maxLines="2"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    android:hint="Add description here (optional)"
+                    android:singleLine="false"
+                    android:textColor="@color/colorblack"
+                    android:textColorHint="@color/colorblack"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/edt_file_path1"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:hint="Select prescription 2"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:layout_marginTop="20dp"
+                    android:singleLine="true"
+                    android:textColor="#545870"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/img_attachment1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_attachment"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:padding="15dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/edt_screen_record_description1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:maxLines="2"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    android:hint="Add description here (optional)"
+                    android:textColorHint="@color/colorblack"
+                    android:singleLine="false"
+                    android:textColor="#545870"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_add_screening_record_details"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_radius"
+                android:backgroundTint="#53B9c6"
+                android:clickable="false"
+                android:text="Add"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_corner"
+            android:clickable="true"
+            android:visibility="gone"
+            android:id="@+id/l_dismiss"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Dismiss"
+                android:textColor="@color/colorpink"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="10dp"
+    android:background="@color/colorWhite"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/pop_up_layout"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="15dp"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="2dp">
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/colorpink"
+                        android:weightSum="2">
+                        <TextView
+                            android:id="@+id/txt_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="View"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:padding="7dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="@color/colorDarkBlue"/>
+
+                        <TextView
+                            android:id="@+id/txt_delete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:text="Delete"
+                            android:padding="7dp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play_arrow_black_24dp"/>
+        </RelativeLayout>
+       <RelativeLayout
+           android:layout_width="60dp"
+           android:layout_alignParentRight="true"
+           android:id="@+id/more_img"
+           android:visibility="gone"
+           android:layout_height="100dp">
+           <ImageView
+               android:layout_weight="1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:clickable="false"
+               android:focusable="false"
+               android:layout_centerHorizontal="true"
+               android:layout_gravity="center"
+               android:background="@drawable/more_vertical"
+               />
+       </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_sno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="1. "/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:layout_margin="5dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:id="@+id/img_record_delete"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/delete"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/txt_item_condition"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:enabled="false"
+                android:textColor="@color/colorDarkBlue"
+                android:layout_weight="2"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Allergy Name"
+                android:background="@drawable/text_boarder"/>
+            <EditText
+                android:id="@+id/txt_item_relation"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="start"
+                android:padding="10dp"
+                android:enabled="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_margin="5dp"
+                android:layout_weight="2"
+                android:text="Note "
+                android:textColor="@color/colorDarkBlue"
+                android:background="@drawable/text_boarder"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:id="@+id/color"
+        android:background="@color/colorDarkBlue"
+        android:layout_height="5dp"></RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_about"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:textColor="#094053"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:text="About Allergy : "/>
+
+        <TextView
+            android:id="@+id/txt_allergy_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorblack"
+            android:text="Allergy Description"
+            />
+        <TextView
+            android:id="@+id/txt_created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#094053"
+            android:text="sddssddssdds"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#094053"
+            android:text="sdsddsds"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:id="@+id/rl"
+            android:visibility="gone"
+            android:layout_margin="3dp">
+            <TextView
+                android:id="@+id/txt_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#094053"
+                android:textSize="13sp"
+                android:text="Created by"/>
+            <TextView
+                android:id="@+id/medical_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View medical record"
+                android:textColor="#545870"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:layout_toRightOf="@id/txt_created"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"></RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:weightSum="4">
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit" />
+        <ImageView
+            android:id="@+id/img_attach"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_attachment" />
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_eye" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+<!--<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5dp"
+    android:layout_margin="3dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/txt_about"
+            android:layout_width="wrap_content"
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:textColor="#094053"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:text="About Allergy : "/>
+
+        <TextView
+            android:id="@+id/txt_allergy_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorblack"
+            android:text="Allergy Description"
+            />
+        <TextView
+            android:id="@+id/txt_created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#094053"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_allergy_description"/>
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#094053"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:layout_below="@id/txt_created_date"/>
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_created_date"
+            android:layout_alignParentRight="true"
+            android:weightSum="4">
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_edit" />
+            <ImageView
+                android:id="@+id/img_attach"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_attachment" />
+            <ImageView
+                android:id="@+id/img_view"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_eye" />
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_delete" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>-->
+    <!--android:textColor="#094053"-->

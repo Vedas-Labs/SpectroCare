@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/layout_boarder"
+    app:behavior_hideable="false"
+    app:cardCornerRadius="10dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorpink">
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/bottomsheethint"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please choose file "
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="10dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"/>
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cancel"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edt_file_path"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/corners"
+                android:ellipsize="end"
+                android:hint="File path"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:maxLines="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="55dp"
+                android:layout_marginTop="20dp"
+                android:singleLine="true"
+                android:textColor="#545870"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/img_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_attachment"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:padding="15dp"
+                />
+
+
+        </RelativeLayout>
+        <EditText
+            android:id="@+id/edt_screen_record_description"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/corners"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:maxLines="1"
+            android:hint="More Info"
+            android:layout_weight="1"
+            android:layout_marginBottom="3dp"
+            android:singleLine="false"
+            android:textColor="#545870"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+        <Button
+            android:id="@+id/btn_add_screening_record_details"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_radius"
+            android:backgroundTint="@color/colorDarkBlue"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:clickable="false"
+            android:text="Add"
+            android:textColor="#fff" />
+        <Button
+            android:id="@+id/btn_update_vaccine_details"
+            style="?android:attr/borderlessButtonStyle"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_radius"
+            android:backgroundTint="#53B9c6"
+            android:clickable="false"
+            android:text="Update"
+            android:textColor="#fff" />
+
+
+    </LinearLayout>
+
+
+    <!--
+        <androidx.cardview.widget.CardView
+            android:id="@+id/screen_record_file_layout"
+            android:layout_width="250dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@id/btn_screening_record"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F9CFD9">
+                <TextView
+                    android:id="@+id/text_attach_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="#323232"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="16sp"
+                    android:text="Attach a file"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/text_attach_file"
+                    android:background="#323232" />
+                <TextView
+                    android:id="@+id/text_enter_manually"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#323232"
+                    android:layout_below="@id/text_attach_file"
+                    android:text="Enter Manually"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    -->
+
+</androidx.cardview.widget.CardView>

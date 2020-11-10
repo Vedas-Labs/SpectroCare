@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/ttle_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorpink">
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bottomsheethint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:text="Please fill medical details below"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_cancel" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/ttle_layout"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/corners"
+                android:ellipsize="end"
+                android:hint="Symptoms"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColor="#545870"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/edt_current_status"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corners"
+                android:ellipsize="end"
+                android:hint="Current status"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColor="#545870"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/edt_add_medical_description"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/corners"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:hint="More info"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColor="#545870"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:buttonTint="#53B9c6"
+                    android:scaleX="1.8"
+                    android:scaleY="1.8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/checkbox"
+                    android:padding="5dp"
+                    android:text="Is your current illness ?"
+                    android:textColor="#53B9c6"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_add_medical_record"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_radius"
+                android:backgroundTint="#53B9c6"
+                android:clickable="false"
+                android:text="Add"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_update_medical_record"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_radius"
+                android:backgroundTint="#53B9c6"
+                android:clickable="false"
+                android:text="Update"
+                android:textColor="#fff"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

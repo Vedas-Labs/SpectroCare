@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_corner"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Choose "
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textColor="@color/colorlightgray"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E5E5E5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Camera"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorpink"
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E5E5E5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gallery"
+                android:padding="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorpink"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E5E5E5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="File"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="10dp"
+                android:textColor="@color/colorpink"
+                android:gravity="center"
+                android:visibility="visible"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+        <!--
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#E5E5E5" />
+        -->
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="true"
+        android:id="@+id/layout_dismiss"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/colorpink"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose File"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/corners"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        >
+        <TextView
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners"
+            android:text="Camera"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gallery"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:background="@drawable/corners"
+            />
+        <TextView
+            android:id="@+id/file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="File"
+            android:padding="10dp"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:background="@drawable/corners"
+            />
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:background="@drawable/corners"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>-->

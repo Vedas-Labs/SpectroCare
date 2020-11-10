@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.PatientDiagnosisActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_background">
+
+
+            <RelativeLayout
+                android:id="@+id/doc_layout"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="75dp">
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/circular_image"
+                    android:layout_width="81dp"
+                    android:layout_height="81dp"
+                    android:src="@drawable/image" />
+
+                <TextView
+                    android:id="@+id/txt_name_of_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Dr. Viswanath Reddy"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_doc_specail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_name_of_doc"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Male 30 yrs"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/layout_date"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@id/txt_doc_specail"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txt_doc_profession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Created on:"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+                    <TextView
+                        android:id="@+id/txt_doc_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 05/12/2020"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="11sp"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/calendar_white"
+                        android:layout_toRightOf="@id/txt_doc_profession"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+                    <TextView
+                        android:id="@+id/txt_doc_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 9:00-9:30 AM"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/clock_white"
+                        android:layout_toRightOf="@id/txt_doc_date"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="185dp"
+                android:background="#00000000"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:tabIndicatorColor="@color/colorWhite"
+                app:tabTextAppearance="@style/MyCustomTabText" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tab_layout"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_top_radius"
+                android:backgroundTint="@color/colorWhite" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/img_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:padding="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diagnosis Record"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:textColor="@color/colorWhite"
+        />
+
+
+</RelativeLayout>

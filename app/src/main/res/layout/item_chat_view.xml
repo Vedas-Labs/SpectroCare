@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="16dp"
+    android:background="@color/colorWhite"
+    android:layout_marginBottom="20dp">
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/notUserLay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_marginTop="25dp"
+        android:id="@+id/notUserPic"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_profile3x" />
+
+    <LinearLayout
+        android:id="@+id/notUserLinearLay"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="36dp"
+        android:layout_toRightOf="@id/notUserPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/people_offer_msz_box"
+                android:backgroundTint="#F8F8F8">
+
+
+                <TextView
+                    android:padding="15dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/nonUserMsz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingLeft="9dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="30dp"
+                    android:text="Lorem ipsumnum ullam"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/img_receive"
+                    android:visibility="gone"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="15dp"
+                    />
+                <RelativeLayout
+                    android:id="@+id/rel_receive_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="5dp"
+                    >
+                    <VideoView
+                        android:id="@+id/receive_video"
+                        android:scaleType="fitXY"
+                        android:layout_centerInParent="true"
+                        android:layout_width="180dp"
+                        android:layout_height="150dp"/>
+                    <ImageView
+                        android:id="@+id/img_receive_play"
+                        android:layout_centerInParent="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_play_circle"/>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    <TextView
+        android:id="@+id/txt_non_user_time"
+        android:layout_below="@id/notUserLinearLay"
+        android:layout_alignEnd="@id/notUserLinearLay"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp"
+        android:visibility="gone"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6:23 AM"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/userLay"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/userPic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/profile_1" />
+
+    <LinearLayout
+        android:id="@+id/userLinearLay"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/userPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/people_offer_msz_box"
+            android:backgroundTint="@color/textBackground">
+
+
+            <TextView
+                android:padding="15dp"
+                android:gravity="center_vertical"
+                android:id="@+id/userMsz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingLeft="9dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="30dp"
+                android:text="Lorem ipsumnum ullam"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="12sp" />
+            <ImageView
+                android:id="@+id/img_send"
+                android:visibility="gone"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="15dp"
+                />
+            <RelativeLayout
+                android:id="@+id/rela_send_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                >
+                <VideoView
+                    android:id="@+id/send_video"
+                    android:scaleType="fitXY"
+                    android:layout_centerInParent="true"
+                    android:layout_width="180dp"
+                    android:layout_height="150dp"/>
+                <ImageView
+                    android:id="@+id/img_play"
+                    android:layout_centerInParent="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/ic_play_circle"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txt_user_time"
+        android:layout_below="@id/userLinearLay"
+        android:layout_alignStart="@id/userLinearLay"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="2dp"
+        android:visibility="gone"
+        android:textSize="13sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_height="wrap_content"
+        android:text="6:23 AM"/>
+
+
+</RelativeLayout>
+</RelativeLayout>

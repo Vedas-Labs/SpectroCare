@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.VaccineRecords">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vaccine_list"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#53B9c6"
+        android:textStyle="bold"
+        android:text="No vaccine records found. Click add button to add new vaccine record"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dp">
+        <Button
+            android:id="@+id/add_vaccine_record"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="Add New"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_boarder"
+            android:textColor="#53B9c6"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="Submit"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_boarder"
+            android:textColor="#53B9c6"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:id="@+id/btn_update_record"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="Update"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_boarder"
+            android:textColor="#ED5276"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

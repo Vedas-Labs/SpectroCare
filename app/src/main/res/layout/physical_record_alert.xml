@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFF"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Category"
+            android:textSize="16sp"
+            android:textColor="#1b1b1b"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the category name to add"
+            android:textSize="12sp"
+            android:textColor="#1b1b1b"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:id="@+id/edt_title"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/corners"
+            android:ellipsize="end"
+            android:hint="User Name"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:singleLine="true"
+            android:textColor="#545870"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:weightSum="2">
+            <Button
+                android:id="@+id/btn_no_thanks"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_boarder"
+                android:textColor="#53B9c6"
+                android:layout_weight="1"
+                android:layout_marginRight="2dp"
+                android:text="No Thanks"/>
+            <Button
+                android:id="@+id/add_title"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_boarder"
+                android:textColor="#53B9c6"
+                android:layout_weight="1"
+                android:layout_marginLeft="2dp"
+                android:text="add"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

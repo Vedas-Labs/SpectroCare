@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:background="@drawable/btn_top_radius"
+                android:backgroundTint="@color/colorpink"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_margin="2dp"
+                    android:layout_centerInParent="true"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Choose Option"
+                    />
+<!--
+                <ImageView
+                    android:id="@+id/img_canc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cancel"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"/>
+-->
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/txt_all_appointments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_margin="2dp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="All Appointments"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/txt_upcmng_appointments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_margin="2dp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Upcoming Appointments"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/txt_past_appointments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:padding="5dp"
+                    android:layout_margin="2dp"
+                    android:layout_height="wrap_content"
+                    android:text="Past Appointments"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_book_appointments"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:padding="5dp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="15sp"
+                    android:layout_margin="2dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_height="wrap_content"
+                    android:text="Book Appointments"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_cal"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textSize="15sp"
+                    android:layout_margin="2dp"
+                    android:padding="5dp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:layout_height="wrap_content"
+                    android:text="Calender"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="true"
+        android:id="@+id/layout_dismiss"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dismiss"
+            android:textColor="@color/colorpink"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_semi_bold" />
+    </LinearLayout>
+
+</LinearLayout>

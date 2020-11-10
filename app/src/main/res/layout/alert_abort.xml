@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/layout_cornerbg"
+    android:id="@+id/rl_main"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_main1"
+        android:background="@drawable/layout_cornerbg"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Abort Test"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/colorpink"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="50dp"
+            android:text="Are you sure you want to abort this test? The test result will not be saved"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/msg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_below="@id/msg"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl_header"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_no"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/colorWhite"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="No"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_yes"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:background="@color/colorOrange"
+                    android:text="Yes"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        android:background="@drawable/edt_txt_background"
+        android:backgroundTint="@color/colorWhite"
+        android:layout_margin="5dp">
+        <TimePicker
+            android:id="@+id/clock_picker"
+            android:layout_width="215dp"
+            android:layout_height="130dp"
+            android:timePickerMode="spinner"
+            />
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/clock_picker"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/colorBorderGrey"
+            android:background="@drawable/edt_txt_background"
+            android:text="ok"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

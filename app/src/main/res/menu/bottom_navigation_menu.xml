@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_notification"
+        android:icon="@drawable/calendar_1"
+        android:title="" />
+    <item
+        android:id="@+id/navigation_card"
+        android:icon="@drawable/card_1"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home_1"
+        android:title="" />
+    <item
+        android:id="@+id/icon_notification"
+        android:icon="@drawable/notification_2"
+        android:title="" />
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/ic_more"
+        android:title="" />
+
+
+</menu>

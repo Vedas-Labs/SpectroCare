@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="2dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/back_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#53B9c6">
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Delete"
+            android:textColor="#FFF"
+            android:layout_toLeftOf="@id/delete"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:id="@+id/patient_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Medical Record ID :"
+                android:textColor="#545870"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/medicRecordId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/patient_name"
+                android:text="MRID201t2w"
+                android:textColor="#545870"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/patient_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/patient_name"
+                android:layout_marginTop="10dp"
+                android:text="Modified on :"
+                android:textColor="#545870"
+                android:textStyle="normal"/>
+
+
+            <TextView
+                android:id="@+id/patient_id_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#545870"
+                android:text="Created on :"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/patient_age"
+                android:textStyle="normal"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

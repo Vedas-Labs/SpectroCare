@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/layout_cornerbg"
+    android:layout_height="220dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/layout_cornerbg"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:indeterminateDrawable="@drawable/loader_1"
+
+            />
+<!--        android:indeterminateDrawable="@drawable/progressbar_analyze"-->
+
+        <TextView
+            android:id="@+id/txt_removeMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/progressBar"
+            android:text="Analyzing Test Result"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_wait"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/colorblack"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txt_removeMember"
+            android:text="Please Wait...."
+            android:textAlignment="center"
+            android:textSize="15sp" />
+
+<Button
+    android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="true"
+    android:id="@+id/btn_abort"
+            android:background="@drawable/layout_cornerbg"
+            android:layout_below="@+id/txt_wait"
+            android:text="Abort And Quit"
+            android:textAlignment="center"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

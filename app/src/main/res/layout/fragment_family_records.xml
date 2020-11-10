@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FamilyRecords">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/family_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ED5276"
+        android:textStyle="bold"
+        android:text="No family records found. Click add button to add new family record"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        android:layout_marginBottom="5dp">
+        <Button
+            android:id="@+id/add_family_record"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="Add New"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_boarder"
+            android:textColor="#ED5276"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:text="Next"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_boarder"
+            android:textColor="#ED5276"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

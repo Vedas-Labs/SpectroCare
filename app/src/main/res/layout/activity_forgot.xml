@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/forgot_password"
+    tools:context=".activities.ForgotActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"/>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/logo"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@id/logo"
+        >
+
+        <RelativeLayout
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:id="@+id/title_forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:textAllCaps="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="18sp"
+                android:textColor="#53B9C6"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"/>
+            <TextView
+                android:id="@+id/title_forgot_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_forgot"
+                android:text="Enter your registered User ID / Email here. We'll send password reset link."
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textColor="#3E454C"
+                android:layout_marginTop="10dp"/>
+            <!--
+                        <TextView
+                            android:id="@+id/title_forgot_description2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/title_forgot_description"
+                            android:text="we'll send password reset link to your email"
+                            android:textColor="#3E454C"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:layout_marginTop="2dp"/>
+            -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_below="@id/title_forgot_description"
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textColorHint="#3E454C"
+                    android:background="@drawable/new_login_boarder"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_forgot_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:singleLine="true"
+                        android:drawablePadding="15dp"
+                        android:drawableLeft="@drawable/icon_feather_user"
+                        android:textColor="#53B9C6"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:background="#00000000"
+                        android:backgroundTint="#00000000"
+                        android:inputType="textNoSuggestions"
+                        android:textStyle="normal"
+                        android:layout_margin="15dp"
+                        android:textSize="16sp"
+                        android:hint="@string/hint"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/error_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_below="@id/layout_edit_text"
+                    android:textSize="14sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#ff0000"
+                    android:drawableLeft="@drawable/error"/>
+
+                <!--
+                                <EditText
+                                    android:singleLine="true"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/corners"
+                                    android:visibility="gone"
+                                    android:padding="10dp"
+                                    android:textColor="#545870"
+                                    android:textStyle="normal"
+                                    android:textSize="16sp"
+                                    android:layout_marginTop="20dp"
+                                    android:hint="@string/hint"/>
+                -->
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Send"
+                    android:layout_marginTop="50dp"
+                    android:textColor="#fff"
+                    android:backgroundTint="#3E454C"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/new_login_boarder"
+                    android:layout_below="@id/layout_edit_text"/>
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="180dp"
+                    android:layout_height=".5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    android:layout_below="@id/btn_next"
+                    android:background="#ECECEC" />
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height=".5dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    android:layout_below="@id/line"
+                    android:layout_marginTop="8dp"
+                    android:background="#ECECEC" />
+                <Button
+                    android:id="@+id/btn_flogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/line"
+                    android:visibility="gone"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="120dp"
+                    android:textColor="#545870"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/btn_radius"
+                    android:text="@string/login"
+                    />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</ScrollView>
+        <ImageView
+            android:id="@+id/icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ionic_ios_arrow_back"
+            android:padding="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

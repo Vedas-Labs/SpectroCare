@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="20dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_cancel"
+            android:text="Filters"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="10dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorpink"/>
+        <TextView
+            android:id="@+id/txt_appointment_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Appointment Type"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/title"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="10dp"
+            android:textColor="@color/colorpink"
+            android:background="@color/textBackground"/>
+        <LinearLayout
+            android:id="@+id/layout_onsite"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_appointment_type"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="online"
+                android:layout_margin="5dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:gravity="center"
+                android:background="@drawable/new_login_boarder"
+                android:padding="10dp"/>
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="on-site"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:gravity="center"
+                android:background="@drawable/new_login_boarder"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/layout_onsite"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="10dp"
+            android:textColor="@color/colorpink"
+            android:background="@color/textBackground"/>
+        <LinearLayout
+            android:id="@+id/layout_status"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_status"
+            >
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/status_recycle_view"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/title_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Department"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/layout_status"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="10dp"
+            android:textColor="@color/colorpink"
+            android:background="@color/textBackground"/>
+
+        <LinearLayout
+            android:id="@+id/layout_department"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_department"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/department_recycle_view"
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:nestedScrollingEnabled="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout
+        android:id="@+id/layout_btns"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="cancel"
+            android:layout_margin="15dp"
+            android:textColor="@color/colorpink"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center"
+            android:background="@drawable/btn_background"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Apply Filters"
+            android:layout_margin="15dp"
+            android:textColor="@color/colorpink"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center"
+            android:background="@drawable/btn_background"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

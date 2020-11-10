@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".patient_fragment.PatientDoctorRecordFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginRight="20dp">
+
+
+
+                <LinearLayout
+                    android:id="@+id/dob_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layout_gender"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_dob_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:textColorHint="#3E454C"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:focusable="false"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="YYYY/MM/DD"
+                        android:layout_marginRight="0.5dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorGrey"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_age_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:textColorHint="@color/colorpink"
+                        android:padding="5dp"
+                        android:focusable="false"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="Start Date"
+                        app:hintTextAppearance="@style/TextApppp"
+                        android:layout_marginRight="1.2dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_page"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:textColor="@color/colorGrey"
+                            android:focusable="false"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/phone_no_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dob_layout"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_code_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:textColorHint="#3E454C"
+                        android:textColor="@color/colorpink"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="CC"
+                        android:layout_marginRight="0.5dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_pcounty_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:inputType="phone"
+                            android:textColor="@color/colorGrey"
+                            android:maxLength="3"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_phno_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:textColorHint="@color/colorpink"
+                        android:padding="5dp"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="End Date"
+                        app:hintTextAppearance="@style/TextApppp"
+                        android:layout_marginRight="0.5dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_p_phone_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorGrey"
+                            android:inputType="phone"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_adress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorpink"
+                    android:padding="5dp"
+                    android:layout_below="@id/phone_no_layout"
+                    app:hintTextAppearance="@style/TextApppp"
+                    android:hint="Symptoms"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColorHint="@color/colorpink"
+                    app:hintTextAppearance="@style/TextApppp"
+                    android:padding="5dp"
+                    android:layout_below="@id/layout_adress"
+                    android:hint="Discriptions"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorpink"
+                    android:padding="5dp"
+                    android:layout_below="@id/layout_city"
+                    app:hintTextAppearance="@style/TextApppp"
+                    android:hint="Reason For Visit"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_patient_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="PATIENT ID"
+                    android:visibility="gone"
+                    android:textColorHint="#3E454C"
+                    android:padding="5dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_patient_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorGrey"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_medical_record_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#3E454C"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:layout_below="@id/layout_patient_id"
+                    android:hint="MEDICAL RECORD ID"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_medical_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorGrey"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorpink"
+                    android:padding="5dp"
+                    app:hintTextAppearance="@style/TextApppp"
+                    android:layout_below="@id/layout_medical_record_id"
+                    android:hint="Appointment Date/Time"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_Pemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorGrey"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/name_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_below="@id/layout_mail"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_name_first"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorpink"
+                        android:layout_marginLeft="0.5dp"
+                        android:padding="5dp"
+                        app:hintTextAppearance="@style/TextApppp"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="Appointment Type"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_pfirst_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorGrey"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_name_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorpink"
+                        android:padding="5dp"
+                        app:hintTextAppearance="@style/TextApppp"
+                        android:layout_below="@id/layout_patient_id"
+                        android:hint="Reason for visit"
+                        android:layout_marginRight="0.5dp"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_plast_name"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorGrey"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_layout"
+                    >
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/gender_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorpink"
+                        android:layout_marginLeft="0.5dp"
+                        android:focusable="false"
+                        app:hintTextAppearance="@style/TextApppp"
+                        android:padding="5dp"
+                        android:hint="Illness/Conditions"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:focusable="false"
+                            android:textColor="@color/colorGrey"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerInParent="true"
+                        android:layout_alignParentRight="true"
+                        >
+                        <RadioButton
+                            android:id="@+id/male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_drawble"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+                        <RadioButton
+                            android:id="@+id/female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_female"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+                        <RadioButton
+                            android:id="@+id/other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_other"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+
+
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</RelativeLayout>

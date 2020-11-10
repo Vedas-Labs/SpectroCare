@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.CategoryInPatientModuleActivity">
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_background"/>
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Result"
+            android:textSize="16sp"
+            android:layout_margin="15dp"
+            android:layout_toRightOf="@id/img_back_arrow"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+           />
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar_layout">
+            <TextView
+                android:id="@+id/txt_search_by"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorLightGrey"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Elderly Services"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"/>
+            <EditText
+                android:layout_below="@id/txt_search_by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Search for doctor"
+                android:paddingLeft="10dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="5dp"
+                android:drawableRight="@drawable/ic_search"
+                android:background="@drawable/edt_txt_background"
+                android:id="@+id/edt_search"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serch_result_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_margin="10dp"
+                android:layout_below="@id/edt_search"/>
+
+            <RelativeLayout
+                android:id="@+id/layout_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true">
+                <Button
+                    android:id="@+id/btn_show_more"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="Show more"
+                    android:visibility="gone"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="@color/colorWhite"
+                    android:backgroundTint="@color/colorDarkBlue"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/new_login_boarder"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+</RelativeLayout>

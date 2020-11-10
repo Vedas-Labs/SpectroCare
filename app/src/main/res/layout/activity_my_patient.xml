@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLayoutBackground"
+    tools:context=".activities.MyPatientActivity">
+ <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#53B9c6"
+        app:titleTextColor="#FFF" />
+    <androidx.cardview.widget.CardView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="85dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/text_patients_disc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#53B9c6"
+                    android:textStyle="bold"
+                    android:text="No Patients !!! Click on add button to add new patients."/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/relative"
+                android:layout_margin="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorpink"
+                android:background="@drawable/corners">
+
+                <!-- <ImageView
+                     android:layout_width="20dp"
+                     android:layout_height="20dp"
+                     android:layout_centerVertical="true"
+                     android:layout_marginLeft="10dp"
+                     android:background="@drawable/ic_search" />-->
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="7dp"
+                    android:textSize="13sp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/ic_search_black"
+                    android:drawablePadding="5dp"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/search_boarder"
+                    android:padding="5dp"
+                    android:hint="Search by patient name or ID" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/patient_view"
+                android:layout_width="match_parent"
+                android:layout_margin="3dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative"/>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+   <!-- <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/tool_bar"
+        android:layout_margin="5dp"
+        android:background="@drawable/corners"
+        app:menu="@menu/example_menu"
+        app:titleTextColor="#FFF" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patients"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:drawableLeft="@drawable/icon_ionic_ios_arrow_white"
+            android:textColor="#FFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/search_bar_layout"
+        android:layout_below="@id/tool_bar"
+        android:layout_centerHorizontal="true"
+        android:background="#d3d3d3">
+        <AutoCompleteTextView
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:padding="5dp"
+            android:hint="Search"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/search_bar"
+            android:focusableInTouchMode="true"
+            android:imeOptions="actionSearch"
+            android:inputType="textAutoComplete|textAutoCorrect"
+            android:searchSuggestSelection="word MATCH ?" />
+      &lt;!&ndash;  <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            app:iconifiedByDefault="false"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:layout_centerHorizontal="true"
+            app:queryHint="Search"
+            android:background="@drawable/search_bar"
+            />&ndash;&gt;
+    </RelativeLayout>-->
+    <TextView
+        android:id="@+id/text_patientDisc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#53B9c6"
+        android:textStyle="bold"
+        android:text="No patients details found. Click add button to add new patient details"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/colorDarkBlue"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="15dp"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorpink">
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="3dp"
+                android:elevation="5dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose one"
+                android:layout_marginTop="15dp"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cancel"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"/>
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/file_layout"
+            android:layout_width="250dp"
+            android:layout_margin="15dp"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBottomSheetGrey">
+                <TextView
+                    android:id="@+id/text_attach_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="#323232"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="Attach a file"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/text_attach_file"
+                    android:background="#323232" />
+                <TextView
+                    android:id="@+id/text_enter_manually"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="#323232"
+                    android:layout_below="@id/text_attach_file"
+                    android:text="Enter Manually"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

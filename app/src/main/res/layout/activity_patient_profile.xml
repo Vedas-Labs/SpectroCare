@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.PatientProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="362dp"
+        android:background="@drawable/ic_background">
+
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Patient Profile"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="28dp"
+            android:padding="5dp"
+            android:src="@drawable/edit" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_patient_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="53dp"
+            android:src="@drawable/image" />
+
+        <TextView
+            android:id="@+id/txt_patient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="125dp"
+            android:layout_below="@id/txt_title"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Andrea Hu"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/gender_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/txt_patient_name"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Male, "
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/age_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/txt_patient_name"
+            android:layout_toRightOf="@id/gender_txt"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="27 yrs"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/txt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/img_patient_profile"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Patient ID: "
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_id_patient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/img_patient_profile"
+            android:layout_toRightOf="@id/txt_id"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="01234"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_record_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/txt_id_patient"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/img_patient_profile"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Medical Record No: "
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_id_medical_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/img_patient_profile"            android:layout_toRightOf="@id/txt_record_id"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="01234"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_data_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/btn_top_radius"
+        android:backgroundTint="@color/colorWhite">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp">
+
+                <RelativeLayout
+                    android:id="@+id/layout_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_first_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/first_name"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_firsr_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:singleLine="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:paddingLeft="10dp"
+                        android:textSize="12sp"
+                        android:layout_below="@id/txt_first_name"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_firstname">
+
+                    <TextView
+                        android:id="@+id/txt_last_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/last_name"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_last_name"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_lastname">
+
+                    <TextView
+                        android:id="@+id/txt_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="Gender"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:focusable="false"
+                        android:layout_below="@id/txt_gender"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_alignParentRight="true"
+                        >
+                        <RadioButton
+                            android:id="@+id/male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_drawble"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+                        <RadioButton
+                            android:id="@+id/female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_female"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+                        <RadioButton
+                            android:id="@+id/other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/check_box_other"
+                            android:checked="false"
+                            android:padding="10dp"
+                            android:textColor="#545870" />
+
+
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_gender">
+
+                    <TextView
+                        android:id="@+id/txt_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/age"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:inputType="number"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_below="@id/txt_age"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_age">
+
+                    <TextView
+                        android:id="@+id/txt_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/date_of_birth"
+                        android:textColor="@color/colorpink" />
+
+                    <DatePicker
+                        android:id="@+id/datePicker1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:visibility="gone"
+                        android:layout_centerHorizontal="true"
+                        android:calendarViewShown="false"/>
+                    <EditText
+                        android:id="@+id/edt_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:paddingLeft="10dp"
+                        android:focusable="false"
+                        android:layout_below="@id/txt_dob"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_dob">
+
+                    <TextView
+                        android:id="@+id/txt_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/colorpink" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_below="@id/txt_phone"
+                        android:layout_marginTop="7dp"/>
+
+                    <EditText
+                        android:id="@+id/edt_county_code"
+                        android:layout_width="111dp"
+                        android:layout_height="35dp"
+                        android:textSize="12sp"
+                        android:inputType="phone"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_below="@id/txt_phone"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/edt_txt_background" />
+                    <EditText
+                        android:id="@+id/edt_phone_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:inputType="number"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_below="@id/txt_phone"
+                        android:paddingLeft="10dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginLeft="146dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_phone">
+
+                    <TextView
+                        android:id="@+id/txt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="@string/email"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_email"
+                        android:textSize="12sp"
+                        android:singleLine="true"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_adress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_email">
+
+                    <TextView
+                        android:id="@+id/txt_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="Address"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_address"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_adress">
+
+                    <TextView
+                        android:id="@+id/txt_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="City"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_city"
+                        android:textSize="12sp"
+                        android:paddingLeft="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:singleLine="true"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_city">
+
+                    <TextView
+                        android:id="@+id/txt_province"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="State/Province/Region"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_province"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:paddingLeft="10dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="27dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/layout_pincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/layout_state">
+
+                    <TextView
+                        android:id="@+id/txt_pincode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="Postcode"
+                        android:textColor="@color/colorpink" />
+
+                    <EditText
+                        android:id="@+id/edt_postal_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/txt_pincode"
+                        android:inputType="number"
+                        android:textSize="12sp"
+                        android:singleLine="true"
+                        android:fontFamily="@font/montserrat_regular"                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="27dp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/edt_txt_background" />
+
+                </RelativeLayout>
+                <Button
+                    android:id="@+id/update_btn"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/layout_pincode"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_marginTop="45dp"
+                    android:visibility="gone"
+                    android:text="Update"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/btn_bck_color"
+                    android:layout_marginBottom="45dp"/>
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

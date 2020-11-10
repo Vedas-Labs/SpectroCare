@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:id="@+id/txt_surgical_record_illness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Surgical illness id"
+                android:textColor="#545870"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/patient_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_surgical_record_illness"
+                android:layout_marginTop="10dp"
+                android:text="Doctor name              : "
+                android:textColor="#545870"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/txt_doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_surgical_record_illness"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/patient_age"
+                android:text="Doctor Name "
+                android:textColor="#545870"
+                android:textStyle="normal"/>
+
+
+            <TextView
+                android:id="@+id/patient_id_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#545870"
+                android:text="Surgery description  : "
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/patient_age"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/txt_surgery_disc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#545870"
+                android:layout_toRightOf="@id/patient_id_title"
+                android:text=""
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/patient_age"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/txt_title_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#545870"
+                android:text="File Name                   : "
+                android:layout_below="@id/txt_surgery_disc"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/txt_f_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txt_title_file"
+                android:text="File Name"
+                android:textColor="#545870"
+                android:layout_below="@id/txt_surgery_disc"
+                android:layout_marginTop="10dp"/>
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_date"
+            android:layout_gravity="right"
+            android:background="#FFF"
+            android:padding="5dp"
+            android:textColor="#094053"
+            android:weightSum="3">
+            <ImageView
+                android:id="@+id/surgery_img_attach"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:visibility="visible"
+                android:src="@drawable/ic_attachment" />
+            <ImageView
+                android:id="@+id/surgery_img_view"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_eye" />
+
+            <ImageView
+                android:id="@+id/surgery_img_delete"
+                android:layout_weight="1"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_delete" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_fragment.MedicationsFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_waistline"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="wrap_content"
+                android:text="Paracetamol"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_grms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="300 mg 1 pill per day, 5 days"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_waistline"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_waist_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 pill per day, 5 days"
+                android:layout_marginLeft="37dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/txt_grms"
+                />
+            <TextView
+                android:id="@+id/txt_line1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_below="@id/txt_waist_line"
+                />-->
+            <TextView
+                android:id="@+id/text_bmi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paracetamol"
+                android:layout_below="@id/txt_grms"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                android:fontFamily="@font/montserrat_regular"
+                />
+            <EditText
+                android:id="@+id/txt_tablet"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="wrap_content"
+                android:text="300 mg 1 pill per day, 5 days"
+                android:focusable="false"
+                android:layout_marginLeft="37dp"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_bmi"
+                />
+<!--
+            <TextView
+                android:fontFamily="@font/montserrat_regular"
+                android:id="@+id/txt_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 pill per day, 5 days"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/txt_tablet"
+                />
+            <TextView
+                android:id="@+id/txt_line2"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_bmi"
+                />-->
+            <TextView
+                android:id="@+id/text_bmr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Paracetamol"
+                android:layout_below="@id/txt_tablet"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_tab"
+                android:layout_width="match_parent"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:focusable="false"
+                android:layout_height="wrap_content"
+                android:text="300 mg"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_bmr"
+                />
+
+          <!--  <TextView
+                android:id="@+id/txt_bmr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="1 pill per day, 5 days"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/txt_tab"
+                />
+            <TextView
+                android:id="@+id/txt_line3"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_bmr"
+                />-->
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

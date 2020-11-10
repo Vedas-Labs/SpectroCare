@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLayoutBackground"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/btn_top_radius"
+            android:backgroundTint="@color/colorpink"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="5dp">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bottomsheethint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="20dp"
+                android:text="Search Doctors"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/img_canc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_cancel" />
+
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/relative"
+                android:layout_marginTop="10dp"
+                >
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="13sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:drawableLeft="@drawable/ic_search_black"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/new_login_boarder"
+                    android:padding="10dp"
+                    android:hint="Search doctor / department"  />
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/doc_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:nestedScrollingEnabled="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="70dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

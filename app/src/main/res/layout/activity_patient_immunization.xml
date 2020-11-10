@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.PatientImmunizationActivity">
+<!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorpink"
+                android:layout_height="60dp">
+               <RelativeLayout
+                   android:layout_width="20dp"
+                   android:id="@+id/img_back_arrow"
+                   android:layout_marginLeft="20dp"
+                   android:layout_centerVertical="true"
+                   android:layout_height="20dp">
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_centerVertical="true"
+                       android:src="@drawable/back"
+                       />
+               </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Immunizations"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textColor="@color/colorWhite"
+                    />
+                <ImageView
+                    android:id="@+id/pic_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp"
+                    android:visibility="visible"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textColor="@color/colorWhite"
+                    />
+
+            </RelativeLayout>
+-->
+<!--
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_marginTop="50dp"
+         android:baselineAligned="false"
+         android:orientation="vertical"
+         android:layout_height="match_parent">
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/colorpink">
+             <RelativeLayout
+                 android:id="@+id/doc_layout"
+                 android:layout_width="match_parent"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginLeft="20dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="40dp">
+                 <com.mikhaellopez.circularimageview.CircularImageView
+                     android:id="@+id/circular_image"
+                     android:layout_width="81dp"
+                     android:layout_height="81dp"
+                     android:src="@drawable/image" />
+
+                 <TextView
+                     android:id="@+id/txt_name_of_doc"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_toRightOf="@id/circular_image"
+                     android:fontFamily="@font/montserrat_regular"
+                     android:text="Dr. Viswanath Reddy"
+                     android:textColor="@color/colorWhite"
+                     android:layout_marginLeft="10dp"
+                     android:textSize="16sp"
+                     android:textStyle="bold" />
+
+                 <TextView
+                     android:id="@+id/txt_doc_specail"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@id/txt_name_of_doc"
+                     android:layout_marginTop="5dp"
+                     android:layout_marginLeft="10dp"
+                     android:layout_toRightOf="@id/circular_image"
+                     android:fontFamily="@font/montserrat_regular"
+                     android:text="Cordiology"
+                     android:textColor="@color/colorWhite"
+                     android:textSize="12sp"
+                     android:textStyle="bold" />
+                 <RelativeLayout
+                     android:id="@+id/layout_date"
+                     android:layout_width="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:layout_below="@id/txt_doc_specail"
+                     android:layout_toRightOf="@id/circular_image"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:id="@+id/txt_doc_profession"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Created on:"
+                         android:textSize="12sp"
+                         android:textColor="@color/colorWhite"
+                         android:layout_marginTop="17dp"
+                         android:fontFamily="@font/montserrat_regular"/>
+                     <TextView
+                         android:id="@+id/txt_doc_date"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text=" 05/12/2020"
+                         android:textColor="@color/colorWhite"
+                         android:textSize="12sp"
+                         android:gravity="center"
+                         android:drawableLeft="@drawable/calendar_white"
+                         android:layout_toRightOf="@id/txt_doc_profession"
+                         android:layout_marginTop="15dp"
+                         android:layout_marginLeft="5dp"
+                         android:fontFamily="@font/montserrat_regular"/>
+                     <TextView
+                         android:id="@+id/txt_doc_time"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text=" 9:00-9:30 AM"
+                         android:textSize="12sp"
+                         android:textColor="@color/colorWhite"
+                         android:layout_marginLeft="5dp"
+                         android:gravity="center"
+                         android:drawableLeft="@drawable/clock_white"
+                         android:layout_toRightOf="@id/txt_doc_date"
+                         android:layout_marginTop="15dp"
+                         android:fontFamily="@font/montserrat_regular"/>
+
+
+                 </RelativeLayout>
+
+             </RelativeLayout>
+
+
+             <RelativeLayout
+                 android:id="@+id/layout_disease"
+                 android:layout_width="match_parent"
+                 android:layout_height="600dp"
+                 android:layout_marginTop="160dp"
+                 android:background="@drawable/btn_top_radius"
+                 android:backgroundTint="@color/colorWhite"
+                 >
+                 <RelativeLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
+
+                     <RelativeLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent">
+                         <TextView
+                             android:id="@+id/text_disease"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="Vaccine Name"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_marginTop="15dp"
+                             android:layout_marginLeft="20dp"
+                             android:textColor="@color/colorpink"
+                             />
+                         <EditText
+                             android:id="@+id/edt_immun_name"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="20dp"
+                             android:textSize="13dp"
+                             android:focusable="false"
+                              android:paddingLeft="10dp"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_marginRight="20dp"
+                             android:layout_below="@id/text_disease"
+                             />
+                         <LinearLayout
+                             android:id="@+id/layout_dates"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             android:layout_below="@id/edt_immun_name"
+                             android:weightSum="2">
+                             <RelativeLayout
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1">
+                                 <TextView
+                                     android:id="@+id/text_start_date"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:text="Start Date"
+                                     android:fontFamily="@font/montserrat_regular"
+                                     android:layout_marginTop="15dp"
+                                     android:layout_marginLeft="20dp"
+                                     android:textColor="@color/colorpink"
+                                     />
+                                 <EditText
+                                     android:id="@+id/edt_start_date"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="40dp"
+                                     android:layout_marginLeft="20dp"
+                                     android:layout_marginRight="20dp"
+                                     android:textSize="13dp"
+                                     android:focusable="false"
+                                     android:layout_centerVertical="true"
+                                     android:paddingLeft="10dp"
+                                     android:paddingTop="10dp"
+                                     android:fontFamily="@font/montserrat_regular"
+                                     android:layout_below="@id/text_start_date"
+                                     />
+                                 <ImageView
+                                     android:id="@+id/img_calender"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:visibility="gone"
+                                     android:layout_marginTop="12dp"
+                                     android:layout_marginLeft="5dp"
+                                     android:layout_marginRight="30dp"
+                                     android:src="@drawable/calendar_blue"
+                                     android:layout_alignParentRight="true"
+                                     android:layout_below="@id/text_start_date"/>
+                             </RelativeLayout>
+                             <RelativeLayout
+                                 android:layout_width="match_parent"
+                                 android:visibility="gone"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1">
+                                 <TextView
+                                     android:id="@+id/text_end_date"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:fontFamily="@font/montserrat_regular"
+                                     android:text="Time"
+                                     android:layout_marginTop="15dp"
+                                     android:layout_marginLeft="20dp"
+                                     android:textColor="@color/colorpink"
+                                     />
+                                 <EditText
+                                     android:id="@+id/edt_time"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginLeft="20dp"
+                                     android:layout_marginRight="20dp"
+                                     android:textSize="13dp"
+                                     android:focusable="false"
+                                     android:editable="false"
+                                     android:fontFamily="@font/montserrat_regular"
+                                     android:layout_below="@id/text_end_date"
+                                     />
+                                 <ImageView
+                                     android:id="@+id/img_time"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:visibility="gone"
+                                     android:layout_marginTop="12dp"
+                                     android:layout_marginLeft="5dp"
+                                     android:layout_marginRight="30dp"
+                                     android:src="@drawable/clock_blue"
+                                     android:layout_alignParentRight="true"
+                                     android:layout_below="@id/text_end_date"/>
+
+                             </RelativeLayout>
+                         </LinearLayout>
+
+
+                         <TextView
+                             android:id="@+id/text_symptoms"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="Doctor"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_below="@id/layout_dates"
+                             android:layout_marginTop="15dp"
+                             android:layout_marginLeft="20dp"
+                             android:textColor="@color/colorpink"
+                             />
+                         <EditText
+                             android:id="@+id/edt_doc_name"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="20dp"
+                             android:layout_marginRight="20dp"
+                             android:focusable="false"
+                             android:layout_below="@id/text_symptoms"
+                             android:textSize="13dp"
+                             android:paddingLeft="10dp"
+                             android:fontFamily="@font/montserrat_regular"
+
+                             />
+                         <TextView
+                             android:id="@+id/txt_notes"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:text="Notes"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_below="@id/edt_doc_name"
+                             android:layout_marginTop="15dp"
+                             android:layout_marginLeft="20dp"
+                             android:textColor="@color/colorpink"
+                             />
+                         <EditText
+                             android:id="@+id/edt_notes"
+                             android:layout_width="match_parent"
+                             android:layout_height="60dp"
+                             android:layout_marginBottom="10dp"
+                             android:layout_marginLeft="20dp"
+                             android:layout_marginRight="20dp"
+                             android:focusable="false"
+                             android:textSize="13dp"
+                             android:paddingLeft="10dp"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_below="@id/txt_notes"
+                             />
+
+                         <Button
+                             android:id="@+id/btn_save_changes"
+                             android:layout_width="180dp"
+                             android:layout_height="45dp"
+                             android:text="Save changes"
+                             android:visibility="gone"
+                             android:textAllCaps="false"
+                             android:textSize="14dp"
+                             android:fontFamily="@font/montserrat_regular"
+                             android:layout_marginTop="30dp"
+                             android:layout_marginBottom="20dp"
+                             android:layout_below="@id/edt_notes"
+                             android:textColor="@color/colorWhite"
+                             android:layout_centerHorizontal="true"
+                             android:background="@drawable/btn_bck_color"
+                             />
+                     </RelativeLayout>
+
+                 </RelativeLayout>
+             </RelativeLayout>
+         </RelativeLayout>
+     </ScrollView>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_background">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorpink"
+                android:layout_height="60dp">
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:id="@+id/img_back_arrow"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/back"
+                        />
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Immunizations"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@id/img_back_arrow"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textColor="@color/colorWhite"
+                    />
+
+                <ImageView
+                    android:id="@+id/pic_edt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:src="@drawable/edit"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/doc_layout"
+                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp">
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/circular_image"
+                    android:layout_width="81dp"
+                    android:layout_height="81dp"
+                    android:src="@drawable/image" />
+
+                <TextView
+                    android:id="@+id/txt_name_of_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Dr. Viswanath Reddy"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_doc_specail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_name_of_doc"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Cordiology"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/layout_date"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@id/txt_doc_specail"
+                    android:layout_toRightOf="@id/circular_image"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txt_doc_profession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Created on:"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+                    <TextView
+                        android:id="@+id/txt_doc_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 05/12/2020"
+                        android:textColor="@color/colorWhite"
+                        android:drawablePadding="5dp"
+                        android:textSize="11sp"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/calendar_white"
+                        android:layout_toRightOf="@id/txt_doc_profession"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+                    <TextView
+                        android:id="@+id/txt_doc_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 9:00-9:30 AM"
+                        android:drawablePadding="5dp"
+                        android:textSize="11sp"                        android:textColor="@color/colorWhite"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/clock_white"
+                        android:layout_toRightOf="@id/txt_doc_date"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_regular"/>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+<!--
+            <ImageView
+                android:id="@+id/pic_edt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="28dp"
+                android:padding="5dp"
+                android:src="@drawable/edit"
+                />
+-->
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_disease"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/btn_top_radius"
+            android:backgroundTint="@color/colorWhite"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/text_disease"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vaccine Name"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/colorpink"
+                            />
+                        <EditText
+                            android:id="@+id/edt_immun_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="13dp"
+                            android:focusable="false"
+                            android:paddingLeft="10dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_marginRight="20dp"
+                            android:layout_below="@id/text_disease"
+                            />
+                        <LinearLayout
+                            android:id="@+id/layout_dates"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_below="@id/edt_immun_name"
+                            android:weightSum="2">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/text_start_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Immunization Date"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textColor="@color/colorpink"
+                                    />
+                                <EditText
+                                    android:id="@+id/edt_start_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:textSize="13dp"
+                                    android:focusable="false"
+                                    android:layout_centerVertical="true"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:layout_below="@id/text_start_date"
+                                    />
+                                <ImageView
+                                    android:id="@+id/img_calender"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="30dp"
+                                    android:src="@drawable/calendar_blue"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_below="@id/text_start_date"/>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:visibility="gone"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/text_end_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:text="Time"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textColor="@color/colorpink"
+                                    />
+                                <EditText
+                                    android:id="@+id/edt_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:textSize="13dp"
+                                    android:focusable="false"
+                                    android:editable="false"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:layout_below="@id/text_end_date"
+                                    />
+                                <ImageView
+                                    android:id="@+id/img_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="30dp"
+                                    android:src="@drawable/clock_blue"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_below="@id/text_end_date"/>
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/text_symptoms"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Doctor"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_below="@id/layout_dates"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/colorpink"
+                            />
+                        <EditText
+                            android:id="@+id/edt_doc_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:focusable="false"
+                            android:layout_below="@id/text_symptoms"
+                            android:textSize="13dp"
+                            android:paddingLeft="10dp"
+                            android:fontFamily="@font/montserrat_regular"
+
+                            />
+                        <TextView
+                            android:id="@+id/txt_notes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Notes"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_below="@id/edt_doc_name"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/colorpink"
+                            />
+                        <EditText
+                            android:id="@+id/edt_notes"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:focusable="false"
+                            android:textSize="13dp"
+                            android:gravity="start"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_below="@id/txt_notes"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_save_changes"
+                            android:layout_width="180dp"
+                            android:layout_height="45dp"
+                            android:text="Save changes"
+                            android:visibility="gone"
+                            android:textAllCaps="false"
+                            android:textSize="14dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_below="@id/edt_notes"
+                            android:textColor="@color/colorWhite"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/btn_bck_color"
+                            />
+                    </RelativeLayout>
+
+                    <!--
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="500dp"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="40dp"
+                                                    android:layout_marginRight="20dp">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/dob_layout"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_below="@id/layout_mail"
+                                                        android:layout_marginTop="10dp"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="2">
+
+                                                        <com.google.android.material.textfield.TextInputLayout
+                                                            android:id="@+id/layout_dob_last"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="0.8"
+                                                            android:textColorHint="#3E454C"
+                                                            android:padding="5dp"
+                                                            android:visibility="gone"
+                                                            android:focusable="false"
+                                                            android:layout_below="@id/layout_patient_id"
+                                                            android:hint="YYYY/MM/DD"
+                                                            android:layout_marginRight="0.5dp"
+                                                            >
+                                                            <com.google.android.material.textfield.TextInputEditText
+                                                                android:id="@+id/pdate"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:focusable="false"
+                                                                android:singleLine="true"
+                                                                android:textSize="14sp"
+                                                                android:textColor="@color/colorGrey"
+                                                                android:fontFamily="@font/montserrat_semi_bold"
+                                                                />
+                                                        </com.google.android.material.textfield.TextInputLayout>
+                                                        <com.google.android.material.textfield.TextInputLayout
+                                                            android:id="@+id/layout_age_last"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:textColorHint="@color/colorpink"
+                                                            android:padding="5dp"
+                                                            android:layout_below="@id/layout_patient_id"
+                                                            android:hint="Start Date"
+                                                            app:hintTextAppearance="@style/TextApppp"
+                                                            android:layout_marginRight="1.2dp"
+                                                            >
+                                                            <com.google.android.material.textfield.TextInputEditText
+                                                                android:id="@+id/edt_page"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:singleLine="true"
+                                                                android:textColor="@color/colorGrey"
+                                                                android:focusable="false"
+                                                                android:textSize="14sp"
+                                                                android:fontFamily="@font/montserrat_semi_bold"
+                                                                />
+                                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                                                    </LinearLayout>
+
+
+                                                    <LinearLayout
+                                                        android:id="@+id/phone_no_layout"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_below="@id/dob_layout"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="2">
+                                                        <com.google.android.material.textfield.TextInputLayout
+                                                            android:id="@+id/layout_code_last"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="1.5"
+                                                            android:textColorHint="#3E454C"
+                                                            android:textColor="@color/colorpink"
+                                                            android:padding="5dp"
+                                                            android:visibility="gone"
+                                                            android:layout_below="@id/layout_patient_id"
+                                                            android:hint="CC"
+                                                            android:layout_marginRight="0.5dp"
+                                                            >
+                                                            <com.google.android.material.textfield.TextInputEditText
+                                                                android:id="@+id/edt_pcounty_code"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:singleLine="true"
+                                                                android:inputType="phone"
+                                                                android:textColor="@color/colorGrey"
+                                                                android:maxLength="3"
+                                                                android:textSize="14sp"
+                                                                android:fontFamily="@font/montserrat_semi_bold"
+                                                                />
+                                                        </com.google.android.material.textfield.TextInputLayout>
+                                                        <com.google.android.material.textfield.TextInputLayout
+                                                            android:id="@+id/layout_phno_last"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="0.5"
+                                                            android:textColorHint="@color/colorpink"
+                                                            android:padding="5dp"
+                                                            android:layout_below="@id/layout_patient_id"
+                                                            android:hint="End Date"
+                                                            app:hintTextAppearance="@style/TextApppp"
+                                                            android:layout_marginRight="0.5dp"
+                                                            >
+                                                            <com.google.android.material.textfield.TextInputEditText
+                                                                android:id="@+id/edt_p_phone_no"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:textColor="@color/colorGrey"
+                                                                android:inputType="phone"
+                                                                android:maxLength="10"
+                                                                android:singleLine="true"
+                                                                android:textSize="14sp"
+                                                                android:fontFamily="@font/montserrat_semi_bold"
+                                                                />
+                                                        </com.google.android.material.textfield.TextInputLayout>
+
+                                                    </LinearLayout>
+                                                    <com.google.android.material.textfield.TextInputLayout
+                                                        android:id="@+id/layout_adress"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColorHint="@color/colorpink"
+                                                        android:padding="5dp"
+                                                        android:layout_below="@id/phone_no_layout"
+                                                        app:hintTextAppearance="@style/TextApppp"
+                                                        android:hint="Symptoms"
+                                                        >
+                                                        <com.google.android.material.textfield.TextInputEditText
+                                                            android:id="@+id/edt_address"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:singleLine="true"
+                                                            android:textSize="14sp"
+                                                            android:textColor="@color/colorGrey"
+                                                            android:fontFamily="@font/montserrat_semi_bold"
+                                                            />
+                                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                                    <com.google.android.material.textfield.TextInputLayout
+                                                        android:id="@+id/layout_city"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:singleLine="true"
+                                                        android:textColorHint="@color/colorpink"
+                                                        app:hintTextAppearance="@style/TextApppp"
+                                                        android:padding="5dp"
+                                                        android:layout_below="@id/layout_adress"
+                                                        android:hint="Discriptions"
+                                                        >
+                                                        <com.google.android.material.textfield.TextInputEditText
+                                                            android:id="@+id/edt_city"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:singleLine="true"
+                                                            android:textSize="14sp"
+                                                            android:textColor="@color/colorGrey"
+                                                            android:fontFamily="@font/montserrat_semi_bold"
+                                                            />
+                                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                                    <com.google.android.material.textfield.TextInputLayout
+                                                        android:id="@+id/layout_state"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColorHint="@color/colorpink"
+                                                        android:padding="5dp"
+                                                        android:layout_below="@id/layout_city"
+                                                        app:hintTextAppearance="@style/TextApppp"
+                                                        android:hint="Remarks"
+                                                        >
+                                                        <com.google.android.material.textfield.TextInputEditText
+                                                            android:id="@+id/edt_state"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:singleLine="true"
+                                                            android:textSize="14sp"
+                                                            android:textColor="@color/colorGrey"
+                                                            android:fontFamily="@font/montserrat_semi_bold"
+                                                            />
+                                                    </com.google.android.material.textfield.TextInputLayout>
+
+                                                    <com.google.android.material.textfield.TextInputLayout
+                                                        android:id="@+id/layout_mail"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColorHint="@color/colorpink"
+                                                        app:hintTextAppearance="@style/TextApppp"
+                                                        android:clipChildren="false"
+                                                        >
+                                                        <com.google.android.material.textfield.TextInputEditText
+                                                            android:id="@+id/edt_disease_name"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:textColor="@color/colorGrey"
+                                                            android:singleLine="true"
+                                                            android:paddingBottom="15dp"
+                                                            android:translationY="5dp"
+                                                            android:hint="Disease Name"
+                                                            android:textSize="14sp"
+                                                            android:fontFamily="@font/montserrat_semi_bold"
+                                                            />
+                                                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                                                    <Button
+                                                        android:layout_width="180dp"
+                                                        android:layout_height="45dp"
+                                                        android:text="Save changes"
+                                                        android:layout_margin="20dp"
+                                                        android:textColor="@color/colorWhite"
+                                                        android:layout_centerHorizontal="true"
+                                                        android:layout_alignParentBottom="true"
+                                                        android:background="@drawable/btn_bck_color"
+                                                        />
+
+                                                </RelativeLayout>
+                    -->
+
+                </ScrollView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

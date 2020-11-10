@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FullImageActivity">
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolAttachPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorpink"/>
+
+    <ImageView
+        android:id="@+id/backAttachPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/toolName"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginLeft="65dp"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorWhite"
+        android:text="Attachments"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/attachmentsPreviewView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/toolAttachPreview"
+        android:background="#F2F2F2" />
+
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/attachmentsPreviewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <uk.co.senab.photoview.PhotoView
+            android:id="@+id/photozooom"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:scaleType="fitCenter"
+            android:drawingCacheQuality="high"
+            android:layout_centerInParent="true"
+
+            />
+        <ImageView
+            android:id="@+id/img_set"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

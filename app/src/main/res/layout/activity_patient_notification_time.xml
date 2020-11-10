@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientNotificationModule.PatientNotificationTimeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txt_notification_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="10:20 PM"
+            android:textSize="40dp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/txt_notification_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="16dp"
+            android:layout_below="@id/txt_notification_time"
+            android:text="12 Jun 2020, Friday"
+            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:id="@+id/notify_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/edt_txt_background"
+            android:layout_below="@id/txt_notification_date">
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:src="@drawable/sample_image"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spectrocre"
+                android:layout_marginTop="18dp"
+                android:layout_toRightOf="@id/img_icon"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_spectro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 mins ago"
+                android:textSize="12sp"
+                android:layout_marginTop="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/montserrat_regular"/>
+            <TextView
+                android:id="@+id/txt_appointment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appointment Reminder"
+                android:textSize="13dp"
+                android:layout_below="@id/txt_spectro"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your appointment with Dr. Anna Ross is coming in 3 hours!"
+                android:textSize="13dp"
+                android:layout_below="@id/txt_appointment"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_regular"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/edt_txt_background"
+            android:layout_below="@id/notify_layout">
+            <ImageView
+                android:id="@+id/img_icon1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:src="@drawable/sample_image"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spectrocre"
+                android:layout_marginTop="18dp"
+                android:layout_toRightOf="@id/img_icon1"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_spectro1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 mins ago"
+                android:textSize="12sp"
+                android:layout_marginTop="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/montserrat_regular"/>
+            <TextView
+                android:id="@+id/txt_appointment1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appointment Reminder"
+                android:textSize="13dp"
+                android:layout_below="@id/txt_spectro1"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your appointment with Dr. Anna Ross is coming in 3 hours!"
+                android:textSize="13dp"
+                android:layout_below="@id/txt_appointment1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_regular"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

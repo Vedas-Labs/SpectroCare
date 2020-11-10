@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:layout_margin="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <ImageView
+                android:id="@+id/img_doc_pic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="3dp"
+                android:layout_centerVertical="true"
+                android:scaleType="center"
+                android:src="@drawable/ic_user"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/img_doc_pic">
+                <TextView
+                    android:id="@+id/txt_doc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DR Viswanath Reddy"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_semi_bold"/>
+                <TextView
+                    android:id="@+id/txt_infection_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hypertension"
+                    android:textSize="13sp"
+                    android:layout_below="@id/txt_doc_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+
+
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_view"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:textColor="@color/colorWhite"
+                android:layout_centerVertical="true"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/edt_txt_background"
+                android:backgroundTint="@color/colorOrange"
+                android:layout_alignParentRight="true"
+                android:text="Message"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

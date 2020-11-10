@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_fragment.BloodTestFragment">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="5dp"
+      >
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/view_blood_test"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+  </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="174dp"
+            android:layout_height="45dp"
+            android:text="Delete Files"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:textColor="#fff"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorDarkBlue"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/new_login_boarder"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

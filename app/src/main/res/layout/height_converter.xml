@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Height"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <NumberPicker
+            android:id="@+id/nmpValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:max="7"
+            android:min="4" />
+        <NumberPicker
+            android:id="@+id/nmpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:max="11"
+            android:min="0" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="24dp"
+            android:text="Cancel"
+            android:textAlignment="center"
+            android:textColor="#545870"/>
+        <TextView
+            android:id="@+id/textView_Okay"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Ok"
+            android:textAlignment="center"
+            android:textColor="#545870"/>
+    </LinearLayout>
+
+</LinearLayout>

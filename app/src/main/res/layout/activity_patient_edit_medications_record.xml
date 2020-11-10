@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".PatientModule.PatientEditMedicationsRecordActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorpink">
+
+                <ImageView
+                    android:id="@+id/img_back_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="20dp"
+                    android:src="@drawable/back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="70dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Medications"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp">
+
+                <RelativeLayout
+                    android:id="@+id/doc_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorWhite">
+
+                    <RelativeLayout
+                        android:id="@+id/txt_dosage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/circular_image"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="42dp"
+                            android:src="@drawable/image" />
+
+                        <TextView
+                            android:id="@+id/txt_doc_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/circular_image"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Dr. Anna Ross"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/txt_name_of_doc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="33dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Thyroxin"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_doc_specail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_name_of_doc"
+                            android:layout_marginLeft="33dp"
+                            android:layout_marginTop="11dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Frequency"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_doc_pills"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_name_of_doc"
+                            android:layout_marginLeft="33dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/txt_doc_specail"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Twice Daily"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_pill_dosage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_doc_specail"
+                            android:layout_marginLeft="33dp"
+                            android:layout_marginTop="11dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Dosage"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_dosage1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_doc_specail"
+                            android:layout_marginLeft="33dp"
+                            android:layout_marginTop="11dp"
+                            android:layout_toRightOf="@id/txt_doc_specail"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="1 Pill"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layout_disease"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/txt_dosage"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="30dp"
+                        android:backgroundTint="@color/colorWhite">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/txt_view_diagnosis"
+                                    android:layout_width="152dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginRight="30dp"
+                                    android:background="@drawable/btn_background"
+                                    android:backgroundTint="#B2B2B2"
+                                    android:gravity="center"
+                                    android:text="View Diagnosis"
+                                    android:textColor="@color/colorWhite"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/text_disease"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:text="Date of Diagnosis"
+                                    android:textColor="@color/colorpink" />
+
+                                <EditText
+                                    android:id="@+id/edt_surgery_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_below="@+id/text_disease"
+                                    android:layout_marginTop="15dp"
+                                    android:paddingRight="20sp"
+                                    android:focusable="false"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:drawableRight="@drawable/calendar_blue"
+                                    android:layout_marginRight="30dp"
+                                    android:background="@drawable/edt_txt_background"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/text_symptoms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/edt_surgery_name"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Doctor Name"
+                                android:textColor="@color/colorpink" />
+
+                            <EditText
+                                android:id="@+id/txt_doctor"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:layout_below="@id/text_symptoms"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:layout_marginRight="30dp"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:background="@drawable/edt_txt_background"
+                                android:paddingLeft="10dp"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/text_waistline"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/txt_doctor"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Illness/Condition"
+                                android:textColor="@color/colorpink" />
+
+                            <EditText
+                                android:id="@+id/ed_condition"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:layout_below="@id/text_waistline"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:layout_marginRight="30dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:background="@drawable/edt_txt_background"
+                                android:paddingLeft="10dp"
+                                android:textSize="14sp" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/rl_medicationView"
+                                android:visibility="gone"
+                                android:layout_marginTop="20dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:weightSum="4">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@id/txt_doctor"
+                                                android:fontFamily="@font/montserrat_regular"
+                                                android:text=" "
+                                                android:textColor="@color/colorpink" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@id/txt_doctor"
+                                                android:fontFamily="@font/montserrat_regular"
+                                                android:text="Medication\nName"
+                                                android:textColor="@color/colorpink" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@id/txt_doctor"
+                                                android:fontFamily="@font/montserrat_regular"
+                                                android:text="Dosage"
+                                                android:textColor="@color/colorpink" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@id/txt_doctor"
+                                                android:fontFamily="@font/montserrat_regular"
+                                                android:text="Frequency"
+                                                android:textColor="@color/colorpink" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rl_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"></androidx.recyclerview.widget.RecyclerView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:id="@+id/rl_add"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/img"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/add_black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_toRightOf="@+id/img"
+                                    android:fontFamily="@font/montserrat_semi_bold"
+                                    android:text="Add New Medication"
+                                    android:textColor="@color/colorDarkBlue" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/text_bmi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/ed_condition"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Instructions"
+                                android:textColor="@color/colorpink" />
+
+                            <EditText
+                                android:id="@+id/ed_inst"
+                                android:layout_width="match_parent"
+                                android:layout_height="67dp"
+                                android:layout_below="@id/text_bmi"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginRight="30dp"
+                                android:background="@drawable/edt_txt_background"
+                                android:gravity="start"
+                                android:layout_marginBottom="10dp"
+                                android:paddingLeft="10dp"
+                                android:imeOptions="actionDone"
+                                android:paddingTop="10dp"
+                                android:textSize="14sp" />
+
+                            <Button
+                                android:id="@+id/btn_save_changes"
+                                android:layout_width="180dp"
+                                android:layout_height="45dp"
+                                android:layout_below="@id/ed_inst"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/btn_bck_color"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Save"
+                                android:textAllCaps="false"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

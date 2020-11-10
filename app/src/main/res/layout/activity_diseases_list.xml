@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorpink">
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:id="@+id/back"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:clickable="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/back"></ImageView>
+            </RelativeLayout>
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:clickable="false"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="20dp"
+            android:id="@+id/add"
+            android:layout_centerVertical="true"
+            android:background="@drawable/add_white"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/back"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Select a Disease"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"></TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_nolist"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="No Diseases Found"
+            android:id="@+id/txt"
+            android:textColor="@color/colorpink"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/txt"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="click add button to add diseases"
+            android:textColor="@color/colorpink"
+            android:textSize="16dp"></TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl_list"
+        android:visibility="gone"
+        android:layout_marginTop="60dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/card"
+            android:layout_marginTop="20dp"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

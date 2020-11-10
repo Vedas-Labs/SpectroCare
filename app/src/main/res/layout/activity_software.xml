@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    tools:context=".PatientMyDeviceModule.AboutDeviceActiivty">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorpink">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            >
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:id="@+id/back"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:clickable="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/back"></ImageView>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:layout_toRightOf="@id/back"
+                android:layout_margin="15dp"
+                android:text="Software Update"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"></TextView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:id="@+id/rlloading"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="false"
+            android:id="@+id/rlimg"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/loader_1">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Checking For Updates..."
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/rlimg"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="16dp"></TextView>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
+        android:id="@+id/rldevice"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"
+        android:background="@drawable/btn_boarder"
+        android:layout_height="200dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginLeft="30dp"
+            android:text="Spectrocare V1.0.2"
+            android:id="@+id/devicename"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:text="Software version 1.0.2 for this device is available to install now"
+            android:layout_below="@+id/devicename"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="16dp"></TextView>
+        <Button
+            android:layout_width="match_parent"
+            android:background="@drawable/btn_bck_color"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:text="Download And Install"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_download"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textSize="14dp"
+            android:textColor="@color/colorWhite"
+            android:layout_height="wrap_content">
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

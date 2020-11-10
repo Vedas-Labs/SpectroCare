@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/layout_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/item_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="completed"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

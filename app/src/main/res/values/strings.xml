@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Spectro Care</string>
+    <string name="hint"><font size="13">User ID / Email</font></string>
+    <string name="hit"><font size="13">Password</font></string>
+    <string name="hi"><font size="13">Conform Password</font></string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login_to_access_spectro_care_health_platform">Login to access Spectro Care health platform</string>
+    <string name="login">Login</string>
+    <string name="txt"><font size="12">By signing up, you agree to our Terms and that you have</font></string>
+    <string name="disc">Signup to join in SpectroCare health platform</string>
+    <string name="don_t_you_have_account">Don\'t have an account ?</string>
+    <string name="signup">SignUp</string>
+    <string name="image">Image</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
+    <string name="create_account">Create Account</string>
+    <string name="signup_txt">SIGNUP</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="read_our"><font size="12">read our </font> </string>
+    <string name="privacy_policy"><font size="12"> Privacy Policy</font></string>
+    <string name="content_policy"><font size="12">Content Policy</font></string>
+    <string name="and"><font size="12">and</font></string>
+    <string name="login_now">Login now</string>
+    <string name="medical_person_signup">Medical Personnel Signup</string>
+    <string name="back">Back</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="star">*</string>
+    <string name="conform_password"><font size="13">Confirm Password</font></string>
+    <string name="user_name">User Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="age">Age</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="professional_details">Professional Details</string>
+    <string name="hospital_registration_number">Hospital Registration Number</string>
+    <string name="id_given_by_govt">Id Given By Govt</string>
+    <string name="check_availability">Check Availability</string>
+    <string name="old_password"><font size="13">Enter old password</font></string>
+    <string name="new_password"><font size="13">New password</font></string>
+    <string name="conform_new_password"><font size="13">Conform new password</font></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirm_new_password"><font size="13">Confirm new password</font></string>
+    <string name="cancelReason"><font size="13">Reason For Cancellation</font></string>
+    <string name="room_status">status</string>
+    <string name="error_retrieving_access_token">Error retrieving token</string>
+    <string name="permissions_needed">Camera and Microphone permissions needed. Please allow in App Settings for additional functionality.</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="codec_title">Set your preferred audio and video codec. Not all codecs are supported with Group rooms. The media server will fallback to OPUS or VP8 if a preferred codec is not supported.</string>
+    <string name="pref_title_audio_codec">Audio Codec</string>
+    <string name="pref_title_video_codec">Video Codec</string>
+    <string name="sender_bandwidth_constraints">Set sender bandwidth constraints. Zero represents the WebRTC default value which varies by codec.</string>
+    <string name="max_audio_bitrate">Max Audio Bitrate (bits per second)</string>
+    <string name="max_video_bitrate">Max Video Bitrate (bits per second)</string>
+    <string name="vp8_simulcast">VP8 Simulcast</string>
+    <string name="audio_device">Audio Device</string>
+    <string name="room_screen_select_device">Select Device</string>
+    <string name="testmenutitle">TestMenu</string>
+    <string name="testitems">Test Items</string>
+    <string name="starttest">Start A New Test</string>
+    <string name="selecttest">Please select a testtype and testitem</string>
+    <string name="testtype">Test Type</string>
+    <string name="urinetest">Urine Test</string>
+    <string name="bloodtest">Blood Test</string>
+    <string name="pleaseselecttesttype">Please select test type</string>
+    <string name="turnonble">Turn On Bluetooth</string>
+    <string name="samplecollect">Sample Collected On</string>
+    <string name="occultblood">Occult blood means microscopic blood and should be negative in your urine.The causes of positive test result can be associated with kidney infections or kidney stones.Sometimes, the test is a false positive which may be caused by dehydration and excessive exercise.Please consult with your doctors for more information.</string>
+</resources>

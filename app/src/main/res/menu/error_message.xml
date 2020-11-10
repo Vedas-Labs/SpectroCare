@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="If your logging in for the first time. please enter the default password you received from the hospital"
+/>
+</menu>

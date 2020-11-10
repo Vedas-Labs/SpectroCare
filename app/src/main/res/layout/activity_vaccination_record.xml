@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLayoutBackground"
+    tools:context=".activities.FamilyRecordActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:background="@color/colorpink"
+        android:layout_height="150dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:id="@+id/img_back"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:src="@drawable/icon_ionic_ios_arrow_white"
+                    android:padding="15dp"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_centerVertical="true"
+                android:text="Immunization Record"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent">
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <TextView
+                   android:id="@+id/text_vd_disc"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:layout_marginRight="10dp"
+                   android:layout_marginLeft="10dp"
+                   android:textColor="#53B9c6"
+                   android:textStyle="bold"
+                   android:visibility="gone"
+                   android:text="No immunization records found. Click plus button to add new immunization record"/>
+           </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_margin="5dp"
+                android:id="@+id/vaccine_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar_layout"
+                />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_vaccine_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/colorDarkBlue"/>
+
+
+
+</RelativeLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.VaccinationRecordActivity">
+    <TextView
+        android:id="@+id/text_vd_disc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#53B9c6"
+        android:textStyle="bold"
+        android:text="No family records are found. Click add button to add new family record"/>
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#53B9c6"
+            app:titleTextColor="#FFF" />
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_navigate_before"
+            android:layout_centerVertical="true"
+            android:padding="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Immunization Record"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:id="@+id/vaccine_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_layout"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_vaccine_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="#094053"/>
+
+
+</RelativeLayout>-->

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.DatePicker" tools:ignore="DuplicateDefinition">
+        <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <style name="CustomDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/layout_boarder</item>
+    </style>
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="MyPopupStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/colorDarkBlue</item>
+        <!-- Used for the background -->
+        <item name="android:background">#fff</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">0dp</item>
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+    </style>
+</resources>

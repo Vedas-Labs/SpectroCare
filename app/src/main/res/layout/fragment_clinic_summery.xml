@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.ClinicSummeryFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+            <TextView
+                android:id="@+id/txt_lasik"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorpink"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="LASIK"/>
+            <TextView
+                android:id="@+id/txt_summery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:layout_below="@id/txt_lasik"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="21dp"
+                android:layout_marginRight="21dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="LASIK is a laser eye procedure which treats short-sighted (myopia) and astigmatism. It takes only 5 minutes per eye and vision recovers within 24 hours"/>
+
+            <TextView
+                android:id="@+id/txt_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="15dp"
+                android:layout_below="@id/txt_summery"
+                android:background="@color/colorGrey"/>
+
+            <TextView
+                android:id="@+id/txt_cataract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginTop="176dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorpink"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="CATARACT SURGERY"/>
+            <TextView
+                android:id="@+id/txt_surgery_summery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:layout_below="@id/txt_cataract"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="21dp"
+                android:layout_marginRight="21dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Cataract surgery involves the removal of the cataractous lens (caused by old age) using ultrasound technology without stitches. A lens implant is then put in so that the patient does not need to depend on glasses most of the time"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="15dp"
+                android:layout_below="@id/txt_surgery_summery"
+                android:background="@color/colorGrey"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

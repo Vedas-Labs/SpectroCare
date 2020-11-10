@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SurgicalRecordActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#53B9c6"
+            app:titleTextColor="#FFF" />
+        <ImageView
+            android:id="@+id/img_surgical_record_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ionic_ios_arrow_white"
+            android:layout_centerVertical="true"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="All attachments"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+        <!-- <com.mikhaellopez.circularimageview.CircularImageView
+             android:id="@+id/circular_image"
+             android:layout_width="60dp"
+             android:layout_height="60dp"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="10dp"
+             android:src="@drawable/ic_profile3x" />
+ -->
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_surgical_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@id/toolbar_layout"
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_surgical_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="#094053"/>
+
+
+</RelativeLayout>

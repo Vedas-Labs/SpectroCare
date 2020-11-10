@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    app:cardCornerRadius="15dp"
+    android:background="#646464"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_corner"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/rounded_corner"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_corner"
+                android:layout_height="60dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorpink"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:layout_width="40dp"
+                        android:layout_height="4dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/bottomsheethint"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add new allergy record"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15sp"
+                        android:id="@+id/title"
+                        android:layout_gravity="center_horizontal"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:id="@+id/cancel"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/ic_cancel"
+                        android:layout_height="30dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/img_edit"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:visibility="visible"
+                        android:src="@drawable/edit"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bottomsheethint"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancelReason"
+                    android:id="@+id/cancelReason"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="15sp"
+                   />
+                <EditText
+                    android:id="@+id/edt_allergy_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="start"
+                    android:hint="Add details about allergy"
+                    android:imeOptions="actionDone"
+                    android:maxLines="4"
+                    android:padding="5dp"
+                    android:textColor="#545870"
+                    android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/edt_add_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/corners"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="start"
+                    android:hint="Add details about allergy"
+                    android:imeOptions="actionDone"
+                    android:maxLines="4"
+                    android:padding="5dp"
+                    android:textColor="#545870"
+                    android:textSize="14sp" />
+                <Button
+                    android:id="@+id/btn_add_allergy_details"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/button_radius"
+                    android:clickable="false"
+                    android:backgroundTint="@color/colorDarkBlue"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Add"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#646464"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:background="@drawable/jsonalert"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bottomsheethint"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please fill allergy details below"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#53B9c6"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:id="@+id/cancel"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_cancel"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edt_add_description"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/corners"
+                android:ellipsize="end"
+                android:hint="Add details about allergy"
+                android:gravity="start"
+                android:maxLines="4"
+                android:padding="5dp"
+                android:imeOptions="actionDone"
+                android:layout_marginTop="15dp"
+                android:textColor="#545870"
+                android:textSize="14sp"
+                />
+            <Button
+                android:id="@+id/btn_add_allergy_details"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_radius"
+                android:backgroundTint="#53B9c6"
+                android:clickable="false"
+                android:text="Add"
+                android:textColor="#fff" />
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_update_allergy_details"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_radius"
+                android:backgroundTint="#ED5276"
+                android:clickable="false"
+                android:text="Update"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>-->

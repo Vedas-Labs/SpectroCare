@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="10dp"
+    android:background="@color/colorWhite"
+    android:id="@+id/cardView"
+    android:layout_margin="4dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="gone"
+            android:id="@+id/layout_more"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+           >
+            <ImageView
+                android:id="@+id/more_img"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+                android:background="@drawable/more_vertical"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:id="@+id/color"
+        android:background="@color/colorDarkBlue"
+        android:layout_height="5dp"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/medical_issue_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Condition :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:id="@+id/relationship_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Relationship :"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age :"
+            android:id="@+id/age"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More Info :"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:id="@+id/info"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:id="@+id/rl"
+            android:visibility="gone"
+            android:layout_margin="3dp">
+            <TextView
+                android:id="@+id/txt_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#094053"
+                android:textSize="13sp"
+                android:text="Created by"/>
+            <TextView
+                android:id="@+id/medical_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View medical record"
+                android:textColor="#545870"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:layout_toRightOf="@id/txt_created"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"></RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/medical_issue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_toRightOf="@id/medical_issue_title"
+            android:text="jjjjjj" />
+        <TextView
+            android:id="@+id/relationship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jjjjjj"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_toRightOf="@id/relationship_title"/>
+
+        <TextView
+            android:id="@+id/family_member_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/age"
+            android:text="jjjjjjj"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:id="@+id/family_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sddsds"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorDarkBlue"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:weightSum="4">
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_edit" />
+        <ImageView
+            android:id="@+id/img_attach"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_attachment" />
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_eye" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_weight="1"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_sno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="1. "/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:id="@+id/img_record_delete"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/delete"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/txt_item_condition"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:enabled="true"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:text="Condition"
+            android:background="@drawable/text_boarder"/>
+        <EditText
+            android:id="@+id/txt_item_relation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:text="Relation "
+            android:textColor="@color/colorDarkBlue"
+            android:background="@drawable/text_boarder"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

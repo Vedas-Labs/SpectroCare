@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/select_user"
+    tools:context=".activities.SelectUserActivity">
+
+    <ImageView
+        android:id="@+id/logo_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_white"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="80dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login / Sign Up as"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"/>
+        <Button
+            android:id="@+id/btn_administration"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Administrator"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_marginTop="40dp"
+            android:textColor="#3E454C"
+            android:background="@drawable/new_login_boarder"
+            />
+        <Button
+            android:id="@+id/btn_medical_personnal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textAllCaps="false"
+            android:text="Medical Personnal"
+            android:layout_marginTop="15dp"
+            android:textColor="#3E454C"
+            android:background="@drawable/new_login_boarder"
+            />
+
+
+        <Button
+            android:id="@+id/btn_patient"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textAllCaps="false"
+            android:text="Patient"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/btn_medical_personnal"
+            android:textColor="#3E454C"
+            android:background="@drawable/new_login_boarder"
+            />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

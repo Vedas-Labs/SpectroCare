@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edt_txt_background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp">
+<!--
+            <CheckBox
+                android:id="@+id/radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="@style/CustomCheckbox02"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                />
+-->
+
+            <ImageView
+                android:id="@+id/img_doc_pic"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img" />
+
+            <TextView
+                android:id="@+id/txt_doc_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/img_doc_pic"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="DR Viswanath Reddy"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txt_doc_profession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created on:"
+                android:textSize="10sp"
+                android:layout_below="@id/txt_doc_name"
+                android:layout_toRightOf="@id/img_doc_pic"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_doc_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 05/12/2020"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:drawableLeft="@drawable/calendar_1"
+                android:layout_below="@id/txt_doc_name"
+                android:layout_toRightOf="@id/txt_doc_profession"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_doc_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9:00-9:30 AM"
+                android:textSize="12sp"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:gravity="center"
+                android:drawablePadding="3dp"
+                android:drawableLeft="@drawable/clock"
+                android:layout_below="@id/txt_doc_name"
+                android:layout_toRightOf="@id/txt_doc_date"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+            <TextView
+                android:id="@+id/txt_file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="File Name"
+                android:textSize="13sp"
+                android:layout_marginBottom="10dp"
+                android:paddingRight="50dp"
+                android:layout_below="@id/txt_doc_time"
+                android:layout_toRightOf="@id/img_doc_pic"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+
+
+            <ImageView
+                android:id="@+id/img_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/download"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

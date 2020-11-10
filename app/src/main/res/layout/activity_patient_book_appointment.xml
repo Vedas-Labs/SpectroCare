@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientModule.PatientBookAppointmentActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+            <RelativeLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/ic_background"/>
+                <ImageView
+                    android:id="@+id/img_back_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back"
+                    android:layout_centerVertical="true"
+                    android:padding="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book Appointments"
+                    android:textSize="16sp"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textColor="@color/colorWhite"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/img_back_arrow"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/appointment_type_layout"
+                android:layout_below="@id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   >
+                    <TextView
+                        android:id="@+id/text_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorLightGrey"
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:paddingLeft="15dp"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:text="Appointment Type"
+
+                        />
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_below="@id/text_appointment">
+                        <RadioButton
+                            android:id="@+id/btn_online"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:button="@drawable/drawable_yellow_checkbox"
+                            android:text="Online"/>
+                        <RadioButton
+                            android:id="@+id/btn_on_site"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/drawable_yellow_checkbox"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:paddingLeft="15dp"
+                            android:layout_marginLeft="35dp"
+                            android:text="Onsite"/>
+
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/calneder_horizantal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorLightGrey"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:layout_below="@id/appointment_type_layout"
+                android:text="Appointment Date and Time"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                />
+            <TextView
+                android:id="@+id/txt_select_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@id/calneder_horizantal"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Select Date"
+                android:textSize="14dp"
+                />
+            <RelativeLayout
+                android:id="@+id/calneder_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_select_date"
+                android:background="@drawable/edt_txt_background"
+                android:layout_marginTop="10dp"
+
+                >
+                <devs.mulham.horizontalcalendar.HorizontalCalendarView
+
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textColorNormal="#bababa"
+                    app:textColorSelected="#FFFF"
+                    android:paddingTop="5dp"
+                    app:textSizeDayNumber="14sp"
+                    app:textSizeDayName="14sp"
+                    android:paddingBottom="5dp"
+                    />
+
+            </RelativeLayout>
+<!--
+            <devs.mulham.horizontalcalendar.HorizontalCalendarView
+
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/edt_txt_background"
+                android:layout_below="@id/txt_select_date"
+                app:textColorNormal="#bababa"
+                app:textColorSelected="#FFFF"
+
+                app:selectorColor="#c62828"
+            />
+-->
+
+           <!-- </RelativeLayout>-->
+            <RelativeLayout
+                android:id="@+id/time_slot_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_time_slot"
+                android:background="@drawable/edt_txt_background"
+                android:layout_margin="5dp"
+                >
+                <ImageView
+                    android:id="@+id/img_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/left"/>
+                <ImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/right"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slot_grid_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginBottom="10dp"
+                    />
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/text_time_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select time slot"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:layout_margin="10dp"
+                android:textSize="16sp"
+                android:layout_below="@id/calneder_layout"/>
+            <TextView
+                android:id="@+id/text_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Morning"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorpink"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:layout_margin="10dp"
+                android:layout_below="@id/calneder_layout"/>
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@id/time_slot_layout"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Select Duration"
+                android:textSize="16dp"
+                />
+            <RelativeLayout
+                android:id="@+id/duration_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text"
+                android:background="@drawable/edt_txt_background"
+                android:layout_margin="5dp"
+                >
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:weightSum="3"
+                   >
+                    <RadioButton
+                        android:id="@+id/btn_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/drawable_yellow_checkbox"
+                        android:text="10 mins"/>
+                    <RadioButton
+                        android:id="@+id/btn_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/drawable_yellow_checkbox"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="15dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="15dp"
+                        android:text="20 mins"/>
+                    <RadioButton
+                        android:id="@+id/btn_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:button="@drawable/drawable_yellow_checkbox"
+                        android:paddingLeft="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="30 mins"/>
+
+
+                </RadioGroup>
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/txt_reason_for_visit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorLightGrey"
+                android:text="Reason for visit"
+                android:layout_below="@id/duration_layout"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+            <RelativeLayout
+                android:id="@+id/comment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/txt_reason_for_visit"
+                android:background="@drawable/edt_txt_background"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                >
+                <EditText
+                    android:id="@+id/edt_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/colorWhite"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="14dp"
+                    />
+
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_proceed"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:text="PROCEED TO PAYMENT"
+                android:layout_margin="30dp"
+                android:textColor="@color/colorWhite"
+                android:layout_below="@id/comment_layout"
+                android:backgroundTint="@color/colorDarkBlue"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/new_login_boarder"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+<!--
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Conform"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorWhite"
+            android:backgroundTint="@color/colorDarkBlue"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/new_login_boarder"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+-->
+
+
+</RelativeLayout>

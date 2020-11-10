@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLayoutBackground"
+    tools:context=".activities.PhysicalExamActivity">
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#53B9c6"
+            app:titleTextColor="#FFF" />
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:id="@+id/img_back"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigate_before"
+                android:layout_centerVertical="true"
+                android:padding="15dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Medication"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/circular_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_profile3x" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/table_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/file_layout"
+        android:layout_width="180dp"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_above="@id/btn_physical_record"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F9CFD9">
+            <TextView
+                android:id="@+id/text_attach_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:textColor="#323232"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"
+                android:text="Attach a file"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/text_attach_file"
+                android:background="#323232" />
+            <TextView
+                android:id="@+id/text_enter_manually"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true"
+                android:textColor="#323232"
+                android:layout_below="@id/text_attach_file"
+                android:text="Enter Manually"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_physical_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        app:borderWidth="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="#094053"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.PhysicalExamActivity">
+        <RelativeLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ED5276"
+                app:titleTextColor="#FFF" />
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_navigate_before"
+                android:layout_centerVertical="true"
+                android:padding="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="All Physical Exams"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/circular_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_profile3x" />
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/table_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    />
+
+            </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_physical_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            app:borderWidth="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="#094053"/>
+
+
+    </RelativeLayout>-->

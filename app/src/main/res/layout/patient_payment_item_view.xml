@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:background="@color/colorLightGrey">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightGrey">
+        <CheckBox
+            android:id="@+id/btn_check_payment"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:button="@drawable/drawable_yellow_checkbox"/>
+        <ImageView
+            android:id="@+id/img_card"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/btn_check_payment"
+            android:src="@drawable/mastercard"
+            />
+        <TextView
+            android:id="@+id/txt_card_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*********2345"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/img_card"/>
+        <TextView
+            android:id="@+id/txt_card_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="03/24"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+           />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

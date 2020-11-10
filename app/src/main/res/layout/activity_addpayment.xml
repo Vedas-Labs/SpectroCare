@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:background="@color/colorWhite"
+    tools:context=".PatientModule.PatientAppointmentsTabsActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorpink">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+           <RelativeLayout
+               android:layout_width="50dp"
+               android:id="@+id/back"
+               android:layout_height="50dp">
+               <ImageView
+                   android:layout_width="10dp"
+                   android:layout_height="15dp"
+                   android:clickable="false"
+                   android:layout_centerHorizontal="true"
+                   android:layout_centerVertical="true"
+                   android:background="@drawable/back"/>
+           </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/back"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Add Payment"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/toolbar_layout"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBottomSheetGrey">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Methods"
+                android:textColor="@color/colorAccent"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+            <ToggleButton
+                android:layout_marginLeft="50dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:id="@+id/toggle_1"
+                android:layout_height="wrap_content"
+                android:button="@drawable/creditcard_bg"
+                android:background="@android:color/transparent"
+                android:textOn=""
+                android:textOff=""
+                android:checked="false"
+                 />
+            <ToggleButton
+                android:layout_marginLeft="200dp"
+                android:gravity="center"
+                android:id="@+id/toggle_2"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/paypal_bg"
+                android:textOn=""
+                android:background="@android:color/transparent"
+                android:textOff=""
+                android:checked="false"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBottomSheetGrey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Details"
+                android:textColor="@color/colorAccent"
+                android:textSize="18dp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linear_creditcared"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Card Number"
+                    android:textColor="@color/colorpink"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/cardnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:background="@drawable/btn_blackboarder"
+                    android:hint="1234 5678 6789 12"
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:textColor="@color/colorAccent"
+                    android:paddingLeft="20dp"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Expiration Date"
+                        android:textColor="@color/colorpink"
+                        android:textSize="16dp" />
+                    <EditText
+                        android:id="@+id/date"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btn_blackboarder"
+                        android:hint="03/22"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:inputType="phone"
+                        android:textColor="@color/colorAccent"
+                        android:paddingLeft="20dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="CVV"
+                        android:textColor="@color/colorpink"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/txt_cvv"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btn_blackboarder"
+                        android:hint="234"
+                        android:maxLength="3"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/colorAccent"
+                        android:paddingLeft="20dp"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Cash Holder's Name"
+                    android:textColor="@color/colorpink"
+                    android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/holdersname"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_blackboarder"
+                    android:hint="Andrea Hu"
+                    android:inputType="text"
+                    android:textColor="@color/colorAccent"
+                    android:paddingLeft="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/linear_paypal"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Email Address"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/emailaddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:background="@drawable/btn_blackboarder"
+                    android:hint="andreahu1234@gmail.com"
+                    android:inputType="text"
+                    android:textColor="@color/colorAccent"
+                    android:paddingLeft="30dp"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="100dp">
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="220dp"
+                android:background="@drawable/btn_bck_color"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="ADD Payment method"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorWhite"
+                android:layout_height="wrap_content">
+            </Button>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
+</RelativeLayout>

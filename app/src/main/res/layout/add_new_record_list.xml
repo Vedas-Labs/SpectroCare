@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corner">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/heading_layout"
+            android:layout_width="match_parent"
+            android:background="@color/colorpink"
+            android:layout_height="60dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New List"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="42dp"
+                android:textColor="@color/colorWhite"
+                android:layout_centerHorizontal="true"
+                android:textSize="15sp"
+                android:id="@+id/record_title"
+                android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/img_alert_cancel"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:layout_marginRight="20dp"
+                android:visibility="visible"
+                android:src="@drawable/cancel_white"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading_layout"
+            android:layout_margin="15dp">
+            <TextView
+                android:id="@+id/title_conition"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textColor="@color/colorDarkBlue"
+                android:text="Condition :"/>
+            <EditText
+                android:id="@+id/edt_record_condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="Enter patient condition"
+                android:textSize="16sp"
+                android:background="@drawable/text_boarder"
+                android:layout_below="@id/title_conition"
+                android:padding="8dp"/>
+            <TextView
+                android:id="@+id/title_relation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textColor="@color/colorDarkBlue"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/edt_record_condition"
+                android:text="Relation :"/>
+            <EditText
+                android:id="@+id/edt_record_relation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:hint="Enter patient condition"
+                android:background="@drawable/text_boarder"
+                android:layout_below="@id/title_relation"
+                android:padding="8dp"/>
+            <Button
+                android:id="@+id/btn_list_save"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:text="Save"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:layout_below="@id/edt_record_relation"
+                android:background="@drawable/btn_radius"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

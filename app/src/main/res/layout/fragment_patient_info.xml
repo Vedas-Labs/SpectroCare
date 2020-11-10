@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_fragment.PatientInfoFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_disease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Appointment Date/Time"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/edt_surgery_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:focusable="false"
+                android:paddingBottom="15dp"
+                android:text="20th Tuesday, May 9:00 - 9:10 AM | 10 mins"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_below="@id/text_disease"
+                android:layout_marginLeft="37dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="15dp"
+                />
+
+<!--
+            <TextView
+                android:id="@+id/txt_line0"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="0.5dp"
+                android:paddingBottom="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/edt_surgery_name"
+                />
+-->
+
+            <TextView
+                android:id="@+id/text_symptoms"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="wrap_content"
+                android:text="Appointment Type "
+                android:layout_below="@id/edt_surgery_name"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_weigh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Online consultation"
+                android:layout_marginLeft="37dp"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_symptoms"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_weigh"
+                />
+-->
+            <TextView
+                android:id="@+id/text_waistline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reason for visit"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_below="@id/txt_weigh"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_waist_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Illness consultation"
+                android:layout_marginLeft="37dp"
+                android:focusable="false"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_waistline"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line1"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_waist_line"
+                />
+-->
+            <TextView
+                android:id="@+id/text_bmi"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Illness/Conditions"
+                android:layout_below="@id/txt_waist_line"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_bmi"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="wrap_content"
+                android:text="Persistent Cough"
+                android:layout_marginLeft="37dp"
+                android:focusable="false"
+                android:layout_marginTop="15dp"
+                android:textSize="12sp"
+                android:paddingBottom="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_bmi"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_bmi"
+                />
+-->
+            <TextView
+                android:id="@+id/text_bmr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_below="@id/txt_bmi"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_bmr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15sp"
+                android:textSize="12sp"
+                android:text="05/05/2020"
+                android:focusable="false"
+                android:layout_marginLeft="37dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/text_bmr"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line3"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_bmr"
+                />
+-->
+            <TextView
+                android:id="@+id/text_blood_pre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_below="@id/txt_bmr"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_blood_pre"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_height="wrap_content"
+                android:text="Till now"
+                android:paddingBottom="15dp"
+                android:focusable="false"
+                android:textSize="12sp"
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="35dp"
+                android:layout_below="@id/text_blood_pre"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line4"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_blood_pre"
+                />
+-->
+            <TextView
+                android:id="@+id/txt_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Symptoms"
+                android:layout_below="@id/txt_blood_pre"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/edt_notes"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="37dp"
+                android:focusable="false"
+                android:textSize="12sp"
+                android:paddingBottom="15sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:singleLine="false"
+                android:text="Cough very frequently. Become serious during midnight"
+                android:layout_marginRight="21dp"
+                android:layout_below="@id/txt_notes"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line5"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/edt_notes"
+                />
+-->
+            <TextView
+                android:id="@+id/text_disc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descriptions"
+                android:layout_below="@id/edt_notes"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <TextView
+                android:id="@+id/txt_disc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have cough for a least one week."
+                android:layout_marginLeft="37dp"
+                android:focusable="false"
+                android:paddingBottom="15dp"
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginRight="35dp"
+                android:layout_below="@id/text_disc"
+                />
+          <!--  <TextView
+                android:id="@+id/txt_line6"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_disc"
+                />-->
+
+            <TextView
+                android:id="@+id/text_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reason for visit"
+                android:layout_below="@id/txt_disc"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="37dp"
+                android:textColor="@color/colorpink"
+                />
+            <EditText
+                android:id="@+id/txt_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Did not take any medicine"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginLeft="37dp"
+                android:paddingBottom="15dp"
+                android:textSize="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="35dp"
+                android:layout_below="@id/text_reason"
+                />
+<!--
+            <TextView
+                android:id="@+id/txt_line7"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorDarkBlue"
+                android:layout_below="@id/txt_reason"
+                />
+-->
+            <Button
+                android:id="@+id/btn_save_changes"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Save changes"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                android:layout_margin="20dp"
+                android:layout_below="@id/txt_reason"
+                android:textColor="@color/colorWhite"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/btn_bck_color"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
