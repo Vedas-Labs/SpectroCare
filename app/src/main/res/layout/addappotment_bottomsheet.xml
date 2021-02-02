@@ -93,7 +93,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_toLeftOf="@+id/time"
-                        android:src="@drawable/ic_access_time"/>
+                        card_view:srcCompat="@drawable/ic_access_time"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,133 +116,180 @@
                         android:background="@color/colorGrey"
                         android:textColor="@color/colorblack" />
                 </RelativeLayout>
-                <HorizontalScrollView
+               <!-- <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_below="@+id/rl2"
                     android:layout_marginTop="20dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent">-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
-                        android:layout_height="match_parent">
+                        android:layout_below="@+id/rl2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="20dp"
+                        android:weightSum="4"
+                        android:layout_height="wrap_content">
                         <androidx.cardview.widget.CardView
                             android:id="@+id/card_call_view"
-                            android:layout_width="wrap_content"
-                            card_view:cardCornerRadius="10dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="80dp"
+                            card_view:cardCornerRadius="15dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
                             card_view:cardBackgroundColor="@color/textBackground"
-                            android:layout_height="100dp">
+                            android:layout_height="wrap_content">
                             <RelativeLayout
-                                android:layout_width="100dp"
-                                android:layout_height="match_parent">
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:id="@+id/callimg"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:src="@drawable/ic_call"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="16dp"
-                                    android:fontFamily="@font/montserrat_regular"
-                                    android:text="Call"
-                                    android:layout_below="@+id/callimg"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="15dp"
-                                    android:textColor="@color/colorblack" />
+                                android:layout_width="match_parent"
+                                android:layout_marginBottom="5dp"
+                                android:layout_height="match_parent"
+                                >
+                               <RelativeLayout
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginBottom="15dp"
+                                   android:layout_centerInParent="true"
+                                   >
+                                   <ImageView
+                                       android:layout_width="20dp"
+                                       android:layout_height="20dp"
+                                       android:id="@+id/callimg"
+                                       android:layout_marginTop="15dp"
+                                       android:layout_centerHorizontal="true"
+                                       android:src="@drawable/ic_call"/>
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:textSize="14sp"
+                                       android:fontFamily="@font/montserrat_regular"
+                                       android:text="Call"
+                                       android:layout_below="@+id/callimg"
+                                       android:layout_centerHorizontal="true"
+                                       android:layout_marginTop="10dp"
+                                       android:textColor="@color/colorblack" />
+                               </RelativeLayout>
+
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
                             android:id="@+id/card_message_view"
-                            android:layout_width="wrap_content"
-                            card_view:cardCornerRadius="10dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="80dp"
+                            card_view:cardCornerRadius="15dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
                             card_view:cardBackgroundColor="@color/textBackground"
-                            android:layout_height="100dp">
+                            android:layout_height="wrap_content">
                             <RelativeLayout
-                                android:layout_width="100dp"
+                                android:layout_width="match_parent"
+                                android:layout_marginBottom="5dp"
                                 android:layout_height="match_parent">
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:id="@+id/msgimg"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:src="@drawable/ic_message"/>
-                                <TextView
+                                <RelativeLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16dp"
-                                    android:fontFamily="@font/montserrat_regular"
-                                    android:text="Message"
-                                    android:layout_below="@+id/msgimg"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="15dp"
-                                    android:textColor="@color/colorblack" />
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_centerInParent="true"
+                                    >
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:id="@+id/msgimg"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:src="@drawable/ic_message"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14sp"
+                                        android:fontFamily="@font/montserrat_regular"
+                                        android:text="Message"
+                                        android:layout_below="@+id/msgimg"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:textColor="@color/colorblack" />
+                                </RelativeLayout>
+
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            card_view:cardCornerRadius="10dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="80dp"
+                            card_view:cardCornerRadius="15dp"
+                            android:layout_margin="5dp"
                             android:id="@+id/cancel"
+                            android:layout_weight="1"
                             card_view:cardBackgroundColor="@color/textBackground"
-                            android:layout_height="100dp">
+                            android:layout_height="wrap_content">
                             <RelativeLayout
-                                android:layout_width="100dp"
+                                android:layout_width="match_parent"
+                                android:layout_marginBottom="5dp"
                                 android:layout_height="match_parent">
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:id="@+id/cancelimg"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:src="@drawable/ic_cancel"/>
-                                <TextView
+                                <RelativeLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16dp"
-                                    android:fontFamily="@font/montserrat_regular"
-                                    android:text="Cancel"
-                                    android:layout_below="@+id/cancelimg"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="15dp"
-                                    android:textColor="@color/colorblack" />
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_centerInParent="true"
+                                    >
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:id="@+id/cancelimg"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_centerHorizontal="true"
+                                        card_view:srcCompat="@drawable/ic_cancel"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14sp"
+                                        android:fontFamily="@font/montserrat_regular"
+                                        android:text="Cancel"
+                                        android:layout_below="@+id/cancelimg"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:textColor="@color/colorblack" />
+                                </RelativeLayout>
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            card_view:cardCornerRadius="10dp"
+                            android:layout_width="80dp"
+                            card_view:cardCornerRadius="15dp"
                             android:id="@+id/details"
-                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
                             card_view:cardBackgroundColor="@color/textBackground"
-                            android:layout_height="100dp">
+                            android:layout_height="wrap_content">
                             <RelativeLayout
-                                android:layout_width="100dp"
+                                android:layout_width="match_parent"
+                                android:layout_marginBottom="5dp"
                                 android:layout_height="match_parent">
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:id="@+id/detailsimg"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_centerHorizontal="true"
-                                    android:src="@drawable/ic_details"/>
-                                <TextView
+                                <RelativeLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16dp"
-                                    android:fontFamily="@font/montserrat_regular"
-                                    android:text="Details"
-                                    android:layout_below="@+id/detailsimg"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="15dp"
-                                    android:textColor="@color/colorblack" />
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_centerInParent="true"
+                                    >
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:id="@+id/detailsimg"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:src="@drawable/ic_details"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14sp"
+                                        android:fontFamily="@font/montserrat_regular"
+                                        android:text="Details"
+                                        android:layout_below="@+id/detailsimg"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:textColor="@color/colorblack" />
+                                </RelativeLayout>
+
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
-                </HorizontalScrollView>
+                <!--</HorizontalScrollView>-->
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <com.mikhaellopez.circularimageview.CircularImageView

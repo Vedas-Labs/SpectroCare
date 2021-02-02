@@ -1,3 +1,4 @@
+/*
 package com.vedas.spectrocare.patientModuleAdapter;
 
 import android.content.Context;
@@ -14,6 +15,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.vedas.spectrocare.PatientModule.DoctorSummeryActivity;
 import com.vedas.spectrocare.PatientModule.PatientBookAppointmentActivity;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.model.DoctorsItemModel;
@@ -60,6 +62,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PatientMedicalRecordsController.getInstance().currentdepartmentModel = responseModel.getMedicalPersonnels().get(holder.getAdapterPosition());
                 context.startActivity(new Intent(context, DoctorSummeryActivity.class));
             }
         });
@@ -90,3 +93,4 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
 
 }
+*/

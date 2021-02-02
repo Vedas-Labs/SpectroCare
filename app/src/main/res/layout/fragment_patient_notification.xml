@@ -4,91 +4,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientNotificationModule.PatientNotificationFragment">
+
     <RelativeLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="98dp"
-            android:background="@drawable/ic_background"/>
+            android:layout_height="70dp"
+            android:background="@drawable/ic_background" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:textSize="16sp"
             android:layout_centerInParent="true"
             android:layout_margin="15dp"
             android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Notifications"
             android:textColor="@color/colorWhite"
-            />
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/delete_sweep"
+            android:textSize="16sp" />
 
     </RelativeLayout>
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_layout"
-        >
-        <RelativeLayout
+        android:layout_below="@id/toolbar_layout">
+
+        <TextView
+            android:id="@+id/txt_today"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/txt_today"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/colorLightGrey"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:text="Today"
-                android:paddingLeft="15dp"
-                android:gravity="center_vertical"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/today_notification_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_today"
-                />
-            <TextView
-                android:id="@+id/txt_yesterday"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/colorLightGrey"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:layout_below="@id/today_notification_view"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:text="Yesterday"
-                android:paddingLeft="15dp"
-                android:gravity="center_vertical"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/yesterday_notification_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_yesterday"
-                />
-            <TextView
-                android:id="@+id/txt_date"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/colorLightGrey"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:layout_below="@id/yesterday_notification_view"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:text="May 12, Tues"
-                android:paddingLeft="15dp"
-                android:gravity="center_vertical"/>
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGrey"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="All Notifications"
+            android:textSize="15sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/date_notification_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_date"
-                />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/today_notification_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_today"
+            android:layout_marginBottom="80dp" />
 
-        </RelativeLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/txt_yesterday"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/today_notification_view"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGrey"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="Yesterday"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/yesterday_notification_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_yesterday"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/yesterday_notification_view"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGrey"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="May 12, Tues"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/date_notification_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_date"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

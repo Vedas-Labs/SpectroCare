@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.PatientMoreModule.SettingsActivity;
 import com.vedas.spectrocare.R;
 
@@ -46,25 +48,31 @@ public class DateTimeActivity extends AppCompatActivity {
         loadIds();
         readData();
     }
-    @OnClick(R.id.back) void backAction() {
+
+    @OnClick(R.id.back)
+    void backAction() {
+        String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(getApplicationContext(),String.valueOf(System.currentTimeMillis()));
+        Log.e("value", "call" + value + String.valueOf(System.currentTimeMillis()));
         onBackPressed();
     }
-    private void readData(){
+
+    private void readData() {
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         boolean formate = sharedPreferences.getBoolean("is24Hour", false);
         String region = sharedPreferences.getString("region", "India");
         String dateFormat = sharedPreferences.getString("dateFormat", "YYYY/MM/dd");
         myTextBox.setText(region);
         spinner.setSelection(categories.indexOf(dateFormat));
-        if(formate){
+        if (formate) {
             toggle.setChecked(true);
             loadtimestamp(true);
-        }else {
+        } else {
             toggle.setChecked(false);
             loadtimestamp(false);
         }
     }
-    private void loadSpinner(){
+
+    private void loadSpinner() {
         spinner = (Spinner) findViewById(R.id.spinner);
         categories.add("YYYY/MM/DD");
         categories.add("YYYY/MM/dd");
@@ -80,34 +88,38 @@ public class DateTimeActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                if(toggle.isChecked()){
+                if (toggle.isChecked()) {
                     loadtimestamp(true);
-                }else{
-                   loadtimestamp(false);
+                } else {
+                    loadtimestamp(false);
                 }
-                SettingsActivity.editor.putString("dateFormat",item);
+                SettingsActivity.editor.putString("dateFormat", item);
                 SettingsActivity.editor.commit();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
-    private void loadIds(){
+
+    private void loadIds() {
         myTextBox = (EditText) findViewById(R.id.region);
         txt_datetime = (TextView) findViewById(R.id.txt_datetime);
 
-        toggle=findViewById(R.id.all);
+        toggle = findViewById(R.id.all);
 
         myTextBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SettingsActivity.editor.putString("region",s.toString());
+                SettingsActivity.editor.putString("region", s.toString());
                 SettingsActivity.editor.commit();
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -115,37 +127,39 @@ public class DateTimeActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                   SettingsActivity.editor.putBoolean("is24Hour",true);
-                   SettingsActivity.editor.commit();
+                if (isChecked) {
+                    SettingsActivity.editor.putBoolean("is24Hour", true);
+                    SettingsActivity.editor.commit();
                     loadtimestamp(true);
-                }else{
-                    SettingsActivity.editor.putBoolean("is24Hour",false);
+                } else {
+                    SettingsActivity.editor.putBoolean("is24Hour", false);
                     SettingsActivity.editor.commit();
                     loadtimestamp(false);
                 }
             }
         });
     }
-    private void loadtimestamp(boolean is24Hour){
+
+    private void loadtimestamp(boolean is24Hour) {
         try {
-         String val=   convertTimestampTodate(spinner.getSelectedItem().toString(),is24Hour);
-         txt_datetime.setText(val);
+            String val = convertTimestampTodate(spinner.getSelectedItem().toString(), is24Hour);
+            txt_datetime.setText(val);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
-    public String convertTimestampTodate(String formater , boolean is24Hour) throws ParseException {
+
+    public String convertTimestampTodate(String formater, boolean is24Hour) throws ParseException {
         SimpleDateFormat weekFormatter;
         Calendar cal = Calendar.getInstance();
-        Date date=cal.getTime();
-         if(is24Hour) {
-             String formate=formater+" HH:mm";
-             weekFormatter = new SimpleDateFormat(formate, Locale.ENGLISH);
-         }else {
-             String formate=formater+" hh:mm aa";
-             weekFormatter = new SimpleDateFormat(formate, Locale.ENGLISH);
-         }
+        Date date = cal.getTime();
+        if (is24Hour) {
+            String formate = formater + " HH:mm";
+            weekFormatter = new SimpleDateFormat(formate, Locale.ENGLISH);
+        } else {
+            String formate = formater + " hh:mm aa";
+            weekFormatter = new SimpleDateFormat(formate, Locale.ENGLISH);
+        }
         String weekString = weekFormatter.format(date);
         return weekString;
     }

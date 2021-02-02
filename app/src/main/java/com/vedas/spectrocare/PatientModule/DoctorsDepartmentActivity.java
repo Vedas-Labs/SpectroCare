@@ -41,7 +41,7 @@ public class DoctorsDepartmentActivity extends AppCompatActivity {
         imgArrowback = findViewById(R.id.img_back_arrow);
         edtSearchByDepartment = findViewById(R.id.edt_search);
         departmentList = new ArrayList();
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Elderly Care"));
+        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Elderly Services"));
         departmentList.add(new CategoryItemModel(R.drawable.cardiovascular_1, "Cardiology"));
         departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Endocrinology Care"));
         departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Gastroentrology"));

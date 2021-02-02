@@ -45,12 +45,15 @@
                         android:fontFamily="@font/montserrat_bold"/>
                     <TextView
                         android:id="@+id/appointment_approval"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:textSize="13dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:gravity="end"
-                        android:layout_marginLeft="100dp"
+                        android:layout_toLeftOf="@+id/doc_name"
                         android:textColor="@color/colorAccent"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:text="Completed"/>

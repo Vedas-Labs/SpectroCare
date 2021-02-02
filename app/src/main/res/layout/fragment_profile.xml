@@ -32,8 +32,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="21dp"
                 android:layout_marginRight="21dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Dr. Michael is a board-certificated pediatrician at SpectroCare Hospital. He completed her medical training at the Louisiana State University."/>
+                android:fontFamily="@font/montserrat_regular"/>
 
             <TextView
                 android:id="@+id/txt_line"
@@ -106,8 +105,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="21dp"
                 android:layout_marginRight="21dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="20 Years+"/>
+                android:fontFamily="@font/montserrat_regular" />
             <TextView
                 android:id="@+id/txt_line2"
                 android:layout_width="match_parent"

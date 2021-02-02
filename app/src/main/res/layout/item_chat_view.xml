@@ -7,25 +7,39 @@
     android:paddingLeft="16dp"
     android:background="@color/colorWhite"
     android:layout_marginBottom="20dp">
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30 December 2020"
+        android:layout_centerHorizontal="true"
+        android:padding="6dp"
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:alpha="0.7"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/btn_yellow_backgroound"
+        android:backgroundTint="@color/colorOrange"
+        />
 
 
     <RelativeLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/notUserLay"
+        android:layout_below="@id/txt_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     <com.mikhaellopez.circularimageview.CircularImageView
         android:layout_marginTop="25dp"
         android:id="@+id/notUserPic"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/ic_profile3x" />
-
+        android:src="@drawable/profile_1" />
     <LinearLayout
         android:id="@+id/notUserLinearLay"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="36dp"
         android:layout_toRightOf="@id/notUserPic"
         android:layout_width="wrap_content"
@@ -33,12 +47,120 @@
         android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/people_offer_msz_box"
                 android:backgroundTint="#F8F8F8">
+                <ImageView
+                    android:id="@+id/img_nonuser_msz"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    />
 
+                <RelativeLayout
+                    android:id="@+id/replay_doc_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/colorBottomSheetGrey"
+                    android:background="@drawable/btn_blackboarder"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    >
+                    <LinearLayout
+                        android:id="@+id/layout_doc_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:layout_margin="5dp"
+                        android:layout_below="@id/selected_doc"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/profile_1"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="5dp"
+                            />
+                        <TextView
+                            android:id="@+id/txt_doc_photo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Photo"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:layout_gravity="center_vertical"
+                            />
 
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/replied_doc_img"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:visibility="gone"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/txt_color1"
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorOrange"
+                        />
+
+                    <TextView
+                        android:id="@+id/selected_doc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="30dp"
+                        android:textColor="@color/colorOrange"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@id/txt_color1"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        />
+                    <TextView
+                        android:id="@+id/txt_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/txt_color1"
+                        android:textSize="12sp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:maxLines="2"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_below="@id/selected_doc"
+                        />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/nonUserMsz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@id/replay_doc_layout"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Lorem ipsumnum ullam"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="12sp" />
+
+<!--
                 <TextView
                     android:padding="15dp"
                     android:gravity="center_vertical"
@@ -54,6 +176,7 @@
                     android:text="Lorem ipsumnum ullam"
                     android:textColor="@color/colorDarkBlue"
                     android:textSize="12sp" />
+-->
                 <ImageView
                     android:id="@+id/img_receive"
                     android:visibility="gone"
@@ -94,8 +217,8 @@
         android:layout_below="@id/notUserLinearLay"
         android:layout_alignEnd="@id/notUserLinearLay"
         android:layout_marginTop="2dp"
-        android:textSize="13sp"
-        android:visibility="gone"
+        android:textSize="10sp"
+        android:visibility="visible"
         android:fontFamily="@font/montserrat_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,57 +227,149 @@
     <RelativeLayout
         android:id="@+id/userLay"
         android:visibility="visible"
+        android:layout_below="@id/txt_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     <com.mikhaellopez.circularimageview.CircularImageView
         android:layout_centerVertical="true"
         android:id="@+id/userPic"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
         android:src="@drawable/profile_1" />
 
     <LinearLayout
         android:id="@+id/userLinearLay"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="5dp"
         android:layout_toLeftOf="@id/userPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/people_offer_msz_box"
             android:backgroundTint="@color/textBackground">
 
+            <ImageView
+                android:id="@+id/img_user_msz"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                />
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:indeterminateTint="@color/colorOrange"
+                android:layout_centerInParent="true"
+                />
+            <RelativeLayout
+                android:id="@+id/replay_msg_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:backgroundTint="@color/colorBottomSheetGrey"
+                android:background="@drawable/btn_blackboarder"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                >
+                <LinearLayout
+                    android:id="@+id/layout_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:layout_margin="5dp"
+                    android:layout_below="@id/txt_selected_doc"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/profile_1"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/txt_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Photo"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/replied_img"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    />
+                <TextView
+                    android:id="@+id/txt_color"
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorOrange"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_selected_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/txt_color"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorOrange"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    />
+                <TextView
+                    android:id="@+id/txt_selected_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="12sp"
+                    android:layout_toRightOf="@id/txt_color"
+                    android:maxLines="2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_below="@id/txt_selected_doc"
+                    />
+
+            </RelativeLayout>
 
             <TextView
-                android:padding="15dp"
                 android:gravity="center_vertical"
                 android:id="@+id/userMsz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_below="@id/replay_msg_layout"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:paddingLeft="9dp"
-                android:paddingBottom="10dp"
-                android:paddingRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
                 android:text="Lorem ipsumnum ullam"
                 android:textColor="@color/colorDarkBlue"
                 android:textSize="12sp" />
-            <ImageView
-                android:id="@+id/img_send"
-                android:visibility="gone"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="15dp"
-                />
             <RelativeLayout
                 android:id="@+id/rela_send_video"
                 android:layout_width="wrap_content"
@@ -178,8 +393,6 @@
 
         </RelativeLayout>
 
-
-
     </LinearLayout>
     <TextView
         android:id="@+id/txt_user_time"
@@ -187,12 +400,25 @@
         android:layout_alignStart="@id/userLinearLay"
         android:layout_width="wrap_content"
         android:layout_marginTop="2dp"
-        android:visibility="gone"
-        android:textSize="13sp"
+        android:visibility="visible"
+        android:textSize="10dp"
         android:fontFamily="@font/montserrat_regular"
         android:layout_height="wrap_content"
         android:text="6:23 AM"/>
 
+        <ImageView
+            android:id="@+id/img_read"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_toRightOf="@id/txt_user_time"
+            app:srcCompat="@drawable/ic_unread"
+            android:layout_below="@id/userLinearLay"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            />
 
-</RelativeLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

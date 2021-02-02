@@ -3,42 +3,65 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:id="@+id/layout_mon"
+    <TextView
+        android:id="@+id/txt_week_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_weight="1"
+        android:layout_marginLeft="18dp"
         android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Monday"
+        />
+    <LinearLayout
+        android:id="@+id/layout_mon"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="40dp"
         >
-        <TextView
-            android:id="@+id/txt_week_name"
-            android:layout_width="73dp"
-            android:layout_height="35dp"
-            android:gravity="center"
-            android:layout_marginLeft="21dp"
-            android:backgroundTint="#F5F5F5"
-            android:background="@drawable/btn_boarder"
-            android:text="Mon"
-            />
+
         <TextView
             android:id="@+id/txt_day_time"
-            android:layout_width="101dp"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:gravity="center"
-            android:layout_marginLeft="113dp"
+            android:layout_weight="1"
+            android:textSize="11dp"
             android:background="@drawable/btn_boarder"
-            android:text="9:00-12:00"
+            android:fontFamily="@font/montserrat_regular"
+
             />
         <TextView
             android:id="@+id/txt_timings"
-            android:layout_width="101dp"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:gravity="center"
-            android:layout_marginLeft="221dp"
+            android:layout_weight="1"
+            android:textSize="11dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/btn_boarder"
-            android:text="15:00-17:00"
+            android:fontFamily="@font/montserrat_regular"
+
+            />
+        <TextView
+            android:id="@+id/txt_night"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="11dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_boarder"
+            android:fontFamily="@font/montserrat_regular"
+
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>

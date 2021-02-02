@@ -9,7 +9,21 @@ public class PaymentModel {
     String formattedDate;
     String duration;
     String timeSlot;
+    String serviceCost;
+    String currency;
+    String serviceVATPercent;
+    String serviceID;
 
+    /* "isAvailable": "true",
+         "serviceID": "SIDhoTgdFyw",
+         "adminUserID": "Viswanath3344",
+         "hospital_reg_num": "AP2317293903",
+         "serviceName": "Online Consultation - 30 Mins",
+         "serviceCost": "20",
+         "currency": "USD",
+         "serviceVATPercent": "10",
+         "createdDate": "1604986963440",
+         "updatedDate": "1604986963440"*/
     public String getDocID() {
         return docID;
     }
@@ -72,5 +86,37 @@ public class PaymentModel {
 
     public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
+    }
+
+    public String getServiceCost() {
+        return serviceCost;
+    }
+
+    public void setServiceCost(String serviceCost) {
+        this.serviceCost = serviceCost;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getServiceVATPercent() {
+        return serviceVATPercent;
+    }
+
+    public void setServiceVATPercent(String serviceVATPercent) {
+        this.serviceVATPercent = serviceVATPercent;
+    }
+
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
     }
 }

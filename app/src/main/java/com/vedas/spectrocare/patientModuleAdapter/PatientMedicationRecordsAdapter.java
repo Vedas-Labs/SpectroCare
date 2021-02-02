@@ -68,7 +68,11 @@ public class PatientMedicationRecordsAdapter extends RecyclerView.Adapter<Patien
         holder.listText.setText(getMedicationListText(model.getMedicinesRecordModels()));
         try {
             String array[]= PersonalInfoController.getInstance().convertTimestampToslashFormate(model.getDate());
-            holder.prescribedText.setText(array[0]+" "+array[1]+" "+array[2]);
+            //load settings date formate to date feild.
+            String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,model.getDate());
+            holder.prescribedText.setText(value+" "+array[1]+" "+array[2]);
+            //
+          //  holder.prescribedText.setText(array[0]+" "+array[1]+" "+array[2]);
         } catch (ParseException e) {
             e.printStackTrace();
         }

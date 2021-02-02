@@ -85,7 +85,7 @@ public class PatientMedicationServerObjectDataController {
         Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
         ApiCallDataController.getInstance().loadServerApiCall(ApiCallDataController.getInstance().serverApi.deleteMEdicationRecord(currentMedical.getAccessToken(), gsonObject), "delete");
     }
-
+///fetch by patient id
     public void medicinesFetchApiCall() {
         PatientModel currentMedical = PatientLoginDataController.getInstance().currentPatientlProfile;
         JSONObject params = new JSONObject();
@@ -95,17 +95,17 @@ public class PatientMedicationServerObjectDataController {
             params.put("byWhomID",currentMedical.getPatientId());
             params.put("patientID", currentMedical.getPatientId());
             params.put("medical_record_id", currentMedical.getMedicalRecordId());
-            if( PatientFamilyDataController.getInstance().selectedIllnessRecord!=null) {
+           /* if( PatientFamilyDataController.getInstance().selectedIllnessRecord!=null) {
                 Log.e("selectedIllnessRecord", "onResponse: " + PatientFamilyDataController.getInstance().selectedIllnessRecord.getIllnessID());
                 params.put("illnessID", PatientFamilyDataController.getInstance().selectedIllnessRecord.getIllnessID());
-            }
+            }*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JsonParser jsonParser = new JsonParser();
         JsonObject gsonObject = (JsonObject) jsonParser.parse(params.toString());
-        Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
-        ApiCallDataController.getInstance().loadServerApiCall(ApiCallDataController.getInstance().serverApi.fetchMedicinesRecord(currentMedical.getAccessToken(), gsonObject), "fetch");
+        Log.e("medicinesFetchApiCall", "onResponse: " + gsonObject.toString());
+        ApiCallDataController.getInstance().loadServerApiCall(ApiCallDataController.getInstance().serverApi.fetchMedicinesByPatientID(currentMedical.getAccessToken(), gsonObject), "fetch");
     }
     public void processAddMedicationAddData(MedicationManullayServerObject userIdentifier) {
         //  Log.e("getMannualPrescriptions", "call" + userIdentifier.getMannualPrescriptions().toString());

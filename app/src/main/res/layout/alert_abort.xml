@@ -83,7 +83,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="No"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorpink"
                     android:textSize="15sp" />
 
             </LinearLayout>

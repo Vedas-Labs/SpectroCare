@@ -23,6 +23,15 @@ public class UserProfileModel implements Serializable {
     String userType;
     String department;
     String registerTime;
+    boolean isOnline;
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
 
     public PhoneNumberModel getPhoneNumber() {
         return phoneNumber;

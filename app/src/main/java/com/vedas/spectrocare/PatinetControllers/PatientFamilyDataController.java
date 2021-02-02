@@ -5,7 +5,6 @@ import android.util.Log;
 import com.vedas.spectrocare.Controllers.AllergiesServerObjectDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.DataBaseModels.PhysicalExamsDataModel;
-import com.vedas.spectrocare.MedicalPersonnelController;
 import com.vedas.spectrocare.PatientServerApiModel.FamilyDetaislModel;
 import com.vedas.spectrocare.PatientServerApiModel.IllnessPatientRecord;
 import com.vedas.spectrocare.PatientServerApiModel.IllnessScreenigRecord;

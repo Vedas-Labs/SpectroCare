@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.PatientModule.PatientFileActivity;
 import com.vedas.spectrocare.PatientModule.PatientTestRecordActivity;
 import com.vedas.spectrocare.R;
@@ -34,12 +35,12 @@ import com.vedas.spectrocare.patientModuleAdapter.UrineTestAdapter;
  * create an instance of this fragment.
  */
 public class UrineTestFragment extends Fragment  {
-    boolean c=false;
-   public static UrineTestAdapter testAdapter;
+    public  UrineTestAdapter testAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    RefreshShowingDialog refreshShowingDialog;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,7 +67,13 @@ public class UrineTestFragment extends Fragment  {
         fragment.setArguments(args);
         return fragment;
     }
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {//for refreshing fragemnts when user swipe on view pager
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,68 +91,13 @@ public class UrineTestFragment extends Fragment  {
         View allTestRecords = inflater.inflate(R.layout.fragment_urin_test, container, false);
         Button btnDelete = allTestRecords.findViewById(R.id.btn_delete);
         RecyclerView urineTestRecordsView = allTestRecords.findViewById(R.id.urine_test_record_view);
+        refreshShowingDialog=new RefreshShowingDialog(getContext());
         PatientTestRecordActivity recordActivity = new PatientTestRecordActivity();
         String dd = recordActivity.sendData();
         Log.e("dadaa",""+dd);
         urineTestRecordsView.setLayoutManager(new LinearLayoutManager(getContext()));
-        testAdapter = new UrineTestAdapter(getContext(),btnDelete);
+        testAdapter = new UrineTestAdapter(getContext(),refreshShowingDialog);
         urineTestRecordsView.setAdapter(testAdapter);
         return allTestRecords;
     }
-
-    public void betterTest(){
-        testAdapter.testMethod();
-    }
-    /*public class UrineTestAdapter extends RecyclerView.Adapter<UrineTestAdapter.UrineTestHolder> {
-        Context context;
-        Button btnEdit;
-
-        public UrineTestAdapter(Context context, Button btnEdit) {
-            this.context = context;
-            this.btnEdit = btnEdit;
-        }
-
-        public UrineTestAdapter(Context context) {
-            this.context = context;
-        }
-
-
-        @Override
-        public UrineTestAdapter.UrineTestHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View urineTestView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_recycle_view, parent, false);
-            return new UrineTestHolder(urineTestView);
-        }
-
-        @Override
-        public void onBindViewHolder( UrineTestAdapter.UrineTestHolder holder, int position) {
-            holder.txtNormal.setText("Normal");
-            holder.txtTest.setText("Urine Routine");
-            holder.imgIcon.setBackgroundResource(R.drawable.testtube);
-            holder.txtNormal.setTextColor(Color.parseColor("#2DAF22"));
-            holder.txtAbnormal.setVisibility(View.VISIBLE);
-
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 4;
-        }
-
-        public  class UrineTestHolder extends RecyclerView.ViewHolder {
-            TextView txtNormal,txtAbnormal,txtTest;
-            CheckBox checkBox;
-            ImageView imgIcon;
-            Button viewBtn;
-            public UrineTestHolder(@NonNull View itemView) {
-                super(itemView);
-                imgIcon = itemView.findViewById(R.id.img_doc_pic);
-                checkBox = itemView.findViewById(R.id.checkbox);
-                txtTest = itemView.findViewById(R.id.txt_doc_name);
-                txtAbnormal = itemView.findViewById(R.id.txt_Abnormal);
-                txtNormal = itemView.findViewById(R.id.txt_infection_name);
-            }
-        }
-    }*/
-
 }

@@ -24,6 +24,13 @@ public class BookPatientAppointmentAdapted extends RecyclerView.Adapter<BookPati
     int positionItem = -1;
     int i = -1;
     ArrayList<String> timesArray;
+    TextView txtDisc;
+
+    public BookPatientAppointmentAdapted(Context context, ArrayList<String> timesArray, TextView txtDisc) {
+        this.context = context;
+        this.timesArray = timesArray;
+        this.txtDisc = txtDisc;
+    }
 
     public BookPatientAppointmentAdapted(Context context, ArrayList<String> timesArray) {
         this.context = context;
@@ -65,13 +72,19 @@ public class BookPatientAppointmentAdapted extends RecyclerView.Adapter<BookPati
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
+        if (timesArray.size()>0){
+            txtDisc.setVisibility(View.GONE);
+        }else{
+            txtDisc.setVisibility(View.VISIBLE);
+        }
         return timesArray.size();
     }
 
     public String getSelectrdPosition() {
         if (positionItem == -1) {
-            Toast.makeText(context, "select time slot", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context, "select time slot", Toast.LENGTH_SHORT).show();
             return "";
         } else {
             return timesArray.get(positionItem);

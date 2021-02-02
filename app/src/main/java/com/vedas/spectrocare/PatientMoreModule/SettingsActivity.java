@@ -102,7 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), DateTimeActivity.class));
     }
     @OnClick(R.id.back) void backAction() {
-        clearSharedPreferenceData();
+        //clearSharedPreferenceData();
         // TODO call server...
         onBackPressed();
     }
@@ -186,9 +186,9 @@ public class SettingsActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
     }
-    private void clearSharedPreferenceData(){
-        //SharedPreferences preferences =getSharedPreferences("settings",Context.MODE_PRIVATE);
-       // SharedPreferences.Editor editor = preferences.edit();
+    public   void clearSettingsSharedPreferenceData(){
+        SharedPreferences preferences =getSharedPreferences("settings",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();
     }

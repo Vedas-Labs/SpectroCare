@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
   //  buildToolsVersion "30.0.1"
@@ -15,7 +15,6 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-
         buildConfigField("String",
                 "TWILIO_ACCESS_TOKEN",
                 "\"${getSecretProperty("TWILIO_ACCESS_TOKEN", "TWILIO_ACCESS_TOKEN")}\"")
@@ -114,6 +113,27 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${versions.supportLibrary}"
     implementation "com.android.support:preference-v14:${versions.supportLibrary}"
    // implementation "com.android.support:design:${versions.supportLibrary}"
-
+// firebase gradles
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.firebase:firebase-analytics'
+    //applandeo calender
+    implementation 'com.applandeo:material-calendar-view:1.0.1'
+    implementation 'com.applandeo:material-calendar-view:1.9.0-alpha03'
+    //quickAction
+   // implementation 'me.piruin:quickaction:2.4.3'
+    implementation 'com.github.piruin:quickaction:2.4.3'
+    //Socket Connection Library
+    implementation ('io.socket:socket.io-client:0.8.3') {
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'jp.wasabeef:picasso-transformations:2.1.0'
+    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    //Zooming image library
+    implementation 'com.commit451:PhotoView:1.2.4'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
 }

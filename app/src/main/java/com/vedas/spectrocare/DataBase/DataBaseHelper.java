@@ -29,7 +29,9 @@ import com.vedas.spectrocare.DataBaseModels.PhysicalCategoriesRecords;
 import com.vedas.spectrocare.DataBaseModels.ScreeningRecordModel;
 import com.vedas.spectrocare.DataBaseModels.SurgeryAttachModel;
 import com.vedas.spectrocare.DataBaseModels.SurgicalRecordModel;
+import com.vedas.spectrocare.DataBaseModels.TestFactors;
 import com.vedas.spectrocare.DataBaseModels.TrackInfoModel;
+import com.vedas.spectrocare.DataBaseModels.UrineresultsModel;
 import com.vedas.spectrocare.DataBaseModels.VaccineModel;
 import com.vedas.spectrocare.DataBaseModels.VaccineTrackInfoModel;
 
@@ -65,7 +67,8 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<DoctorInfoModel,Integer> doctorInfoModelsDao = null;
 
     private Dao<PatientModel, Integer> patientModels = null;
-
+    private Dao<UrineresultsModel,Integer> urineresultsDao = null;
+    private Dao<TestFactors,Integer> testFactorsDao = null;
 
     ConnectionSource objConnectionSource;
 
@@ -103,7 +106,8 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource,DoctorInfoModel.class);
 
             TableUtils.createTable(connectionSource,PatientModel.class);
-
+            TableUtils.createTable(connectionSource,UrineresultsModel.class);
+            TableUtils.createTable(connectionSource,TestFactors.class);
 
             medicalProfileDao = DaoManager.createDao(connectionSource, MedicalProfileModel.class);
             patientlProfileDao = DaoManager.createDao(connectionSource, PatientlProfileModel.class);
@@ -130,6 +134,8 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
             doctorInfoModelsDao= DaoManager.createDao(connectionSource, DoctorInfoModel.class);
 
             patientModels= DaoManager.createDao(connectionSource, PatientModel.class);
+            urineresultsDao= DaoManager.createDao(connectionSource, UrineresultsModel.class);
+            testFactorsDao= DaoManager.createDao(connectionSource, TestFactors.class);
 
             objConnectionSource = connectionSource;
         } catch (SQLException e) {
@@ -167,6 +173,8 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, DoctorInfoModel.class,false);
 
             TableUtils.dropTable(connectionSource, PatientModel.class,false);
+            TableUtils.dropTable(connectionSource, UrineresultsModel.class,false);
+            TableUtils.dropTable(connectionSource, TestFactors.class,false);
 
             onCreate(database, connectionSource);
             objConnectionSource = connectionSource;
@@ -428,5 +436,25 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
             }
         }
         return patientModels;
+    }
+
+    public Dao<UrineresultsModel,Integer> getUrineresultsDao(){
+        if (urineresultsDao==null){
+            try {
+                urineresultsDao = getDao(UrineresultsModel.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }return urineresultsDao;
+    }
+
+    public Dao<TestFactors,Integer> getTestFactorsesDao(){
+        if (testFactorsDao==null){
+            try {
+                testFactorsDao = getDao(TestFactors.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }return testFactorsDao;
     }
 }

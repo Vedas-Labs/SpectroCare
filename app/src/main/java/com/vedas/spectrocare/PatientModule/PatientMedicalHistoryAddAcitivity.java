@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.model.CategoryItemModel;
-import com.vedas.spectrocare.patientModuleAdapter.DoctorLatestSearchAdapter;
 import com.vedas.spectrocare.patientModuleAdapter.PatientMedicalHistoryAddAdapter;
 
 import java.util.ArrayList;

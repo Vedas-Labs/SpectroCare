@@ -78,6 +78,17 @@ public class PatientModel {
     @DatabaseField
     private String state;
 
+    @ForeignCollectionField
+    private ForeignCollection<UrineresultsModel> urineresultsModels;
+
+    public ForeignCollection<UrineresultsModel> getUrineresultsModels() {
+        return urineresultsModels;
+    }
+
+    public void setUrineresultsModels(ForeignCollection<UrineresultsModel> urineresultsModels) {
+        this.urineresultsModels = urineresultsModels;
+    }
+
     public String getAccessToken() {
         return accessToken;
     }

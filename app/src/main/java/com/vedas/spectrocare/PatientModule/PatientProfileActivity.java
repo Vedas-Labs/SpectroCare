@@ -65,7 +65,6 @@ import com.vedas.spectrocare.DataBase.MedicalProfileDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.DataBase.PatientProfileDataController;
 import com.vedas.spectrocare.DataBaseModels.PatientModel;
-import com.vedas.spectrocare.MedicalPersonnelController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.ServerApiModel.PatientDetailsModel;
@@ -332,6 +331,7 @@ public class PatientProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         cameraBottomSheet();
+
                        // dateToStramp();
 
                     }

@@ -1,17 +1,16 @@
 package com.vedas.spectrocare.PatientDocResponseModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ServiceTimeModel implements Serializable {
-    ArrayList officeHours;
+public class ServiceTimeModel {
+    ArrayList<OfficeHours> officeHours;
     ArrayList appointmentHours;
 
-    public ArrayList getOfficeHours() {
+    public ArrayList<OfficeHours> getOfficeHours() {
         return officeHours;
     }
 
-    public void setOfficeHours(ArrayList officeHours) {
+    public void setOfficeHours(ArrayList<OfficeHours> officeHours) {
         this.officeHours = officeHours;
     }
 

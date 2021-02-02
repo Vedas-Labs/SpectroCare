@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -33,8 +34,10 @@ import com.google.gson.JsonParser;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
+import com.vedas.spectrocare.DataBaseModels.PatientModel;
 import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.PatinetControllers.PatientAppointmentController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.activities.ChangePasswordActivity;
@@ -45,6 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 import butterknife.ButterKnife;
@@ -53,16 +57,24 @@ public class PatientAppointmentsTabsActivity extends AppCompatActivity {
    ImageView backImg,addImg;
    ArrayList<AppointmetModel> modelList;
     RefreshShowingDialog refreshShowingDialog;
+    ArrayList<AppointmentArrayModel> modelArrayList;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patientappointment);
         modelList = new ArrayList<>();
         ButterKnife.bind(this);
-       // PatientAppointmentsDataController.setNull();
+        modelArrayList = new ArrayList<>();
         refreshShowingDialog = new RefreshShowingDialog(PatientAppointmentsTabsActivity.this);
-
         backImg=findViewById(R.id.back);
+        /*if (isNetworkConnected()){
+            refreshShowingDialog.showAlert();
+            fetchAppointmentDetails();
+            accessInterfaceMethod();
+        }
+        else{
+            refreshShowingDialog.hideRefreshDialog();
+        }*/
       //  addImg = findViewById(R.id.img_add);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,17 +82,8 @@ public class PatientAppointmentsTabsActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-       /* modelList.add(new AppointmetModel(1,"Dr.Angaj"
-                ,"05/09/2020","10:00 AM","Conformed","10:00","","paid","PayPal","Cardiology"));
-        modelList.add(new AppointmetModel(1,"Dr.Sugreev"
-                ,"07/05/2020","10:00 AM","Conformed","10:00","","paid","PayPal","Dentist"));
-        modelList.add(new AppointmetModel(1,"Dr.Vaali"
-                ,"10/06/2020","10:00 AM","Completed","10:00","","paid","PayPal","Mentalist"));
-        modelList.add(new AppointmetModel(1,"Dr.Jambavanth"
-                ,"15/08/2020","10:00 AM","Cancel","10:00","","paid","PayPal","Antrology"));
-        PatientAppointmentController.getInstance().setAppointmentList(modelList);
-                Log.e("sssiizz","dad"+PatientAppointmentController.getInstance().getAppointmentList().size());
-        */
+
+
         addImg=findViewById(R.id.add);
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,4 +182,80 @@ public class PatientAppointmentsTabsActivity extends AppCompatActivity {
             }
         }
     }
+    private void fetchAppointmentDetails(){
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
+            jsonObject.put("patientID",PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject body = (JsonObject) jsonParser.parse(jsonObject.toString());
+        ApiCallDataController.getInstance().loadjsonApiCall(ApiCallDataController.getInstance().serverJsonApi.fetchAppointmentDetaisl(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken()
+                ,body),"fetchAppointment");
+    }
+
+    public void accessInterfaceMethod(){
+        ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
+            @Override
+            public void successCallBack(JSONObject jsonObject, String opetation) {
+                refreshShowingDialog.hideRefreshDialog();
+
+                if (opetation.equals("fetchAppointment")){
+                    try {
+                        Log.e("kkkkkk","dd"+jsonObject.getString("response"));
+                        if (jsonObject.getString("response").equals("3")){
+                            JSONArray appointmentArray = jsonObject.getJSONArray("appointments");
+                            Log.e("appontment","length"+jsonObject.toString());
+
+                            for (int l =0;l<appointmentArray.length();l++){
+                                Gson gson = new Gson();
+                                String jsonString= jsonObject.getJSONArray("appointments").getJSONObject(l).toString();
+                                AppointmentArrayModel appointmentList = gson.fromJson(jsonString, AppointmentArrayModel.class);
+                                PatientAppointmentsDataController.getInstance().allappointmentsList.add(appointmentList);
+                            }
+                            PatientAppointmentsDataController.getInstance().setAppointmentsList(PatientAppointmentsDataController.getInstance().allappointmentsList);
+
+                            if(PatientAppointmentsDataController.getInstance().allappointmentsList.size()>0) {
+                                sortResultsBasedOnTime(PatientAppointmentsDataController.getInstance().allappointmentsList);
+
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void failureCallBack(String failureMsg) {
+                refreshShowingDialog.hideRefreshDialog();
+            }
+        });
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+    public void sortResultsBasedOnTime(ArrayList<AppointmentArrayModel> list) {
+        Date currentDate=new Date();
+        for(int i=0;i<list.size();i++){
+            Date date=new Date(Long.parseLong(list.get(i).getAppointmentDetails().getAppointmentDate()));
+            Log.e("xxxx","daffff"+date.getTime());
+            if (currentDate.compareTo(date)<0) {
+                Log.e("zzzz","daffff"+date.getTime());
+                PatientAppointmentsDataController.getInstance().upcomingAppointmentsList.add(list.get(i));
+            }
+            if (currentDate.compareTo(date)>0) {
+                Log.e("zzzz","daffff"+date.getTime());
+                PatientAppointmentsDataController.getInstance().pastAppointmentsList.add(list.get(i));
+            }
+        }
+
+    }
+
 }

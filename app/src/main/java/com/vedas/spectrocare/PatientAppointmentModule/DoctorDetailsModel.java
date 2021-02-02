@@ -1,3 +1,4 @@
+/*
 package com.vedas.spectrocare.PatientAppointmentModule;
 
 import com.vedas.spectrocare.PatientDocResponseModel.ServiceTimeModel;
@@ -6,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DoctorDetailsModel implements Serializable {
+
     DoctorProfileModel profile;
     ServiceTimeModel serviceTime;
     ArrayList clinicalServices;
@@ -43,3 +45,4 @@ public class DoctorDetailsModel implements Serializable {
         this.reviews = reviews;
     }
 }
+*/

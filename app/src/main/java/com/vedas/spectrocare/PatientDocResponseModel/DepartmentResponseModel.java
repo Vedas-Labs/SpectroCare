@@ -1,7 +1,5 @@
 package com.vedas.spectrocare.PatientDocResponseModel;
 
-import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
-
 import java.util.ArrayList;
 
 public class DepartmentResponseModel {

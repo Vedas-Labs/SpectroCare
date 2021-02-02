@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.PatientModule.PatientDiseaseActivity;
 import com.vedas.spectrocare.PatientServerApiModel.FamilyDetaislModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
@@ -80,7 +81,11 @@ public class PatientFamilyHistoryAdapter extends RecyclerView.Adapter<PatientFam
               String  formattedDate = jdff.format(clickedDate);
                 Log.e("forrr","ff"+formattedDate);
                 String[] two = formattedDate.split(" ");
-                holder.txtDate.setText(two[0]);
+            //load settings date formate to date feild.
+            String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,entredDate);
+            holder.txtDate.setText(value);
+            //
+               // holder.txtDate.setText(two[0]);
                 String[] timeSplit = two[1].split(":");
                 if (12 < Integer.parseInt(timeSplit[0])){
                     int hr = Integer.parseInt(timeSplit[0])-12;

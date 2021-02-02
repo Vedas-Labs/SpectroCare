@@ -23,6 +23,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -41,9 +42,12 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.DataBase.MedicalProfileDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
@@ -51,16 +55,20 @@ import com.vedas.spectrocare.DataBaseModels.MedicalProfileModel;
 import com.vedas.spectrocare.DataBaseModels.PatientModel;
 import com.vedas.spectrocare.Location.LocationTracker;
 import com.vedas.spectrocare.LoginResponseModel.AppSettingsModel;
+import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
+import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
 import com.vedas.spectrocare.PatientMoreModule.SettingsActivity;
 import com.vedas.spectrocare.PatientModule.PatientHomeActivity;
 import com.vedas.spectrocare.PatientMoreModule.SettingsActivity;
 //import com.vedas.spectrocare.PatientServerObjects.AppSettingsModel;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApiModel.RetrofitInstance;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.model.GetPatientsResponseModel;
 import com.vedas.spectrocare.model.PatientList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,13 +83,13 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
     TextInputEditText edtPassword, edtEMail;
     TextInputLayout textInputLayout, txtPassLayout;
     String mailId, password;
-    TextView Forgot, btn,txtDont,txtError;
+    TextView Forgot, btn, txtDont, txtError;
     String mail, Password;
     ProgressBar progressBar;
     AlertDialog.Builder dialog1;
     Handler handler;
     AlertDialog alertDialog;
-    RelativeLayout txtLayout,forgotLayout;
+    RelativeLayout txtLayout, forgotLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +98,8 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
         //Get User Location
         LocationTracker.getInstance().fillContext(getApplicationContext());
         LocationTracker.getInstance().startLocation();
+        ApiCallDataController.getInstance().fillContent(getApplicationContext());
+        accessInterfaceMethods();
         MedicalProfileDataController.getInstance().fillContext(getApplicationContext());
         MedicalProfileDataController.getInstance().fetchMedicalProfileData();
         Log.e("Size", "" + MedicalProfileDataController.getInstance().allMedicalProfile.size());
@@ -103,6 +113,7 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
         dialog1.setView(dialogView);
         forgotLayout = findViewById(R.id.layout_forgot);
         alertDialog = dialog1.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
         handler = new Handler();
         progressBar.setVisibility(View.VISIBLE);
         btn = findViewById(R.id.create);
@@ -232,7 +243,7 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
                         txtPassLayout.setBackground(LoginActivity.this.getResources().getDrawable(R.drawable.btn_red_background));
                     }*/ else {
                         alertDialog.show();
-                        Objects.requireNonNull(alertDialog.getWindow()).setLayout(600, 500);
+                        Objects.requireNonNull(alertDialog.getWindow()).setLayout(450, 400);
                         Validation();
                     }
                 }
@@ -243,7 +254,7 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
                 @Override
                 public void onClick(View v) {
                     alertDialog.show();
-                    Objects.requireNonNull(alertDialog.getWindow()).setLayout(600, 500);
+                    Objects.requireNonNull(alertDialog.getWindow()).setLayout(450, 400);
                     Validation();
 
                 }
@@ -367,8 +378,8 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
                     if (response.body().getResponse().equals("0")) {
                         txtError.setText(" Incorrect userID or password");
                         txtError.setVisibility(View.VISIBLE);
+                        alertDialog.dismiss();
                     }
-                    alertDialog.dismiss();
                     if (response.body() != null) {
                         //  TrackInfoDataController.getInstance().deleteTrackData(PatientLoginDataController.getInstance().allPatientlProfile);
                         PatientLoginDataController.getInstance().deletePatientModelData(PatientLoginDataController.getInstance().allPatientlProfile);
@@ -423,13 +434,13 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
                                 }
                             }
                             PersonalInfoController.getInstance().appSettingsModel = ObjPatient.getAppSettings();
-                          //  PersonalInfoController.getInstance().appSettingsModel = ObjPatient.getAppSettings();
+                            //  PersonalInfoController.getInstance().appSettingsModel = ObjPatient.getAppSettings();
                             if (PersonalInfoController.getInstance().appSettingsModel != null) {
                                 SharedPreferences sharedpreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
                                 SettingsActivity.editor = sharedpreferences.edit();
                                 Log.e("appSettingObj", "" + PersonalInfoController.getInstance().appSettingsModel.getLanguage());
                                 AppSettingsModel appSettingsModel = PersonalInfoController.getInstance().appSettingsModel;
-                                Log.e("AppSettingsModel", "call" + appSettingsModel.getLanguage());
+                                Log.e("AppSettingsModel", "call" + appSettingsModel.getDateFormat());
                                 SettingsActivity.editor.putString("units", appSettingsModel.getUnit());
                                 SettingsActivity.editor.putString("dateFormat", appSettingsModel.getDateFormat());
                                 if (appSettingsModel.getTimeFormatType().equals("24-Hour")) {
@@ -447,11 +458,18 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
                                 }
                                 SettingsActivity.editor.commit();
                             }
+                            String strPatientId = ObjPatient.getPatientID();
+                            SharedPreferences preferences = getSharedPreferences("temp", 0);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("strPatientID", strPatientId);
+                            editor.apply();
                             if (PatientLoginDataController.getInstance().insertPatientData(profileModel)) {
                                 Log.e("listOfname", "" + profileModel.getHospital_reg_number());
                                 PatientLoginDataController.getInstance().fetchPatientlProfileData();
+                                addLoginDevice();
+                                /*PatientMedicalRecordsController.getInstance().isFromLogin=true;
                                 startActivity(new Intent(getApplicationContext(), PatientHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                Log.e("listOfname", "" + PatientLoginDataController.getInstance().allPatientlProfile.size());
+                             */
                             }
 
                        /* if (ObjPatient.getTracking().size() > 0) {
@@ -583,6 +601,61 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
         });
     }
 
+    private void accessInterfaceMethods() {
+        ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
+            @Override
+            public void successCallBack(JSONObject jsonObject, String curdOpetaton) {
+                if (curdOpetaton.equals("addDevice")) {
+                    try {
+                        Log.e("accessInterfaceMethods", "dd" + jsonObject.toString());
+                        if (jsonObject.getString("response").equals("3")) {
+                            Log.e("kkkkkk", "dd" + jsonObject.getString("message"));
+                            alertDialog.dismiss();
+                            PatientMedicalRecordsController.getInstance().isFromLogin = true;
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), PatientHomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void failureCallBack(String failureMsg) {
+
+            }
+        });
+    }
+
+    private void addLoginDevice() {
+       /* String token = FirebaseInstanceId.getInstance().getToken();
+        String ID = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID);*/
+        SharedPreferences sharedPreferencesTOken = getApplicationContext().getSharedPreferences("tokendeviceids", 0);
+        String deviceID = sharedPreferencesTOken.getString("deviceId", null);
+        String deviceToken = sharedPreferencesTOken.getString("tokenid", null);
+
+        Log.e("addLoginDevice", deviceID+" token :: " + deviceToken);
+        JSONObject fetchObject = new JSONObject();
+        try {
+            fetchObject.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile
+                    .getHospital_reg_number());
+            fetchObject.put("deviceType", "mobile");
+            fetchObject.put("deviceID", deviceID);
+            fetchObject.put("patientID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
+            fetchObject.put("deviceToken", deviceToken);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject gsonObject = (JsonObject) jsonParser.parse(fetchObject.toString());
+        Log.e("send", "data" + PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken());
+        ApiCallDataController.getInstance().loadjsonApiCall(
+                ApiCallDataController.getInstance().serverApi.
+                        addLoginDeviceApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "addDevice");
+
+    }
+
     @Override
     public void dialogeforCheckavilability(String title, String message, String ok) {
         MedicalPersonalSignupPresenter presenter = new MedicalPersonalSignupPresenter(this);
@@ -596,8 +669,8 @@ public class LoginActivity extends AppCompatActivity implements MedicalPersonaSi
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);*/
-       startActivity(new Intent(LoginActivity.this,SelectUserActivity.class));
-       finish();
+        startActivity(new Intent(LoginActivity.this, SelectUserActivity.class));
+        finish();
     }
 }
 

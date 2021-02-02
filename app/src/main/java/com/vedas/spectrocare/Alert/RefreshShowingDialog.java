@@ -27,6 +27,7 @@ import java.util.Objects;
 public class RefreshShowingDialog extends Dialog {
     Context context;
     AlertDialog alertDialog;
+    Dialog dialog;
     public RefreshShowingDialog(Context context1) {
         super(context1);
         Log.e("hideRefreshDialog", "call");
@@ -46,16 +47,47 @@ public class RefreshShowingDialog extends Dialog {
             // ProgressBar progressBar = dialogView.findViewById(R.id.progressBar);
             dialog1.setView(dialogView);
             alertDialog = dialog1.create();
-            alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.layout_cornerbg);
+            alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.transparent_bg);
+           // alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.layout_cornerbg);
          //   alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             alertDialog.show();
-            Objects.requireNonNull(alertDialog.getWindow()).setLayout(450, 400);
+           Objects.requireNonNull(alertDialog.getWindow()).setLayout(450, 400);
         }
     }
+    public void dialogue() {
+        if (!((Activity) context).isFinishing()) {
+           /* RotateAnimation rotate = new RotateAnimation(0, 360,
+                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+                    0.5f);
 
+            rotate.setDuration(2000);
+            rotate.setRepeatCount(Animation.INFINITE);
+            imageView.setAnimation(rotate);*/
+            dialog.show();
+
+        }
+    }
+    public RefreshShowingDialog(Context context1, String msg) {
+        super(context1);
+        context = context1;
+        dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.alertbox_layout);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+        TextView textView = (TextView) dialog.findViewById(R.id.connecting);
+        textView.setText(msg);
+     /*   dialog.getWindow().setBackgroundDrawableResource(R.drawable.layout_cornerbg);
+        imageView = (ImageView) dialog.findViewById(R.id.image_rottate);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.layout_cornerbg);*/
+    }
     public void hideRefreshDialog() {
         Log.e("hideRefreshDialog", "call");
         alertDialog.dismiss();
+    }
+    public void dismissDialogue() {
+        Log.e("hideRefreshDialog", "call");
+        dialog.dismiss();
     }
 }
 

@@ -7,7 +7,7 @@ import com.vedas.spectrocare.model.PaymentModel;
 public class PaymentControll {
 
     public static PaymentControll myObj;
-    PaymentModel paymentModel;
+    public PaymentModel currentPaymentModel=null;
 
     public static PaymentControll getInstance(){
         if (myObj==null){
@@ -18,12 +18,12 @@ public class PaymentControll {
         }
         return myObj;
     }
-
+/*
     public PaymentModel getPaymentModel() {
         return paymentModel;
-    }
+    }*/
 
-    public void setPaymentModel(PaymentModel paymentModel) {
+  /*  public void setPaymentModel(PaymentModel paymentModel) {
         this.paymentModel = paymentModel;
     }
 
@@ -32,5 +32,5 @@ public class PaymentControll {
         myObj=null;
         return myObj;
     }
-
+*/
 }

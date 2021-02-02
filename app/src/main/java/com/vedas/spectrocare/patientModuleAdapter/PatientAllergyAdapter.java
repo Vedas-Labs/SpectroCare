@@ -54,7 +54,11 @@ public class PatientAllergyAdapter extends RecyclerView.Adapter<PatientAllergyAd
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
         Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
-        holder.date.setText(time[0]);
+        //load settings date formate to date feild.
+        String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,String.valueOf(millis));
+        holder.date.setText(value);
+        //
+       // holder.date.setText(time[0]);
         holder.time.setText(time[1]+" "+time[2]);
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override

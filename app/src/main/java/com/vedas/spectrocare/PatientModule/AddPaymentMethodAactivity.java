@@ -28,7 +28,6 @@ public class AddPaymentMethodAactivity extends AppCompatActivity {
     TextView txtCardNo, txtDate, txtCvv;
     String strCardNo, strDate, strCvv, strEmail;
     Button btnAdd;
-    CardDetailsModel cardDetailsModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class AddPaymentMethodAactivity extends AppCompatActivity {
     }
 
     private void loadIds() {
-        cardDetailsModel = new CardDetailsModel();
         creditBtn = findViewById(R.id.toggle_1);
         paypalBtn = findViewById(R.id.toggle_2);
         layout_creditCard = findViewById(R.id.linear_creditcared);
@@ -90,25 +88,28 @@ public class AddPaymentMethodAactivity extends AppCompatActivity {
                 strCardNo = txtCardNo.getText().toString();
                 strCvv = txtCvv.getText().toString();
                 strDate = txtDate.getText().toString();
+                CardDetailsModel cardDetailsModel=new CardDetailsModel();
 
                 if (!edtEmail.getText().toString().isEmpty()) {
 
                     strEmail = edtEmail.getText().toString();
                     cardDetailsModel.setUpiID(strEmail);
-                    CardDetailsController.getInstance().getCardDetailList().add(cardDetailsModel);
+                    CardDetailsController.getInstance().cardDetailList.add(cardDetailsModel);
                     startActivity(new Intent(AddPaymentMethodAactivity.this, PatientPaymentActivity.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 }else{
-                    startActivity(new Intent(AddPaymentMethodAactivity.this, PatientPaymentActivity.class)
-                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            );
+
                     cardDetailsModel.setCardNo(strCardNo);
                     cardDetailsModel.setCvv(strCvv);
                     cardDetailsModel.setExpairDate(strDate);
-                    CardDetailsController.getInstance().getCardDetailList().add(cardDetailsModel);
+                    CardDetailsController.getInstance().cardDetailList.add(cardDetailsModel);
+                    Log.e("dfaaf","adsf"+strCardNo+strCvv+strDate);
 
+                    Log.e("dfaaf","adsf"+CardDetailsController.getInstance().cardDetailList.size());
+                    startActivity(new Intent(AddPaymentMethodAactivity.this, PatientPaymentActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    );
                 }
-                Log.e("dfaaf","adsf"+strEmail);
 
             }
         });

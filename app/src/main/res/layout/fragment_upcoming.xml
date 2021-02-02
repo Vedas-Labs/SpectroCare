@@ -29,16 +29,24 @@
             android:textSize="13sp" />
 
     </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:name="com.vedas.spectrocare.PatientModule.ItemFragment"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
-        android:layout_marginRight="10dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".PatientModule.UpcomingAppointmentFragment"
-        tools:listitem="@layout/fragment_upcoming_item" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:name="com.vedas.spectrocare.PatientModule.ItemFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".PatientModule.UpcomingAppointmentFragment"
+            tools:listitem="@layout/fragment_upcoming_item" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </RelativeLayout>

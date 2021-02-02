@@ -35,6 +35,9 @@ public class ApiCallDataController {
     }
 
     public void initializeServerInterface(ServerResponseInterface serverResponseInterface1) {
+        if(serverResponseInterface !=null){
+            serverResponseInterface=null;
+        }
         serverResponseInterface = serverResponseInterface1;
     }
     public void createRetrofotInstance(){
@@ -57,7 +60,10 @@ public class ApiCallDataController {
                     try {
                         jsonObject = new JSONObject(responseString);
                         Log.e("aaaaaaaaaaaa", "onResponse: " + jsonObject.toString());
-                        if (jsonObject.getString("response").equals("3")) {
+                        if (jsonObject.getString("message").equals("Inbox messages has been fetched succesfully")) {
+                            serverResponseInterface.successCallBack(jsonObject,opetation);
+                        }
+                           else if (jsonObject.getString("response").equals("3")) {
                             serverResponseInterface.successCallBack(jsonObject,opetation);
                         }  else {
                             Log.e("response ","messsage");

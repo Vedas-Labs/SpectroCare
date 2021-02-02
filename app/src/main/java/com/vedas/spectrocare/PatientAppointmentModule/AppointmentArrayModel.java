@@ -1,5 +1,7 @@
 package com.vedas.spectrocare.PatientAppointmentModule;
 
+import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
+
 import java.io.Serializable;
 
 public class AppointmentArrayModel implements Serializable {
@@ -9,7 +11,8 @@ public class AppointmentArrayModel implements Serializable {
     String patientID;
     CreatorDetailsModel creatorDetails;
     PatientAppointDetailsModel patientDetails;
-    DoctorDetailsModel doctorDetails;
+   // DoctorDetailsModel doctorDetails;
+     MedicalPersonnelModel doctorDetails;
 
     public AppointmentDetailsModel getAppointmentDetails() {
         return appointmentDetails;
@@ -59,11 +62,11 @@ public class AppointmentArrayModel implements Serializable {
         this.patientDetails = patientDetails;
     }
 
-    public DoctorDetailsModel getDoctorDetails() {
+    public MedicalPersonnelModel getDoctorDetails() {
         return doctorDetails;
     }
 
-    public void setDoctorDetails(DoctorDetailsModel doctorDetails) {
+    public void setDoctorDetails(MedicalPersonnelModel doctorDetails) {
         this.doctorDetails = doctorDetails;
     }
 }

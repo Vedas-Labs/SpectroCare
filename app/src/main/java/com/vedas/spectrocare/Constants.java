@@ -5,7 +5,29 @@ package com.vedas.spectrocare;
  */
 
 public class Constants {
-  public static String aboutus_url = "https://www.spectrochips.com";
+    public static String aboutus_url = "https://www.spectrochips.com";
+
+    public enum SpectroSocketEvents {
+        SliceUpload("sliceUpload"),
+        RequestSliceUpload("requestSliceUpload"),
+        EndUpload("endUpload"),
+        UploadError("uploadError");
+
+        private final String name;
+
+        private SpectroSocketEvents(String s) {
+            name = s;
+        }
+
+        public boolean equalsName(String otherName) {
+            // (otherName == null) check is not needed because name.equals(null) returns false
+            return name.equals(otherName);
+        }
+
+        public String toString() {
+            return this.name;
+        }
+    }
 
     public enum StatusTypes {
         Accepted("Accepted"),
@@ -30,9 +52,6 @@ public class Constants {
             return this.name;
         }
     }
-
-
-
 
 
     public enum AppLanguages {
@@ -119,6 +138,7 @@ public class Constants {
         public boolean equalsName(String otherName) {
             return name.equals(otherName);
         }
+
         public String toString() {
             return this.name;
         }
@@ -208,9 +228,11 @@ public class Constants {
         urinary("Urinary Tract Infection");
 
         private final String name;
+
         private HealthTrendNames(String s) {
             name = s;
         }
+
         public boolean equalsName(String otherName) {
             // (otherName == null) check is not needed because name.equals(null) returns false
             return name.equals(otherName);
@@ -220,14 +242,17 @@ public class Constants {
             return this.name;
         }
     }
+
     public enum UrineAndBloodNames {
         urine("Urine"),
         blood("Blood");
 
         private final String name;
+
         private UrineAndBloodNames(String s) {
             name = s;
         }
+
         public boolean equalsName(String otherName) {
             // (otherName == null) check is not needed because name.equals(null) returns false
             return name.equals(otherName);

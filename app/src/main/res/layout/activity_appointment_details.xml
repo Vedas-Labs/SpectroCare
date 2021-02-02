@@ -156,15 +156,13 @@
                      android:textSize="12dp"
                      android:paddingLeft="5dp"
                      android:layout_alignParentRight="true"
-                     android:layout_marginTop="20dp"
+                     android:layout_marginTop="50dp"
                      android:layout_marginRight="5dp"
                      android:paddingRight="5dp"
                      android:textColor="@color/colorWhite"
                      android:background="@drawable/btn_bck_color"
                      android:textAllCaps="false"
-                     android:layout_alignParentBottom="true"
                      android:fontFamily="@font/montserrat_semi_bold"
-                     android:layout_centerVertical="true"
                      android:layout_marginLeft="20dp"
                      />
              </RelativeLayout>
@@ -237,13 +235,26 @@
                         android:textSize="15dp"
                         android:text="Confirmed"
                         android:gravity="end"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/img_down_arrow"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/colorOrange"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:layout_marginLeft="180dp"
                         />
+                    <ImageView
+                        android:id="@+id/img_down_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/down_1"
+                        android:visibility="gone"
+                        android:padding="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        />
+
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
@@ -257,6 +268,35 @@
                         android:layout_marginTop="9dp"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:layout_marginLeft="20dp"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/rl_reason"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txt_cancel_reason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:text="Reason for cancel"
+                        />
+                    <TextView
+                        android:id="@+id/cancel_reason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="40dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
                         />
                 </RelativeLayout>
                 <RelativeLayout

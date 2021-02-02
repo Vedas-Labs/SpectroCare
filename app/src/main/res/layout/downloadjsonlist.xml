@@ -20,8 +20,7 @@
         <RelativeLayout
             android:id="@+id/relativeone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
+            android:layout_height="70dp"
             android:background="@color/colorWhite">
             <TextView
                 android:id="@+id/testName"
@@ -44,11 +43,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:clickable="false"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:focusable="false"
+
+                android:layout_alignParentBottom="true"
                 android:focusableInTouchMode="false"
-                android:layout_below="@+id/testName"
                 android:text="098877676555555"
                 android:textColor="@color/colorDarkBlue"
                 android:textSize="14sp" />

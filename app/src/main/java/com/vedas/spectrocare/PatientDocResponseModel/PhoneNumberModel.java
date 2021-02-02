@@ -1,8 +1,6 @@
 package com.vedas.spectrocare.PatientDocResponseModel;
 
-import java.io.Serializable;
-
-public class PhoneNumberModel implements Serializable {
+public class PhoneNumberModel {
     String countryCode;
     String phoneNumber;
 

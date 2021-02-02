@@ -40,6 +40,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/patient_image"
             app:civ_border_color="@color/colorWhite" />
+
     </RelativeLayout>
 
 

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.vedas.spectrocare.MedicalPersonnelController;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.patientModuleAdapter.DoctorLanguageAdapter;
 import com.vedas.spectrocare.patientModuleAdapter.DoctorSpecificAdapter;
@@ -29,15 +29,13 @@ public class ProfileFragment extends Fragment {
     DoctorSpecificAdapter specificAdapter;
     DoctorLanguageAdapter languageAdapter;
     ChipGroup chipGroup;
-    ArrayList<String> specificArray;
-    ArrayList<String> languageList;
-    MedicalPersonnelController departmetResponseController = MedicalPersonnelController.getInstance();
-
+    ArrayList<String> specificArray= new ArrayList<>();
+    ArrayList<String> languageList = new ArrayList<>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView txt_expirence,txt_summary;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -45,16 +43,6 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -77,43 +65,46 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        specificArray = new ArrayList<>();
-        languageList = new ArrayList<>();
-        specificArray.add("Dentistry");
-        specificArray.add("Surgery");
-        specificArray.add("Cardio");
-        specificArray.add("Paediatric");
-        languageList.add("English");
-        languageList.add("Telugu");
-        languageList.add("Hindi");
-        languageList.add("Kannada");
-
+        txt_expirence=view.findViewById(R.id.text_experience);
+        txt_summary=view.findViewById(R.id.txt_summery);
+        loadSelectedDoctorData();
         chipGroup = view.findViewById(R.id.lang_chip_group);
-        specialityView = view.findViewById(R.id.speciality_view);
+
         languageView = view.findViewById(R.id.language_view);
-        specificAdapter = new DoctorSpecificAdapter(getContext(),specificArray);
         languageAdapter = new DoctorLanguageAdapter(getContext(),languageList);
-        specialityView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        specialityView.setAdapter(specificAdapter);
         languageView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         languageView.setAdapter(languageAdapter);
-       // addChip(specificArray,chipGroup);
+
+        specialityView = view.findViewById(R.id.speciality_view);
+        specificAdapter = new DoctorSpecificAdapter(getContext(),specificArray);
+        specialityView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        specialityView.setAdapter(specificAdapter);
+
         return view;
     }
+    private void loadSelectedDoctorData() {
+        if (PatientMedicalRecordsController.getInstance().medicalPersonnelModel != null) {
+            if(PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getProfile().getGeneralInformation() != null){
+                txt_expirence.setText(PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getProfile().getGeneralInformation().getExperience());
+                txt_summary.setText(PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getProfile().getBiography());
 
-/*
-    private void addChip(ArrayList<String> arrayList, ChipGroup pChipGroup) {
+                String spokenLang=PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getProfile().getGeneralInformation().getSpokenLanguages();
+                String langArray[]=spokenLang.split(",");
+                for(int i=0;i<langArray.length;i++){
+                    languageList.add(langArray[i]);
+                }
 
+                String speciality=PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getProfile().getGeneralInformation().getSpeciality();
+                if(speciality.contains(",")){
+                    String specialityArray[]=speciality.split(",");
+                    for(int i=0;i<specialityArray.length;i++){
+                        specificArray.add(specialityArray[i]);
+                    }
+                }else{
+                    specificArray.add(speciality);
+                }
 
-        for(int i=0;i<arrayList.size();i++) {
-
-            Chip lChip = new Chip(getActivity());
-            lChip.setText(arrayList.get(i));
-            lChip.setTextColor(getResources().getColor(R.color.primary_text));
-            lChip.setChipBackgroundColor(getResources().getColorStateList(R.color.gray));
-            pChipGroup.addView(lChip, pChipGroup.getChildCount() - 1);
-
+            }
         }
     }
-*/
 }

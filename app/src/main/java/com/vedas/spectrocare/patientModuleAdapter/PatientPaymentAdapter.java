@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.vedas.spectrocare.PatinetControllers.CardDetailsController;
 import com.vedas.spectrocare.R;
+import com.vedas.spectrocare.model.CardDetailsModel;
 import com.vedas.spectrocare.model.DoctorsItemModel;
 
 import java.util.ArrayList;
@@ -38,13 +39,14 @@ public class PatientPaymentAdapter extends RecyclerView.Adapter<PatientPaymentAd
 
     @Override
     public void onBindViewHolder(@NonNull final PatientPaymentAdapter.PatientPaymentHolder holder, int position) {
-        if (CardDetailsController.getInstance().getCardDetailList().get(position).getUpiID()==null){
-            holder.txtCardNum.setText( CardDetailsController.getInstance().getCardDetailList().get(position).getCardNo());
-            holder.txtCardDate.setText(CardDetailsController.getInstance().getCardDetailList().get(position).getExpairDate());
+        CardDetailsModel cardDetailsModel=CardDetailsController.getInstance().cardDetailList.get(position);
+        if (cardDetailsModel.getUpiID()==null){
+            holder.txtCardNum.setText( cardDetailsModel.getCardNo());
+            holder.txtCardDate.setText(cardDetailsModel.getExpairDate());
 
         }else{
             holder.imgCardView.setImageResource(R.drawable.paypal);
-            holder.txtCardNum.setText( CardDetailsController.getInstance().getCardDetailList().get(position).getUpiID());
+            holder.txtCardNum.setText( cardDetailsModel.getUpiID());
             holder.txtCardDate.setText("");
 
         }
@@ -53,14 +55,15 @@ public class PatientPaymentAdapter extends RecyclerView.Adapter<PatientPaymentAd
         if(p==position){
 
             holder.btnSelect.setChecked(true);
-            if (CardDetailsController.getInstance().getCardDetailList().get(p).getUpiID()==null){
-                 gg =CardDetailsController.getInstance().getCardDetailList().get(p).getCardNo();
+            if (CardDetailsController.getInstance().cardDetailList.get(p).getUpiID()==null){
+                 gg =CardDetailsController.getInstance().cardDetailList.get(p).getCardNo();
             }else{
-                gg =CardDetailsController.getInstance().getCardDetailList().get(p).getUpiID();
+                gg =CardDetailsController.getInstance().cardDetailList.get(p).getUpiID();
 
             }
 
-            Log.e("fafd","adf"+gg);
+            Log.e("selectedcard","adf"+gg);
+
 
         }else{
             holder.btnSelect.setChecked(false);
@@ -83,15 +86,14 @@ public class PatientPaymentAdapter extends RecyclerView.Adapter<PatientPaymentAd
 
     @Override
     public int getItemCount() {
-        if (CardDetailsController.getInstance()!=null){
-            return  CardDetailsController.getInstance().getCardDetailList().size();
+        if (CardDetailsController.getInstance().cardDetailList.size()>0){
+            return  CardDetailsController.getInstance().cardDetailList.size();
         }else{
             return 0;
         }
     }
     public String getSelectrdPosition() {
         if (p == -1) {
-            Toast.makeText(context, "select time slot", Toast.LENGTH_SHORT).show();
             return "";
         } else {
 

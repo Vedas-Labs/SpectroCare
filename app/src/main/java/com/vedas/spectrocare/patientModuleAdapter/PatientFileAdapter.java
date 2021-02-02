@@ -114,7 +114,11 @@ public class PatientFileAdapter extends RecyclerView.Adapter<PatientFileAdapter.
             String  formattedDate = jdff.format(clickedDate);
             Log.e("forrr","ff"+formattedDate);
             String[] two = formattedDate.split(" ");
-            holder.txt_date.setText(two[0]);
+            //load settings date formate to date feild.
+            String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,entredDate);
+            holder.txt_date.setText(value);
+            //
+          //  holder.txt_date.setText(two[0]);
             String[] timeSplit = two[1].split(":");
             if (12 < Integer.parseInt(timeSplit[0])){
                 int hr = Integer.parseInt(timeSplit[0])-12;

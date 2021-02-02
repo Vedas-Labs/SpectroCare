@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.PatientModule.PatientSurgeryActivity;
 
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
@@ -54,7 +55,11 @@ public class PatientSurgeryAdapter extends RecyclerView.Adapter<PatientSurgeryAd
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
         Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
-        holder.date.setText(time[0]);
+        //load settings date formate to date feild.
+        String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,String.valueOf(millis));
+        holder.date.setText(value);
+        //
+        //holder.date.setText(time[0]);
         holder.time.setText(time[1]+" "+time[2]);
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override

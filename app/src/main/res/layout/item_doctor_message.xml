@@ -12,18 +12,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/image"
                 android:id="@+id/img_doc_pic"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="3dp"
+                android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
-                android:scaleType="center"
-                android:src="@drawable/ic_user"/>
+                />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/layout_msg"
                 android:layout_toRightOf="@id/img_doc_pic">
                 <TextView
                     android:id="@+id/txt_doc_name"
@@ -33,7 +34,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/montserrat_semi_bold"/>
                 <TextView
                     android:id="@+id/txt_infection_name"
@@ -45,23 +46,52 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/montserrat_regular"/>
+                <TextView
+                    android:id="@+id/txt_last_seen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last chat on: 3 hours ago"
+                    android:textSize="13sp"
+                    android:layout_below="@id/txt_infection_name"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
 
 
 
             </RelativeLayout>
-            <Button
-                android:id="@+id/btn_view"
+            <LinearLayout
+                android:id="@+id/layout_msg"
                 android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:textColor="@color/colorWhite"
-                android:layout_centerVertical="true"
-                android:textAllCaps="false"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:background="@drawable/edt_txt_background"
-                android:backgroundTint="@color/colorOrange"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="Message"/>
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:text="10:00 Am"
+                    />
+                <ImageView
+                    android:id="@+id/btn_view"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_gravity="center"
+                    android:src="@drawable/message"
+                    />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 

@@ -1,3 +1,4 @@
+/*
 package com.vedas.spectrocare;
 
 
@@ -32,3 +33,4 @@ public class MedicalPersonnelController {
  }
 
 }
+*/

@@ -1015,7 +1015,7 @@ public class PatientFileActivity extends AppCompatActivity implements CallBackTa
         TextView txt_msg = dialog.findViewById(R.id.msg);
         TextView txt_msg1 = dialog.findViewById(R.id.msg1);
 
-        txt_title.setText("LogOut");
+        txt_title.setText("Delete");
         txt_msg.setText("Are you sure you");
         txt_msg1.setText("want to Delete ?");
 

@@ -29,6 +29,7 @@ import com.skyfishjy.library.RippleBackground;
 import com.spectrochips.spectrumsdk.FRAMEWORK.SCConnectionHelper;
 import com.spectrochips.spectrumsdk.FRAMEWORK.SCTestAnalysis;
 import com.spectrochips.spectrumsdk.FRAMEWORK.SpectroCareSDK;
+import com.vedas.spectrocare.BLEConnectionModule.FileViewControllerActivity;
 import com.vedas.spectrocare.R;
 
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class BleScanningActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),CollectSampleActivity.class));
+                startActivity(new Intent(getApplicationContext(), FileViewControllerActivity.class));
             }
         });
 
@@ -107,7 +108,7 @@ public class BleScanningActivity extends AppCompatActivity {
             }
             @Override
             public void onSuccessForScanning(final ArrayList<BluetoothDevice> devcies, boolean msg) {
-                Log.e("onSuccessForScanning", "call");
+                Log.e("onSuccessForScanning", "call"+devcies.size());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -122,12 +123,10 @@ public class BleScanningActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 // showMessage("Device not connected.");
             }
-
             @Override
             public void uartServiceClose(String error) {
                 //  showMessage("Not support Ble Service");
                 adapter.notifyDataSetChanged();
-
             }
         });
     }
@@ -221,16 +220,16 @@ public class BleScanningActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-          /*  BluetoothDevice device=devciesArray.get(position);
+            BluetoothDevice device=devciesArray.get(position);
             holder.name.setText(device.getName());
-            */
+
             if (selectedPosition == position) {
-                //  holder.image.setVisibility(View.VISIBLE);
-                /*SCConnectionHelper.getInstance().startScan(false);
+                  holder.image.setVisibility(View.VISIBLE);
+                SCConnectionHelper.getInstance().startScan(false);
                 bluetoothDevice = devciesArray.get(position);
-                SCTestAnalysis.getInstance().mService.connect(bluetoothDevice.getAddress());*/
+                SCTestAnalysis.getInstance().mService.connect(bluetoothDevice.getAddress());
             } else {
-                // holder.image.setVisibility(View.GONE);
+                 holder.image.setVisibility(View.GONE);
             }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -248,12 +247,11 @@ public class BleScanningActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 5;
-           /* if (devciesArray.size()>0) {
+            if (devciesArray.size()>0) {
                 return devciesArray.size();
             }else {
                 return 0;
-            }*/
+            }
         }
 
     }
@@ -279,7 +277,6 @@ public class BleScanningActivity extends AppCompatActivity {
 
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // User chose not to enable Bluetooth.
@@ -291,7 +288,6 @@ public class BleScanningActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
     @Override
     public void onBackPressed(){
         super.onBackPressed();

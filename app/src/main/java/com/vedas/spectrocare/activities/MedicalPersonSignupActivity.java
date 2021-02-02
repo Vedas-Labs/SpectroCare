@@ -500,7 +500,7 @@ TextInputLayout layoutHospitalReg,layoutEdtMail;
             @Override
             public void onClick(View v) {
                 imageVV = true;
-              // cameraDailog();
+               cameraDailog();
                 cameraBottomSheet();
             }
         });

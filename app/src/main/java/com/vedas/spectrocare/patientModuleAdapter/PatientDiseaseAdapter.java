@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.PatientModule.PatientDiseaseActivity;
 import com.vedas.spectrocare.PatientServerApiModel.FamilyDetaislModel;
 import com.vedas.spectrocare.PatientServerApiModel.IllnessPatientRecord;
@@ -53,17 +54,15 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
         View allMedical = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_all_recycle_view, parent, false);
         return new PatientDiseasHolder(allMedical);
     }
-
     @Override
     public void onBindViewHolder(@NonNull PatientDiseaseAdapter.PatientDiseasHolder holder, int position) {
-
         holder.imgDisease.setImageResource(R.drawable.disease);
-        holder.diseaseName.setText(diseaseList.get(position).getCurrentStatus());
+        holder.diseaseName.setText(diseaseList.get(position).getIllnessCondition());//currentstutus
         holder.subTxt.setText(diseaseList.get(position).getDescription());
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              String position =  String.valueOf(holder.getAdapterPosition());
+                String position =  String.valueOf(holder.getAdapterPosition());
                 context.startActivity(new Intent(context, PatientDiseaseActivity.class).putExtra("position",position));
             }
         });
@@ -81,7 +80,11 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
             String  formattedDate = jdff.format(clickedDate);
             Log.e("forrr","ff"+formattedDate);
             String[] two = formattedDate.split(" ");
-            holder.txtDate.setText(two[0]);
+            //load settings date formate to date feild.
+            String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,entredDate);
+            holder.txtDate.setText(value);
+            //
+            //holder.txtDate.setText(two[0]);
             String[] timeSplit = two[1].split(":");
             if (12 < Integer.parseInt(timeSplit[0])){
                 int hr = Integer.parseInt(timeSplit[0])-12;
@@ -98,7 +101,6 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
 
     @Override
     public int getItemCount() {
-
         if (!diseaseList.isEmpty()){
             Log.e("disese",""+diseaseList.size());
             txtDelete.setVisibility(View.VISIBLE);
@@ -124,7 +126,6 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
             txtTime = itemView.findViewById(R.id.txt_doc_time);
             imgDisease = itemView.findViewById(R.id.img_doc_pic);
             diseaseName = itemView.findViewById(R.id.txt_doc_name);
-
         }
     }
 }

@@ -39,13 +39,67 @@
                     android:layout_toRightOf="@id/img_back_arrow"/>
 
             </RelativeLayout>
+            <TextView
+                android:id="@+id/text_doc_profile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorLightGrey"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:layout_below="@id/toolbar_layout"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Doctor Profile"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_below="@id/text_doc_profile"
+                android:background="@drawable/edt_txt_background"
+                >
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/img_doc_pic"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/profile_1"/>
+                <TextView
+                    android:id="@+id/txt_doc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/img_doc_pic"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="18dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_semi_bold"/>
+                <TextView
+                    android:id="@+id/txt_doc_profession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_below="@id/txt_doc_name"
+                    android:layout_toRightOf="@id/img_doc_pic"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/montserrat_semi_bold"/>
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/appointment_type_layout"
-                android:layout_below="@id/toolbar_layout"
+                android:layout_below="@id/profile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,6 +129,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="15dp"
+                            android:checked="true"
                             android:fontFamily="@font/montserrat_regular"
                             android:button="@drawable/drawable_yellow_checkbox"
                             android:text="Online"/>
@@ -108,7 +163,7 @@
                 />
             <TextView
                 android:id="@+id/txt_select_date"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
@@ -117,6 +172,54 @@
                 android:text="Select Date"
                 android:textSize="14dp"
                 />
+            <TextView
+                android:id="@+id/txt_current_year"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:padding="3dp"
+                android:gravity="center"
+                android:layout_toLeftOf="@id/txt_year"
+                android:textColor="@color/colorWhite"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/btn_yellow_backgroound"
+                android:layout_below="@id/calneder_horizantal"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="@string/Today"
+                android:textSize="14dp"
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@id/txt_year"
+
+                android:textColor="@color/colorOrange"
+                android:layout_marginRight="15dp"
+                android:layout_below="@id/txt_current_year"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="@string/Today"
+                android:textSize="14dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/txt_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorpink"
+                android:layout_below="@id/calneder_horizantal"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="2020"
+                android:textSize="14dp"
+                />
+
             <RelativeLayout
                 android:id="@+id/calneder_layout"
                 android:layout_width="match_parent"
@@ -165,6 +268,18 @@
                 android:background="@drawable/edt_txt_background"
                 android:layout_margin="5dp"
                 >
+                <TextView
+                    android:id="@+id/txt_slot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No time slot available"
+                    android:textColor="@color/colorpink"
+                    android:layout_margin="15dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    />
+
                 <ImageView
                     android:id="@+id/img_left"
                     android:layout_width="wrap_content"
@@ -201,7 +316,7 @@
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:layout_margin="10dp"
                 android:textSize="16sp"
-                android:layout_below="@id/calneder_layout"/>
+                android:layout_below="@id/duration_layout"/>
             <TextView
                 android:id="@+id/text_day"
                 android:layout_width="wrap_content"
@@ -211,14 +326,14 @@
                 android:textColor="@color/colorpink"
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:layout_margin="10dp"
-                android:layout_below="@id/calneder_layout"/>
+                android:layout_below="@id/duration_layout"/>
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_below="@id/time_slot_layout"
+                android:layout_below="@id/calneder_layout"
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:text="Select Duration"
                 android:textSize="16dp"
@@ -243,11 +358,13 @@
                         android:id="@+id/btn_first"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="10dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
+                        android:visibility="visible"
                         android:button="@drawable/drawable_yellow_checkbox"
-                        android:text="10 mins"/>
+                        android:text="10 Mins"/>
+
                     <RadioButton
                         android:id="@+id/btn_second"
                         android:layout_width="wrap_content"
@@ -257,7 +374,7 @@
                         android:paddingLeft="15dp"
                         android:layout_weight="1"
                         android:layout_marginLeft="15dp"
-                        android:text="20 mins"/>
+                        android:text="20 Mins"/>
                     <RadioButton
                         android:id="@+id/btn_third"
                         android:layout_width="wrap_content"
@@ -267,7 +384,7 @@
                         android:button="@drawable/drawable_yellow_checkbox"
                         android:paddingLeft="15dp"
                         android:layout_marginLeft="15dp"
-                        android:text="30 mins"/>
+                        android:text="30 Mins"/>
 
 
                 </RadioGroup>
@@ -279,7 +396,7 @@
                 android:layout_height="40dp"
                 android:background="@color/colorLightGrey"
                 android:text="Reason for visit"
-                android:layout_below="@id/duration_layout"
+                android:layout_below="@id/time_slot_layout"
                 android:paddingLeft="15dp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/montserrat_semi_bold"

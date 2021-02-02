@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class ChatDataController {
     public static ChatDataController chatObj;
     ArrayList<ChatModel> chatModelArrayList;
+    ArrayList<MessageModel> messageModelArrayList;
+    public static boolean isConnected;
     public static ChatDataController getInstance(){
         if (chatObj==null){
             chatObj = new ChatDataController();
@@ -18,6 +20,15 @@ public class ChatDataController {
             return true;
         }else
             return false;
+    }
+
+
+    public ArrayList<MessageModel> getMessageModelArrayList() {
+        return messageModelArrayList;
+    }
+
+    public void setMessageModelArrayList(ArrayList<MessageModel> messageModelArrayList) {
+        this.messageModelArrayList = messageModelArrayList;
     }
 
     public ArrayList<ChatModel> getChatModelArrayList() {

@@ -38,14 +38,23 @@ public class DoctorsDepartmentAdapter extends RecyclerView.Adapter<DoctorsDepart
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, SearchResultsActivity.class));
+               /* SearchResultsActivity.selectedDept=departmentItemList.get(holder.getAdapterPosition()).getCategoryTitle();
+                context.startActivity(new Intent(context, SearchResultsActivity.class));*/
+                Intent i =new Intent(context, SearchResultsActivity.class);
+                i.putExtra("deptname",departmentItemList.get(holder.getAdapterPosition()).getCategoryTitle());
+                context.startActivity(i);
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return departmentItemList.size();
+        if(departmentItemList.size()>0){
+            return departmentItemList.size();
+        }else{
+            return 0;
+        }
     }
 
     public class DepartmentHolder extends RecyclerView.ViewHolder {

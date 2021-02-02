@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.text.ParsePosition;
 import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import com.vedas.spectrocare.LoginResponseModel.AppSettingsModel;
 import com.vedas.spectrocare.ServerApiModel.MedicalRecordModel;
 import com.vedas.spectrocare.model.PatientList;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -23,6 +25,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class PersonalInfoController {
 
@@ -37,7 +40,7 @@ public class PersonalInfoController {
     public List<String> cmArray;
     public List<String> lbsArray;
     public List<String> kgArray;
-    public  String[] weightunitsArray;
+    public String[] weightunitsArray;
     public String[] heightUnitsArray;
     public String[] waistUnitsArray;
     public PatientList currentPatient;
@@ -55,10 +58,11 @@ public class PersonalInfoController {
     public void fillContent(Context context1) {
         context = context1;
         currectProfileData = new MedicalRecordModel();
-        currentPatient=new PatientList();
+        currentPatient = new PatientList();
     }
+
     public void loadYearArray() {
-        yearArray=new ArrayList<>();
+        yearArray = new ArrayList<>();
 
         for (int i = 1900; i <= 2050; i++) {
             yearArray.add(String.valueOf(i));
@@ -66,53 +70,62 @@ public class PersonalInfoController {
 
 
     }
+
     public void loadAgeUnitaArray() {
-        ageUnitsArray=new String[1];
-        ageUnitsArray[0]="YEARS";
+        ageUnitsArray = new String[1];
+        ageUnitsArray[0] = "YEARS";
 
     }
+
     public void loadDaysUnitArray() {
-        dayUnitsArray=new String[1];
-        dayUnitsArray[0]="Days";
+        dayUnitsArray = new String[1];
+        dayUnitsArray[0] = "Days";
 
     }
-    public void loadAllUnitsArrays(){
+
+    public void loadAllUnitsArrays() {
         loadHeightUnitsArray();
         loadWeightUnitsArray();
         loadWaistUnitaArray();
     }
+
     public byte[] convertBitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] imageInByte = stream.toByteArray();
         // profileBase64Obj = Base64.encodeToString(imageInByte, Base64.NO_WRAP);
         Log.e("base64Image", "call" + imageInByte);
-        return  imageInByte;
+        return imageInByte;
     }
+
     public Bitmap convertByteArrayTOBitmap(byte[] profilePic) {
         ByteArrayInputStream arrayInputStream = new ByteArrayInputStream(profilePic);
         Bitmap bitmap = BitmapFactory.decodeStream(arrayInputStream);
         return bitmap;
     }
+
     public void loadWaistUnitaArray() {
-        waistUnitsArray=new String[1];
-        waistUnitsArray[0]="CM";
+        waistUnitsArray = new String[1];
+        waistUnitsArray[0] = "CM";
         //  waistUnitsArray[1]="Lbs";
     }
+
     public void loadWeightUnitsArray() {
-        weightunitsArray=new String[2];
-        weightunitsArray[0]="Kgs";
-        weightunitsArray[1]="Lbs";
+        weightunitsArray = new String[2];
+        weightunitsArray[0] = "Kgs";
+        weightunitsArray[1] = "Lbs";
     }
+
     public void loadHeightUnitsArray() {
-        heightUnitsArray=new String[2];
+        heightUnitsArray = new String[2];
         heightUnitsArray[0] = "CM";
-        heightUnitsArray[1] ="Feet";
+        heightUnitsArray[1] = "Feet";
     }
+
     public void loadHeightValuesArray() {
-        cmArray=new ArrayList<>();
-        waistArray=new ArrayList<>();
-        ageValuesArray=new ArrayList<>();
+        cmArray = new ArrayList<>();
+        waistArray = new ArrayList<>();
+        ageValuesArray = new ArrayList<>();
         dayValuesArray = new ArrayList<>();
 
 
@@ -143,13 +156,13 @@ public class PersonalInfoController {
                 String s = i + " " + "ft" + " " + "0" + " " + "in";
                 feetArray.add(s);
             } else {
-                if(i==1){
+                if (i == 1) {
                     for (int j = 6; j <= 11; j++) {
                         String inchString = String.valueOf(j);
                         String s = i + " " + "ft" + " " + inchString + " " + "in";
                         feetArray.add(s);
                     }
-                }else {
+                } else {
                     for (int j = 0; j <= 11; j++) {
                         String inchString = String.valueOf(j);
                         String s = i + " " + "ft" + " " + inchString + " " + "in";
@@ -159,6 +172,7 @@ public class PersonalInfoController {
             }
         }
     }
+
     public void loadWeightValuesArray() {
 
         kgArray = new ArrayList<String>();
@@ -181,17 +195,17 @@ public class PersonalInfoController {
         Double cmVal = Double.parseDouble(cmValueArray[0]);
         Log.e("cm", "call" + cmVal);
         double inchesValue = cmVal * 0.39370;
-        Log.e("cm inches", "call" + cmVal/12 );
+        Log.e("cm inches", "call" + cmVal / 12);
 
 
         int feetValue = (int) (inchesValue / 12);
-        Log.e("fetvalu", "call" + (feetValue%12) );
+        Log.e("fetvalu", "call" + (feetValue % 12));
 
 
         //   int remainInchesValue = (int) (inchesValue % 12);
-        double remainInchesValue =  (inchesValue % 12);
+        double remainInchesValue = (inchesValue % 12);
 
-        Log.e("qqqqqqqq", "" +  remainInchesValue+"round" +Math.round(remainInchesValue));
+        Log.e("qqqqqqqq", "" + remainInchesValue + "round" + Math.round(remainInchesValue));
 
 
       /*  String remainInchString = String.valueOf(remainInchesValue);
@@ -266,13 +280,59 @@ public class PersonalInfoController {
         String ageS = ageInt.toString();
         return ageS;
     }
+
     public String convertTimestampTodate(String stringData)
             throws ParseException {
         long yourmilliseconds = Long.parseLong(stringData);
         SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date resultdate = new Date(yourmilliseconds * 1000);
-        Log.e("timeStamp","ss"+resultdate);
+        Log.e("timeStamp", "ss" + resultdate);
         String weekString = weekFormatter.format(resultdate);
+        return weekString;
+    }
+
+    public String convertTimestampTodate1(String stringData)
+            throws ParseException {
+        Date date1 = null;
+        date1 = new Date(Long.parseLong(stringData));
+        // format of the date
+        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd");
+        jdf.setTimeZone(TimeZone.getDefault());
+        String java_date = jdf.format(date1);
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        sdf.setTimeZone(TimeZone.getDefault());
+        Date date = null;
+        String withdrawnTime = null;
+        try {
+
+            date = inputFormat.parse(java_date);
+            withdrawnTime = sdf.format(date);
+            return withdrawnTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return withdrawnTime;
+    }
+
+    public Date stringToDate(String aDate) {
+        if (aDate == null) return null;
+        // ParsePosition pos = new ParsePosition(0);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date stringDate = null;
+        try {
+            stringDate = weekFormatter.parse(aDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return stringDate;
+
+    }
+
+    public String convertDateToString(Date stringData) throws ParseException {
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH);
+        String weekString = weekFormatter.format(stringData);
         return weekString;
     }
 
@@ -291,13 +351,57 @@ public class PersonalInfoController {
         SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
         Date resultdate = new Date(yourmilliseconds * 1000);
         String weekString = weekFormatter.format(resultdate);
-        String array[]=weekString.split(" ");
-        Log.e("weeekarray", "" + array[0]+array[1]+array[2]);
+        String array[] = weekString.split(" ");
+        Log.e("weeekarray", "" + array[0] + array[1] + array[2]);
         return array;
     }
-    public int getRandomColor(){
+
+    public String[] invoiceTimestampToslashFormate(String stringData) throws ParseException {
+        long yourmilliseconds = Long.parseLong(stringData);
+        Log.e("yourmilliseconds", "" + yourmilliseconds);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("MMM dd hh:mm a", Locale.ENGLISH);
+        Date resultdate = new Date(yourmilliseconds * 1000);
+        String weekString = weekFormatter.format(resultdate);
+        String array[] = weekString.split(" ");
+        Log.e("weeekarray", "" + array[0] + array[1] + array[2] + array[3]);
+        return array;
+    }
+
+    public String invoiceTimestampToDate(String stringData) throws ParseException {
+        long yourmilliseconds = Long.parseLong(stringData);
+        Log.e("yourmilliseconds", "" + yourmilliseconds);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("MMM dd yyyy", Locale.ENGLISH);
+        Date resultdate = new Date(yourmilliseconds * 1000);
+        String weekString = weekFormatter.format(resultdate);
+        //  String array[]=weekString.split(" ");
+        //  Log.e("weeekarray", "" + array[0]+array[1]+array[2]+array[3]);
+        return weekString;
+    }
+
+    public int getRandomColor() {
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         return color;
+    }
+
+    public String loadSettingsDataFormateToEntireApp(Context context,String timeStmap) {
+        SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+      /*  boolean notification = sharedPreferences.getBoolean("allnotification", false);
+        boolean formate = sharedPreferences.getBoolean("is24Hour", false);
+        String units = sharedPreferences.getString("units", " ");
+        String language = sharedPreferences.getString("language", "English");
+*/
+        Date date1 = null;
+        date1 = new Date(Long.parseLong(timeStmap));
+
+        String dateFormat = sharedPreferences.getString("dateFormat", "YYYY/MM/dd");
+        Log.e("dateFormat", "call" + dateFormat);
+
+        SimpleDateFormat jdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
+
+        jdf.setTimeZone(TimeZone.getDefault());
+        String java_date = jdf.format(date1);
+
+        return java_date;
     }
 }

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AppointmentDetailsModel implements Serializable {
+    String reasonForCancellation;
+    String cancelledByWhom;
+    String cancelledByWhomID;
     ArrayList doctorComments;
     String appointmentID;
     String appointmentDate;
@@ -13,6 +16,30 @@ public class AppointmentDetailsModel implements Serializable {
     String reasonForVisit;
     String appointmentStatus;
     PaymentDetailsModel paymentDetails;
+
+    public String getReasonForCancellation() {
+        return reasonForCancellation;
+    }
+
+    public void setReasonForCancellation(String reasonForCancellation) {
+        this.reasonForCancellation = reasonForCancellation;
+    }
+
+    public String getCancelledByWhom() {
+        return cancelledByWhom;
+    }
+
+    public void setCancelledByWhom(String cancelledByWhom) {
+        this.cancelledByWhom = cancelledByWhom;
+    }
+
+    public String getCancelledByWhomID() {
+        return cancelledByWhomID;
+    }
+
+    public void setCancelledByWhomID(String cancelledByWhomID) {
+        this.cancelledByWhomID = cancelledByWhomID;
+    }
 
     public ArrayList getDoctorComments() {
         return doctorComments;

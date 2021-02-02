@@ -5,7 +5,7 @@ buildscript {
     ext.kotlin_version = '1.4.0'
     ext.versions = [
             'java'               : JavaVersion.VERSION_1_8,
-            'androidGradlePlugin': '4.0.1',
+            'androidGradlePlugin': '3.5.2',
             'googleServices'     : '3.2.1',
             'compileSdk'         : 29,
             'buildTools'         : '28.0.3',
@@ -41,11 +41,11 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.5.2'
       //  classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.google.gms:google-services:4.3.4'
         classpath "com.android.tools.build:gradle:${versions.androidGradlePlugin}"
         classpath "com.google.gms:google-services:${versions.googleServices}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -62,6 +62,9 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
+}
+ext {
+    githubRepo = 'piruin/quickaction'
 }
 
 task clean(type: Delete) {

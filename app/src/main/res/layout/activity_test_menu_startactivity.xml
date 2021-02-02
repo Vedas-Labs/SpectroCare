@@ -1,207 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_layout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
-        tools:context=".TestingModule.TestMenuStartactivity">
+        android:layout_height="60dp"
+        android:background="@color/colorpink">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/colorpink">
-
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            >
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:id="@+id/back"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp">
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:clickable="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/back"></ImageView>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-               >
-                <RelativeLayout
-                    android:layout_width="50dp"
-                    android:id="@+id/back"
+                android:layout_toRightOf="@id/back"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:text="Test Menu"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp">
+
+            </TextView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
-                    android:layout_height="50dp">
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="15dp"
-                        android:clickable="false"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/back"></ImageView>
-                </RelativeLayout>
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="@string/starttest"
+                    android:textColor="@color/colorblack"
+                    android:textSize="16dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/selecttest"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/back"
-                    android:layout_margin="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_semi_bold"
-                    android:text="Test Menu"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="16dp"></TextView>
+                    android:text="@string/testtype"
+                    android:textColor="@color/colorblack"
+                    android:textSize="16dp" />
+            </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+                <ToggleButton
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/toggle_1"
+                    android:layout_height="wrap_content"
+                    android:scaleX="1.0"
+                    android:scaleY="1.0"
+                    android:button="@drawable/urinecardtoggle"
+                    android:background="@android:color/transparent"
+                    android:textOn=""
+                    android:textOff=""
+                    />
+                <ToggleButton
+                    android:gravity="center"
+                    android:id="@+id/toggle_2"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="1.0"
+                    android:scaleY="1.0"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="50dp"
+                    android:button="@drawable/bloodtoggle"
+                    android:textOn=""
+                    android:background="@android:color/transparent"
+                    android:textOff=""
+                    android:checked="false"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                >
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#24cce4"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Test Items"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="250dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="25dp"
+                    android:id="@+id/txt_type"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/pleaseselecttesttype"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="16dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/recycler_view"
+                    android:visibility="gone"
+                    android:layout_height="match_parent">
+                </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
 
-        </RelativeLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_marginTop="85dp"
-            android:layout_height="match_parent">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/starttest"
-                        android:textColor="@color/colorblack"
-                        android:textSize="18dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/selecttest"
-                        android:textColor="@color/colorDarkBlue"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="25dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/testtype"
-                        android:textColor="@color/colorblack"
-                        android:textSize="16dp" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp">
-                    <ToggleButton
-                        android:layout_marginLeft="30dp"
-                        android:gravity="center"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:id="@+id/toggle_1"
-                        android:layout_height="wrap_content"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:button="@drawable/urinecardtoggle"
-                        android:background="@android:color/transparent"
-                        android:textOn=""
-                        android:textOff=""
-                        />
-                    <ToggleButton
-                        android:gravity="center"
-                        android:id="@+id/toggle_2"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="50dp"
-                        android:button="@drawable/bloodtoggle"
-                        android:textOn=""
-                        android:background="@android:color/transparent"
-                        android:textOff=""
-                        android:checked="false"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    >
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#24cce4"
-                        android:textAllCaps="false"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="Test Items"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="15dp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="150dp"
+                    android:background="@drawable/btn_bck_color"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Next"
+                    android:id="@+id/btn_next"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorWhite"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/pleaseselecttesttype"
-                        android:textColor="@color/colorblack"
-                        android:textSize="16dp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="250dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/txt_type"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/pleaseselecttesttype"
-                        android:textColor="@color/colorDarkBlue"
-                        android:textSize="16dp" />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:id="@+id/recycler_view"
-                        android:visibility="gone"
-                        android:layout_height="match_parent">
-                    </androidx.recyclerview.widget.RecyclerView>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="50dp">
-                    <Button
-                        android:layout_width="150dp"
-                        android:background="@drawable/btn_bck_color"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:text="Next"
-                        android:id="@+id/btn_next"
-                        android:fontFamily="@font/montserrat_semi_bold"
-                        android:textSize="16dp"
-                        android:textColor="@color/colorWhite"
-                        android:layout_height="wrap_content">
-                    </Button>
-                </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
+                </Button>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/btn_next"
+                    android:layout_height="50dp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

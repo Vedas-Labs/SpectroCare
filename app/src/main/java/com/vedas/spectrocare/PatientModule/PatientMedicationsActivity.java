@@ -193,7 +193,7 @@ public class PatientMedicationsActivity extends AppCompatActivity implements Med
                     try {
                         if (jsonObject.getString("response").equals("3")) {
                             Log.e("singleMedicationDelete", "call" + jsonObject.toString());
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             PatientMedicalRecordsController.getInstance().medicationArrayList.remove(deletePos);
                             //  PatientMedicalRecordsController.getInstance().medicationArrayList.remove(PatientMedicalRecordsController.getInstance().selectedMedication);
                             recordAdapter.notifyDataSetChanged();
@@ -204,16 +204,12 @@ public class PatientMedicationsActivity extends AppCompatActivity implements Med
                     }
                 }
                 if (curdOpetaton.equals("allMedicationDelete")) {
-                    try {
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                        PatientMedicalRecordsController.getInstance().medicationArrayList.clear();
-                        PatientMedicalRecordsController.getInstance().medicatioArrayObjectsList.clear();
-                        loadDeleteButton();
-                        recordAdapter.notifyDataSetChanged();
-                        refreshShowingDialog.hideRefreshDialog();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    // Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    PatientMedicalRecordsController.getInstance().medicationArrayList.clear();
+                    PatientMedicalRecordsController.getInstance().medicatioArrayObjectsList.clear();
+                    loadDeleteButton();
+                    recordAdapter.notifyDataSetChanged();
+                    refreshShowingDialog.hideRefreshDialog();
                 }
             }
 

@@ -1,11 +1,14 @@
 package com.vedas.spectrocare.PatientDocResponseModel;
 
+import com.vedas.spectrocare.PatientAppointmentModule.DoctorProfileModel;
+
 import java.util.ArrayList;
 
 public class MedicalPersonnelModel {
+
     ProfileModel profile;
     ServiceTimeModel serviceTime;
-    ArrayList clinicalServices;
+    ArrayList<ClinicalServices> clinicalServices;
     ArrayList reviews;
     ArrayList<TrackingModel> tracking;
 
@@ -25,11 +28,11 @@ public class MedicalPersonnelModel {
         this.serviceTime = serviceTime;
     }
 
-    public ArrayList getClinicalServices() {
+    public ArrayList<ClinicalServices> getClinicalServices() {
         return clinicalServices;
     }
 
-    public void setClinicalServices(ArrayList clinicalServices) {
+    public void setClinicalServices(ArrayList<ClinicalServices> clinicalServices) {
         this.clinicalServices = clinicalServices;
     }
 
@@ -48,4 +51,5 @@ public class MedicalPersonnelModel {
     public void setTracking(ArrayList<TrackingModel> tracking) {
         this.tracking = tracking;
     }
+
 }

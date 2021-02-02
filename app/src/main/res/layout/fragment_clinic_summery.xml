@@ -4,7 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientModule.ClinicSummeryFragment">
-    <ScrollView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recyclerView_clicnical"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -74,6 +85,6 @@
 
         </RelativeLayout>
     </ScrollView>
-
+-->
 
 </RelativeLayout>

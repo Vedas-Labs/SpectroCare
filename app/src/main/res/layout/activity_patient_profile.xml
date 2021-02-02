@@ -13,11 +13,9 @@
 
         <ImageView
             android:id="@+id/img_back_arrow"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="15dp"
-            android:padding="5dp"
+            android:padding="15dp"
             android:src="@drawable/back" />
 
         <TextView
@@ -108,7 +106,7 @@
             android:layout_below="@id/img_patient_profile"
             android:layout_toRightOf="@id/txt_id"
             android:fontFamily="@font/montserrat_regular"
-            android:text="01234"
+            android:text="01234ffffffffff"
             android:textColor="@color/colorWhite"
             android:textSize="12sp"
             android:textStyle="bold" />

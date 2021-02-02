@@ -56,6 +56,12 @@
         android:text="Latest Results"
         android:paddingLeft="15dp"
         android:gravity="center_vertical"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_below="@id/txt_search_by"
+        android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/doctors_list_view"
@@ -63,8 +69,8 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:layout_margin="5dp"
-        android:layout_below="@id/txt_search_by"/>
-
+       />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </RelativeLayout>

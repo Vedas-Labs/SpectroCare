@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "388778383451",
+    "firebase_url": "https://vedas-eb2ea.firebaseio.com",
+    "project_id": "vedas-eb2ea",
+    "storage_bucket": "vedas-eb2ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388778383451:android:3e517451b27ceb6669077e",
+        "android_client_info": {
+          "package_name": "com.vedas.spectrocare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388778383451-l7k6ro02croui6lere92mtp1ubkkc01s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vedas.spectrocare",
+            "certificate_hash": "252d10ae404e1f7efcb43b40f0333cc55c226816"
+          }
+        },
+        {
+          "client_id": "388778383451-dhlikn647v0ddm9b0kkq5u7l5c091oel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRqDQDtV1Lv-IBqFe7ISlNHeTkrscqYjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388778383451-dhlikn647v0ddm9b0kkq5u7l5c091oel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

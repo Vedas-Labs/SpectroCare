@@ -3,12 +3,22 @@ package com.vedas.spectrocare.PatientModule;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vedas.spectrocare.PatientDocResponseModel.ClinicalServices;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
+import com.vedas.spectrocare.patientModuleAdapter.DoctorsClinicalSummaryAdapter;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +30,9 @@ public class ClinicSummeryFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    DoctorsClinicalSummaryAdapter clinicalSummaryAdapter;
+    RecyclerView recyclerView;
+    ArrayList<ClinicalServices> clinicalArray;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,7 +72,20 @@ public class ClinicSummeryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clinic_summery, container, false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_clinic_summery, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerView_clicnical);
+        loadClinicalArray();
+        clinicalSummaryAdapter = new DoctorsClinicalSummaryAdapter(container.getContext(),clinicalArray);
+        recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+        recyclerView.setAdapter(clinicalSummaryAdapter);
+        return view;
+    }
+    private void loadClinicalArray() {
+        if (PatientMedicalRecordsController.getInstance().medicalPersonnelModel != null) {
+            if(PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getClinicalServices() != null){
+                clinicalArray=PatientMedicalRecordsController.getInstance().medicalPersonnelModel.getClinicalServices();
+            }
+        }
     }
 }

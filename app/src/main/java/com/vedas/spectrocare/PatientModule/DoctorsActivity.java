@@ -1,9 +1,12 @@
 package com.vedas.spectrocare.PatientModule;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +20,8 @@ import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientDocResponseModel.DepartmentResponseModel;
+import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.model.CategoryItemModel;
@@ -26,6 +31,7 @@ import com.vedas.spectrocare.patientModuleAdapter.DoctorsAdapter;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,15 +47,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DoctorsActivity extends AppCompatActivity {
-    RecyclerView doctorsRecyclerView,latestDocSearchView;
+    RecyclerView doctorsRecyclerView,latestDocSearchView,deptRecyclerView;
     DoctorsAdapter doctorsAdapter;
     TextView txtByCategory,txtByDepartment;
     ImageView imgBack;
     RelativeLayout layoutElderly;
     DoctorLatestSearchAdapter latestSearchAdapter;
-    ArrayList doctorsList,latestDocList;
+    ArrayList doctorsList;
     DepartmentResponseModel responseModel;
     RefreshShowingDialog showingDialog;
+    DoctorDeptAdapter doctorDeptAdapter;
+    ArrayList<CategoryItemModel> departmentList = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +66,17 @@ public class DoctorsActivity extends AppCompatActivity {
         PatientLoginDataController.getInstance().fetchPatientlProfileData();
         imgBack = findViewById(R.id.img_back_arrow);
         accessInterfaceMethods();
+        fetchLatestDoctorsApi();
+        fetchDepartmentApiFromHospital();
+
         doctorsRecyclerView = findViewById(R.id.doctors_grid_view);
         latestDocSearchView = findViewById(R.id.latest_doc_list);
         txtByCategory = findViewById(R.id.txt_view_all);
         txtByDepartment = findViewById(R.id.txt_all_view);
         layoutElderly = findViewById(R.id.elderly_layout);
+        deptRecyclerView = findViewById(R.id.dept_grid_view);
+
         doctorsList = new ArrayList();
-        latestDocList = new ArrayList();
         doctorsRecyclerView.setFocusable(false);
         showingDialog=new RefreshShowingDialog(DoctorsActivity.this);
         doctorsList.add(new CategoryItemModel(R.drawable.diabetescare_1, "Diabetic Care"));
@@ -74,14 +86,15 @@ public class DoctorsActivity extends AppCompatActivity {
         doctorsList.add(new CategoryItemModel(R.drawable.cough_cold_1, "Cough & cold"));
         doctorsList.add(new CategoryItemModel(R.drawable.stomochcre_1, "Stomach Care "));
 
-        latestSearchAdapter = new DoctorLatestSearchAdapter(DoctorsActivity.this,latestDocList);
+
+        latestSearchAdapter = new DoctorLatestSearchAdapter(DoctorsActivity.this);
         doctorsAdapter = new DoctorsAdapter(DoctorsActivity.this,doctorsList);
         doctorsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         doctorsRecyclerView.setNestedScrollingEnabled(false);
         doctorsRecyclerView.setAdapter(doctorsAdapter);
 
-        latestDocList.add(new DoctorsItemModel("k", "Dr Muneeswar","Cardiology"));
-        latestDocList.add(new DoctorsItemModel("k", "Dr Durga prasd","ENT"));
+        /*latestDocList.add(new DoctorsItemModel("k", "Dr Muneeswar","Cardiology"));
+        latestDocList.add(new DoctorsItemModel("k", "Dr Durga prasd","ENT"));*/
         latestDocSearchView.setLayoutManager(new LinearLayoutManager(DoctorsActivity.this));
         latestDocSearchView.setNestedScrollingEnabled(false);
         latestDocSearchView.setAdapter(latestSearchAdapter);
@@ -115,31 +128,74 @@ public class DoctorsActivity extends AppCompatActivity {
             }
         });
     }
+    private void fetchDepartmentApiFromHospital() {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject gsonObject = (JsonObject) jsonParser.parse(params.toString());
+        Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
+        ApiCallDataController.getInstance().loadjsonApiCall(ApiCallDataController.getInstance().serverJsonApi.fetchDepartmentsFromHospitalApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "fetch");
+    }
+
+    private void fetchLatestDoctorsApi(){
+        JSONObject params = new JSONObject();
+        try {
+            params.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number() );
+            params.put("patientID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId() );
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject gsonObject = (JsonObject) jsonParser.parse(params.toString());
+        Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
+          ApiCallDataController.getInstance().loadjsonApiCall(ApiCallDataController.getInstance().serverJsonApi.fetchLatestSearchApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(),gsonObject), "fetchdoctors");
+    }
     private void accessInterfaceMethods() {
         ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
             @Override
             public void successCallBack(JSONObject jsonObject, String curdOpetaton) {
-                if (curdOpetaton.equals("add")) {
+                if (curdOpetaton.equals("fetchdoctors")) {
                     try {
-                        Log.e("feeedbackresponse","call"+jsonObject.toString());
-                        JSONArray medicalArray=jsonObject.getJSONArray("medicalPersonnels");
-                        Log.e("feeedbackresponse","call"+medicalArray.length());
-                        for(int i=0; i<medicalArray.length(); i++) {
-                            JSONObject profile=medicalArray.getJSONObject(i);
-                            Log.e("feeedbackresponse","call"+profile.toString());
-                            JSONObject profileObj=profile.getJSONObject("profile");
-                            JSONObject userProfile=profileObj.getJSONObject("userProfile");
-                            Log.e("userProfile","call"+userProfile.toString());
-                            String firstName=userProfile.getString("firstName");
-                            String lastName=userProfile.getString("lastName");
-                            String emailID=userProfile.getString("emailID");
-                            Log.e("medicalArray",""+firstName +lastName+emailID );
+                        JSONArray appointmentArray = jsonObject.getJSONArray("doctors");
+                        for (int l = 0; l < appointmentArray.length(); l++) {
+                            Gson gson = new Gson();
+                            String jsonString = appointmentArray.getJSONObject(l).toString();
+                          /*  DoctorDetailsModel doctorDetailsModel = gson.fromJson(jsonString, DoctorDetailsModel.class);
+                            PatientMedicalRecordsController.getInstance().latestSearchDoctorsList.add(doctorDetailsModel);
+                            Log.e("adddoctor", "call" + PatientMedicalRecordsController.getInstance().latestSearchDoctorsList.size());
+                        */
+                            MedicalPersonnelModel doctorDetailsModel = gson.fromJson(jsonString, MedicalPersonnelModel.class);
+                            PatientMedicalRecordsController.getInstance().doctorProfleList.add(doctorDetailsModel);
+                            Log.e("adddoctor", "call" + PatientMedicalRecordsController.getInstance().doctorProfleList.size());
+
+                        }
+                        latestSearchAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if(curdOpetaton.equals("fetch")){
+                    try {
+                        if (jsonObject.getString("response").equals("3")) {
+                            JSONObject recordsObj = jsonObject.getJSONObject("records");
+                            JSONArray departmentsArray=recordsObj.getJSONArray("departments");
+                            for(int i=0;i<departmentsArray.length();i++){
+                                JSONObject obj=departmentsArray.getJSONObject(i);
+                                departmentList.add(new CategoryItemModel(R.drawable.sample_image, obj.getString("department")));
+                            }
+                            doctorDeptAdapter = new DoctorDeptAdapter(DoctorsActivity.this,departmentList);
+                            // deptRecyclerView.setLayoutManager(new LinearLayoutManager(DoctorsActivity.this));
+                            deptRecyclerView.setLayoutManager(new GridLayoutManager(DoctorsActivity.this, 3));
+                            deptRecyclerView.setNestedScrollingEnabled(false);
+                            deptRecyclerView.setAdapter(doctorDeptAdapter);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    showingDialog.hideRefreshDialog();
-                    // Toast.makeText(getApplicationContext(), "Patient App settings has been updated", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -202,7 +258,62 @@ public class DoctorsActivity extends AppCompatActivity {
             }
         });
     }
+    public class DoctorDeptAdapter extends RecyclerView.Adapter<DoctorDeptAdapter.DoctorSearchHolder> {
+        Context context;
+        ArrayList<CategoryItemModel> doctorsLatestList;
 
+        public DoctorDeptAdapter(Context context, ArrayList<CategoryItemModel> doctorsLatestList) {
+            this.context = context;
+            this.doctorsLatestList = doctorsLatestList;
+        }
+
+        @NonNull
+        @Override
+        public DoctorDeptAdapter.DoctorSearchHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View doctoresLatestSearchView = LayoutInflater.from(parent.getContext()).inflate(R.layout.patient_items_layout, parent, false);
+            return new DoctorSearchHolder(doctoresLatestSearchView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull DoctorSearchHolder holder, int position) {
+            holder.doctorsItemIcon.setImageResource(doctorsLatestList.get(position).getCategoryIcon());
+            holder.doctorsItemName.setText(doctorsLatestList.get(position).getCategoryTitle());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i =new Intent(context, SearchResultsActivity.class);
+                    i.putExtra("deptname",doctorsLatestList.get(holder.getAdapterPosition()).getCategoryTitle());
+                    context.startActivity(i);
+                    // context.startActivity(new Intent(context, SearchResultsActivity.class));
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            if(doctorsLatestList.size()>0){
+                if(doctorsLatestList.size()>=3){
+                    return 3;
+                }else{
+                    return doctorsLatestList.size();
+                }
+            }else {
+                return 0;
+            }
+        }
+
+        public class DoctorSearchHolder extends RecyclerView.ViewHolder {
+            ImageView doctorsItemIcon;
+            TextView doctorsItemName;
+            public DoctorSearchHolder(@NonNull View itemView) {
+                super(itemView);
+                doctorsItemIcon = itemView.findViewById(R.id.img_item);
+                doctorsItemName = itemView.findViewById(R.id.txt_item);
+
+            }
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -244,7 +244,7 @@ public class PatientMedicationRecordActivity extends AppCompatActivity {
                 if (curdOpetaton.equals("fetch")) {
                     PatientMedicalRecordsController.getInstance().allMedicationList.clear();
                     try {
-                        JSONArray jsonArray = jsonObject.getJSONArray("illnessMedicationRecords");
+                        JSONArray jsonArray = jsonObject.getJSONArray("records");//"illnessMedicationRecords");
                         Log.e("medicationArray", "call" + jsonArray.length());
                         if (jsonArray.length() > 0) {
                             for (int i = 0; i < jsonArray.length(); i++) {

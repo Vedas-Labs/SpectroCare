@@ -108,7 +108,7 @@
                     android:text="No longer needed"
                     android:background="@drawable/background_white"
                     android:gravity="center"
-                    android:textSize="16dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
@@ -121,7 +121,7 @@
                     android:text="Unable to attend"
                     android:background="@drawable/background_white"
                     android:gravity="center"
-                    android:textSize="16dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
@@ -135,7 +135,7 @@
                     android:text="Appointment made in error"
                     android:background="@drawable/background_white"
                     android:gravity="center"
-                    android:textSize="16dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
@@ -148,7 +148,7 @@
                     android:text="Unsatisfied with last appointment"
                     android:background="@drawable/background_white"
                     android:gravity="center"
-                    android:textSize="16dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
@@ -161,7 +161,7 @@
                     android:text="Other"
                     android:background="@drawable/background_white"
                     android:gravity="center"
-                    android:textSize="16dp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
@@ -300,9 +300,9 @@
                     <RelativeLayout
                         android:id="@+id/btn_submit"
                         android:layout_width="200dp"
-                        android:backgroundTint="@color/colorpink"
                         android:background="@drawable/btn_bck_color"
                         android:layout_marginTop="40dp"
+                        android:layout_marginBottom="40dp"
                         android:layout_height="50dp">
                         <TextView
                             android:layout_width="match_parent"
@@ -313,13 +313,8 @@
                             android:textAlignment="center"
                             android:fontFamily="@font/montserrat_regular"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="20dp"
                             />
                     </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

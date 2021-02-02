@@ -1,8 +1,6 @@
 package com.vedas.spectrocare.PatientDocResponseModel;
 
-import java.io.Serializable;
-
-public class EmergencyNumberModel implements Serializable {
+public class EmergencyNumberModel {
     String countryCode;
     String phoneNumber;
 
