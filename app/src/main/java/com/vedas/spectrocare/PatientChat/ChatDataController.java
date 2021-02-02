@@ -21,6 +21,10 @@ public class ChatDataController {
         }else
             return false;
     }
+    public static ChatDataController setNull(){
+        chatObj=null;
+        return chatObj;
+    }
 
 
     public ArrayList<MessageModel> getMessageModelArrayList() {

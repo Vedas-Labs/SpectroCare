@@ -9,13 +9,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
-import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -29,23 +28,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.drawable.GradientDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.SystemClock;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,25 +57,17 @@ import android.widget.VideoView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
-import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.ImageCompresser.IImageCompressTaskListener;
 import com.vedas.spectrocare.ImageCompresser.ImageCompressTask;
 import com.vedas.spectrocare.ImageCompresser.ScalingUtilities;
-import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
-import com.vedas.spectrocare.PatientModule.PatientMedicationsActivity;
-import com.vedas.spectrocare.PatientNotificationModule.MyButtonClickListener;
-import com.vedas.spectrocare.PatientNotificationModule.MySwipeHelper;
-import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
-import com.vedas.spectrocare.activities.SplashActivity;
 import com.vedas.spectrocare.patientModuleAdapter.InboxChatAdapter;
 
 import org.json.JSONArray;
@@ -109,7 +97,8 @@ public class PatientChatActivity extends AppCompatActivity {
     Socket socketOnline;
     private String mCurrentPhotoPath;
     boolean fetch=true;
-    boolean scrollTo;
+    boolean scrollTo,isUserOnline;
+    Uri photoURI;
     String strDocName,strUrl,strCharecters;
     ArrayList<MessagesListModel> listModel = new ArrayList<>();
     ImageView imgBack, imgSend, imgAttach, imgSelected;
@@ -148,6 +137,7 @@ public class PatientChatActivity extends AppCompatActivity {
     String extenction;
     private ExecutorService mExecutorService = Executors.newFixedThreadPool(1);
     Uri uri;
+    File photoFile;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,17 +154,17 @@ public class PatientChatActivity extends AppCompatActivity {
 
         mSocket.on("getRoomMessages", onNewMessage);
         mSocket.on("sendMessage", onNewMessage);
-        mSocket.emit("deleteChatHostory", onReplayMessage);
        // mSocket.on("join", onNewMessage);
         mSocket.on("updateChatMessageIsRead", onReplayMessage);
         mSocket.on("unsubscribe",onReplayMessage);
-
+        mSocket.on("deleteChatHostory",onReplayMessage);
         // mSocket.on("sendMessage", onReplayMessage);
         mSocket.on("typing", onReplayMessage);
 
         castingAndClicks();
         loadResponse();
         Log.e("wifiREciver","::"+wifiReceiver.isOnline());
+
         mSocket.on("userConnected", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -268,7 +258,6 @@ public class PatientChatActivity extends AppCompatActivity {
                               .load(Uri.parse(ServerApi.img_home_url+strUrl))
                               .placeholder(R.drawable.profile_1)
                               .into(imgReplay);
-
                   }
                   Log.e("chateeee","tutiii"+strUrl);
                   if (strUrl.contains("ChatFiles"))
@@ -278,6 +267,7 @@ public class PatientChatActivity extends AppCompatActivity {
 
                 }
                 else{
+
                     layoutPhoto.setVisibility(View.GONE);
                     txtMsg.setVisibility(View.VISIBLE);
                     imgReplay.setVisibility(View.GONE);
@@ -342,14 +332,45 @@ public class PatientChatActivity extends AppCompatActivity {
             int wifiStateExtra = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE,WifiManager.WIFI_STATE_UNKNOWN);
             switch (wifiStateExtra){
                 case WifiManager.WIFI_STATE_ENABLED:
+                    isUserOnline=true;
                     if (isBottom) {
                         isBottom=false;
                        // Log.e("checkkk","on");
                         Log.e("isWifi","On");
 
+
                         joinChat(patientID,appointmentID);
+                        for (int bm=0;bm<ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size();bm++){
+                            if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getType().equals("dummy")){
+                                Log.e("valuesOF","::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessage()+" ,"+
+                                        ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessageID());
+                                String idd =ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessageID();
+                               String msg = ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessage();
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getRepliedMessageID().isEmpty()){
+                                    sendMessages(patientID,appointmentID,idd,msg);
+                                }else{
+                                    String rplIdd =ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessageID();
+                                    String rplID = ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getRepliedMessageID();
+                                    String rplMsg = ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessage1();
+                                    String rplName = ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getRecipientRepliedName();
+                                   String rplmessage = ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(bm).getMessage();
+                                    Log.e("messageeads","ond "+rplmessage);
+                                    replayToMsg(patientID,appointmentID,rplmessage,rplIdd,rplID,rplMsg,rplName);
+                                }
+                            }
+                        }
                        // ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages()
-                       // fetchChat(patientID,appointmentID);
+                        try {
+                            Thread.sleep(6000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        fetchChat(patientID,appointmentID);
 
                     }
 /*
@@ -367,6 +388,7 @@ public class PatientChatActivity extends AppCompatActivity {
 */
                     break;
                     case WifiManager.WIFI_STATE_DISABLED:
+                        isUserOnline = false;
                         isBottom = true;
                         Log.e("isWifi","off");
                         if (isBottom){
@@ -482,10 +504,10 @@ public class PatientChatActivity extends AppCompatActivity {
         patientID = PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId();
 
        /* if (!ChatDataController.isNull()) {
-            Log.e("cocococcoc","adfas");
-            scrollTo=true;
-             //chatRecyclerView.smoothScrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1);
-            chatRecyclerView.scrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1);
+            if (ChatDataController.getInstance().getMessageModelArrayList()!=null)
+           imgDeleteAll.setVisibility(View.VISIBLE);
+        }else{
+            imgDeleteAll.setVisibility(View.GONE);
         }*/
         RecyclerView.ItemAnimator animator = chatRecyclerView.getItemAnimator();
 
@@ -595,22 +617,84 @@ public class PatientChatActivity extends AppCompatActivity {
                 relaVideo.setVisibility(View.GONE);
                 isTyping(false);
 
+
+                InputMethodManager immm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                immm.hideSoftInputFromWindow(edtSendingTxt.getWindowToken(), 0);
+
+
                 if (replyMsg.equals("reply")){
                     replyMsg = "";
-                    replayToMsg(patientID,appointmentID,strUniqueMsgId);
+                    Log.e("messasgesaae","re "+replayMessage);
+                    MessagesListModel modelMsg = new MessagesListModel();
+                    modelMsg.setLiked(false);
+                    modelMsg.setRecipientRepliedName(strName);
+                    modelMsg.setRepliedMessageID(replayMsgID);
+                    modelMsg.setMessage1(replayMessage);
+                    modelMsg.setMessage(edtSendingTxt.getText().toString());
+                    modelMsg.setMessageID(strUniqueMsgId);
+                    modelMsg.setEdited(false);
+                    modelMsg.setUserID(patientID);
+                    modelMsg.setType("dummy");
+                    modelMsg.setRead(false);
+                    modelMsg.setTimeStamp(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+
+                    ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().add(modelMsg);
+
+                    chatAdapter.notifyItemRangeInserted(chatRecyclerView.getAdapter().getItemCount()-1,chatRecyclerView.getAdapter().getItemCount());
+                    chatRecyclerView.scrollToPosition(chatAdapter.getItemCount()-1);
+                    if (isUserOnline){
+                        replayToMsg(patientID,appointmentID,edtSendingTxt.getText().toString(),strUniqueMsgId,replayMsgID,replayMessage,strName);
+                    }
                     edtSendingTxt.getText().clear();
                     Log.e("replay","is on");
                 }else{
                     if (chatAdapter.isEdit()){
                         Log.e("isUpppdd",": "+chatAdapter.isEdit());
                         if (!edtSendingTxt.getText().toString().isEmpty()) {
-                            sendMessages(patientID, appointmentID,strUniqueMsgId,edtSendingTxt.getText().toString());
+
+                            MessagesListModel modelMsg = new MessagesListModel();
+                            modelMsg.setLiked(false);
+                            modelMsg.setRecipientRepliedName("");
+                            modelMsg.setRepliedMessageID("");
+                            modelMsg.setMessage1("");
+                            modelMsg.setMessage(edtSendingTxt.getText().toString());
+                            modelMsg.setMessageID(strUniqueMsgId);
+                            modelMsg.setEdited(false);
+                            modelMsg.setUserID(patientID);
+                            modelMsg.setType("dummy");
+                            modelMsg.setRead(false);
+                            modelMsg.setTimeStamp(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+
+                            if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()>0) {
+                                Log.e("arraySize", "arraySize ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
+                                ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().add(modelMsg);
+                                Log.e("arraySize", "arraySiz ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
+                                // chatAdapter.notifyItemRangeInserted(ChatDataController.getInstance().messageModelArrayList.get(0).getMessages().size()-1,ChatDataController.getInstance().messageModelArrayList.get(0).getMessages().size());
+                                chatAdapter.notifyItemInserted(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1);
+                                //  chatRecyclerView.scrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
+                                chatRecyclerView.smoothScrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
+                                Log.e("idOf","doc:: "+modelMsg.getUserID());
+
+                            } else {
+                                listModel.clear();
+                                Log.e("arraySize", "arraySizeO ::");
+                                listModel.add(modelMsg);
+                                ChatDataController.getInstance().getMessageModelArrayList().get(0).setMessages(listModel);
+                                Log.e("arrayy","sizO"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
+                                chatAdapter.notifyDataSetChanged();
+                            }
+                            if (isUserOnline){
+                                Log.e("isUserFellow","online");
+                                sendMessages(patientID, appointmentID,strUniqueMsgId,edtSendingTxt.getText().toString());
+                            }else{
+                                Log.e("isUserFellow","offline");
+                            }
                             //  replayToMsg(patientID,appointmentID);
 /*
                         if (!ChatDataController.isNull()) {
                             chatRecyclerView.smoothScrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
 
-                        }
+
 */
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(edtSendingTxt.getWindowToken(), 0);
@@ -646,13 +730,11 @@ public class PatientChatActivity extends AppCompatActivity {
         imgDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteAllChatHistory();
+                alertDialog();
             }
         });
 
     }
-
-
 
     boolean isLastVisible() {
         LinearLayoutManager layoutManager =((LinearLayoutManager) chatRecyclerView.getLayoutManager());
@@ -709,7 +791,13 @@ public class PatientChatActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mSocket.emit("deleteChatHostory", jsonObject);
-
+        Log.e("idSocket:", " " + mSocket.id());
+/*
+        if (mSocket.id()!=null){
+            ChatDataController.getInstance().getMessageModelArrayList().clear();
+            chatAdapter.notifyDataSetChanged();
+        }
+*/
     }
     private void joinChat(String userID, String roomid) {
         JsonObject feedObj = new JsonObject();
@@ -849,6 +937,61 @@ public class PatientChatActivity extends AppCompatActivity {
 
     }
 
+    public void alertDialog() {
+       /* LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = li.inflate(R.layout.alert_abort, null);
+*/
+        final Dialog dialog = new Dialog(PatientChatActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.alert_abort);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCancelable(true);
+        Button btnNo = (Button) dialog.findViewById(R.id.btn_no);
+        Button btnYes = (Button) dialog.findViewById(R.id.btn_yes);
+        dialog.show();
+        btnNo.setText("No");
+        btnYes.setText("Yes");
+
+        TextView txt_title = dialog.findViewById(R.id.title);
+        TextView txt_msg = dialog.findViewById(R.id.msg);
+        TextView txt_msg1 = dialog.findViewById(R.id.msg1);
+
+        txt_title.setText("Delete");
+        txt_msg.setText("Are you sure you");
+        txt_msg1.setText("want to delete all messages ?");
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAllChatHistory();
+                dialog.dismiss();
+            }
+        });
+
+    }
+    public String getRealPathFromURI(Uri contentUri)
+    {
+        try
+        {
+            String[] proj = {MediaStore.Images.Media.DATA};
+            Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        catch (Exception e)
+        {
+            return contentUri.getPath();
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
@@ -857,22 +1000,73 @@ public class PatientChatActivity extends AppCompatActivity {
         options.inPurgeable = true;
 
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
-            Bitmap bitmap1 = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
+           /* Bitmap bitmap1 = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
             Bitmap rotatedBitmap = rotatedImageBitmap(mCurrentPhotoPath, bitmap1);
             bitmap = rotatedBitmap;
-            urlStr = mCurrentPhotoPath;
-            Log.e("uuuuuf", "afad" + mCurrentPhotoPath);
-            imgSelected.setVisibility(View.VISIBLE);
-            imgAttach.setVisibility(View.GONE);
-            edtSendingTxt.setVisibility(View.GONE);
-            imgSelected.setImageBitmap(getResizedBitmap(rotatedBitmap, 500));
-            loadEncoded64ImageStringFromBitmap(bitmap);
+            urlStr = mCurrentPhotoPath;*/
+            Log.e("uuuuuf", "afad" + getRealPathFromURI(photoURI));
+            Log.e("uuuuuf", "afda" + photoURI);
+           // imgSelected.setVisibility(View.VISIBLE);
+          //  imgAttach.setVisibility(View.GONE);
+          //  edtSendingTxt.setVisibility(View.GONE);
+          //  imgSelected.setImageBitmap(getResizedBitmap(rotatedBitmap, 500));
+          //  loadEncoded64ImageStringFromBitmap(bitmap);
 
+            strUniqueMsgId = "MSG_Android_"+getSaltString();
+            Log.e("asadfadsfsafdafdaf", "uri " + photoURI);
+            urlStr = String.valueOf(photoURI);
+            Cursor cursor = MediaStore.Images.Media.query(getContentResolver(), photoURI, new String[]{MediaStore.Images.Media.DATA});
+
+            if (urlStr.contains("Pictures")) {
+                Log.e("urii", "image " + photoURI);
+                imgSelected.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+                imgAttach.setVisibility(View.GONE);
+                edtSendingTxt.setVisibility(View.VISIBLE);
+                imgSelected.setImageURI(photoURI);
+                ChatAttachmentModel attachmentModel = new ChatAttachmentModel();
+                msgModel.setRead(false);
+                msgModel.setType("SingleImage");
+                msgModel.setMessageID("id");
+                msgModel.setMessage("File Attachment");
+                msgModel.setUserID(patientID);
+                msgModel.setEdited(false);
+                msgModel.setMessage1("");
+                msgModel.setEdited(false);
+                msgModel.setLiked(false);
+                msgModel.setRepliedMessageID("");
+                msgModel.setRecipientRepliedName("");
+                msgModel.setTimeStamp(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+                attachmentModel.setFilePath(String.valueOf(photoURI));
+                ArrayList<ChatAttachmentModel> attachList = new ArrayList<>();
+                attachList.add(attachmentModel);
+                msgModel.setAttachments(attachList);
+                ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().add(msgModel);
+                // chatAdapter.notifyDataSetChanged();
+                chatAdapter.notifyItemRangeInserted(ChatDataController.getInstance().messageModelArrayList.get(0).getMessages().size()-1,ChatDataController.getInstance().messageModelArrayList.get(0).getMessages().size());
+                int mmm =ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size();
+                chatRecyclerView.scrollToPosition(mmm-1);
+
+                if(cursor != null && cursor.moveToFirst()) {
+
+                    String path = getRealPathFromURI(photoURI);
+                    Log.e("paaathi","coming:: "+path);
+                    File file = new File(path);
+                    Log.e("asadfadsfsafdafdaf","kdkddk"+path);
+                    extenction = path.substring(path.lastIndexOf(".") + 1);
+                    //Create ImageCompressTask and execute with Executor.
+                    imageCompressTask = new ImageCompressTask(this, path, iImageCompressTaskListener);
+                    // String path = getRealPathFromURI(photoURI);
+                    mExecutorService.execute(imageCompressTask);
+                    // String path = getRealPathFromURI(photoURI);
+
+                }
+
+            }
         } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Toast.makeText(PatientChatActivity.this, "Image Capturing Cancelled", Toast.LENGTH_SHORT).show();
         } else if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             strUniqueMsgId = "MSG_Android_"+getSaltString();
-          //  dialog.dismiss();
             uri = imageReturnedIntent.getData();
             Log.e("checkURI", "uri " + uri);
             urlStr = String.valueOf(uri);
@@ -1056,13 +1250,14 @@ public class PatientChatActivity extends AppCompatActivity {
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
-
     @SuppressLint("NewApi")
     public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
         String selection = null;
         String[] selectionArgs = null;
+        Log.e("inUri","adf"+uri);
         // Uri is different in versions after KITKAT (Android 4.4), we need to
         if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context.getApplicationContext(), uri)) {
+            Log.e("thsi","da");
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -1072,11 +1267,13 @@ public class PatientChatActivity extends AppCompatActivity {
                 uri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
             } else if (isMediaDocument(uri)) {
+
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
                 final String type = split[0];
                 if ("image".equals(type)) {
                     uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
                 } else if ("video".equals(type)) {
                     uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
                 } else if ("audio".equals(type)) {
@@ -1197,10 +1394,12 @@ public class PatientChatActivity extends AppCompatActivity {
 
     private void LoadCaptureImageScreen() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+       // startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
+
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -1208,9 +1407,10 @@ public class PatientChatActivity extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(PatientChatActivity.this,
+                 photoURI = FileProvider.getUriForFile(PatientChatActivity.this,
                         "com.vedas.spectrocare.fileprovider",
                         photoFile);
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
@@ -1358,6 +1558,11 @@ public class PatientChatActivity extends AppCompatActivity {
                         });
 
                     }
+                }else if (data.get("message").equals("Chat history deleted successfully")){
+                    Log.e("adfsadfdafds","adfasfafsdfas");
+                    imgDeleteAll.setVisibility(View.GONE);
+                    ChatDataController.setNull();
+                    chatAdapter.notifyDataSetChanged();
                 }
 
             } catch (JSONException e) {
@@ -1416,7 +1621,7 @@ public class PatientChatActivity extends AppCompatActivity {
                         Log.e("rreeess", "ponse" + message);
                         if (Integer.parseInt(response) == 3) {
                             if (message.equals("Room fetched successfully")) {
-                                if (fetch){
+
                                     Log.e("length of", "room" + jsonObj.getJSONArray("room").length());
                                     JSONArray responseArray = jsonObj.getJSONArray("room");
                                     for (int l = 0; l < responseArray.length(); l++) {
@@ -1443,21 +1648,32 @@ public class PatientChatActivity extends AppCompatActivity {
 
                                     chatRecyclerView.setAdapter(chatAdapter);
 
-                                    chatAdapter.notifyDataSetChanged();
+                                    //chatAdapter.notifyDataSetChanged();
                                    // layoutManager.scrollToPosition(chatRecyclerView.getAdapter().getItemCount());
                                    // chatRecyclerView.setItemAnimator(null);
                                   //  chatAdapter.notifyItemRangeInserted(0,ChatDataController.getInstance().messageModelArrayList.get(0).getMessages().size());
 
                                     if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()>0){
                                         Log.e("sssssssssssize", "sizu" + ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
-                                       chatRecyclerView.scrollToPosition(chatRecyclerView.getAdapter().getItemCount()-1);
+                                      // chatRecyclerView.scrollToPosition(chatRecyclerView.getAdapter().getItemCount()-1);
+                                        final int lastItemPosition = chatAdapter.getItemCount() - 1;
+
+                                        layoutManager.scrollToPositionWithOffset(lastItemPosition, 0);
+                                        chatRecyclerView.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // then scroll to specific offset
+                                                View target = layoutManager.findViewByPosition(lastItemPosition);
+                                                if (target != null) {
+                                                    int offset = chatRecyclerView.getMeasuredHeight() - target.getMeasuredHeight();
+                                                    layoutManager.scrollToPositionWithOffset(lastItemPosition, offset);
+                                                }
+                                            }
+                                        });
                                        // chatRecyclerView.scrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1);
                                     }
 
                                     // mSocket.off("getRoomMessages", onNewMessage);
-
-                                }
-                                fetch=false;
 
                             } else {
                                 Log.e("not", "happening");
@@ -1470,13 +1686,7 @@ public class PatientChatActivity extends AppCompatActivity {
                                     Log.e("arrayy","size"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                                     if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()>0) {
                                         Log.e("arraySize", "arraySize ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
-                                        Log.e("arraySize", "arraySiz ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
-                                        /*if (ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1).getType().equals("dummy")){
-                                            ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().set(
-                                                    ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1,messageModel);
-                                        }else{
-                                            ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().add(messageModel);
-                                        }*/
+
                                         for (int i=0; i<ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size();i++){
                                             if (messageModel.getMessageID().equals(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(i).getMessageID())){
                                                 Log.e("arrayID","is :: "+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(i).getMessageID());
@@ -1517,6 +1727,7 @@ public class PatientChatActivity extends AppCompatActivity {
                                         ChatDataController.getInstance().getMessageModelArrayList().get(0).setMessages(listModel);
                                         Log.e("arrayy","sizO"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                                         chatAdapter.notifyDataSetChanged();
+
                                     }
 
 
@@ -1557,7 +1768,7 @@ public class PatientChatActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MessagesListModel modelMsg = new MessagesListModel();
+       /* MessagesListModel modelMsg = new MessagesListModel();
         modelMsg.setLiked(false);
         modelMsg.setRecipientRepliedName("");
         modelMsg.setRepliedMessageID("");
@@ -1587,8 +1798,8 @@ public class PatientChatActivity extends AppCompatActivity {
             ChatDataController.getInstance().getMessageModelArrayList().get(0).setMessages(listModel);
             Log.e("arrayy","sizO"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
             chatAdapter.notifyDataSetChanged();
-        }
-        Log.e("socket12", "message" + mSocket.id());
+        }*/
+
         mSocket.emit("sendMessage", jsonObject);
     }
 
@@ -1616,18 +1827,19 @@ public class PatientChatActivity extends AppCompatActivity {
         mSocket.emit("typing",jsonObject);
     }
 
-    private void replayToMsg(String userID, String roomID,String messageId) {
+    private void replayToMsg(String userID, String roomID,String message,String messageId,String rplId,String msg1,String name) {
         JsonObject feedObj = new JsonObject();
         JSONObject jsonObject = new JSONObject();
+        Log.e("messageesd","ffd "+msg1);
         try {
             jsonObject.put("roomID", roomID);
             jsonObject.put("userID", userID);
-            jsonObject.put("message", edtSendingTxt.getText().toString());
-            jsonObject.put("message1", replayMessage);
+            jsonObject.put("message",message);
+            jsonObject.put("message1", msg1);
             jsonObject.put("messageID", messageId);
-            jsonObject.put("repliedMessageID", replayMsgID);
+            jsonObject.put("repliedMessageID", rplId);
             jsonObject.put("audioDuration", "");
-            jsonObject.put("recipientRepliedName",strName );
+            jsonObject.put("recipientRepliedName",name );
             jsonObject.put("type", "reply");
 
             //jsonObject.put("isDoctor",false);
@@ -1639,7 +1851,7 @@ public class PatientChatActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        MessagesListModel modelMsg = new MessagesListModel();
+        /*MessagesListModel modelMsg = new MessagesListModel();
         modelMsg.setLiked(false);
         modelMsg.setRecipientRepliedName(strName);
         modelMsg.setRepliedMessageID(replayMsgID);
@@ -1656,7 +1868,7 @@ public class PatientChatActivity extends AppCompatActivity {
 
         chatAdapter.notifyItemRangeInserted(chatRecyclerView.getAdapter().getItemCount()-1,chatRecyclerView.getAdapter().getItemCount());
         chatRecyclerView.scrollToPosition(chatAdapter.getItemCount()-1);
-
+*/
         Log.e("socket18", "message" + mSocket.id());
         mSocket.emit("sendMessage", jsonObject);
 
@@ -1716,19 +1928,18 @@ public class PatientChatActivity extends AppCompatActivity {
                             Log.e("arraySize", "arraySize ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                             ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().set(
                                     ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1,messageModel);
+/*
                            if (uri!=null){
                                ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1)
                                        .getAttachments().get(0).setFilePath(String.valueOf(uri));
                                ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1).setType("loadId");
                            }
+*/
 
                             Log.e("arraySize", "arraySiz ::"+ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                             // chatRecyclerView.smoothScrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                             Log.e("idOf","doc:: "+messageModel.getUserID());
-                            if (!messageModel.getUserID().equals(patientID)){
-                               // isReadMsgs();
-                                Log.e("idOf","doc:: "+messageModel.getUserID());
-                            }
+
                             runOnUiThread(new Runnable() {
 
                                 @Override
@@ -1740,6 +1951,7 @@ public class PatientChatActivity extends AppCompatActivity {
 
                                 }
                             });
+
                             //recyclerToBottom(chatRecyclerView);
                         }else {
                             listModel.clear();

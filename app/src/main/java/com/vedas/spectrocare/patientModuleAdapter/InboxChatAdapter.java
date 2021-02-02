@@ -16,6 +16,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -58,8 +59,11 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -67,7 +71,6 @@ import com.google.gson.JsonParser;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.squareup.picasso.Transformation;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientChat.ChatDataController;
@@ -326,13 +329,15 @@ public class InboxChatAdapter extends RecyclerView.Adapter<InboxChatAdapter.Inbo
 
                         } else {
                             holder.progressBar.setVisibility(View.GONE);
+                            Log.e("urlPath", ":: " + ServerApi.img_home_url + getMessageList.get(position).getAttachments().get(0).getFilePath());
                             Glide.with(context)
                                     .load(Uri.parse(ServerApi.img_home_url + getMessageList.get(position).getAttachments().get(0).getFilePath()))
-                                    .placeholder(R.drawable.profile_1)
+                                    .transform(new jp.wasabeef.glide.transformations.BlurTransformation(25,3))
                                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                                     .dontTransform()
-                                    /*.apply(requestOptions)*/
+                                   /* .apply(RequestOptions.bitmapTransform(new jp.wasabeef.glide.transformations.BlurTransformation(25,3)))*/
                                     .into(holder.imgUserMsz);
+
 
 /*
                                     Picasso.get().load(Uri.parse(ServerApi.img_home_url+getMessageList.get(position).getAttachments().get(0).getFilePath()))
@@ -382,6 +387,7 @@ public class InboxChatAdapter extends RecyclerView.Adapter<InboxChatAdapter.Inbo
                 if (getMessageList.get(position).getAttachments() != null) {
                     holder.txtNonUserMsz.setVisibility(View.GONE);
                     holder.imgNonUserMsz.setVisibility(View.VISIBLE);
+                    holder.replyDocLayout.setVisibility(View.GONE);
 
 
                     Log.e("imagePath", ":: " + ServerApi.img_home_url + getMessageList.get(position).getAttachments().get(0).getFilePath());
@@ -820,10 +826,10 @@ public class InboxChatAdapter extends RecyclerView.Adapter<InboxChatAdapter.Inbo
                             getMessageList.remove(currentPos);
                             Log.e("possition", "is :" + currentPos);
                             Log.e("sizeOf", "arrayO " + getMessageList.size());
-                            notifyItemRemoved(currentPos);
+                           // notifyItemRemoved(currentPos);
                             //  mSocket.off("deleteMessageForMe",onNewMessage);
                             // notifyItemRangeChanged(getMessageList.size()-1,getMessageList.size());
-                            //notifyDataSetChanged();
+                            notifyDataSetChanged();
                            /* fetchChat(PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId(), roomID);
                             mSocket.on("getRoomMessages", onNewMessage);*/
                         } else if (message.equals("Message updated successfully")) {
