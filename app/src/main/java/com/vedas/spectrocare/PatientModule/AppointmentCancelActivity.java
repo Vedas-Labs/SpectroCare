@@ -151,7 +151,7 @@ public class AppointmentCancelActivity extends AppCompatActivity {
             //  AppointmentArrayModel appointmentArrayModel = (AppointmentArrayModel) getDataIntent.getSerializableExtra("appointmentDetails");
             appointmentID = appointmentArrayModel.getAppointmentDetails().getAppointmentID();
             if (appointmentArrayModel.getAppointmentDetails().getAppointmentDate().contains("/")) {
-                formattedDate = appointmentArrayModel.getAppointmentDetails().getAppointmentDate();
+               // formattedDate = appointmentArrayModel.getAppointmentDetails().getAppointmentDate();
             } else {
                 long ll = Long.parseLong(appointmentArrayModel.getAppointmentDetails().getAppointmentDate());
                 Date currentDate = new Date(ll);
