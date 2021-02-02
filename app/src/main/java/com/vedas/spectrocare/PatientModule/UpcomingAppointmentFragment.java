@@ -261,15 +261,20 @@ public class UpcomingAppointmentFragment extends Fragment {
     public void sortResultsBasedOnTime(ArrayList<AppointmentArrayModel> list) {
         Date currentDate = new Date();
         for (int i = 0; i < list.size(); i++) {
-            Date date = new Date(Long.parseLong(list.get(i).getAppointmentDetails().getAppointmentDate()));
-            Log.e("xxxx", "daffff" + date.getTime());
-            if (currentDate.compareTo(date) <= 0) {
-                Log.e("upcominglist", "daffff" + date.getTime());
+            if(list.get(i).getAppointmentDetails().getAppointmentDate().contains("/"))//if manuvally add like in directly date formate.
+            {
                 PatientAppointmentsDataController.getInstance().upcomingAppointmentsList.add(list.get(i));
-            }
-            if (currentDate.compareTo(date) > 0) {
-                Log.e("pastlist", "daffff" + date.getTime());
-                PatientAppointmentsDataController.getInstance().pastAppointmentsList.add(list.get(i));
+            }else {
+                Date date = new Date(Long.parseLong(list.get(i).getAppointmentDetails().getAppointmentDate()));
+                Log.e("xxxx", "daffff" + date.getTime());
+                if (currentDate.compareTo(date) <= 0) {
+                    Log.e("upcominglist", "daffff" + date.getTime());
+                    PatientAppointmentsDataController.getInstance().upcomingAppointmentsList.add(list.get(i));
+                }
+                if (currentDate.compareTo(date) > 0) {
+                    Log.e("pastlist", "daffff" + date.getTime());
+                    PatientAppointmentsDataController.getInstance().pastAppointmentsList.add(list.get(i));
+                }
             }
         }
         Log.e("upcominglist", "daffff" + PatientAppointmentsDataController.getInstance().upcomingAppointmentsList.size());

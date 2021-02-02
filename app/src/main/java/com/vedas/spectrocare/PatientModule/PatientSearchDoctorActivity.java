@@ -22,6 +22,7 @@ import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
 import com.vedas.spectrocare.PatientServerApiModel.ChatRoomMessageModel;
+import com.vedas.spectrocare.PatientServerApiModel.ChatRoomParticipantModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
@@ -170,22 +171,33 @@ public class PatientSearchDoctorActivity extends AppCompatActivity {
                                 JSONObject object = chatList.getJSONObject(i);
                                 String roomID=object.getString("roomID");
                                 Log.e("roomID", "length" + roomID);
+
                                 Gson gson = new Gson();
+                                String doctorName = null, doctorProfile = null;
+
+                                JSONObject jsonString = object.getJSONObject("participant");
+                                ChatRoomParticipantModel chatRoomParticipantModel = new ChatRoomParticipantModel();
+                                chatRoomParticipantModel = gson.fromJson(jsonString.toString(), ChatRoomParticipantModel.class);
+                                doctorName = chatRoomParticipantModel.getName();
+                                doctorProfile = ServerApi.img_home_url + chatRoomParticipantModel.getProfilePic();
+
                                 JSONArray messageList = object.getJSONArray("messages");
 
                                 ArrayList<ChatRoomMessageModel> tempList = new ArrayList<>();
 
                                 for(int k=0;k<messageList.length();k++){
-                                    JSONObject jsonString = messageList.getJSONObject(k);
+                                    JSONObject jsonString1 = messageList.getJSONObject(k);
                                     ChatRoomMessageModel chatRoomMessageModel=new ChatRoomMessageModel();
-                                    chatRoomMessageModel = gson.fromJson(jsonString.toString(), ChatRoomMessageModel.class);
+                                    chatRoomMessageModel = gson.fromJson(jsonString1.toString(), ChatRoomMessageModel.class);
                                     chatRoomMessageModel.setRoomID(roomID);
 
-                                    AppointmentArrayModel appointmentArrayModel=loadDoctorsDetails(chatRoomMessageModel.getRoomID());
+                                    chatRoomMessageModel.setDoctorName("Dr. " +doctorName );
+                                    chatRoomMessageModel.setProfile(doctorProfile);
+                                    /*AppointmentArrayModel appointmentArrayModel=loadDoctorsDetails(chatRoomMessageModel.getRoomID());
                                     chatRoomMessageModel.setDoctorName("Dr. "+appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getFirstName() + " " +
                                             appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getLastName());
                                     chatRoomMessageModel.setProfile(ServerApi.img_home_url + appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getProfilePic());
-
+*/
                                     tempList.add(chatRoomMessageModel);
                                     Log.e("xxxxxxxx", "length" + chatRoomMessageModel.getRoomID());
                                 }

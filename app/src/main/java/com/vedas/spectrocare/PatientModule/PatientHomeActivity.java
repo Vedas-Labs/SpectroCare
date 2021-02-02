@@ -49,6 +49,7 @@ import com.vedas.spectrocare.PatientNotificationModule.PatientNotificationFragme
 import com.vedas.spectrocare.PatientServerApiModel.AllergyListObject;
 import com.vedas.spectrocare.PatientServerApiModel.AllergyObject;
 import com.vedas.spectrocare.PatientServerApiModel.ChatRoomMessageModel;
+import com.vedas.spectrocare.PatientServerApiModel.ChatRoomParticipantModel;
 import com.vedas.spectrocare.PatientServerApiModel.DiagnosisObject;
 import com.vedas.spectrocare.PatientServerApiModel.IllnessMedicationRecords;
 import com.vedas.spectrocare.PatientServerApiModel.IllnessPatientRecord;
@@ -394,6 +395,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                     try {
                         if (jsonObject.getString("response").equals("3")) {
                             PatientMedicalRecordsController.getInstance().chatRoomMessageList.clear();
+
                             Log.e("fetchRooms", "length" + jsonObject.toString());
                             JSONArray chatList = jsonObject.getJSONArray("chatList");
                             Log.e("chatList", "length" + chatList.length());
@@ -403,24 +405,34 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                                 String roomID = object.getString("roomID");
                                 Log.e("roomID", "length" + roomID);
                                 Gson gson = new Gson();
-                                JSONArray messageList = object.getJSONArray("messages");
 
+                                String doctorName = null, doctorProfile = null;
+                                JSONObject jsonString = object.getJSONObject("participant");
+                                ChatRoomParticipantModel chatRoomParticipantModel = new ChatRoomParticipantModel();
+                                chatRoomParticipantModel = gson.fromJson(jsonString.toString(), ChatRoomParticipantModel.class);
+                                doctorName = chatRoomParticipantModel.getName();
+                                doctorProfile = ServerApi.img_home_url + chatRoomParticipantModel.getProfilePic();
+
+                                JSONArray messageList = object.getJSONArray("messages");
                                 ArrayList<ChatRoomMessageModel> tempList = new ArrayList<>();
 
                                 for (int k = 0; k < messageList.length(); k++) {
 
-                                    JSONObject jsonString = messageList.getJSONObject(k);
+                                    JSONObject jsonString1 = messageList.getJSONObject(k);
                                     ChatRoomMessageModel chatRoomMessageModel = new ChatRoomMessageModel();
-                                    chatRoomMessageModel = gson.fromJson(jsonString.toString(), ChatRoomMessageModel.class);
+                                    chatRoomMessageModel = gson.fromJson(jsonString1.toString(), ChatRoomMessageModel.class);
                                     chatRoomMessageModel.setRoomID(roomID);
 
-                                    AppointmentArrayModel appointmentArrayModel = loadDoctorsDetails(chatRoomMessageModel.getRoomID());
+                                    chatRoomMessageModel.setDoctorName("Dr. " + doctorName);
+                                    chatRoomMessageModel.setProfile(doctorProfile);
+                                    /*AppointmentArrayModel appointmentArrayModel = loadDoctorsDetails(chatRoomMessageModel.getRoomID());
                                     if (appointmentArrayModel != null) {
                                         chatRoomMessageModel.setDoctorName("Dr. " + appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getFirstName() + " " +
                                                 appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getLastName());
 
                                         chatRoomMessageModel.setProfile(ServerApi.img_home_url + appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getProfilePic());
                                     }
+                                */
                                     tempList.add(chatRoomMessageModel);
                                     Log.e("xxxxxxxx", "length" + chatRoomMessageModel.getRoomID());
                                 }
@@ -509,7 +521,6 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                             }
                             PatientMedicalRecordsController.getInstance().allergyObjectArrayList.add(allergieModel);
                             Log.e("allergyListsize", "call" + PatientMedicalRecordsController.getInstance().allergyObjectArrayList.size());
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -702,6 +713,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                     }
                 }
             }
+
             @Override
             public void failureCallBack(String failureMsg) {
                 // refreshShowingDialog.hideRefreshDialog();
@@ -785,12 +797,14 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                     return false;
                 }
             };
+
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
     public void alertDailog() {
         View view = getLayoutInflater().inflate(R.layout.more_alert, null);
         final BottomSheetDialog dialog = new BottomSheetDialog(Objects.requireNonNull(PatientHomeActivity.this), R.style.BottomSheetDialogTheme);
@@ -841,10 +855,12 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
             }
         });
     }
+
     private void loadUrl() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://spectrochips.com"));
         startActivity(browserIntent);
     }
+
     public void showLogoutDialog() {
         Log.e("logggg", "out");
         final Dialog dialog = new Dialog(PatientHomeActivity.this);
@@ -901,12 +917,14 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
         });
         dialog.show();
     }
+
     public void clearSharedPreferenceData() {
         SharedPreferences preferences = getSharedPreferences("tokendeviceids", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();
     }
+
     private void deleteLoginDevice() {
         SharedPreferences sharedPreferencesTOken = getApplicationContext().getSharedPreferences("tokendeviceids", 0);
         String deviceID = sharedPreferencesTOken.getString("deviceId", null);
@@ -930,6 +948,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                 ApiCallDataController.getInstance().serverApi.
                         deleteLoginDeviceApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "deleteDevice");
     }
+
     private void inboxMessagesFetchApi() {
         JSONObject fetchObject = new JSONObject();
         try {
@@ -945,10 +964,12 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                 ApiCallDataController.getInstance().serverApi.
                         getInboxFetchApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "invoiceFetch");
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
+
     @Override
     public void dialogeforCheckavilability(String title, String message, String ok) {
         MedicalPersonalSignupPresenter presenter = new MedicalPersonalSignupPresenter(this);

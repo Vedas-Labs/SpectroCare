@@ -144,38 +144,38 @@ public class AppointmentCancelActivity extends AppCompatActivity {
             }
         });
 
-        Intent getDataIntent = getIntent();
+       // Intent getDataIntent = getIntent();
         //docName = getDataIntent.getStringExtra("docName");
-        if(PatientMedicalRecordsController.getInstance().selectedappointmnetModel!=null) {
-            AppointmentArrayModel appointmentArrayModel=PatientMedicalRecordsController.getInstance().selectedappointmnetModel;
+        if (PatientMedicalRecordsController.getInstance().selectedappointmnetModel != null) {
+            AppointmentArrayModel appointmentArrayModel = PatientMedicalRecordsController.getInstance().selectedappointmnetModel;
             //  AppointmentArrayModel appointmentArrayModel = (AppointmentArrayModel) getDataIntent.getSerializableExtra("appointmentDetails");
             appointmentID = appointmentArrayModel.getAppointmentDetails().getAppointmentID();
-            long ll = Long.parseLong(appointmentArrayModel.getAppointmentDetails().getAppointmentDate());
-            Date currentDate = new Date(ll);
-            SimpleDateFormat jdff = new SimpleDateFormat("yyyy-MM-dd");
-            jdff.setTimeZone(TimeZone.getDefault());
-            String java_date = jdff.format(currentDate);
-            Log.e("cccc", "afa" + java_date + appointmentArrayModel.getAppointmentDetails().getAppointmentID());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
-            SimpleDateFormat parseFormat = new SimpleDateFormat("dd  MMMM ");
-            sdf.setTimeZone(TimeZone.getDefault());
-            Date clickedDate = null;
-            try {
-                clickedDate = jdff.parse(java_date);
-
-                if (i == 0) {
-
-                    formattedDate = parseFormat.format(clickedDate);
-                    // formattedDate = sdf.format(clickedDate);
-                    Log.e("forrr", "ff" + formattedDate);
-
+            if (appointmentArrayModel.getAppointmentDetails().getAppointmentDate().contains("/")) {
+                formattedDate = appointmentArrayModel.getAppointmentDetails().getAppointmentDate();
+            } else {
+                long ll = Long.parseLong(appointmentArrayModel.getAppointmentDetails().getAppointmentDate());
+                Date currentDate = new Date(ll);
+                SimpleDateFormat jdff = new SimpleDateFormat("yyyy-MM-dd");
+                jdff.setTimeZone(TimeZone.getDefault());
+                String java_date = jdff.format(currentDate);
+                Log.e("cccc", "afa" + java_date + appointmentArrayModel.getAppointmentDetails().getAppointmentID());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+                SimpleDateFormat parseFormat = new SimpleDateFormat("dd  MMMM ");
+                sdf.setTimeZone(TimeZone.getDefault());
+                Date clickedDate = null;
+                try {
+                    clickedDate = jdff.parse(java_date);
+                    if (i == 0) {
+                        formattedDate = parseFormat.format(clickedDate);
+                        Log.e("forrr", "ff" + formattedDate);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-               String name=appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getFirstName()+" "+appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getLastName();
-                txtDetails.setText("Your appointment with" + " " + name + " on " + formattedDate + " "
-                        + appointmentArrayModel.getAppointmentDetails().getAppointmentTime() + " will be cancelled ");
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
+            String name = appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getFirstName() + " " + appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getLastName();
+            txtDetails.setText("Your appointment with" + " " + name + " on " + formattedDate + " "
+                    + appointmentArrayModel.getAppointmentDetails().getAppointmentTime() + " will be cancelled ");
         }
     }
 
