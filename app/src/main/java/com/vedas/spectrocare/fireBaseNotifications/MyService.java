@@ -34,6 +34,7 @@ import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientServerApiModel.InboxNotificationModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
+import com.vedas.spectrocare.PatientVideoCallModule.VideoActivity;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.activities.SplashActivity;
 import com.vedas.spectrocare.PatientModule.PatientHomeActivity;
@@ -60,7 +61,6 @@ public class MyService extends FirebaseMessagingService {
         Log.e("onMessagerecived", "Called");
         Log.e("remoteMessagecaaaa", "asfnj" + remoteMessage.getData());
         showNotification(remoteMessage);
-
     }
 
     @Override
@@ -72,7 +72,6 @@ public class MyService extends FirebaseMessagingService {
     }
 
     public void showNotification(RemoteMessage remoteMessage) {
-        // sound = Uri. parse (ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/"+R.raw.notification_alertsound);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "com.star.startasker.test";
 
@@ -83,54 +82,50 @@ public class MyService extends FirebaseMessagingService {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "notification",
                     NotificationManager.IMPORTANCE_HIGH);
 
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .setUsage(AudioAttributes.USAGE_ALARM)
-                    .build();
-
             notificationChannel.setDescription("hello");
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(R.color.colorpink);
             notificationChannel.setShowBadge(true);
-            //  notificationChannel.setSound(sound,audioAttributes);
             notificationManager.createNotificationChannel(notificationChannel);
         } else {
             Log.e("elsefirebasecall", "asfnj" + remoteMessage.getData());
         }
+
         if (!remoteMessage.getData().isEmpty()) { // for background handlings we perfome same login on splashscreen page.
             Log.e("remoteMessage", "asfnj" + remoteMessage.getData());
-            if(!remoteMessage.getData().get("appointmentID").isEmpty()) {
-                Log.e("firebaseappintid","djhg: "+remoteMessage.getData().get("appointmentID"));
-                Intent intent = new Intent(this, PatientHomeActivity.class)
-                        .putExtra("isFromNotify","true")/*.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)*/;
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notificationHandle(remoteMessage,pendingIntent,notificationManager);
-            }/*else if(remoteMessage.getData().get("appointment")){
+            Intent intent=null;
+            if(remoteMessage.getData().get("messageType").equals("Appointment")) {
+                Log.e("remotemsgAppointment", "asfnj" + remoteMessage.getData());
 
-            }*/
+                 intent = new Intent(this, PatientHomeActivity.class)
+                        .putExtra("isFromNotificaton","Appointment")
+                        .putExtra("appointmentID",remoteMessage.getData().get("appointmentID"));
+
+            }else if(remoteMessage.getData().get("messageType").equals("Calling")){
+                Log.e("remotemsgwithcalling", "asfnj" + remoteMessage.getData().get("roomID"));
+
+                 intent = new Intent(this, VideoActivity.class)
+                        . putExtra("roomID", remoteMessage.getData().get("roomID"))
+                        .putExtra("isFromNotificaton","Calling")
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            }else if(remoteMessage.getData().get("messageType").contains("Invoice")){
+                Log.e("remotemsgwithinvoice", "asfnj" + remoteMessage.getData());
+
+                 intent = new Intent(this, PatientHomeActivity.class)
+                        .putExtra("isFromNotificaton","Invoice");
+            }
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_ONE_SHOT);
+            notificationHandle(remoteMessage,pendingIntent,notificationManager);
         }
     }
     public void notificationHandle(RemoteMessage remoteMessage,PendingIntent pendingIntent,NotificationManager notificationManager){
         NotificationCompat.Builder notificationBuilder=new NotificationCompat.Builder(this,"com.star.startasker.test");
-       // SessionMa sessionManager = new SessionManager(MyService.this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-           /* Intent intent = new Intent(this, PatientHomeActivity.class);
-            pendingIntent = PendingIntent.getActivity(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_ONE_SHOT);
-*/
-            notificationBuilder.setAutoCancel(true).setDefaults(Notification.DEFAULT_ALL).setWhen(System.currentTimeMillis()).
-                    setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody())
-                    .setContentInfo("Info").setPriority(NotificationManager.IMPORTANCE_HIGH).setContentIntent(pendingIntent);
-                  //  .setSound(Uri.parse(remoteMessage.getNotification().getSound()));
-        }
-        else{
-           /* Intent intent = new Intent(this, PatientHomeActivity.class);
-            pendingIntent = PendingIntent.getActivity(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_ONE_SHOT);
-*/
-            notificationBuilder.setAutoCancel(true).setDefaults(Notification.DEFAULT_ALL).setWhen(System.currentTimeMillis()).
-                    setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody())
-                    .setContentInfo("Info").setPriority(NotificationManager.IMPORTANCE_HIGH).setContentIntent(pendingIntent);
-                   // .setSound(Uri.parse(remoteMessage.getNotification().getSound()));
-        }
+
+        notificationBuilder.setAutoCancel(true).setDefaults(Notification.DEFAULT_ALL).setWhen(System.currentTimeMillis()).
+                setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody())
+                .setContentInfo("Info").setPriority(NotificationManager.IMPORTANCE_HIGH).setContentIntent(pendingIntent);
+
         notificationBuilder.setDefaults(Notification.DEFAULT_LIGHTS);// i got struggled with out these 2 lines to get custom notification sound in background.
         notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);//and set channel id in manifest
         notificationBuilder.setSmallIcon(R.mipmap.ic_app_icon);

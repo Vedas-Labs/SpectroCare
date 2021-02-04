@@ -231,6 +231,7 @@ public class UpcomingAppointmentFragment extends Fragment {
                             for (int l = 0; l < appointmentArray.length(); l++) {
                                 Gson gson = new Gson();
                                 String jsonString = jsonObject.getJSONArray("appointments").getJSONObject(l).toString();
+                                Log.e("appontmentSingle", "length" +jsonString);
                                 AppointmentArrayModel appointmentList = gson.fromJson(jsonString, AppointmentArrayModel.class);
                                 PatientAppointmentsDataController.getInstance().allappointmentsList.add(appointmentList);
                             }

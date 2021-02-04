@@ -75,10 +75,10 @@ public class PatientMedicalHistoryAddAdapter extends RecyclerView.Adapter<Patien
                         context.startActivity(new Intent(context, AddPatientImmunizationActivity.class));
                         break;
                     case 5:
-                        ((Activity)context).finish();
-                        Toast.makeText(context, "Diagnosis not available", Toast.LENGTH_SHORT).show();
-                       /* PatientMedicalRecordsController.getInstance().isFromDiagnosis=true;
-                        context.startActivity(new Intent(context, DiseasesListActivity.class));*/
+                       // ((Activity)context).finish();
+                       // Toast.makeText(context, "Diagnosis not available", Toast.LENGTH_SHORT).show();
+                        PatientMedicalRecordsController.getInstance().isFromDiagnosis=true;
+                        context.startActivity(new Intent(context, DiseasesListActivity.class));
                         break;
                 }
             }

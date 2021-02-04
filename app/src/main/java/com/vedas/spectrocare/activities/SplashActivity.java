@@ -13,7 +13,10 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.MedicalProfileDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
+import com.vedas.spectrocare.PatientModule.PatientAppointmentsTabsActivity;
 import com.vedas.spectrocare.PatientModule.PatientHomeActivity;
+import com.vedas.spectrocare.PatientNotificationModule.PatientNotificationFragment;
+import com.vedas.spectrocare.PatientVideoCallModule.VideoActivity;
 import com.vedas.spectrocare.R;
 
 
@@ -45,14 +48,33 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (PatientLoginDataController.getInstance().allPatientlProfile.size() > 0) {
-                    if (getIntent().getStringExtra("appointmentID") != null) { //for checking firebase appointment notifications.
-                        if (!getIntent().getStringExtra("appointmentID").isEmpty()) {
-                            Log.e("getStringExtra", "" + getIntent().getStringExtra("appointmentID"));
-                            Intent intent = new Intent(getApplicationContext(), PatientHomeActivity.class)
-                                    .putExtra("isFromNotify", "true").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                    Log.e("splashscreen", "ID ::" +getIntent().getStringExtra("isFromNotificaton"));
+                    /*if (bundle != null) {
+                        Log.e("getIntent", "asfnj" + bundle.getStringExtra("isFromNotificaton"));
+                        if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").contains("invoice")) {
+
+                        } else if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").contains("Calling")) {
+                            Log.e("isFromNotificaton", "asfnj" + "getting from calling alert");
+
+                        }else if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").contains("appointment")) {
+                            Log.e("isFromNotificaton", "asfnj" + "getting from appoinmnet alert");
+
                         }
-                    }else {
+                    }*/
+                    if (getIntent().getStringExtra("isFromNotificaton") != null && getIntent().getStringExtra("isFromNotificaton").equals("notification")) {
+                        Intent intent = new Intent(getApplicationContext(), PatientHomeActivity.class)
+                                .putExtra("isFromNotificaton", "true").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } else if (getIntent().getStringExtra("isFromNotificaton") != null && getIntent().getStringExtra("isFromNotificaton").equals("Calling")) {
+                        Intent intent = new Intent(getApplicationContext(), VideoActivity.class)
+                                .putExtra("roomID", getIntent().getStringExtra("roomID"))
+                                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);;
+                        startActivity(intent);
+                    } else if (getIntent().getStringExtra("isFromNotificaton") != null && getIntent().getStringExtra("isFromNotificaton").equals("appointment")) {
+                        Intent intent = new Intent(getApplicationContext(), PatientHomeActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
                         startActivity(new Intent(getApplicationContext(), PatientHomeActivity.class));
                         finish();
                     }

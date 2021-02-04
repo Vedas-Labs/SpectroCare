@@ -11,22 +11,90 @@
     <include layout="@layout/content_video" />
 
     <RelativeLayout
+        android:id="@+id/rl_black"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:alpha="0.6"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/img_circle_pic"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/profile_1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mr.Doctor"
+                android:layout_margin="5dp"
+                android:textSize="16sp"
+                android:textColor="#FFF"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/img_circle_pic"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_btn_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="bottom">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/connect_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_centerVertical="true"
+            app:fabSize="normal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_call" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/disconnect_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="70dp"
+            app:fabSize="normal"
+            android:src="@drawable/ic_baseline_call_end" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:weightSum="5"
         android:orientation="horizontal" >
 
-         <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/sound_action_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-             android:layout_centerVertical="true"
-             android:layout_toLeftOf="@id/switch_camera_action_fab"
-             android:layout_weight="1"
-             android:layout_margin="10dp"
-             app:fabSize="mini"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/switch_camera_action_fab"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:fabSize="mini"
             android:layout_marginBottom="16dp"
             android:src="@drawable/ic_baseline_volume" />
 
@@ -80,3 +148,90 @@
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity">
+
+        <include layout="@layout/content_video" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:weightSum="5"
+            android:orientation="horizontal" >
+
+             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/sound_action_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                 android:layout_centerVertical="true"
+                 android:layout_toLeftOf="@id/switch_camera_action_fab"
+                 android:layout_weight="1"
+                 android:layout_margin="10dp"
+                 app:fabSize="mini"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_baseline_volume" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/switch_camera_action_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@id/connect_action_fab"
+                android:layout_centerVertical="true"
+                app:fabSize="mini"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_switch_camera_white_24dp" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/connect_action_fab"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_centerInParent="true"
+                app:fabSize="normal"
+                android:src="@drawable/ic_video_call_white_24dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/local_video_action_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:layout_toRightOf="@id/connect_action_fab"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                app:fabSize="mini"
+                android:src="@drawable/ic_videocam_white_24dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/mute_action_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="mini"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/local_video_action_fab"
+                android:layout_weight="1"
+                android:src="@drawable/ic_mic_white_24dp" />
+
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    -->

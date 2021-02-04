@@ -132,18 +132,15 @@ public class PatientCalendarFragment extends Fragment {
                     .getDate());*/
             if (PatientAppointmentsDataController.getInstance().getAppointmentsList() != null) {
                 for (int i = 0; i <= PatientAppointmentsDataController.getInstance().getAppointmentsList().size() - 1; i++) {
-                    long ll = Long.parseLong(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate());
-                    Date currentDate = new Date(ll);
-                    SimpleDateFormat jdff = new SimpleDateFormat("MMM dd, yyyy");
-                    jdff.setTimeZone(TimeZone.getDefault());
-                    String java_date = jdff.format(currentDate);
-                    Log.e("afdsa", ", " + java_date + ", " + currentDay);
-                    if (currentDay.equals(java_date)) {
-                        Log.e("wsa", "ddd");
-
-                        //   Log.e("arrayDate","kkk"+calanderitemsList.get(i).getDate());
-                        dateList.add(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i));
-                        Log.e("chekList", "ddd" + dateList.size());
+                    if(!PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate().contains("/")){
+                        long ll = Long.parseLong(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate());
+                        Date currentDate = new Date(ll);
+                        SimpleDateFormat jdff = new SimpleDateFormat("MMM dd, yyyy");
+                        jdff.setTimeZone(TimeZone.getDefault());
+                        String java_date = jdff.format(currentDate);
+                        if (currentDay.equals(java_date)) {
+                            dateList.add(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i));
+                        }
                     }
                 }
             }
@@ -166,16 +163,18 @@ public class PatientCalendarFragment extends Fragment {
                 if (!PatientAppointmentsDataController.isNull()) {
                     if (PatientAppointmentsDataController.getInstance().getAppointmentsList() != null) {
                         for (int i = 0; i <= PatientAppointmentsDataController.getInstance().getAppointmentsList().size() - 1; i++) {
-                            long ll = Long.parseLong(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate());
-                            Date currentDate = new Date(ll);
-                            SimpleDateFormat jdff = new SimpleDateFormat("MMM dd, yyyy");
-                            jdff.setTimeZone(TimeZone.getDefault());
-                            String java_date = jdff.format(currentDate);
-                            Log.e("afdsa", "adfa" + java_date);
-                            if (curDate.equals(java_date)) {
-                                //   Log.e("arrayDate","kkk"+calanderitemsList.get(i).getDate());
-                                dateList.add(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i));
-                                Log.e("chekList", "" + dateList.size());
+                            if (!PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate().contains("/")) {
+                                long ll = Long.parseLong(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i).getAppointmentDetails().getAppointmentDate());
+                                Date currentDate = new Date(ll);
+                                SimpleDateFormat jdff = new SimpleDateFormat("MMM dd, yyyy");
+                                jdff.setTimeZone(TimeZone.getDefault());
+                                String java_date = jdff.format(currentDate);
+                                Log.e("afdsa", "adfa" + java_date);
+                                if (curDate.equals(java_date)) {
+                                    //   Log.e("arrayDate","kkk"+calanderitemsList.get(i).getDate());
+                                    dateList.add(PatientAppointmentsDataController.getInstance().getAppointmentsList().get(i));
+                                    Log.e("chekList", "" + dateList.size());
+                                }
                             }
                         }
                     }

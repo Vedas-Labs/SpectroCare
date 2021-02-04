@@ -105,7 +105,7 @@ public class DiseasesListActivity extends AppCompatActivity {
         }
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            holder.txt_name.setText(PatientFamilyDataController.getInstance().getIllnessPatientList().get(position).getCurrentStatus());
+            holder.txt_name.setText(PatientFamilyDataController.getInstance().getIllnessPatientList().get(position).getIllnessCondition());
             if (selectedPosition == position) {
                 PatientFamilyDataController.getInstance().selectedIllnessRecord=PatientFamilyDataController.getInstance().getIllnessPatientList().get(selectedPosition);
                   holder.rl_main.setBackgroundColor(Color.parseColor("#E9F9FB"));

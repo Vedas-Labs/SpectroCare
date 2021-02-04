@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.PatientModule.AddPatientDiagnosisActivity;
 import com.vedas.spectrocare.PatientModule.PatientDiagnosisActivity;
 import com.vedas.spectrocare.PatientModule.PatientSurgeryActivity;
@@ -21,9 +22,11 @@ import com.vedas.spectrocare.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.DiagnosisHolder> {
     Context context;
@@ -53,14 +56,47 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.Diag
         holder.imgImmunizationICon.setImageResource(R.drawable.doctors);
         holder.discription.setText(PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.get(position).getDiagnosis());
         holder.immunizationName.setText("DR. "+PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.get(position).getDoctorName());
-        long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.get(position).getAddedDate());
+
+        String entredDate = PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.get(position).getAddedDate();
+        Log.e("string","date"+entredDate);
+        long l = Long.parseLong(entredDate);
+        Date currentDate = new Date(l);
+        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        jdff.setTimeZone(TimeZone.getDefault());
+        String java_date = jdff.format(currentDate);
+        Date clickedDate = null;
+        try {
+            clickedDate = jdff.parse(java_date);
+
+            String formattedDate = jdff.format(clickedDate);
+            Log.e("forrr", "ff" + formattedDate);
+            String[] two = formattedDate.split(" ");
+            //load settings date formate to date feild.
+            String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context, entredDate);
+            holder.date.setText(value);
+            String clockTime;
+            //holder.txtDate.setText(two[0]);
+            String[] timeSplit = two[1].split(":");
+            if (12 < Integer.parseInt(timeSplit[0])) {
+                int hr = Integer.parseInt(timeSplit[0]) - 12;
+                clockTime = String.valueOf(hr) + ":" + timeSplit[1] + "PM";
+            } else {
+                clockTime = two[1] + "AM";
+            }
+            holder.time.setText(clockTime);
+        }catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        /*long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.get(position).getAddedDate());
         Date d = new Date(millis);
         SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
         Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
         holder.date.setText(time[0]);
-        holder.time.setText(time[1]+" "+time[2]);
+        holder.time.setText(time[1]+" "+time[2]);*/
+
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,19 +118,19 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.Diag
 
     @Override
     public int getItemCount() {
-
+        Log.e("dianosisadapter","call"+PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size() );
         if (PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size() > 0) {
-
-            if(!from.equals("from")) {
+            return PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size();
+            /*if(!from.equals("from")) {
                 txtDelete.setVisibility(View.VISIBLE);
                 txtCount.setText("(" + PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size() + ")");
-            }  return  PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size();
+            }  return  PatientMedicalRecordsController.getInstance().diagnosisObjectArrayList.size();*/
         } else {
-
-            if(!from.equals("from")) {
+            return 0;
+           /* if(!from.equals("from")) {
                 txtDelete.setVisibility(View.GONE);
                 txtCount.setText("(" + 0 + ")");
-            }return 0;
+            }return 0;*/
         }
     }
 

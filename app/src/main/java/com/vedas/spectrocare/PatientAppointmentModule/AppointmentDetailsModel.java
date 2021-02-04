@@ -7,7 +7,7 @@ public class AppointmentDetailsModel implements Serializable {
     String reasonForCancellation;
     String cancelledByWhom;
     String cancelledByWhomID;
-    ArrayList doctorComments;
+    DoctorCommentsModel doctorComments;
     String appointmentID;
     String appointmentDate;
     String appointmentTime;
@@ -16,6 +16,14 @@ public class AppointmentDetailsModel implements Serializable {
     String reasonForVisit;
     String appointmentStatus;
     PaymentDetailsModel paymentDetails;
+
+    public DoctorCommentsModel getDoctorComments() {
+        return doctorComments;
+    }
+
+    public void setDoctorComments(DoctorCommentsModel doctorComments) {
+        this.doctorComments = doctorComments;
+    }
 
     public String getReasonForCancellation() {
         return reasonForCancellation;
@@ -39,14 +47,6 @@ public class AppointmentDetailsModel implements Serializable {
 
     public void setCancelledByWhomID(String cancelledByWhomID) {
         this.cancelledByWhomID = cancelledByWhomID;
-    }
-
-    public ArrayList getDoctorComments() {
-        return doctorComments;
-    }
-
-    public void setDoctorComments(ArrayList doctorComments) {
-        this.doctorComments = doctorComments;
     }
 
     public String getAppointmentID() {

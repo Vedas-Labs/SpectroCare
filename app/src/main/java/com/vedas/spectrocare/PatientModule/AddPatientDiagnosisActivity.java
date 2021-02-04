@@ -40,6 +40,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
+import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientServerApiModel.DiagnosisObject;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
@@ -57,6 +58,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class AddPatientDiagnosisActivity extends AppCompatActivity implements MedicalPersonaSignupView {
     CardView clockView;
@@ -115,6 +117,34 @@ public class AddPatientDiagnosisActivity extends AppCompatActivity implements Me
             ed_doctorname .setText(obj.getDoctorName());
             ed_prescription.setText(obj.getPrescription());
             ed_remark .setText(obj.getRemark());
+
+            String entredDate =  obj.getDiagnosisDate();
+            Log.e("string","date"+entredDate);
+            long l = Long.parseLong(entredDate);
+            Date currentDate = new Date(l);
+            SimpleDateFormat jdff = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            jdff.setTimeZone(TimeZone.getDefault());
+            String java_date = jdff.format(currentDate);
+            Date clickedDate = null;
+            try {
+                clickedDate = jdff.parse(java_date);
+
+                String  formattedDate = jdff.format(clickedDate);
+                Log.e("forrr","ff"+formattedDate);
+                String[] two = formattedDate.split(" ");
+                ed_diagnosisDate.setText(two[0]);
+                /*String[] timeSplit = two[1].split(":");
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+"PM";
+                }else{
+                    clockTime = two[1]+"AM";
+                }
+                txtTime.setText(clockTime);
+*/
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 

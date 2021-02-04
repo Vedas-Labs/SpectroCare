@@ -63,6 +63,7 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
             @Override
             public void onClick(View v) {
                 String position =  String.valueOf(holder.getAdapterPosition());
+                Log.e("illnessid","date"+diseaseList.get(holder.getAdapterPosition()).getIllnessID());
                 context.startActivity(new Intent(context, PatientDiseaseActivity.class).putExtra("position",position));
             }
         });
@@ -102,12 +103,10 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
     @Override
     public int getItemCount() {
         if (!diseaseList.isEmpty()){
-            Log.e("disese",""+diseaseList.size());
             txtDelete.setVisibility(View.VISIBLE);
             txtCount.setText("("+diseaseList.size()+")");
             return diseaseList.size();
         }else {
-            Log.e("chch","fa");
             txtDelete.setVisibility(View.GONE);
             txtCount.setText("("+0+")");
             return 0;

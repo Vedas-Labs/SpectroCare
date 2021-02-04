@@ -65,6 +65,7 @@ import com.vedas.spectrocare.PatientServerApiModel.PatientMedicationObject;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicationResponsModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientSurgicalObject;
 import com.vedas.spectrocare.PatientServerApiModel.PatientSurgicalRecordServerObjectDataController;
+import com.vedas.spectrocare.PatientVideoCallModule.VideoActivity;
 import com.vedas.spectrocare.PatinetControllers.PatientAppointmentController;
 import com.vedas.spectrocare.PatinetControllers.PatientFamilyDataController;
 import com.vedas.spectrocare.R;
@@ -91,7 +92,6 @@ import java.util.Objects;
 
 
 public class PatientHomeActivity extends AppCompatActivity implements MedicalPersonaSignupView {
-
     ArrayList patientsList;
     IllnessPatientRecord illnessPatientRecord;
     ArrayList<IllnessPatientRecord> illnessList;
@@ -139,27 +139,35 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
         Intent bundle = getIntent();
-        Log.e("extrasss", "asfnj" + getIntent().getStringExtra("isFromNotify"));
+        Log.e("extrasss", "asfnj" + getIntent().getStringExtra("isFromNotificaton"));
         if (bundle != null) {
-            Log.e("getIntent", "asfnj" + bundle.getStringExtra("isFromNotify"));
-            if (bundle.getStringExtra("isFromNotify") != null) {
-                if (bundle.getStringExtra("isFromNotify").equals("true"))
-                    bottomNavigation.setSelectedItemId(R.id.icon_notification);
+            Log.e("getIntent", "asfnj" + bundle.getStringExtra("isFromNotificaton"));
+
+            if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").equals("Invoice")) {
+                bottomNavigation.setSelectedItemId(R.id.icon_notification);
                 openFragment(PatientNotificationFragment.newInstance("", ""));
-            } else if (PatientMedicalRecordsController.getInstance().invoiceObject != null) {
-                bottomNavigation.setSelectedItemId(R.id.navigation_card);
-                openFragment(BillingAndPaymentFragment.newInstance("", ""));
+
+            } else if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").equals("Calling")) {
+                Log.e("isFromNotificaton", "asfnj" + "getting from calling alert");
+                Intent intent = new Intent(getApplicationContext(), VideoActivity.class);
+                startActivity(intent);
+            } else if (bundle.getStringExtra("isFromNotificaton") != null && bundle.getStringExtra("isFromNotificaton").equals("Appointment")) {
+                Log.e("isFromNotificaton", "asfnj" + "getting from calling alert");
+                Intent intent = new Intent(getApplicationContext(), PatientAppointmentsTabsActivity.class);
+                startActivity(intent);
+
             } else {
                 bottomNavigation.setSelectedItemId(R.id.navigation_home);
                 openFragment(HomeFragment.newInstance("", ""));
             }
-        }/*else if (PatientMedicalRecordsController.getInstance().invoiceObject != null) {
+
+        } else if (PatientMedicalRecordsController.getInstance().invoiceObject != null) {
             bottomNavigation.setSelectedItemId(R.id.navigation_card);
             openFragment(BillingAndPaymentFragment.newInstance("", ""));
         } else {
             bottomNavigation.setSelectedItemId(R.id.navigation_home);
             openFragment(HomeFragment.newInstance("", ""));
-        }*/
+        }
 
         PatientLoginDataController.getInstance().fetchPatientlProfileData();
 
@@ -457,7 +465,11 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                             for (int l = 0; l < appointmentArray.length(); l++) {
                                 Gson gson = new Gson();
                                 String jsonString = jsonObject.getJSONArray("appointments").getJSONObject(l).toString();
+                                //  Log.e("appontmentSingleHome", "length" +jsonString);
+
                                 AppointmentArrayModel appointmentList = gson.fromJson(jsonString, AppointmentArrayModel.class);
+                                Log.e("appontmentSingleHome", "length" + appointmentList.getAppointmentDetails().getAppointmentStatus());
+
                                 PatientAppointmentsDataController.getInstance().allappointmentsList.add(appointmentList);
                             }
                             PatientAppointmentsDataController.getInstance().setAppointmentsList(PatientAppointmentsDataController.getInstance().allappointmentsList);
@@ -578,6 +590,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                     try {
                         if (jsonObject.getString("response").equals("3")) {
                             JSONArray diagnosisArray = jsonObject.getJSONArray("illnessDiagnosisRecords");
+                            Log.e("diagnosisArray", "call" + diagnosisArray.length());
                             if (diagnosisArray.length() > 0) {
                                 for (int i = 0; i < diagnosisArray.length(); i++) {
                                     JSONObject obj = diagnosisArray.getJSONObject(i);
@@ -667,7 +680,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                                 fetchMedicationRecords();
                             }
                             PatientFamilyDataController.getInstance().setIllnessPatientList(illnessList);
-                            Log.e("size", "daa" + illnessList.size());
+                            Log.e("sizeofilnesslist", "daa" + illnessList.size());
 
                         } catch (Exception e) {
                             e.printStackTrace();

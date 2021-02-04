@@ -123,6 +123,8 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
             holder.txtStatus.setTextColor(ContextCompat.getColor(context1, R.color.colorOrange));
         } else if (appointmentDataList.get(position).getAppointmentDetails().getAppointmentStatus().contains("Waiting")) {
             holder.txtStatus.setTextColor(ContextCompat.getColor(context1, R.color.colorblue));
+        }else if (appointmentDataList.get(position).getAppointmentDetails().getAppointmentStatus().contains("Completed")) {
+            holder.txtStatus.setTextColor(ContextCompat.getColor(context1, R.color.colorGreen));
         }
         if (!appointmentDataList.get(position).getDoctorDetails().getProfile().getUserProfile().getProfilePic().isEmpty())
             Picasso.get().load(ServerApi.img_home_url + appointmentDataList.get(position).getDoctorDetails().getProfile().getUserProfile().getProfilePic()).placeholder(R.drawable.image).into(holder.imgPic);
@@ -133,7 +135,7 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                 pos = holder.getAdapterPosition();
               //  mSocket.on("join", onNewMessage);
             //    mSocket.on("subscribe"/*, onNewMessage*/);
-                Log.e("dadd", "d" + appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID());
+                Log.e("dadd", "call" + appointmentDataList.get(pos).getDoctorMedicalPersonnelID()+appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID());
                 if (appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Confirmed")
                         || appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Waiting for confirmation"))
                     alertDailog();

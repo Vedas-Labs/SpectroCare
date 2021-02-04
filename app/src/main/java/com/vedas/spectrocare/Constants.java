@@ -172,76 +172,7 @@ public class Constants {
         }
     }
 
-    public enum MapTypes {
 
-        TopRated("Top Rated"),
-        OpenNow("Open Now"),
-        Nearby("Nearby"),
-        All("All");
-
-        private final String name;
-
-        private MapTypes(String s) {
-            name = s;
-        }
-
-        public boolean equalsName(String otherName) {
-            // (otherName == null) check is not needed because name.equals(null) returns false
-            return name.equals(otherName);
-        }
-
-        public String toString() {
-            return this.name;
-        }
-    }
-
-
-    public enum RepeatTypes {
-
-        Once("Once"),
-        EveryDay("Every day"),
-        EveryWeek("Every Week"),
-        Every15Days("Every 15 Days"),
-        Every30Days("Every 30 Days");
-
-        private final String name;
-
-        private RepeatTypes(String s) {
-            name = s;
-        }
-
-        public boolean equalsName(String otherName) {
-            // (otherName == null) check is not needed because name.equals(null) returns false
-            return name.equals(otherName);
-        }
-
-        public String toString() {
-            return this.name;
-        }
-    }
-
-    public enum HealthTrendNames {
-        overAll("Overall"),
-        kidneyCapacity("Kidney Capacity"),
-        liver("Liver Function"),
-        diabetes("Diabetes Function"),
-        urinary("Urinary Tract Infection");
-
-        private final String name;
-
-        private HealthTrendNames(String s) {
-            name = s;
-        }
-
-        public boolean equalsName(String otherName) {
-            // (otherName == null) check is not needed because name.equals(null) returns false
-            return name.equals(otherName);
-        }
-
-        public String toString() {
-            return this.name;
-        }
-    }
 
     public enum UrineAndBloodNames {
         urine("Urine"),
@@ -250,6 +181,27 @@ public class Constants {
         private final String name;
 
         private UrineAndBloodNames(String s) {
+            name = s;
+        }
+
+        public boolean equalsName(String otherName) {
+            // (otherName == null) check is not needed because name.equals(null) returns false
+            return name.equals(otherName);
+        }
+
+        public String toString() {
+            return this.name;
+        }
+    }
+
+    public enum AppointmentTypes {
+        appointment("Appointment"),
+        videoCall("Calling"),
+        invoice("Invoice");
+
+        private final String name;
+
+        private AppointmentTypes(String s) {
             name = s;
         }
 

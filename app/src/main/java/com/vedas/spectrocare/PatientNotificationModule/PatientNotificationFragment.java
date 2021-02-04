@@ -62,6 +62,7 @@ public class PatientNotificationFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    boolean isRefresh = true;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -118,31 +119,15 @@ public class PatientNotificationFragment extends Fragment {
                         new MyButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                showDeleteDialog(pos, "Single");
-                            }
-                        }));
-            }
-        };
-        /*MySwipeHelper mySwipeHelper = new MySwipeHelper(getContext(), todayNotification, 180) {
-            @Override
-            public void instantiateMyButton(RecyclerView.ViewHolder viewHolder, List<MyButton> buffer) {
-                buffer.add(new MyButton(getContext(), "", 0, R.drawable.delete_sweep,
-                        Color.parseColor("#FBF8F8"),
-                        new MyButtonClickListener() {
-                            @Override
-                            public void onClick(int pos) {
-                                if (isNetworkConnected()) {
-                                    refreshShowingDialog.showAlert();
-                                    PatientMedicalRecordsController.getInstance().inboxNotificationModel = PatientMedicalRecordsController.getInstance().inboxNotificationList.get(pos);
-                                    Log.e("onClick", "dd" + pos+PatientMedicalRecordsController.getInstance().inboxNotificationModel.getMessageBody().getData().getMessageID());
-                                    deleteInboxApi();
-                                } else {
-                                    refreshShowingDialog.hideRefreshDialog();
+                                isRefresh=false;
+                                Log.e("onClickInvoice", "dd" + isRefresh);
+                                if(isRefresh==false) {
+                                    showDeleteDialog(pos, "Single");
                                 }
                             }
                         }));
             }
-        };*/
+        };
         return notificationView;
     }
 
@@ -229,11 +214,13 @@ public class PatientNotificationFragment extends Fragment {
             public void successCallBack(JSONObject jsonObject, String curdOpetaton) {
                 if (curdOpetaton.equals("deleteInvoice")) {
                     try {
-                        Log.e("deleteInvoice", "dd" + jsonObject.toString());
                         if (jsonObject.getString("response").equals("3")) {
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
+                                    Log.e("zxcvb", "dd" + isRefresh+jsonObject.toString());
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.remove(PatientMedicalRecordsController.getInstance().inboxNotificationModel);
+                                    isRefresh=true;
+                                    Log.e("deleteInvoice", "dd" + isRefresh+jsonObject.toString());
                                     notificationAdapter.notifyDataSetChanged();
                                     showDeleteAllButton();
                                     refreshShowingDialog.hideRefreshDialog();
@@ -267,13 +254,14 @@ public class PatientNotificationFragment extends Fragment {
                     }
                 } else if (curdOpetaton.equals("deleteAll")) {
                     try {
-                        Log.e("deleteInvoice", "dd" + jsonObject.toString());
+                        Log.e("deleteAll", "dd" + jsonObject.toString());
                         if (jsonObject.getString("response").equals("3")) {
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.clear();
+                                    isRefresh=true;
                                     notificationAdapter.notifyDataSetChanged();
-                                    showDeleteAllButton();
+                                    deleteAll.setVisibility(View.GONE);
                                     refreshShowingDialog.hideRefreshDialog();
                                 }
                             } catch (Exception e) {
@@ -329,7 +317,7 @@ public class PatientNotificationFragment extends Fragment {
         JsonParser jsonParser = new JsonParser();
         JsonObject gsonObject = (JsonObject) jsonParser.parse(fetchObject.toString());
         Log.e("deleteInboxApi", "data" + PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken());
-        ApiCallDataController.getInstance().loadjsonApiCall(
+        ApiCallDataController.getInstance().loadServerApiCall(
                 ApiCallDataController.getInstance().serverApi.
                         inboxDeleteApi(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "deleteInvoice");
     }
