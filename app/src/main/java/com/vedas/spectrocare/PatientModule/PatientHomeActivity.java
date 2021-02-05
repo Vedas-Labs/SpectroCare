@@ -89,8 +89,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-
 public class PatientHomeActivity extends AppCompatActivity implements MedicalPersonaSignupView {
     ArrayList patientsList;
     IllnessPatientRecord illnessPatientRecord;
