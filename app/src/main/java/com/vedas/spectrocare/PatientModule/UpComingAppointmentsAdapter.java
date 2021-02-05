@@ -106,13 +106,11 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                 SimpleDateFormat jdff = new SimpleDateFormat("dd/MM/yyyy");
                 jdff.setTimeZone(TimeZone.getDefault());
                 String java_date = jdff.format(currentDate);
-               // holder.txtAppointmentDate.setText(java_date);
+                // holder.txtAppointmentDate.setText(java_date);
             }
             holder.txtTime.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime());
             holder.txtStatus.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentStatus());
         }
-
-
         GradientDrawable gd = new GradientDrawable();
         gd.setColor(Color.WHITE);
         gd.setCornerRadius(10);
@@ -133,19 +131,20 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
             @Override
             public void onClick(View v) {
                 pos = holder.getAdapterPosition();
-              //  mSocket.on("join", onNewMessage);
-            //    mSocket.on("subscribe"/*, onNewMessage*/);
-                Log.e("dadd", "call" + appointmentDataList.get(pos).getDoctorMedicalPersonnelID()+appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID());
+                //  mSocket.on("join", onNewMessage);
+                //    mSocket.on("subscribe"/*, onNewMessage*/);
+                Log.e("dadd", "d" +appointmentDataList.get(pos).getDoctorMedicalPersonnelID()+ appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID());
                 if (appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Confirmed")
-                        || appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Waiting for confirmation"))
+                        || appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Waiting for confirmation")) {
                     alertDailog();
-                else {
+                } else if(appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Completed")){
                     arrayModel = appointmentDataList.get(pos);
                     PatientMedicalRecordsController.getInstance().selectedappointmnetModel=arrayModel;
-                    // addDoctorReviewRatingsByPAtient();
+                    context1.startActivity(new Intent(context1, DoctorRatingActivity.class));
+                } else {
+                    arrayModel = appointmentDataList.get(pos);
+                    PatientMedicalRecordsController.getInstance().selectedappointmnetModel=arrayModel;
                     context1.startActivity(new Intent(context1, AppointmentDetailsActivity.class));
-                           // .putExtra("sampleObject", arrayModel)
-                           // .putExtra("docPic", ServerApi.img_home_url + appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getProfilePic()));
                 }
             }
         });
@@ -317,119 +316,6 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
         }
 
     }
-    public void addDoctorReviewRatingsByPAtient() {
-        PatientModel currentModel = PatientLoginDataController.getInstance().currentPatientlProfile;
-        AppointmentArrayModel arrayModel= PatientMedicalRecordsController.getInstance().selectedappointmnetModel;
-        JSONObject params = new JSONObject();
-        JSONObject reviewparams = new JSONObject();
-        try {
-            params.put("hospital_reg_num", currentModel.getHospital_reg_number());
-            params.put("patientID", currentModel.getPatientId());
-            params.put("medical_personnel_id", arrayModel.getDoctorMedicalPersonnelID());
 
-            reviewparams.put("reviewername",currentModel.getFirstName()+" "+currentModel.getLastName());
-            reviewparams.put("reviewerID", currentModel.getPatientId());
-            reviewparams.put("ratings", "4.0");
-            reviewparams.put("comment","Good Doctor");
-            reviewparams.put("appointmentID",arrayModel.getAppointmentDetails().getAppointmentID());
-
-            params.put("customerReview",reviewparams);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonParser jsonParser = new JsonParser();
-        JsonObject gsonObject = (JsonObject) jsonParser.parse(params.toString());
-        Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
-        ApiCallDataController.getInstance().loadServerApiCall(ApiCallDataController.getInstance().serverApi.addDoctorReview(currentModel.getAccessToken(), gsonObject), "addDoctorReview");
-    }
-   /* private void joinChat(String userID, String roomid) {
-        JsonObject feedObj = new JsonObject();
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("roomID", roomid);
-            jsonObject.put("userID", userID);
-            JsonParser jsonParser = new JsonParser();
-            feedObj = (JsonObject) jsonParser.parse(jsonObject.toString());
-            Log.e("ChatJSON:", " " + feedObj);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.e("socket11", "message" + mSocket.id());
-        mSocket.emit("subscribe", jsonObject);
-    }
-
-    private Emitter.Listener onNewMessage = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            ((Activity) context1).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("response for socket", " chat message" + data.toString());
-                    String response;
-                    String message = null;
-                    JSONObject JsonObj;
-                    try {
-                        JsonObj = new JSONObject(data.toString());
-                        response = JsonObj.getString("response");
-                        message = JsonObj.getString("message");
-
-                        if (response.equals("3")) {
-                            Intent i = new Intent(context1, PatientChatActivity.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            i.putExtra("docId", appointmentDataList.get(pos).getDoctorMedicalPersonnelID());
-                            i.putExtra("appointmentID", appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID());
-                            i.putExtra("docName", txtName.getText().toString());
-                            i.putExtra("isOnline",appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().isOnline());
-                            i.putExtra("docPic", ServerApi.img_home_url + appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getProfilePic());
-                            context1.startActivity(i);
-                            *//*
-                            context1.startActivity(new Intent(context1, PatientChatActivity.class)
-                                     //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    .putExtra("docId", appointmentDataList.get(pos).getDoctorMedicalPersonnelID())
-                                    .putExtra("appointmentID", appointmentDataList.get(pos).getAppointmentDetails().getAppointmentID())
-                                    .putExtra("docName", txtName.getText().toString())
-                                    .putExtra("docPic", ServerApi.img_home_url + appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getProfilePic()));
-*//*
-
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-    };*/
-
-   /* private Emitter.Listener onNewMessage = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            ((Activity) context1).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    Log.e("response for socket", " chat message" + data.toString());
-                    String response;
-                    String message = null;
-                    JSONObject JsonObj;
-                    try {
-                        JsonObj = new JSONObject(data.toString());
-                        response = JsonObj.getString("response");
-                        message = JsonObj.getString("message");
-
-                        if (response.equals("3")) {
-                            if (JsonObj.getJSONObject("messageData").optString("UserEmail").equals("PatientID") ||
-                                    JsonObj.getJSONObject("messageData").optString("UserEmail").equals("PatientID")) {
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //Toast.makeText(Chating_activity.this,message,Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    };*/
 
 }

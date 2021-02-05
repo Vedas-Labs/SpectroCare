@@ -37,6 +37,7 @@ import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.DataBase.TestFactorDataController;
 import com.vedas.spectrocare.DataBase.UrineResultsDataController;
+import com.vedas.spectrocare.DataBaseModels.PatientModel;
 import com.vedas.spectrocare.DataBaseModels.UrineresultsModel;
 import com.vedas.spectrocare.Location.LocationTracker;
 import com.vedas.spectrocare.R;
@@ -315,6 +316,7 @@ public class CollectSampleActivity extends AppCompatActivity {
         return ((int) (Math.random()*(maximum - minimum))) + minimum;
     }
     private void loadAddUrineResultsApi(ArrayList<TestFactors> testResults) {
+       PatientModel objModel= PatientLoginDataController.getInstance().currentPatientlProfile;
         JSONObject urineParams = new JSONObject();
         JSONArray testITemsArray = new JSONArray();
         try {
@@ -342,6 +344,8 @@ public class CollectSampleActivity extends AppCompatActivity {
             urineParams.put("isFasting", isFasting);
             urineParams.put("sampleCollectedOn", currentTime);
             urineParams.put("testedTime", currentTime);
+            urineParams.put("testedPersonName", objModel.getFirstName()+" "+objModel.getLastName());
+
             urineParams.put("byWhom", "patient");
             urineParams.put("byWhomID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
             urineParams.put("patientID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());

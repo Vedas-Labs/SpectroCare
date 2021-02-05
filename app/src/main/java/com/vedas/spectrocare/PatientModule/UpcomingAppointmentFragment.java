@@ -93,7 +93,7 @@ public class UpcomingAppointmentFragment extends Fragment {
         mainLayout = (RelativeLayout) view.findViewById(R.id.mainLayout);
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorOrange);
-        //​mSwipeRefreshLayout.setColorSchemeResources(R.color.colorOrange);
+        //â€‹mSwipeRefreshLayout.setColorSchemeResources(R.color.colorOrange);
         recyclerView = view.findViewById(R.id.list);
         ed_search = view.findViewById(R.id.search);
         refreshShowingDialog = new RefreshShowingDialog(getContext());
@@ -110,7 +110,7 @@ public class UpcomingAppointmentFragment extends Fragment {
         accessInterfaceMethod();
 
         if(PatientAppointmentsDataController.getInstance().allappointmentsList.size()>0){
-           // PatientAppointmentsDataController.getInstance().allappointmentsList.clear();
+            // PatientAppointmentsDataController.getInstance().allappointmentsList.clear();
             PatientAppointmentsDataController.getInstance().upcomingAppointmentsList.clear();
             PatientAppointmentsDataController.getInstance().pastAppointmentsList.clear();
             sortedUpcomingList.clear();
@@ -156,7 +156,7 @@ public class UpcomingAppointmentFragment extends Fragment {
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() > 0) {
                     Log.e("dssssssss", "call" + s.toString());
-                  //  filterArray(s.toString().toLowerCase());
+                    //  filterArray(s.toString().toLowerCase());
                 }
             }
 
@@ -242,7 +242,7 @@ public class UpcomingAppointmentFragment extends Fragment {
                                 sortResultsBasedOnTime(PatientAppointmentsDataController.getInstance().allappointmentsList);
                                 sortedUpcomingList = PatientAppointmentsDataController.getInstance().upcomingAppointmentsList;
                                 loadRecyclerView();
-                               // upComingAdapter.filterList(sortedUpcomingList);
+                                // upComingAdapter.filterList(sortedUpcomingList);
                             }
                         }
                     } catch (Exception e) {

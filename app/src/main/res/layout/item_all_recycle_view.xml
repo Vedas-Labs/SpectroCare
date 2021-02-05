@@ -117,9 +117,9 @@
           android:textColor="@color/colorWhite"
           android:background="@drawable/btn_boarder"
           android:backgroundTint="@color/colorOrange"
-          android:layout_below="@id/txt_doc_profession"
+          android:layout_below="@id/txt_infection_name"
           android:layout_alignParentRight="true"
-          android:layout_margin="15dp"
+          android:layout_marginBottom="10dp"
           android:text="View"/>
     </RelativeLayout>
 

@@ -302,6 +302,7 @@
         android:windowSoftInputMode="stateHidden|adjustPan" />
     <activity android:name=".BLEConnectionModule.FileViewControllerActivity" />
     <activity android:name=".BLEConnectionModule.HtmltoPdfConversionActivity" />
+    <activity android:name=".PatientModule.DoctorRatingActivity"/>
 
     <provider
         android:name="androidx.core.content.FileProvider"

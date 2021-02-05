@@ -127,7 +127,8 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         familyList = new ArrayList<>();
         clickListeners();
         accessInterfaceMethods();
-        diseaseLayout.performClick();
+        diagnosisLayout.performClick();
+       // diseaseLayout.performClick();
         Intent intent = getIntent();
         if (intent.hasExtra("disease")) {
             String intetName = intent.getStringExtra("disease");
@@ -226,8 +227,6 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         diagnosisAdapter = new DiagnosisAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
         surgeryAdapter = new PatientSurgeryAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
         txtRecordName = findViewById(R.id.txt_records);
-
-
     }
 
     @Override
