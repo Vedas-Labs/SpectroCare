@@ -804,4 +804,10 @@ public interface ServerApi {
   @POST("patient/generalinfo/doctorreview")
   Call<JsonObject> addDoctorReview(@Header("x-access-token") String accessToken, @Body JsonObject body);
 
+  //hospital/categories/fetch
+  @POST("hospital/categories/fetch")
+  Call<JsonObject> categoriesFetch(@Header("x-access-token") String accessToken, @Body JsonObject body);
+
+  @POST("hospital/getDoctorsByCategory")
+  Call<JsonObject> getDoctorsByCategory(@Header("x-access-token") String accessToken, @Body JsonObject body);
 }

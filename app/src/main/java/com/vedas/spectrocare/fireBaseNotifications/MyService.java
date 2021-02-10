@@ -114,6 +114,11 @@ public class MyService extends FirebaseMessagingService {
 
                  intent = new Intent(this, PatientHomeActivity.class)
                         .putExtra("isFromNotificaton","Invoice");
+            }else if(remoteMessage.getData().get("messageType").contains("ChatMessage")){
+                Log.e("remotemsgwithinvoice", "asfnj" + remoteMessage.getData());
+
+                intent = new Intent(this, PatientHomeActivity.class)
+                        .putExtra("isFromNotificaton","Invoice");
             }
             PendingIntent pendingIntent = PendingIntent.getActivity(this, (int)System.currentTimeMillis(), intent, PendingIntent.FLAG_ONE_SHOT);
             notificationHandle(remoteMessage,pendingIntent,notificationManager);

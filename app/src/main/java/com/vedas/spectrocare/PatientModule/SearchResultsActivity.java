@@ -21,12 +21,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.squareup.picasso.Picasso;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
+import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientDocResponseModel.DepartmentResponseModel;
 import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
+import com.vedas.spectrocare.model.CategoryItemModel;
 import com.vedas.spectrocare.model.DoctorsItemModel;
 
 import org.json.JSONArray;
@@ -59,6 +61,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     RefreshShowingDialog showingDialog;
     TextView txt_selectedDept;
     String deptName = "";
+    String category = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +78,25 @@ public class SearchResultsActivity extends AppCompatActivity {
         searchEdit = findViewById(R.id.edt_search);
         searchResultView = findViewById(R.id.serch_result_view);
         txt_selectedDept = findViewById(R.id.txt_search_by);
-
+        accessInterfaceMethods();
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 deptName = null;
             } else {
                 deptName = extras.getString("deptname");
-                txt_selectedDept.setText(deptName);
+                category = extras.getString("category");
+                Log.e("extras", "onResponse: " + deptName + category);
+                if (deptName != null) {
+                    txt_selectedDept.setText(deptName);
+                    DocDepartmentAPI();
+                } else {
+                    txt_selectedDept.setText(category);
+                    DocCategoryAPI();
+                }
+
             }
-        } else {
-            deptName = "";
         }
-        DocDepartmentAPI();
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +137,61 @@ public class SearchResultsActivity extends AppCompatActivity {
         resultAdapter.filterList(filterdNames);
     }
 
+    public void DocCategoryAPI() {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("byWhomID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
+            params.put("byWhom", "patient");
+            params.put("category", txt_selectedDept.getText().toString()/*"Dermatology"*/);
+            params.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject gsonObject = (JsonObject) jsonParser.parse(params.toString());
+        Log.e("ServiceResponse", "onResponse: " + gsonObject.toString());
+        ApiCallDataController.getInstance().loadjsonApiCall(ApiCallDataController.getInstance().serverJsonApi.getDoctorsByCategory(PatientLoginDataController.getInstance().currentPatientlProfile.getAccessToken(), gsonObject), "fetchcategoriesdoctors");
+
+    }
+
+    private void accessInterfaceMethods() {
+        ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
+            @Override
+            public void successCallBack(JSONObject jsonObject, String curdOpetaton) {
+                try {
+                    if (jsonObject.getString("response").equals("3")) {
+                        showingDialog.hideRefreshDialog();
+                        if (curdOpetaton.equals("fetchcategoriesdoctors")) {
+                            try {
+                                JSONArray jsonArray = jsonObject.getJSONArray("medicalPersonnels");
+                                if (jsonArray.length() > 0) {
+                                    Log.e("medicalPersonnels", "call" + jsonArray);
+                                    for (int l = 0; l < jsonArray.length(); l++) {
+                                        Gson gson = new Gson();
+                                        String jsonString = jsonArray.getJSONObject(l).toString();
+                                    }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "No Doctors Found.", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void failureCallBack(String failureMsg) {
+                showingDialog.hideRefreshDialog();
+                Toast.makeText(getApplicationContext(), failureMsg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void DocDepartmentAPI() {
         Retrofit rFit = new Retrofit.Builder().baseUrl(ServerApi.home_url)
                 .addConverterFactory(GsonConverterFactory.create()).build();
@@ -151,22 +215,24 @@ public class SearchResultsActivity extends AppCompatActivity {
                 Log.e("response", "res" + response.body());
                 showingDialog.hideRefreshDialog();
                 responseModel = response.body();
-                if (responseModel.getResponse() == 3) {
-                    if(responseModel.getMedicalPersonnels().size()>0) {
-                        searchResultView.setLayoutManager(new LinearLayoutManager(SearchResultsActivity.this));
-                        searchResultView.setNestedScrollingEnabled(false);
-                        medicList = responseModel.getMedicalPersonnels();
-                        for (int i = 0; i < responseModel.getMedicalPersonnels().size(); i++) {
-                            searchedList.add(new DoctorsItemModel(responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getProfilePic(),
-                                    responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getFirstName() +
-                                            responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getLastName(),
-                                    responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getDepartment()));
-                            resultAdapter = new SearchResultAdapter(SearchResultsActivity.this, searchedList);
-                            searchResultView.setAdapter(resultAdapter);
+                if (response.body() != null) {
+                    if (responseModel.getResponse() == 3) {
+                        if (responseModel.getMedicalPersonnels().size() > 0) {
+                            searchResultView.setLayoutManager(new LinearLayoutManager(SearchResultsActivity.this));
+                            searchResultView.setNestedScrollingEnabled(false);
+                            medicList = responseModel.getMedicalPersonnels();
+                            for (int i = 0; i < responseModel.getMedicalPersonnels().size(); i++) {
+                                searchedList.add(new DoctorsItemModel(responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getProfilePic(),
+                                        responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getFirstName() +
+                                                responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getLastName(),
+                                        responseModel.getMedicalPersonnels().get(i).getProfile().getUserProfile().getDepartment()));
+                                resultAdapter = new SearchResultAdapter(SearchResultsActivity.this, searchedList);
+                                searchResultView.setAdapter(resultAdapter);
 
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No Doctors Found.", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
-                        Toast.makeText(getApplicationContext(), "No Doctors Found.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -206,9 +272,9 @@ public class SearchResultsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     PatientMedicalRecordsController.getInstance().medicalPersonnelModel = responseModel.getMedicalPersonnels().get(holder.getAdapterPosition());
                     //context.startActivity(new Intent(context, PatientBookAppointmentActivity.class));
-                    MedicalPersonnelModel obj=PatientMedicalRecordsController.getInstance().medicalPersonnelModel;
+                    MedicalPersonnelModel obj = PatientMedicalRecordsController.getInstance().medicalPersonnelModel;
                     context.startActivity(new Intent(context, PatientBookAppointmentActivity.class)
-                            .putExtra("docName", obj.getProfile().getUserProfile().getFirstName()+" "+ obj.getProfile().getUserProfile().getLastName())
+                            .putExtra("docName", obj.getProfile().getUserProfile().getFirstName() + " " + obj.getProfile().getUserProfile().getLastName())
                             .putExtra("docProfi", obj.getProfile().getUserProfile().getDepartment())
                             .putExtra("docId", obj.getProfile().getUserProfile().getMedical_personnel_id())
                             .putExtra("docProfile", obj.getProfile().getUserProfile().getProfilePic()));

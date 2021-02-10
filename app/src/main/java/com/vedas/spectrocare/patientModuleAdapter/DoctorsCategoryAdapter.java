@@ -1,12 +1,14 @@
 package com.vedas.spectrocare.patientModuleAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.vedas.spectrocare.PatientModule.SearchResultsActivity;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.model.CategoryItemModel;
 import com.vedas.spectrocare.model.DoctorsItemModel;
@@ -36,6 +38,15 @@ public class DoctorsCategoryAdapter extends RecyclerView.Adapter<DoctorsCategory
     public void onBindViewHolder(@NonNull DoctorsCategoryAdapter.DoctoresCategiryHolder holder, int position) {
         holder.imgIcon.setImageResource(categoryItemList.get(position).getCategoryIcon());
         holder.txtTitle.setText(categoryItemList.get(position).getCategoryTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(context, SearchResultsActivity.class);
+                i.putExtra("category",categoryItemList.get(holder.getAdapterPosition()).getCategoryTitle());
+                context.startActivity(i);
+
+            }
+        });
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.model.CategoryItemModel;
@@ -27,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DoctorsDepartmentActivity extends AppCompatActivity {
-    ArrayList<CategoryItemModel> departmentList;
+    ArrayList<CategoryItemModel> sorteddepartmentList=new ArrayList<>();
     RecyclerView departmentView;
     DoctorsDepartmentAdapter doctorsDepartmentAdapter;
     ImageView imgArrowback;
@@ -36,19 +37,12 @@ public class DoctorsDepartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_department);
-        //searchByDepartmentAPI();
         departmentView = findViewById(R.id.department_list_view);
         imgArrowback = findViewById(R.id.img_back_arrow);
         edtSearchByDepartment = findViewById(R.id.edt_search);
-        departmentList = new ArrayList();
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Elderly Services"));
-        departmentList.add(new CategoryItemModel(R.drawable.cardiovascular_1, "Cardiology"));
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Endocrinology Care"));
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Gastroentrology"));
-        departmentList.add(new CategoryItemModel(R.drawable.ent, "ENT"));
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Dermatology"));
-        departmentList.add(new CategoryItemModel(R.drawable.sample_image, "Family Practice"));
-        doctorsDepartmentAdapter = new DoctorsDepartmentAdapter(DoctorsDepartmentActivity.this,departmentList);
+
+        sorteddepartmentList= PatientMedicalRecordsController.getInstance().doctorsDepartmentList;
+        doctorsDepartmentAdapter = new DoctorsDepartmentAdapter(DoctorsDepartmentActivity.this,sorteddepartmentList);
         departmentView.setLayoutManager(new LinearLayoutManager(DoctorsDepartmentActivity.this));
         departmentView.setNestedScrollingEnabled(false);
         departmentView.setAdapter(doctorsDepartmentAdapter);
@@ -59,60 +53,43 @@ public class DoctorsDepartmentActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         edtSearchByDepartment.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() > 0) {
+                    Log.e("dssssssss", "call" + s.toString());
+                    //  filterArray(s.toString().toLowerCase());
+                }else{
+
+                }
             }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
             }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (s.toString().length() > 0) {
+                    Log.e("dssssssss", "call" + s.toString());
+                    filter(s.toString().toLowerCase());
+                }else {
+                    doctorsDepartmentAdapter.filterList(PatientMedicalRecordsController.getInstance().doctorsDepartmentList);
+                }
+
             }
         });
-
     }
     private void filter(String text) {
-        //new array list that will hold the filtered data
         ArrayList<CategoryItemModel> filterdNames = new ArrayList<>();
-
-        //looping through existing elements
-        for (CategoryItemModel s : departmentList) {
-            //if the existing elements contains the search input
-            if (s.getCategoryTitle().toLowerCase().contains(text.toLowerCase())) {
+        for (CategoryItemModel s : PatientMedicalRecordsController.getInstance().doctorsDepartmentList) {
+            if (s.getCategoryTitle().toLowerCase().startsWith(text.toLowerCase())) {
                 filterdNames.add(s);
             }
         }
-
-        doctorsDepartmentAdapter.filterList(filterdNames);
+        sorteddepartmentList=filterdNames;
+        doctorsDepartmentAdapter.filterList(sorteddepartmentList);
     }
-/*
-    public void searchByDepartmentAPI(){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ServerApi.home_url)
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        SearchByDepartmentMode departmentMode = new SearchByDepartmentMode("","",
-                "","","");
-        ServerApi s = retrofit.create(ServerApi.class);
-
-        Call<ResponseBody> departmentDataCall = s.searchByDepart(departmentMode);
-        departmentDataCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e("yem vachindante!","!!!"+response.message());
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-    }
-*/
 
 }

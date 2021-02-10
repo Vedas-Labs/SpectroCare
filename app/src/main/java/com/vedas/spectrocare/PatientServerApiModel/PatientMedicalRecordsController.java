@@ -64,7 +64,11 @@ public class PatientMedicalRecordsController {
     public CategoryItemModel selectedCategoryItemModel=null;
     public TestItemsModel selectedTestItem=null;
 
+    //using in doctorsactivity
     public ArrayList<MedicalPersonnelModel> doctorProfleList;
+    public ArrayList<CategoryItemModel> doctorsDepartmentList;
+    public ArrayList<CategoryItemModel> doctorsCategoryList;
+
     public AppointmentArrayModel selectedappointmnetModel=null;
     /*public ArrayList<DoctorDetailsModel> latestSearchDoctorsList;
     public DoctorDetailsModel selectedDoctorDetailsModel=null;
@@ -103,6 +107,9 @@ public class PatientMedicalRecordsController {
         invoiceList=new ArrayList<>();
         inboxNotificationList=new ArrayList<>();
         chatRoomMessageList=new ArrayList<>();
+
+        doctorsDepartmentList=new ArrayList<>();
+        doctorsCategoryList=new ArrayList<>();
     }
 
 }
