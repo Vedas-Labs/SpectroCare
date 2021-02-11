@@ -140,7 +140,7 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                 } else if(appointmentDataList.get(holder.getAdapterPosition()).getAppointmentDetails().getAppointmentStatus().equals("Completed")){
                     arrayModel = appointmentDataList.get(pos);
                     PatientMedicalRecordsController.getInstance().selectedappointmnetModel=arrayModel;
-                    context1.startActivity(new Intent(context1, DoctorRatingActivity.class));
+                    context1.startActivity(new Intent(context1, AppointmentDetailsActivity.class));
                 } else {
                     arrayModel = appointmentDataList.get(pos);
                     PatientMedicalRecordsController.getInstance().selectedappointmnetModel=arrayModel;
@@ -261,11 +261,6 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                     Log.e("mmmmmmmmmm", "call" + appointmentDataList.get(pos).getAppointmentDetails().getAppointmentStatus());
                     PatientMedicalRecordsController.getInstance().selectedappointmnetModel = appointmentDataList.get(pos);
                     context1.startActivity(new Intent(context1, AppointmentCancelActivity.class));
-                  /*  context1.startActivity(new Intent(context1, AppointmentCancelActivity.class)
-                            .putExtra("appointmentDetails", appointmentDataList.get(pos))
-                            .putExtra("docName", appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getFirstName() + " " +
-                                    appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getLastName()));
-              */
                 }
             }
         });
@@ -277,14 +272,6 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                 drawable.setColor(context1.getResources().getColor(R.color.colorAccent));
                 PatientMedicalRecordsController.getInstance().selectedappointmnetModel = appointmentDataList.get(pos);
                 context1.startActivity(new Intent(context1, AppointmentDetailsActivity.class));
-               /* arrayModel = appointmentDataList.get(pos);
-                drawable.setColor(context1.getResources().getColor(R.color.colorAccent));
-                context1.startActivity(new Intent(context1, AppointmentDetailsActivity.class)
-                        .putExtra("sampleObject", arrayModel)
-                        .putExtra("docPic", ServerApi.img_home_url + appointmentDataList.get(pos).getDoctorDetails().getProfile().getUserProfile().getProfilePic()));
-                Gson gson = new Gson();
-                String json = gson.toJson(arrayModel);
-                Log.e("dadd", "d" + json);*/
 
             }
         });

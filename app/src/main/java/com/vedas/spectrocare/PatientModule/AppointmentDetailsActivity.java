@@ -29,8 +29,8 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
     ImageView imgBack;
     CircularImageView imgCircle;
     ImageView imgUp, imgDown;
-    TextView txtCancelReason,txt_reason;
-    RelativeLayout rl_reason;
+    TextView txtCancelReason, txt_reason;
+    RelativeLayout rl_reason, rl_prescrioins, rl_comments;
     int i;
     boolean down;
     String formattedDate;
@@ -53,8 +53,11 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
     public void casting() {
         down = true;
         imgCircle = findViewById(R.id.img);
-        rl_reason=findViewById(R.id.rl_reason);
-        txt_reason=findViewById(R.id.cancel_reason);
+        rl_reason = findViewById(R.id.rl_reason);
+        txt_reason = findViewById(R.id.cancel_reason);
+        rl_prescrioins = findViewById(R.id.rl_prescrtions);
+        rl_comments = findViewById(R.id.rl_comments);
+
      /*   Intent intent = getIntent();
         if (intent.hasExtra("position"))
             position = Integer.parseInt(intent.getStringExtra("position"));
@@ -91,19 +94,20 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
     public void setData() {
-       // Intent in = getIntent();
-       // if (in.hasExtra("sampleObject")) {
-        if (PatientMedicalRecordsController.getInstance().selectedappointmnetModel!=null) {
+        // Intent in = getIntent();
+        // if (in.hasExtra("sampleObject")) {
+        if (PatientMedicalRecordsController.getInstance().selectedappointmnetModel != null) {
             // AppointmetModel dene = (AppointmetModel)in.getSerializableExtra("sampleObject");
             //AppointmentArrayModel appointmentArrayModel = (AppointmentArrayModel) in.getSerializableExtra("sampleObject");
-            AppointmentArrayModel appointmentArrayModel =PatientMedicalRecordsController.getInstance().selectedappointmnetModel;
+            AppointmentArrayModel appointmentArrayModel = PatientMedicalRecordsController.getInstance().selectedappointmnetModel;
 
             if (appointmentArrayModel.getAppointmentDetails().getAppointmentDate().contains("/")) {
                 txtDate.setText(appointmentArrayModel.getAppointmentDetails().getAppointmentDate());
 
             } else {
-                Picasso.get().load(ServerApi.img_home_url+appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getProfilePic()).placeholder(R.drawable.image).into(imgCircle);
+                Picasso.get().load(ServerApi.img_home_url + appointmentArrayModel.getDoctorDetails().getProfile().getUserProfile().getProfilePic()).placeholder(R.drawable.image).into(imgCircle);
                 long ll = Long.parseLong(appointmentArrayModel.getAppointmentDetails().getAppointmentDate());
                 Date currentDate = new Date(ll);
                 SimpleDateFormat jdff = new SimpleDateFormat("yyyy-MM-dd");
@@ -147,16 +151,35 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                 txt_reason.setText(appointmentArrayModel.getAppointmentDetails().getReasonForCancellation());
             } else {
                 imgDown.setVisibility(View.GONE);
-               // rl_reason.setVisibility(View.GONE);
+                // rl_reason.setVisibility(View.GONE);
             }
+
+            if (appointmentArrayModel.getAppointmentDetails().getAppointmentStatus().equals("Completed")) {
+                rl_prescrioins.setVisibility(View.VISIBLE);
+                rl_comments.setVisibility(View.VISIBLE);
+            } else {
+                rl_prescrioins.setVisibility(View.GONE);
+                rl_comments.setVisibility(View.GONE);
+            }
+
+            rl_prescrioins.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), PatientMedicationRecordActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
+            rl_comments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), DoctorRatingActivity.class)
+                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
         }
-       /* txtReasonForVisit.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getReason());
-        txtConsultent.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getAppointmentStatus());
-        txtDocName.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getDocName());
-        txtDocSpec.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getSpecialization());
-        txtApprove.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getApprove());
-        txtCardNo.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getCardNo());
-        textTimings.setText(PatientAppointmentController.getInstance().getAppointmentList().get(position).getTimeSlot()
-        +" | "+PatientAppointmentController.getInstance().getAppointmentList().get(position).getTime());*/
     }
 }

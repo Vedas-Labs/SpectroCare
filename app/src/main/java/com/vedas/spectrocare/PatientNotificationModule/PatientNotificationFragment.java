@@ -1,5 +1,6 @@
 package com.vedas.spectrocare.PatientNotificationModule;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +38,9 @@ import com.vedas.spectrocare.PatientServerApiModel.InboxNotificationModel;
 import com.vedas.spectrocare.PatientServerApiModel.InvoiceModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
+import com.vedas.spectrocare.activities.LoginActivity;
+import com.vedas.spectrocare.activities.MedicalPersonaSignupView;
+import com.vedas.spectrocare.activities.MedicalPersonalSignupPresenter;
 import com.vedas.spectrocare.activities.SelectUserActivity;
 import com.vedas.spectrocare.patientModuleAdapter.PatientNotificationAdapter;
 
@@ -51,7 +55,7 @@ import java.util.List;
  * Use the {@link PatientNotificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PatientNotificationFragment extends Fragment {
+public class PatientNotificationFragment extends Fragment implements MedicalPersonaSignupView {
     View notificationView;
     TextView txtToday;
     ImageView deleteAll;
@@ -62,8 +66,6 @@ public class PatientNotificationFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    boolean isRefresh = true;
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -119,11 +121,7 @@ public class PatientNotificationFragment extends Fragment {
                         new MyButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                isRefresh=false;
-                                Log.e("onClickInvoice", "dd" + isRefresh);
-                                if(isRefresh==false) {
-                                    showDeleteDialog(pos, "Single");
-                                }
+                                showDeleteDialog(pos, "Single");
                             }
                         }));
             }
@@ -217,10 +215,7 @@ public class PatientNotificationFragment extends Fragment {
                         if (jsonObject.getString("response").equals("3")) {
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
-                                    Log.e("zxcvb", "dd" + isRefresh+jsonObject.toString());
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.remove(PatientMedicalRecordsController.getInstance().inboxNotificationModel);
-                                    isRefresh=true;
-                                    Log.e("deleteInvoice", "dd" + isRefresh+jsonObject.toString());
                                     notificationAdapter.notifyDataSetChanged();
                                     showDeleteAllButton();
                                     refreshShowingDialog.hideRefreshDialog();
@@ -259,7 +254,6 @@ public class PatientNotificationFragment extends Fragment {
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.clear();
-                                    isRefresh=true;
                                     notificationAdapter.notifyDataSetChanged();
                                     deleteAll.setVisibility(View.GONE);
                                     refreshShowingDialog.hideRefreshDialog();
@@ -323,8 +317,7 @@ public class PatientNotificationFragment extends Fragment {
     }
 
     public void showDeleteDialog(int pos, String all) {
-        Log.e("logggg", "out");
-        final Dialog dialog = new Dialog(getContext());
+      final Dialog  dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.alert_abort);
@@ -367,6 +360,7 @@ public class PatientNotificationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isNetworkConnected()) {
+                    dialog.dismiss();
                     refreshShowingDialog.showAlert();
                     if (all.contains("All")) {
                         inboxDeleteAllApi();
@@ -376,7 +370,8 @@ public class PatientNotificationFragment extends Fragment {
                         deleteInboxApi();
                     }
                 } else {
-                    refreshShowingDialog.hideRefreshDialog();
+                    dialog.dismiss();
+                    dialogeforCheckavilability("Alert", "please check your connection ", "Ok");
                 }
             }
         });
@@ -386,5 +381,12 @@ public class PatientNotificationFragment extends Fragment {
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    @Override
+    public void dialogeforCheckavilability(String title, String message, String ok) {
+        MedicalPersonalSignupPresenter presenter = new MedicalPersonalSignupPresenter(this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
+        presenter.dialogebox(alertBuilder, title, message, ok);
     }
 }
