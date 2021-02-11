@@ -623,7 +623,7 @@ public interface ServerApi {
   Call<JsonObject> deleteAllImmuApi(@Header("x-access-token") String accessToken, @Body JsonObject body);
 
   @POST("hospital/getDoctorsByDept")
-  Call<DepartmentResponseModel> getDoctorsByDept(@Header("x-access-token") String accessToken, @Body JsonObject body);
+  Call<JsonObject> getDoctorsByDept(@Header("x-access-token") String accessToken, @Body JsonObject body);
 
   @Multipart
   @POST("patient/medicalrecord/illness/surgicalrecord/")
