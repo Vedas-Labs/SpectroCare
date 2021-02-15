@@ -1640,10 +1640,10 @@ public class PatientChatActivity extends AppCompatActivity {
                                             messageList.add(messageModel);
                                         }
 
-                                        Log.e("sixxxxx", "ee " + messageList.get(0).getMessages().size());
+                                      //  Log.e("sixxxxx", "ee " + messageList.get(0).getMessages().size());
                                     }
-                                    Log.e("sixxxxx", "ff " + messageList.get(0).getMessages().size());
-                                    Log.e("listu", "sizu" + messageList.get(0).getMessages().size());
+                                   // Log.e("sixxxxx", "ff " + messageList.get(0).getMessages().size());
+                                   // Log.e("listu", "sizu" + messageList.get(0).getMessages().size());
                                     ChatDataController.getInstance().setMessageModelArrayList(messageList);
 
                                     chatRecyclerView.setAdapter(chatAdapter);
@@ -1976,5 +1976,7 @@ public class PatientChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.e("KGF","Chapter 2");
+        joinChat(PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId(),
+                appointmentID);
     }
 }

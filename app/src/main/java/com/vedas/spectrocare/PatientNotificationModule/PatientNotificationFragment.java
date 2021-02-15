@@ -1,6 +1,5 @@
 package com.vedas.spectrocare.PatientNotificationModule;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,19 +29,22 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
+import com.vedas.spectrocare.PatientChat.ChatDataController;
+import com.vedas.spectrocare.PatientChat.MessageModel;
+import com.vedas.spectrocare.PatientChat.MessagesListModel;
+import com.vedas.spectrocare.PatientChat.SocketIOHelper;
 import com.vedas.spectrocare.PatientModule.PatientHomeActivity;
 import com.vedas.spectrocare.PatientServerApiModel.InboxNotificationModel;
 import com.vedas.spectrocare.PatientServerApiModel.InvoiceModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
-import com.vedas.spectrocare.activities.LoginActivity;
-import com.vedas.spectrocare.activities.MedicalPersonaSignupView;
-import com.vedas.spectrocare.activities.MedicalPersonalSignupPresenter;
 import com.vedas.spectrocare.activities.SelectUserActivity;
 import com.vedas.spectrocare.patientModuleAdapter.PatientNotificationAdapter;
 
@@ -48,17 +52,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PatientNotificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PatientNotificationFragment extends Fragment implements MedicalPersonaSignupView {
+public class PatientNotificationFragment extends Fragment {
     View notificationView;
     TextView txtToday;
     ImageView deleteAll;
+    ArrayList<MessageModel> messageList;
     RecyclerView todayNotification, yesterdayNotification;
     PatientNotificationAdapter notificationAdapter;
     RefreshShowingDialog refreshShowingDialog;
@@ -66,10 +81,12 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    boolean isRefresh = true;
+    ArrayList<InboxNotificationModel> listOfChat;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    Socket mSocket;
     public PatientNotificationFragment() {
         // Required empty public constructor
     }
@@ -107,6 +124,10 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
         notificationView = inflater.inflate(R.layout.fragment_patient_notification, container, false);
         notificationAdapter = new PatientNotificationAdapter(getContext());
         refreshShowingDialog = new RefreshShowingDialog(getContext());
+        messageList = new ArrayList<>();
+        mSocket = SocketIOHelper.getInstance().socket;
+        SocketIOHelper.getInstance().listenEvents();
+        mSocket.on("getRoomMessages", onNewMessage);
         accessInterfaceMethods();
         fetchAppointmentDetails();
         inboxMessagesFetchApi();
@@ -121,7 +142,11 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
                         new MyButtonClickListener() {
                             @Override
                             public void onClick(int pos) {
-                                showDeleteDialog(pos, "Single");
+                                isRefresh=false;
+                                Log.e("onClickInvoice", "dd" + isRefresh);
+                                if(isRefresh==false) {
+                                    showDeleteDialog(pos, "Single");
+                                }
                             }
                         }));
             }
@@ -146,10 +171,12 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
     }
 
     public void casting() {
+        listOfChat = new ArrayList<>();
         todayNotification = notificationView.findViewById(R.id.today_notification_view);
         yesterdayNotification = notificationView.findViewById(R.id.yesterday_notification_view);
         txtToday = notificationView.findViewById(R.id.txt_today);
         deleteAll = notificationView.findViewById(R.id.delete);
+
         showDeleteAllButton();
         txtToday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,12 +237,16 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
         ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
             @Override
             public void successCallBack(JSONObject jsonObject, String curdOpetaton) {
+
                 if (curdOpetaton.equals("deleteInvoice")) {
                     try {
                         if (jsonObject.getString("response").equals("3")) {
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
+                                    Log.e("zxcvb", "dd" + isRefresh+jsonObject.toString());
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.remove(PatientMedicalRecordsController.getInstance().inboxNotificationModel);
+                                    isRefresh=true;
+                                    Log.e("deleteInvoice", "dd" + isRefresh+jsonObject.toString());
                                     notificationAdapter.notifyDataSetChanged();
                                     showDeleteAllButton();
                                     refreshShowingDialog.hideRefreshDialog();
@@ -241,8 +272,26 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
                             }
                             refreshShowingDialog.hideRefreshDialog();
                             showDeleteAllButton();
-                            Log.e("inboxlist", "call" + PatientMedicalRecordsController.getInstance().inboxNotificationList.size());
+                            Gson gson = new Gson();
+                            String strMsg = gson.toJson(PatientMedicalRecordsController.getInstance().inboxNotificationList);
+                            Log.e("inboxlist", "call" + strMsg);
                             notificationAdapter.notifyDataSetChanged();
+                            for (int m = 0; m < resultArray.length(); m++) {
+                                JSONObject obj = resultArray.getJSONObject(m);
+                                Gson gson1 = new Gson();
+                                if (obj.getJSONObject("messageBody").getJSONObject("data").get("messageType").equals("ChatMessage")){
+                                    InboxNotificationModel inboxNotificationModel = gson.fromJson(obj.toString(), InboxNotificationModel.class);
+                                    listOfChat.add(inboxNotificationModel);
+
+
+                                }
+                                String listOf = gson1.toJson(listOfChat);
+                                Log.e("listOfChat",":: "+listOf);
+
+                            }
+                            int countA= Collections.frequency(listOfChat, "APNTIDlgvudPnb");
+                            Log.e("count","is:: "+countA);
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -254,6 +303,7 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
                             try {
                                 if (jsonObject.getString("response").equals("3")) {
                                     PatientMedicalRecordsController.getInstance().inboxNotificationList.clear();
+                                    isRefresh=true;
                                     notificationAdapter.notifyDataSetChanged();
                                     deleteAll.setVisibility(View.GONE);
                                     refreshShowingDialog.hideRefreshDialog();
@@ -288,6 +338,7 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
                         e.printStackTrace();
                     }
                 }
+                // removeDuplicatesFromList(PatientMedicalRecordsController.getInstance().inboxNotificationList);
 
             }
 
@@ -297,6 +348,23 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
             }
         });
     }
+
+/*
+    public ArrayList<InboxNotificationModel> removeDuplicatesFromList(ArrayList<InboxNotificationModel> appointmentList){
+        Map<String, InboxNotificationModel> map = new HashMap<String, InboxNotificationModel>();
+        ArrayList<InboxNotificationModel> newPersonList = new ArrayList<>();
+        for(InboxNotificationModel p:appointmentList){
+            map.put(p.getMessageBody().getData().getAppointmentID(),p);
+        }
+        Iterator itr=map.keySet().iterator();
+        while (itr.hasNext()) {
+            String id =  itr.next().toString();
+            newPersonList.add((InboxNotificationModel)map.get(id));
+        }
+        return newPersonList;
+    }
+*/
+
     private void deleteInboxApi() {
         JSONObject fetchObject = new JSONObject();
         try {
@@ -317,7 +385,8 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
     }
 
     public void showDeleteDialog(int pos, String all) {
-      final Dialog  dialog = new Dialog(getContext());
+        Log.e("logggg", "out");
+        final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.alert_abort);
@@ -360,7 +429,6 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
             @Override
             public void onClick(View v) {
                 if (isNetworkConnected()) {
-                    dialog.dismiss();
                     refreshShowingDialog.showAlert();
                     if (all.contains("All")) {
                         inboxDeleteAllApi();
@@ -370,9 +438,9 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
                         deleteInboxApi();
                     }
                 } else {
-                    dialog.dismiss();
-                    dialogeforCheckavilability("Alert", "please check your connection ", "Ok");
+                    refreshShowingDialog.hideRefreshDialog();
                 }
+                dialog.dismiss();
             }
         });
         dialog.show();
@@ -383,10 +451,75 @@ public class PatientNotificationFragment extends Fragment implements MedicalPers
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
-    @Override
-    public void dialogeforCheckavilability(String title, String message, String ok) {
-        MedicalPersonalSignupPresenter presenter = new MedicalPersonalSignupPresenter(this);
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
-        presenter.dialogebox(alertBuilder, title, message, ok);
+    private void fetchChat(String userID, String roomID) {
+        JsonObject feedObj = new JsonObject();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("roomID", roomID);
+            jsonObject.put("userID", userID);
+            jsonObject.put("isDoctor", false);
+            JsonParser jsonParser = new JsonParser();
+            feedObj = (JsonObject) jsonParser.parse(jsonObject.toString());
+            //print parameter
+            Log.e("ChatJSON:", " " + jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
+        Log.e("socket12", "message" + mSocket.id());
+        mSocket.emit("getRoomMessages", jsonObject);
     }
+    private Emitter.Listener onNewMessage = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    Log.e("caaalll", "cc");
+                    Log.e("response for socket", " chat message" + data.toString());
+                    String response;
+                    String message = null;
+                    JSONObject jsonObj;
+                    try {
+                        jsonObj = new JSONObject(data.toString());
+                        response = jsonObj.getString("response");
+                        message = jsonObj.getString("message");
+                        Log.e("rreeess", "ponse" + message);
+                        if (Integer.parseInt(response) == 3) {
+                            if (message.equals("Room fetched successfully")) {
+
+                                Log.e("length of", "room" + jsonObj.getJSONArray("room").length());
+                                JSONArray responseArray = jsonObj.getJSONArray("room");
+                                for (int l = 0; l < responseArray.length(); l++) {
+                                    Gson gson = new Gson();
+                                    String jsonString = jsonObj.getJSONArray("room").getJSONObject(l).toString();
+                                    MessageModel messageModel = gson.fromJson(jsonString, MessageModel.class);
+                                    String kk = gson.toJson(messageModel);
+                                    Log.e("logaa", "dafaa" + messageModel.getMessages().size());
+                                    if (messageList.size() > 0) {
+                                        Log.e("sixxxxx", "vvv" + messageList.size());
+                                        messageList.set(0, messageModel);
+
+                                        Log.e("sixxxxx", "dd" + messageList.get(0).getMessages().size());
+                                        Log.e("sixxxxx", "vvv" + messageList.size());
+                                    } else {
+                                        messageList.add(messageModel);
+                                    }
+                                      Log.e("sixxxxx", "ee " + messageList.get(0).getMessages().size());
+                                }
+
+                            }
+                            Log.e("calling", "call");
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //Toast.makeText(Chating_activity.this,message,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    };
+
 }

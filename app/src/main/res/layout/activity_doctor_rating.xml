@@ -46,6 +46,7 @@
             >
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/img_doc"
+
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:src="@drawable/profile_1"
@@ -54,10 +55,20 @@
                 android:layout_marginTop="20dp"
                 />
 
+=======
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:src="@drawable/profile_1"
+                android:scaleType="fitCenter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                />
+
             <TextView
                 android:id="@+id/txt_doc_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_below="@id/img_doc"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="5dp"
@@ -67,6 +78,16 @@
                 android:text="Dr. Viswanath Reddy"
                 android:textColor="@color/colorblack"
                 android:textSize="16sp" />
+
+                android:text="Dr. Viswanath Reddy"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/colorblack"
+                android:layout_below="@id/img_doc"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"
+                />
+
             <TextView
                 android:id="@+id/txt_doc_prof"
                 android:layout_width="wrap_content"
@@ -85,11 +106,13 @@
                 android:layout_margin="5dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/txt_doc_prof"
+
                 android:numStars="5"
                 android:progressBackgroundTint="@color/colorBorderGrey"
                 android:progressTint="@color/colorOrange"
                 android:rating="0"
                 android:secondaryProgressTint="@android:color/transparent"
+
                 />
             <TextView
                 android:id="@+id/txt_comment"
@@ -117,6 +140,8 @@
                 android:lineHeight="25dp"
                 android:background="@drawable/btn_boarder"
                 android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="50dp"
+
                 />
             <EditText
                 android:layout_width="match_parent"

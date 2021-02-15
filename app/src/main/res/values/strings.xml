@@ -76,5 +76,5 @@
     <string name="samplecollect">Sample Collected On</string>
     <string name="occultblood">Occult blood means microscopic blood and should be negative in your urine.The causes of positive test result can be associated with kidney infections or kidney stones.Sometimes, the test is a false positive which may be caused by dehydration and excessive exercise.Please consult with your doctors for more information.</string>
     <string name="Today"><u>Today</u></string>
-    <string name="notification_channel_id">com.star.startasker.test</string>
+    <string name="notification_channel_id">com.vedas.spectrocare</string>
 </resources>

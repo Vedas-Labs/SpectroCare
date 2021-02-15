@@ -302,7 +302,6 @@
         android:windowSoftInputMode="stateHidden|adjustPan" />
     <activity android:name=".BLEConnectionModule.FileViewControllerActivity" />
     <activity android:name=".BLEConnectionModule.HtmltoPdfConversionActivity" />
-    <activity android:name=".PatientModule.DoctorRatingActivity"/>
 
     <provider
         android:name="androidx.core.content.FileProvider"
@@ -314,9 +313,18 @@
           android:resource="@xml/file_paths" />
     </provider>
 
-    <service
+   <!-- <service
         android:name=".fireBaseNotifications.MyService"
         android:exported="false">
+      <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+      </intent-filter>
+    </service>-->
+    <service
+        android:name=".fireBaseNotifications.MyService"
+        android:exported="false"
+        android:directBootAware="true">
       <intent-filter>
         <action android:name="com.google.firebase.MESSAGING_EVENT" />
       </intent-filter>

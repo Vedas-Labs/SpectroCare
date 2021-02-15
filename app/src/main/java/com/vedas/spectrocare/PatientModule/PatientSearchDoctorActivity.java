@@ -38,6 +38,7 @@ public class PatientSearchDoctorActivity extends AppCompatActivity {
     RecyclerView doctorsListView;
     DoctorMessageAdapter doctorMessageAdapter;
     ImageView imgBack;
+    int count=0;
     RefreshShowingDialog refreshShowingDialog;
     SwipeRefreshLayout mSwipeRefreshLayout;
     EditText ed_search;
@@ -202,6 +203,13 @@ public class PatientSearchDoctorActivity extends AppCompatActivity {
                                     Log.e("xxxxxxxx", "length" + chatRoomMessageModel.getRoomID());
                                 }
                                 Log.e("tempList", "length" + i+tempList.size());
+
+                                for (int k=0;k<tempList.size();k++){
+                                    if (tempList.get(k).getIsRead().equals("true")){
+                                        count = count+1;
+                                    }
+                                }
+                                Log.e("count","is:: "+count);
                                 PatientMedicalRecordsController.getInstance().chatRoomMessageList.add(i,tempList);
                             }
                             doctorMessageAdapter = new DoctorMessageAdapter(PatientSearchDoctorActivity.this,PatientMedicalRecordsController.getInstance().chatRoomMessageList);
