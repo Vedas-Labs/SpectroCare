@@ -9,21 +9,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
+import com.vedas.spectrocare.PatientDocResponseModel.ReviewsModel;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
 import com.vedas.spectrocare.patientModuleAdapter.TabsAdapter;
 
+import java.util.ArrayList;
+
 public class DoctorSummeryActivity extends AppCompatActivity {
     ImageView backImg;
     CircularImageView docPic;
-    TextView txtDoc, txtSpecial;
+    TextView txtDoc, txtSpecial,txt_ratings;
+    RatingBar ratingBar;
     Button book;
 
     @Override
@@ -35,6 +40,8 @@ public class DoctorSummeryActivity extends AppCompatActivity {
         docPic = findViewById(R.id.img_doc_pic);
         txtSpecial = findViewById(R.id.txt_doc_specail);
         book=findViewById(R.id.btn_book);
+        ratingBar=findViewById(R.id.ratingBar1);
+        txt_ratings=findViewById(R.id.rating_text);
 
         loadSelectedDoctorData();
 
@@ -88,6 +95,16 @@ public class DoctorSummeryActivity extends AppCompatActivity {
             txtDoc.setText("DR" + "." + obj.getProfile()
                     .getUserProfile().getFirstName() + " " + obj.getProfile()
                     .getUserProfile().getLastName());
+
+            ArrayList<ReviewsModel> reviewsList=obj.getReviews();
+            if(reviewsList.size()>0) {
+                ReviewsModel reviewsModel = reviewsList.get(reviewsList.size() - 1);
+                ratingBar.setRating(Float.parseFloat(reviewsModel.getRatings()));
+                txt_ratings.setText(reviewsModel.getRatings());
+            }else{
+                ratingBar.setRating(0.0f);
+                txt_ratings.setText("0.0");
+            }
 
             book.setOnClickListener(new View.OnClickListener() {
                 @Override

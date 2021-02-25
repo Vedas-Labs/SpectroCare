@@ -113,8 +113,6 @@
                             android:id="@+id/scrollView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-
-
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -331,47 +329,6 @@
                                         android:textColor="@color/colorGrey"
                                         android:textSize="14sp" />
                                 </com.google.android.material.textfield.TextInputLayout>
-
-
-                                <!--
-                                <EditText
-                                    android:id="@+id/edt_bmi"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/txt_bmi"
-                                    android:layout_marginTop="5dp"
-                                    android:hint="BMI"
-                                    android:clickable="false"
-                                    android:editable="false"
-                                    android:background="@drawable/corners"
-                                    android:padding="8dp"
-                                    android:singleLine="true"
-                                    android:textColor="#545870"
-                                    android:textSize="16sp"
-                                    android:textStyle="normal" />
--->
-                                <!--
-                                <TextView
-                                    android:id="@+id/txt_blood_pressure"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Blood Pressure in bpm"
-                                    android:layout_below="@id/layout_waistLine"
-                                    android:textColor="#545870"
-                                    android:textSize="16sp" />
--->
-
-                                <!-- <TextView
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_marginTop="10dp"
-                                     android:layout_below="@id/edt_waistline"
-                                     android:layout_toRightOf="@id/txt_blood_pressure"
-                                     android:text="@string/star"
-                                     android:textColor="#c35d0f"
-                                     android:textSize="16sp" />-->
-
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/layout_blood_pressure"
                                     android:layout_width="match_parent"
@@ -393,21 +350,6 @@
                                         android:textSize="14sp" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
-                                <!--
-                                <EditText
-                                    android:id="@+id/edt_blood_pressure"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/txt_blood_pressure"
-                                    android:layout_marginTop="5dp"
-                                    android:hint="Blood Pressure"
-                                    android:background="@drawable/corners"
-                                    android:padding="8dp"
-                                    android:singleLine="true"
-                                    android:textColor="#545870"
-                                    android:textSize="16sp"
-                                    android:textStyle="normal" />
--->
                                 <RelativeLayout
                                     android:id="@+id/conditon"
                                     android:layout_width="match_parent"
@@ -456,14 +398,14 @@
                     <RelativeLayout
                         android:id="@+id/physical_record_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="270dp"
+                        android:layout_height="350dp"
                         android:visibility="gone"
                         android:layout_below="@id/btn_layout">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
-                            android:layout_height="270dp"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -492,9 +434,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:visibility="gone"
+                android:layout_below="@+id/card_view"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@id/card_view">
+                android:layout_marginLeft="20dp">
                 <TextView
                     android:id="@+id/txt_title"
                     android:layout_width="match_parent"

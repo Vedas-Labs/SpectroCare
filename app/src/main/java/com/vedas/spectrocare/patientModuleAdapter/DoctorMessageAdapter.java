@@ -53,7 +53,7 @@ public class DoctorMessageAdapter extends RecyclerView.Adapter<DoctorMessageAdap
         holder.txt_msg.setText(object.get(object.size() - 1).getMessage());
         String string = object.get(object.size() - 1).getTimeStamp();
         long s = Long.parseLong(string);
-        holder.txt_date.setText("Chated on " + TimeAgo.getTimeAgo(s / 1000));
+        holder.txt_date.setText("Chatted on " + TimeAgo.getTimeAgo(s / 1000));
 
         //AppointmentArrayModel model = loadDoctorsDetails(object.get(position).getRoomID());
         if (object.get(position).getDoctorName() != null && object.get(position).getProfile() != null) {

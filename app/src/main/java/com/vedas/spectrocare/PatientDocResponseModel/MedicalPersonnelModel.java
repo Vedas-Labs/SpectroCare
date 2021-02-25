@@ -5,11 +5,10 @@ import com.vedas.spectrocare.PatientAppointmentModule.DoctorProfileModel;
 import java.util.ArrayList;
 
 public class MedicalPersonnelModel {
-
     ProfileModel profile;
     ServiceTimeModel serviceTime;
     ArrayList<ClinicalServices> clinicalServices;
-    ArrayList reviews;
+    ArrayList<ReviewsModel> reviews;
     ArrayList<TrackingModel> tracking;
 
     public ProfileModel getProfile() {
@@ -36,14 +35,13 @@ public class MedicalPersonnelModel {
         this.clinicalServices = clinicalServices;
     }
 
-    public ArrayList getReviews() {
+    public ArrayList<ReviewsModel> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList reviews) {
+    public void setReviews(ArrayList<ReviewsModel> reviews) {
         this.reviews = reviews;
     }
-
     public ArrayList<TrackingModel> getTracking() {
         return tracking;
     }

@@ -69,6 +69,15 @@ public class DoctorsActivity extends AppCompatActivity {
         fetchCategoriesApiFromHospital();
 
 
+
+       /* doctorsList.add(new CategoryItemModel(R.drawable.diabetescare_1, "Diabetic Care"));
+        doctorsList.add(new CategoryItemModel(R.drawable.cardiovascular_1, "cardiovascular Care"));
+        doctorsList.add(new CategoryItemModel(R.drawable.kidney_1, "Kidney Care"));
+        doctorsList.add(new CategoryItemModel(R.drawable.dentalcare_1, "Dental Care"));
+        doctorsList.add(new CategoryItemModel(R.drawable.cough_cold_1, "Cough & cold"));
+        doctorsList.add(new CategoryItemModel(R.drawable.stomochcre_1, "Stomach Care "));
+*/
+
         txtByCategory = findViewById(R.id.txt_view_all);
         txtByDepartment = findViewById(R.id.txt_all_view);
         layoutElderly = findViewById(R.id.elderly_layout);

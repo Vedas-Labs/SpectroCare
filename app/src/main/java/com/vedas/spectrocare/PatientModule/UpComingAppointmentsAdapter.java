@@ -74,7 +74,6 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
         this.appointmentDataList = appointmentDataList;
         mSocket = SocketIOHelper.getInstance().socket;
         // mSocket.on("join", onNewMessage);
-
         // mSocket.connect();
     }
 
@@ -126,6 +125,7 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
         }
         if (!appointmentDataList.get(position).getDoctorDetails().getProfile().getUserProfile().getProfilePic().isEmpty())
             Picasso.get().load(ServerApi.img_home_url + appointmentDataList.get(position).getDoctorDetails().getProfile().getUserProfile().getProfilePic()).placeholder(R.drawable.image).into(holder.imgPic);
+
         holder.mainLayout.setBackgroundDrawable(gd);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
