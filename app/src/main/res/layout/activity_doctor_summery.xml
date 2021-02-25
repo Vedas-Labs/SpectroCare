@@ -23,7 +23,6 @@
 
 
             <com.mikhaellopez.circularimageview.CircularImageView
-
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/sample_image"
@@ -80,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="4.5"
                 android:layout_margin="3dp"
+                android:id="@+id/rating_text"
                 android:layout_toRightOf="@+id/ratingBar1"
                 android:layout_below="@+id/doc_layout"
                 android:textColor="@color/colorWhite"/>

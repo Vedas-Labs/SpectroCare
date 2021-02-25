@@ -52,7 +52,7 @@ public class BillingAndPaymentAdapter extends RecyclerView.Adapter<BillingAndPay
         InvoiceModel invoiceModel = PatientMedicalRecordsController.getInstance().invoiceList.get(position);
         holder.txt_invoice.setText(invoiceModel.getInvoiceNumber());
         holder.txt_complete.setText(invoiceModel.getPaymentStatus());
-        holder.txt_money.setText(invoiceModel.getTotalAmount());
+        holder.txt_money.setText(invoiceModel.getTotalAmount()+" $");
         loadTimeDateToLabel(holder,invoiceModel);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,6 @@ public class BillingAndPaymentAdapter extends RecyclerView.Adapter<BillingAndPay
                 context.startActivity(new Intent(context, InvoiceDetailsActivity.class));
             }
         });
-
     }
 
     @Override

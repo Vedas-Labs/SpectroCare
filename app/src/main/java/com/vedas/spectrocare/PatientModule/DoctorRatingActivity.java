@@ -1,7 +1,6 @@
 package com.vedas.spectrocare.PatientModule;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -86,7 +84,6 @@ public class DoctorRatingActivity extends AppCompatActivity implements MedicalPe
             doctorDept.setText(model.getDoctorDetails().getProfile().getUserProfile().getDepartment());
             if (!model.getDoctorDetails().getProfile().getUserProfile().getProfilePic().isEmpty())
                 Picasso.get().load(ServerApi.img_home_url + model.getDoctorDetails().getProfile().getUserProfile().getProfilePic()).placeholder(R.drawable.image).into(profilePic);
-
         }
     }
 
@@ -170,7 +167,6 @@ public class DoctorRatingActivity extends AppCompatActivity implements MedicalPe
             }
         });
     }
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 

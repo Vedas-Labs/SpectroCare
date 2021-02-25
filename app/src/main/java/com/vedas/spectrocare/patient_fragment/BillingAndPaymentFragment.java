@@ -58,7 +58,7 @@ public class BillingAndPaymentFragment extends Fragment {
     private String mParam2;
     BillingAndPaymentAdapter billingAdapter;
     RecyclerView billingRecycle;
-    TextView next_amount, next_duedate;
+    TextView next_amount, next_duedate,txt_cash;
     Button btn_pay;
     RelativeLayout rl_nextpay;
     RefreshShowingDialog refreshShowingDialog;
@@ -97,6 +97,7 @@ public class BillingAndPaymentFragment extends Fragment {
         next_duedate = paymentView.findViewById(R.id.next_duedate);
         btn_pay = paymentView.findViewById(R.id.btn_pay);
         rl_nextpay=paymentView.findViewById(R.id.nextPayLayout);
+        txt_cash=paymentView.findViewById(R.id.txt_cash);
 
         PatientMedicalRecordsController.getInstance().invoiceObject = null;
         billingAdapter = new BillingAndPaymentAdapter(getContext());
@@ -188,11 +189,23 @@ public class BillingAndPaymentFragment extends Fragment {
         }
         Log.e("unpaidlist", "call" + unpaidList.size());
         if(unpaidList.size()>0){
+         float cost=   calculateUnpaidInvociesCost();
+            Log.e("totalamount","call"+cost);
+
+            txt_cash.setText(String.valueOf(cost)+"$");
             sortUrineResultsBasedOnTime(unpaidList);
         }else {
             rl_nextpay.setVisibility(View.GONE);
         }
       //  Collections.reverse(unpaidList);
+    }
+
+    private float calculateUnpaidInvociesCost(){
+        float cost=0.0f;
+        for (InvoiceModel model : unpaidList) {
+            cost= cost+Float.parseFloat(model.getTotalAmount());
+        }
+        return cost;
     }
 
     public ArrayList<InvoiceModel> sortUrineResultsBasedOnTime(ArrayList<InvoiceModel> urineResults) {
