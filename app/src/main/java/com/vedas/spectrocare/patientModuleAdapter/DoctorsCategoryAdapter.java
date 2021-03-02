@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.vedas.spectrocare.PatientModule.SearchResultsActivity;
+import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.model.CategoryItemModel;
 import com.vedas.spectrocare.model.DoctorsItemModel;
@@ -36,6 +38,8 @@ public class DoctorsCategoryAdapter extends RecyclerView.Adapter<DoctorsCategory
 
     @Override
     public void onBindViewHolder(@NonNull DoctorsCategoryAdapter.DoctoresCategiryHolder holder, int position) {
+        Picasso.get().load("http://34.231.177.197:3000"+ categoryItemList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.imgIcon);
+
         holder.imgIcon.setImageResource(categoryItemList.get(position).getCategoryIcon());
         holder.txtTitle.setText(categoryItemList.get(position).getCategoryTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -36,7 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Doctor
 
     @Override
     public void onBindViewHolder(@NonNull DoctorsHolder holder, int position) {
-        Picasso.get().load("http://34.231.177.197:3000"+PatientMedicalRecordsController.getInstance().doctorsCategoryList.get(position).getImage()).placeholder(R.drawable.doctors).into(holder.doctorsItemIcon);
+        Picasso.get().load("http://34.231.177.197:3000"+PatientMedicalRecordsController.getInstance().doctorsCategoryList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.doctorsItemIcon);
         holder.doctorsItemName.setText(PatientMedicalRecordsController.getInstance().doctorsCategoryList.get(position).getCategoryTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
