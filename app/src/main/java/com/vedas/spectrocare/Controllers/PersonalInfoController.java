@@ -404,4 +404,9 @@ public class PersonalInfoController {
 
         return java_date;
     }
+    public boolean loadHourFormateToEntireApp(){
+        SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        boolean hourFormat = sharedPreferences.getBoolean("is24Hour", false);
+        return hourFormat;
+    }
 }
