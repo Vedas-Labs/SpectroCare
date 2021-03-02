@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
@@ -202,7 +203,7 @@ public class DoctorsActivity extends AppCompatActivity {
                             JSONArray departmentsArray=recordsObj.getJSONArray("departments");
                             for(int i=0;i<departmentsArray.length();i++){
                                 JSONObject obj=departmentsArray.getJSONObject(i);
-                                PatientMedicalRecordsController.getInstance().doctorsDepartmentList.add(new CategoryItemModel(R.drawable.sample_image, obj.getString("department")));
+                                PatientMedicalRecordsController.getInstance().doctorsDepartmentList.add(new CategoryItemModel(R.drawable.sample_image, obj.getString("department"), obj.getString("image")));
                             }
                             doctorDeptAdapter.notifyDataSetChanged();
                         }
@@ -305,8 +306,9 @@ public class DoctorsActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull DoctorSearchHolder holder, int position) {
-            holder.doctorsItemIcon.setImageResource(PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getCategoryIcon());
+          //  holder.doctorsItemIcon.setImageResource(PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getCategoryIcon());
             holder.doctorsItemName.setText(PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getCategoryTitle());
+            Picasso.get().load("http://34.231.177.197:3000"+PatientMedicalRecordsController.getInstance().doctorsCategoryList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.doctorsItemIcon);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
