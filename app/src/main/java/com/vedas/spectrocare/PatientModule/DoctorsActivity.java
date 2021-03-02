@@ -218,7 +218,7 @@ public class DoctorsActivity extends AppCompatActivity {
                             JSONArray departmentsArray=recordsObj.getJSONArray("categories");
                             for(int i=0;i<departmentsArray.length();i++){
                                 JSONObject obj=departmentsArray.getJSONObject(i);
-                                PatientMedicalRecordsController.getInstance().doctorsCategoryList.add(new CategoryItemModel(R.drawable.sample_image, obj.getString("category")));
+                                PatientMedicalRecordsController.getInstance().doctorsCategoryList.add(new CategoryItemModel(R.drawable.sample_image, obj.getString("category"),obj.getString("image")));
                             }
                             categoryAdapter.notifyDataSetChanged();
                         }
