@@ -308,7 +308,7 @@ public class DoctorsActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull DoctorSearchHolder holder, int position) {
           //  holder.doctorsItemIcon.setImageResource(PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getCategoryIcon());
             holder.doctorsItemName.setText(PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getCategoryTitle());
-            Picasso.get().load("http://34.231.177.197:3000"+PatientMedicalRecordsController.getInstance().doctorsCategoryList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.doctorsItemIcon);
+            Picasso.get().load("http://34.231.177.197:3000"+PatientMedicalRecordsController.getInstance().doctorsDepartmentList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.doctorsItemIcon);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

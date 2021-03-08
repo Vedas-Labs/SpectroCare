@@ -31,11 +31,12 @@ public class DoctorsDepartmentAdapter extends RecyclerView.Adapter<DoctorsDepart
     @Override
     public DoctorsDepartmentAdapter.DepartmentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View departmentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list_item_view, parent, false);
-        return new DepartmentHolder(departmentView);    }
+        return new DepartmentHolder(departmentView);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull final DoctorsDepartmentAdapter.DepartmentHolder holder, int position) {
-        Picasso.get().load("http://34.231.177.197:3000"+ departmentItemList.get(position).getImage()).placeholder(R.drawable.sample_image).into(holder.imgDepartmentIcon);
+        Picasso.get().load("http://34.231.177.197:3000"+ departmentItemList.get(position).getImage()).placeholder(R.drawable.kidney_2).into(holder.imgDepartmentIcon);
 
      //   holder.imgDepartmentIcon.setImageResource(departmentItemList.get(position).getCategoryIcon());
         holder.txtDepartmentTitle.setText(departmentItemList.get(position).getCategoryTitle());
