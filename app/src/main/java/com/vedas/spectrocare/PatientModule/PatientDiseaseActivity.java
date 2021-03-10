@@ -280,7 +280,6 @@ public class PatientDiseaseActivity extends AppCompatActivity implements Medical
                 }
             }
             txtTime.setText(clockTime);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
