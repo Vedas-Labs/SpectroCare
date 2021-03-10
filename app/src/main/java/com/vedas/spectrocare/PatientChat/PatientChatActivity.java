@@ -543,17 +543,30 @@ public class PatientChatActivity extends AppCompatActivity {
             }
         });
 
+/*
+        if (isLastVisible()){
+            Log.e("dfs","st"+isLastVisible());
+
+            //  isBottom=true;
+            isReadMsgs();
+        }
+*/
+
         chatRecyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (isLastVisible()){
-                    Log.e("dfs","st"+isBottom);
+                Log.e("dfs","st"+isLastVisible());
 
-                  //  isBottom=true;
-                     isReadMsgs();
+                if (isLastVisible()){
+                    Log.e("dfs","st"+isLastVisible());
+
+                    //  isBottom=true;
+                    isReadMsgs();
                 }
+
             }
         });
+
 
         edtSendingTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -845,6 +858,7 @@ public class PatientChatActivity extends AppCompatActivity {
         gal = cameraBottomSheetDialog.findViewById(R.id.gallery);
         file = cameraBottomSheetDialog.findViewById(R.id.file);
         canc = cameraBottomSheetDialog.findViewById(R.id.cancel);
+        file.setVisibility(View.GONE);
         FrameLayout bottomSheet = (FrameLayout) cameraBottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         bottomSheet.setBackground(null);
 
@@ -1534,7 +1548,7 @@ public class PatientChatActivity extends AppCompatActivity {
         @Override
         public void call(Object... args) {
             JSONObject data = (JSONObject) args[0];
-            Log.e("caaalll", "cc");
+            Log.e("isReadCall", "cc");
             Log.e("onine", " chat message" + data.toString());
             try {
                 Log.e("musususud", " chat message" + data.toString());
@@ -1546,6 +1560,7 @@ public class PatientChatActivity extends AppCompatActivity {
                         Log.e("dadf","adf");
                         for (int m=0;m<ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size();m++){
                             if (!ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(m).isRead){
+                              //  if (!ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(m).getUserID().equals(patientID))
                                 ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(m).setRead(true);
                             }
                         }
@@ -1707,7 +1722,7 @@ public class PatientChatActivity extends AppCompatActivity {
 
                                         Log.e("idOf","doc:: "+messageModel.getUserID());
                                         if (!messageModel.getUserID().equals(patientID)){
-                                           // isReadMsgs();
+
                                             Log.e("idOf","doc:: "+messageModel.getUserID());
                                             for (int m=0;m<ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1;m++){
                                                 if (!ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().get(m).isRead){
@@ -1719,6 +1734,7 @@ public class PatientChatActivity extends AppCompatActivity {
                                                     ,ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size());
                                             chatRecyclerView.scrollToPosition(ChatDataController.getInstance().getMessageModelArrayList().get(0).getMessages().size()-1);
                                            // chatAdapter.setHasStableIds(true);
+                                          //  isReadMsgs();
                                         }
                                     } else {
                                         listModel.clear();

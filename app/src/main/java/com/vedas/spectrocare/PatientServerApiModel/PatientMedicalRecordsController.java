@@ -3,6 +3,7 @@ import android.content.Context;
 
 import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientDocResponseModel.MedicalPersonnelModel;
+import com.vedas.spectrocare.PatientDocResponseModel.TrackingModel;
 import com.vedas.spectrocare.model.AppointmetModel;
 import com.vedas.spectrocare.model.CategoryItemModel;
 import com.vedas.spectrocare.model.ServicesModel;
@@ -26,9 +27,10 @@ public class PatientMedicalRecordsController {
     public ArrayList<PatientSurgicalObject> surgeryObjectArrayList;
     public PatientSurgicalObject selectedSurgeryObject;
 
+    public ArrayList<TrackingModel> trackingModelList;
+
     public ArrayList<DiagnosisObject> diagnosisObjectArrayList;
     public DiagnosisObject selectedDiagnosisObject;
-
 
     public ArrayList<ImmunizationObject> immunizationArrayList;
     public ImmunizationObject selectedImmunizationObject;
@@ -107,6 +109,8 @@ public class PatientMedicalRecordsController {
         invoiceList=new ArrayList<>();
         inboxNotificationList=new ArrayList<>();
         chatRoomMessageList=new ArrayList<>();
+
+        trackingModelList = new ArrayList<>();
 
         doctorsDepartmentList=new ArrayList<>();
         doctorsCategoryList=new ArrayList<>();

@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextRecord"
+            android:text="Text Record"
             android:textSize="16sp"
             android:layout_toRightOf="@id/img_back_arrow"
             android:layout_margin="15dp"
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/edit"
             android:layout_marginRight="15dp"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="20dp"/>

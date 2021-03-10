@@ -209,7 +209,7 @@ public class PatientSearchDoctorActivity extends AppCompatActivity {
                                         count = count+1;
                                     }
                                 }
-                                Log.e("count","is:: "+count);
+                                Log.e("coconut","is:: "+count);
                                 PatientMedicalRecordsController.getInstance().chatRoomMessageList.add(i,tempList);
                             }
                             doctorMessageAdapter = new DoctorMessageAdapter(PatientSearchDoctorActivity.this,PatientMedicalRecordsController.getInstance().chatRoomMessageList);

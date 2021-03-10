@@ -60,6 +60,7 @@ public class DoctorMessageAdapter extends RecyclerView.Adapter<DoctorMessageAdap
             holder.txt_name.setText(object.get(position).getDoctorName() );
             Picasso.get().load(object.get(position).getProfile() ).placeholder(R.drawable.image).into(holder.circularImageView);
         }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +82,7 @@ public class DoctorMessageAdapter extends RecyclerView.Adapter<DoctorMessageAdap
     public class MessageHolder extends RecyclerView.ViewHolder {
         ImageView imgMessage;
         CircularImageView circularImageView;
-        TextView txt_msg, txt_date, txt_name;
+        TextView txt_msg, txt_date, txt_name,txtUnreadCount;
 
         public MessageHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +91,7 @@ public class DoctorMessageAdapter extends RecyclerView.Adapter<DoctorMessageAdap
             txt_msg = itemView.findViewById(R.id.txt_infection_name);
             txt_name = itemView.findViewById(R.id.txt_doc_name);
             txt_date = itemView.findViewById(R.id.txt_last_seen);
+            txtUnreadCount = itemView.findViewById(R.id.txt_unread_count);
         }
     }
 

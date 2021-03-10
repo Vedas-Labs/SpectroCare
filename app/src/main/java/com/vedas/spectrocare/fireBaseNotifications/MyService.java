@@ -71,6 +71,34 @@ public class MyService extends FirebaseMessagingService {
     public MyService() {
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void handleIntent(Intent intent)
+    {
+        try
+        {
+            if (intent.getExtras() != null)
+            {
+                RemoteMessage.Builder builder = new RemoteMessage.Builder("MyFirebaseMessagingService");
+
+                for (String key : intent.getExtras().keySet())
+                {
+                    builder.addData(key, intent.getExtras().get(key).toString());
+                }
+                onMessageReceived(builder.build());
+
+            }
+            else
+            {
+                super.handleIntent(intent);
+            }
+        }
+        catch (Exception e)
+        {
+            super.handleIntent(intent);
+        }
+    }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -80,7 +108,7 @@ public class MyService extends FirebaseMessagingService {
         Log.e("onMessagerecived", "Called");
         Log.e("remoteMessagecaaaa", "asfnj1 " + remoteMessage.getData().get("appointmentID"));
         Gson gson = new Gson();
-        String kk = gson.toJson(remoteMessage.getData());
+        String kk = gson.toJson(remoteMessage);
         Log.e("messageData", "is:: " + kk);
         for (int m = 0; m< PatientAppointmentsDataController.getInstance().allappointmentsList.size(); m++){
             Log.e("remoteMessagecaaaa", "asfnj2 " + remoteMessage.getData().get("appointmentID"));

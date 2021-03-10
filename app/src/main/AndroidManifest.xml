@@ -2,349 +2,405 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vedas.spectrocare">
-  <uses-feature android:name="android.hardware.camera" />
-  <uses-feature android:name="android.hardware.camera.autofocus" />
-  <uses-feature
-      android:glEsVersion="0x00020000"
-      android:required="true" />
-  <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.RECORD_AUDIO" />
-  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE" />
 
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE" />
+    <application
+        android:name=".PatientChat.ChatApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_app_icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".PatientChat.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientChat.FullImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientVideoCallModule.VideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientVideoCallModule.SettingsActivity"
+            android:parentActivityName=".PatientVideoCallModule.VideoActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity" />
+        </activity>
+        <activity android:name=".PatientMoreModule.CalenderNew" />
+        <activity
+            android:name=".PatientModule.PatientPhysicalRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientPhysicalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientForgotPassordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMoreModule.PatientLanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientNotificationModule.PatientNotificationTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMyDeviceModule.MyDevicesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMyDeviceModule.AboutDeviceActiivty"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMyDeviceModule.SoftwareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientChat.PatientChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientBookAppointmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMyDeviceModule.PatientMyDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMoreModule.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMoreModule.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMoreModule.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientMoreModule.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.DateTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.AppointmentCancelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.AppointmentDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientTestRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.InvoiceDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.CollectSampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.ResultPageViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.TestMenuStartactivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.BleScanningActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientMedicinesRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientAddMedicineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientSearchDoctorActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.DiseasesListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientCalanderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientEditMedicationsRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientMedicationsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.SelectFileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientFileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientDiagnosisRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientDiagnosisActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientHospitalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientSelfExamEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientSelfExamActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientPhysicalExamActivity"
+            android:screenOrientation="portrait" />
+        <!--
+ <activity android:name=".BLEConnectionModule.BleScanningActivity"
+        android:screenOrientation="portrait"/>
+        -->
+        <activity
+            android:name=".PatientModule.PatientMedicalHistoryAddAcitivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.AddPatientImmunizationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientSurgeryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientAllergyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.AddPatientFamilyHistoryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.AddPatientDiseaseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientAllergeyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PatientModule.PatientImmunizationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientSurgeryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientFamilyHistoryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientDiseaseActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.PatientDoctorRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.PatientMedicalHistoryActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".PatientModule.AddPatientDiagnosisActivity" />
+        <activity
+            android:name=".PatientModule.PatientProfileActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".PatientModule.DoctorRatingActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".PatientModule.DoctorSummeryActivity">
 
-  <application
-      android:name=".PatientChat.ChatApplication"
-      android:allowBackup="true"
-      android:icon="@mipmap/ic_app_icon"
-      android:label="@string/app_name"
-      android:largeHeap="true"
-      android:requestLegacyExternalStorage="true"
-      android:roundIcon="@mipmap/ic_app_icon"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme"
-      android:usesCleartextTraffic="true"
-      tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".PatientChat.ChatActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientChat.FullImageActivity"
-        android:screenOrientation="portrait"/>
-
-    <activity android:name="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name="com.vedas.spectrocare.PatientVideoCallModule.SettingsActivity"
-        android:parentActivityName="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity"
-        android:screenOrientation="portrait">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.vedas.spectrocare.PatientVideoCallModule.VideoActivity" />
-    </activity>
-
-    <activity android:name=".PatientMoreModule.CalenderNew" />
-    <activity android:name=".PatientModule.PatientPhysicalRecordActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientPhysicalActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientForgotPassordActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMoreModule.PatientLanguageActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientNotificationModule.PatientNotificationTimeActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMyDeviceModule.MyDevicesActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMyDeviceModule.AboutDeviceActiivty"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMyDeviceModule.SoftwareActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientChat.PatientChatActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientBookAppointmentActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMyDeviceModule.PatientMyDeviceActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMoreModule.SettingsActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMoreModule.NotificationActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMoreModule.FeedbackActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientMoreModule.AboutActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.DateTimeActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.AppointmentCancelActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.AppointmentDetailsActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientTestRecordActivity"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity android:name=".PatientModule.InvoiceDetailsActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.CollectSampleActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.ResultPageViewActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.TestMenuStartactivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.BleScanningActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientMedicinesRecordActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientAddMedicineActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientSearchDoctorActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientMessageActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.DiseasesListActivity"
-        android:screenOrientation="portrait"
-        />
-    <activity android:name=".PatientModule.PatientCalanderActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientEditMedicationsRecordActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientMedicationsActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.SelectFileActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientFileActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientDiagnosisRecordActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientDiagnosisActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientHospitalActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientSelfExamEditActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientSelfExamActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientPhysicalExamActivity"
-        android:screenOrientation="portrait"/>
-
-   <!-- <activity android:name=".BLEConnectionModule.BleScanningActivity"
-        android:screenOrientation="portrait"/>-->
-
-    <activity android:name=".PatientModule.PatientMedicalHistoryAddAcitivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.AddPatientImmunizationActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.AddPatientSurgeryActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.AddPatientAllergyActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.AddPatientFamilyHistoryActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.AddPatientDiseaseActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".PatientModule.PatientAllergeyActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientImmunizationActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientSurgeryActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientFamilyHistoryActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".PatientModule.PatientDiseaseActivity"
-        android:windowSoftInputMode="stateHidden" />
-    <activity
-        android:name=".PatientModule.PatientDoctorRecordActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".PatientModule.PatientMedicalHistoryActivity"
-        android:launchMode="singleTop" />
-    <activity android:name=".PatientModule.AddPatientDiagnosisActivity" />
-    <activity
-        android:name=".PatientModule.PatientProfileActivity"
-        android:windowSoftInputMode="stateHidden" />
-    <activity android:name=".PatientModule.DoctorSummeryActivity">
-
-      <!--
+            <!--
       <intent-filter>
           <action android:name="android.intent.action.MAIN" />
 
           <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-      -->
-    </activity>
-    <activity android:name=".PatientModule.PatientHomeActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".activities.OtpActivity" />
-    <activity android:name=".activities.PasswordChangedActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
+            -->
+        </activity>
+        <activity
+            android:name=".PatientModule.PatientHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.OtpActivity" />
+        <activity
+            android:name=".activities.PasswordChangedActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.ResetPasswordActivity" />
+        <activity android:name=".activities.FiltersActivity" />
+        <activity
+            android:name=".activities.AppointmentsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity android:name=".activities.ResetPasswordActivity" />
-    <activity android:name=".activities.FiltersActivity" />
-    <activity
-        android:name=".activities.AppointmentsActivity"
-        android:windowSoftInputMode="stateHidden"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".activities.SplashActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.SelectUserActivity" />
+        <activity android:name=".activities.AllSurgicalRecordActivity" />
+        <activity android:name=".activities.SurgicalRecordActivity" />
+        <activity android:name=".activities.ScreeningRecordForMedicalActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.AddMedicalRecordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activities.MedicalRecordActivity" />
+        <activity
+            android:name=".activities.PatientGeneralProfileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.MyPatientActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.ChangePasswordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
-    <activity android:name=".activities.SelectUserActivity" />
-    <activity android:name=".activities.AllSurgicalRecordActivity" />
-    <activity android:name=".activities.SurgicalRecordActivity" />
-    <activity android:name=".activities.ScreeningRecordForMedicalActivity" />
-    <activity
-        android:name=".activities.LoginActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".activities.AddMedicalRecordActivity"
-        android:windowSoftInputMode="stateAlwaysHidden" />
-    <activity android:name=".activities.MedicalRecordActivity" />
-    <activity
-        android:name=".activities.PatientGeneralProfileActivity"
-        android:windowSoftInputMode="stateAlwaysHidden" />
-    <activity
-        android:name=".activities.MyPatientActivity"
-        android:windowSoftInputMode="stateAlwaysHidden" />
-    <activity
-        android:name=".activities.ChangePasswordActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan"
+        <receiver
+            android:name=".PatientChat.WifiReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="100">
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
 
-        />
-    <receiver
-        android:name=".PatientChat.WifiReceiver"
-        android:enabled="true">
-      <intent-filter android:priority="100">
-        <action android:name="android.net.wifi.STATE_CHANGE" />
-        <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-      </intent-filter>
-    </receiver>
-    <activity
-        android:name=".activities.ForgotActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".activities.MedicalPersonSignupActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity android:name=".activities.HomeActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".activities.CategoryActivity" />
-    <activity android:name=".activities.PhysicalExamActivity" />
-    <activity
-        android:name=".activities.PhysicalExamRecordActivity"
-        android:windowSoftInputMode="stateAlwaysHidden" />
-    <activity
-        android:name=".activities.FamilyRecordActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".activities.AllergiesActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity android:name=".activities.AttachmentActivity" />
-    <activity android:name=".activities.VaccinationRecordActivity" />
-    <activity android:name=".activities.ScreeningRecordActivity" />
-    <activity android:name=".activities.MedicalHistoryActivity" />
-    <activity android:name=".activities.MedicationRecordActivity" />
-    <activity android:name=".activities.MedicinesRecordActivity" />
-    <activity
-        android:name=".activities.BookAppointmentsActivity"
-        android:windowSoftInputMode="stateHidden" />
-    <activity android:name=".activities.AppointmentSummaryActivity" />
-    <activity android:name=".activities.CalendarActivity" />
-    <activity android:name=".PatientModule.PatientAppointmentsTabsActivity" />
-    <activity android:name=".PatientModule.AddPaymentMethodAactivity" />
-    <activity android:name=".PatientModule.PatientMedicationRecordActivity" />
-    <activity
-        android:name=".PatientModule.DoctorsActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".PatientModule.CategoryInPatientModuleActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity
-        android:name=".PatientModule.DoctorsDepartmentActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity android:name=".PatientModule.PatientPaymentActivity" />
-    <activity android:name=".PatientModule.PaymentStatusActivity" />
-    <activity
-        android:name=".PatientModule.SearchResultsActivity"
-        android:windowSoftInputMode="stateHidden|adjustPan" />
-    <activity android:name=".BLEConnectionModule.FileViewControllerActivity" />
-    <activity android:name=".BLEConnectionModule.HtmltoPdfConversionActivity" />
+        <activity
+            android:name=".activities.ForgotActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.MedicalPersonSignupActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.CategoryActivity" />
+        <activity android:name=".activities.PhysicalExamActivity" />
+        <activity
+            android:name=".activities.PhysicalExamRecordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.FamilyRecordActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activities.AllergiesActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activities.AttachmentActivity" />
+        <activity android:name=".activities.VaccinationRecordActivity" />
+        <activity android:name=".activities.ScreeningRecordActivity" />
+        <activity android:name=".activities.MedicalHistoryActivity" />
+        <activity android:name=".activities.MedicationRecordActivity" />
+        <activity android:name=".activities.MedicinesRecordActivity" />
+        <activity
+            android:name=".activities.BookAppointmentsActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.AppointmentSummaryActivity" />
+        <activity android:name=".activities.CalendarActivity" />
+        <activity android:name=".PatientModule.PatientAppointmentsTabsActivity" />
+        <activity android:name=".PatientModule.AddPaymentMethodAactivity" />
+        <activity android:name=".PatientModule.PatientMedicationRecordActivity" />
+        <activity
+            android:name=".PatientModule.DoctorsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.CategoryInPatientModuleActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".PatientModule.DoctorsDepartmentActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".PatientModule.PatientPaymentActivity" />
+        <activity android:name=".PatientModule.PaymentStatusActivity" />
+        <activity
+            android:name=".PatientModule.SearchResultsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".BLEConnectionModule.FileViewControllerActivity" />
+        <activity android:name=".BLEConnectionModule.HtmltoPdfConversionActivity" />
 
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="com.vedas.spectrocare.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-      <meta-data
-          android:name="android.support.FILE_PROVIDER_PATHS"
-          android:resource="@xml/file_paths" />
-    </provider>
-
-   <!-- <service
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vedas.spectrocare.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <!--
+ <service
         android:name=".fireBaseNotifications.MyService"
         android:exported="false">
       <intent-filter>
         <action android:name="com.google.firebase.MESSAGING_EVENT" />
         <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
       </intent-filter>
-    </service>-->
-    <service
-        android:name=".fireBaseNotifications.MyService"
-        android:exported="false"
-        android:directBootAware="true">
-      <intent-filter>
-        <action android:name="com.google.firebase.MESSAGING_EVENT" />
-      </intent-filter>
     </service>
-    <meta-data
-        android:name="com.google.firebase.messaging.default_notification_channel_id"
-        android:value="@string/notification_channel_id" />
-    <meta-data
-        android:name="com.google.firebase.messaging.default_notification_icon"
-        android:resource="@mipmap/ic_launcher" />
-    <meta-data
-        android:name="com.google.firebase.messaging.default_notification_color"
-        android:resource="@color/colorAccent" />
-    <!-- <meta-data
+        -->
+        <service
+            android:name=".fireBaseNotifications.MyService"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_app_icon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorpink" />
+        <!--
+ <meta-data
          android:name="firebase_messaging_auto_init_enabled"
          android:value="false" />
      <meta-data
          android:name="firebase_analytics_collection_enabled"
-         android:value="false" />-->
-
-  </application>
+         android:value="false" />
+        -->
+        <activity
+            android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="com.vedas.spectrocare.braintree" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

@@ -248,7 +248,7 @@ public class PatientPhysicalRecordActivity extends AppCompatActivity implements 
                                 title = edtTitle.getText().toString();
                                 if (!title.isEmpty()) {
                                     //     txt.setVisibility(View.GONE);
-                                    PhysicalRecordServerObject physicalExamination = new PhysicalRecordServerObject(title, "Not Examined", "Add Disc");
+                                    PhysicalRecordServerObject physicalExamination = new PhysicalRecordServerObject(title, "Not Examined", "Add description here (Optional)");
                                     recordList.add(physicalExamination);
                                     recordAdapter.notifyDataSetChanged();
                                 } else {

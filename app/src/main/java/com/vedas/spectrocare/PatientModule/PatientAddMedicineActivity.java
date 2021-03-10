@@ -56,7 +56,7 @@ public class PatientAddMedicineActivity extends AppCompatActivity {
             medicineName.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getName());
             dosage.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getDosage());
             purpose.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getPurpose());
-            duration.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getDurationDays());
+            duration.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getDurationDays()+" days");
             moreInfo.setText(PatientMedicalRecordsController.getInstance().currentListviewModel.getMoreDetails());
             String array[]=PatientMedicalRecordsController.getInstance().currentListviewModel.getFreq().split("-");
             if(Integer.parseInt(array[0]) >= 1){

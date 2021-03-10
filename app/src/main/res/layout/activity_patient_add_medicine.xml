@@ -54,6 +54,16 @@
                    android:id="@+id/l1"
                    android:layout_marginRight="10dp"
                    android:orientation="vertical">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Name of medicine"
+                       android:layout_marginTop="10dp"
+                       android:textStyle="bold"
+                       android:textColor="@color/colorpink"
+                       android:textSize="14sp"
+                       android:fontFamily="@font/montserrat_regular"
+                       />
                    <EditText
                        android:id="@+id/edt_medicine"
                        android:layout_width="match_parent"
@@ -64,11 +74,22 @@
                        android:ellipsize="end"
                        android:hint="Medicine Name"
                        android:padding="5dp"
-                       android:layout_marginTop="20dp"
+                       android:layout_marginTop="15dp"
                        android:singleLine="true"
                        android:textColor="#545870"
                        android:textSize="14sp"
                        android:textStyle="normal" />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Dosage"
+                       android:textStyle="bold"
+                       android:layout_marginTop="10dp"
+                       android:textColor="@color/colorpink"
+                       android:textSize="14sp"
+                       android:fontFamily="@font/montserrat_regular"
+                       />
+
                    <EditText
                        android:id="@+id/edt_dosage"
                        android:layout_width="match_parent"
@@ -79,7 +100,7 @@
                        android:ellipsize="end"
                        android:hint="Dosage in mg"
                        android:padding="5dp"
-                       android:layout_marginTop="20dp"
+                       android:layout_marginTop="15dp"
                        android:singleLine="true"
                        android:textColor="#545870"
                        android:textSize="14sp"
@@ -124,6 +145,17 @@
                            android:textColor="#545870"
                            />
                    </LinearLayout>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Purpose"
+                       android:layout_marginTop="10dp"
+                       android:textStyle="bold"
+                       android:textColor="@color/colorpink"
+                       android:textSize="14sp"
+                       android:fontFamily="@font/montserrat_regular"
+                       />
+
 
                    <EditText
                        android:id="@+id/edt_purpose"
@@ -141,6 +173,17 @@
                        android:textColor="#545870"
                        android:textSize="14sp"
                        android:textStyle="normal" />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Duration"
+                       android:layout_marginTop="10dp"
+                       android:textStyle="bold"
+                       android:textColor="@color/colorpink"
+                       android:textSize="14sp"
+                       android:fontFamily="@font/montserrat_regular"
+                       />
+
 
                    <EditText
                        android:id="@+id/txt_duration"
@@ -150,15 +193,25 @@
                        android:maxLines="1"
                        android:fontFamily="@font/montserrat_regular"
                        android:ellipsize="end"
-                       android:maxLength="2"
-                       android:hint="Duration"
+                       android:hint="Duration in days"
                        android:padding="5dp"
                        android:inputType="number"
-                       android:layout_marginTop="20dp"
+                       android:layout_marginTop="15dp"
                        android:singleLine="true"
                        android:textColor="#545870"
                        android:textSize="14sp"
                        android:textStyle="normal" />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="More info"
+                       android:textStyle="bold"
+                       android:layout_marginTop="10dp"
+                       android:textColor="@color/colorpink"
+                       android:textSize="14sp"
+                       android:fontFamily="@font/montserrat_regular"
+                       />
+
 
                    <EditText
                        android:id="@+id/edt_medication_description"
@@ -171,7 +224,7 @@
                        android:hint="More info"
                        android:gravity="start"
                        android:padding="5dp"
-                       android:layout_marginTop="20dp"
+                       android:layout_marginTop="15dp"
                        android:singleLine="true"
                        android:textColor="#545870"
                        android:textSize="14sp"
@@ -186,7 +239,7 @@
                    android:fontFamily="@font/montserrat_semi_bold"
                    android:background="@drawable/button_radius"
                    android:backgroundTint="#53B9c6"
-                   android:layout_marginTop="80dp"
+                   android:layout_marginTop="55dp"
                    android:layout_centerHorizontal="true"
                    android:clickable="false"
                    android:text="Add"

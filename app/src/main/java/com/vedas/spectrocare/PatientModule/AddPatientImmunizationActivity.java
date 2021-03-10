@@ -1,6 +1,7 @@
 package com.vedas.spectrocare.PatientModule;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,6 +59,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class AddPatientImmunizationActivity extends AppCompatActivity implements MedicalPersonaSignupView {
     private int mHour, mMinute;
@@ -82,6 +85,7 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
     PatientAllergyAdapter allergyAdapter;
     RecyclerView recyclerView;
     CardView rl_recyclerView;
+
     ArrayList<String> typeList = new ArrayList<>();
     int selectedPos = -1;
 
@@ -105,6 +109,7 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
 
     public void casting() {
         refreshShowingDialog=new RefreshShowingDialog(AddPatientImmunizationActivity.this);
+
         btn_save=findViewById(R.id.btn_save_changes);
         imgCal = findViewById(R.id.img_calender);
         edtTime = findViewById(R.id.edt_time);
@@ -148,7 +153,6 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
         allergyAdapter = new PatientAllergyAdapter(AddPatientImmunizationActivity.this);
         recyclerView.setLayoutManager(new LinearLayoutManager(AddPatientImmunizationActivity.this));
         recyclerView.setAdapter(allergyAdapter);
-
     }
     public void clickListeners() {
         edtDate.setOnClickListener(new View.OnClickListener() {
@@ -216,14 +220,17 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
                 imgMinDwn = mView.findViewById(R.id.img_dwn_arrow);
                 TimePicker simpleTimePicker = mView.findViewById(R.id.clock_picker);
                 simpleTimePicker.setIs24HourView(false);
+
                 txtHours = mView.findViewById(R.id.txt_hour);
                 txtMin = mView.findViewById(R.id.txt_minit);
                 Button okBtn = mView.findViewById(R.id.button_ok);
                 txtAm = mView.findViewById(R.id.txt_am);
                 txtPm = mView.findViewById(R.id.txt_pm);
                 okBtn.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
+
                         int hour, minute;
                         String am_pm;
                         if (Build.VERSION.SDK_INT >= 23 ){
@@ -234,7 +241,33 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
                             hour = simpleTimePicker.getCurrentHour();
                             minute = simpleTimePicker.getCurrentMinute();
                         }
-                        if(hour > 12) {
+
+                        if (hour == 0) {
+                            hour += 12;
+                            am_pm = "AM";
+                        } else if (hour == 12) {
+                            am_pm = "PM";
+                        } else if (hour > 12) {
+                            hour -= 12;
+                            am_pm = "PM";
+                        } else {
+                            am_pm = "AM";
+                        }
+                        if (hour<10){
+                            hours = "0"+hour;
+                        }else{
+                            hours= String.valueOf(hour);
+                        }
+                        if (minute<10){
+                            minits = "0"+minute;
+                        }else{
+                            minits = String.valueOf(minute);
+                        }
+
+                        edtTime.setText(new StringBuilder().append(hours).append(" : ").append(minits)
+                                .append(" ").append(am_pm));
+
+                       /* if(hour > 12) {
                             am_pm = "PM";
                             hour = hour - 12;
 
@@ -254,7 +287,7 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
                             minits = String.valueOf(minute);
                         }
 
-                        edtTime.setText( hours +" : "+ minits+" "+am_pm);
+                        edtTime.setText( hours +" : "+ minits+" "+am_pm);*/
                         popUp.dismiss();
 
                     }
@@ -333,42 +366,6 @@ public class AddPatientImmunizationActivity extends AppCompatActivity implements
                 .append(month).append("/").append(year));
     }
 
-    public void showTime(int hour, int min) {
-        if (hour == 0) {
-            hour += 12;
-            format = "AM";
-        } else if (hour == 12) {
-            format = "PM";
-        } else if (hour > 12) {
-            hour -= 12;
-            format = "PM";
-        } else {
-            format = "AM";
-        }
-
-        edtTime.setText(new StringBuilder().append(hour).append(" : ").append(min)
-                .append(" ").append(format));
-    }
-
-    public void pickerDialogs() {
-        // Get Current Time
-        final Calendar c = Calendar.getInstance();
-        mHour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
-
-        // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                new TimePickerDialog.OnTimeSetListener() {
-
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute) {
-                        showTime(hourOfDay, minute);
-                        //   edtTime.setText(hourOfDay + ":" + minute);
-                    }
-                }, mHour, mMinute, false);
-        timePickerDialog.show();
-    }
     private void accessInterfaceMethods() {
         ApiCallDataController.getInstance().initializeServerInterface(new ApiCallDataController.ServerResponseInterface() {
             @Override

@@ -451,24 +451,6 @@ public class PatientNotificationFragment extends Fragment {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
-    private void fetchChat(String userID, String roomID) {
-        JsonObject feedObj = new JsonObject();
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("roomID", roomID);
-            jsonObject.put("userID", userID);
-            jsonObject.put("isDoctor", false);
-            JsonParser jsonParser = new JsonParser();
-            feedObj = (JsonObject) jsonParser.parse(jsonObject.toString());
-            //print parameter
-            Log.e("ChatJSON:", " " + jsonObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
-
-        }
-        Log.e("socket12", "message" + mSocket.id());
-        mSocket.emit("getRoomMessages", jsonObject);
-    }
     private Emitter.Listener onNewMessage = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
@@ -476,7 +458,7 @@ public class PatientNotificationFragment extends Fragment {
                 @Override
                 public void run() {
                     JSONObject data = (JSONObject) args[0];
-                    Log.e("caaalll", "cc");
+                    Log.e("caaalll", "cc :: "+data.toString());
                     Log.e("response for socket", " chat message" + data.toString());
                     String response;
                     String message = null;

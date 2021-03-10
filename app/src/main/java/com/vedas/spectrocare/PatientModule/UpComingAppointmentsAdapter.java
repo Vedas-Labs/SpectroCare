@@ -107,7 +107,18 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
                 String java_date = jdff.format(currentDate);
                 // holder.txtAppointmentDate.setText(java_date);
             }
-            holder.txtTime.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime());
+            if (appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime().contains("PM")){
+                String[] formatTime = appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime().split(":");
+                if (!formatTime[0].contains("12")){
+                    int timePM = Integer.parseInt(formatTime[0])+12;
+                    holder.txtTime.setText( String.valueOf(timePM)+":"+formatTime[1]);
+                }else{
+                    holder.txtTime.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime());                }
+
+                Log.e("formated","time:: "+formatTime[0]+" , "+formatTime[1]);
+            }else{
+                holder.txtTime.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentTime());
+            }
             holder.txtStatus.setText(appointmentDataList.get(position).getAppointmentDetails().getAppointmentStatus());
         }
         GradientDrawable gd = new GradientDrawable();
@@ -303,6 +314,5 @@ public class UpComingAppointmentsAdapter extends RecyclerView.Adapter<UpComingAp
         }
 
     }
-
 
 }

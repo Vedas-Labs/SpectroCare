@@ -2,6 +2,7 @@ package com.vedas.spectrocare.patientModuleAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +28,25 @@ public class PatientSurgeryAdapter extends RecyclerView.Adapter<PatientSurgeryAd
 
     Context context;
     TextView txtDelete,txtCount;
+    String clockTime;
+    boolean isHourFormat;
     public PatientSurgeryAdapter(Context context) {
         this.context = context;
     }
 
+/*
     public PatientSurgeryAdapter(Context context, TextView txtDelete, TextView txtCount) {
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
+    }
+*/
+
+    public PatientSurgeryAdapter(Context context, TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.isHourFormat = isHourFormat;
     }
 
     @NonNull
@@ -51,22 +63,36 @@ public class PatientSurgeryAdapter extends RecyclerView.Adapter<PatientSurgeryAd
         holder.immunizationName.setText("DR. "+PatientMedicalRecordsController.getInstance().surgeryObjectArrayList.get(position).getDoctorName());
         long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().surgeryObjectArrayList.get(position).getAddedDate());
         Date d = new Date(millis);
-        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
-        Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
+        Log.e("weeekarray", "" + time[0]+time[1]+" "+time[2]);
         //load settings date formate to date feild.
         String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,String.valueOf(millis));
         holder.date.setText(value);
         //
         //holder.date.setText(time[0]);
-        holder.time.setText(time[1]+" "+time[2]);
+        String[] timeSplit = time[1].split(":");
+
+        if (isHourFormat){
+            clockTime = time[1];
+        }else{
+            if (12 < Integer.parseInt(timeSplit[0])){
+                int hr = Integer.parseInt(timeSplit[0])-12;
+                clockTime = String.valueOf(hr)+":"+timeSplit[1]+time[2];
+            }else{
+                clockTime = time[1]+" "+time[2];
+            }
+        }
+
+        holder.time.setText(clockTime);
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PatientMedicalRecordsController.getInstance().selectedPos=holder.getAdapterPosition();
                 PatientMedicalRecordsController.getInstance().selectedSurgeryObject=PatientMedicalRecordsController.getInstance().surgeryObjectArrayList.get(position);
-                context.startActivity(new Intent(context, PatientSurgeryActivity.class));
+                context.startActivity(new Intent(context, PatientSurgeryActivity.class)
+                        .putExtra("isHourFormat",isHourFormat));
             }
         });
     }

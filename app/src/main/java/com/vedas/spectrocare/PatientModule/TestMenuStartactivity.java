@@ -49,6 +49,7 @@ public class TestMenuStartactivity extends AppCompatActivity implements MedicalP
     RecyclerView urineView;
     TextView txt_testType;
     UrineAllAdpter urineAllAdpter;
+    boolean checkUrine,checkBlood;
     int selectedPos = -1;
     // int selectedItemPos = -1;
     ArrayList<TestItemsModel> urineList = new ArrayList<>();
@@ -101,13 +102,21 @@ public class TestMenuStartactivity extends AppCompatActivity implements MedicalP
         creditBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 txt_testType.setVisibility(View.GONE);
                 urineView.setVisibility(View.VISIBLE);
                 arrayList = bloodList;
-                if (isChecked) {
+                paypalBtn.setChecked(false);
+                checkBlood = isChecked;
+
+                if (!checkUrine) {
+                    //checkBoolean = false;
+                    Log.e("meow","cat0"+urineList.size());
+                    creditBtn.setChecked(true);
                     paypalBtn.setChecked(false);
                     arrayList = urineList;
                 } else {
+                    Log.e("meow","cat1");
                     paypalBtn.setChecked(true);
                     //  arrayList=urineList;
                 }
@@ -120,10 +129,16 @@ public class TestMenuStartactivity extends AppCompatActivity implements MedicalP
                 txt_testType.setVisibility(View.GONE);
                 urineView.setVisibility(View.VISIBLE);
                 arrayList = urineList;
-                if (isChecked) {
+                checkUrine = isChecked;
+                creditBtn.setChecked(false);
+
+                if (!checkBlood) {
+                    Log.e("meow","cat2"+bloodList.size());
+                    paypalBtn.setChecked(true);
                     creditBtn.setChecked(false);
                     arrayList = bloodList;
                 } else {
+                    Log.e("meow","cat3");
                     creditBtn.setChecked(true);
                     // arrayList=bloodList;
                 }
@@ -167,9 +182,11 @@ public class TestMenuStartactivity extends AppCompatActivity implements MedicalP
                                 ArrayList<TestItemsModel> list=testItemsResponseModel.getTestItems();
                                 for(int i=0;i<list.size();i++){
                                     TestItemsModel itemsModel=list.get(i);
-                                    if(itemsModel.getSpecimenType().equals("Urine")){
+                                    if(itemsModel.getSpecimenType().contains("urin")){
+                                        Log.e("itemsModel","urine: "+itemsModel.getSpecimenType());
                                         urineList.add(itemsModel);
                                     }else{
+                                        Log.e("itemsModel","blood: "+itemsModel.getSpecimenType());
                                         bloodList.add(itemsModel);
                                     }
                                 }

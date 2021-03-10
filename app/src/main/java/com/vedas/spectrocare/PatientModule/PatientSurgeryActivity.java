@@ -99,6 +99,8 @@ public class PatientSurgeryActivity extends AppCompatActivity implements Medical
     String filenmae;
     File file;
     TextView txt_attachemnt;
+    String clockTime;
+    boolean isHourFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,8 @@ public class PatientSurgeryActivity extends AppCompatActivity implements Medical
         txt_CreatedTime = findViewById(R.id.txt_doc_time);
         edtFile = findViewById(R.id.edt_file);
         txt_attachemnt = findViewById(R.id.txt_view);
+        isHourFormat = getIntent().getBooleanExtra("isHourFormat",false);
+
         btnImmuneChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,13 +181,25 @@ public class PatientSurgeryActivity extends AppCompatActivity implements Medical
             edtImmuneNote.setText(obj.getMoreDetails());
             long millis = Long.parseLong(obj.getAddedDate());
             Date d = new Date(millis);
-            SimpleDateFormat weekFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
+            SimpleDateFormat weekFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
             String weekString = weekFormatter.format(d);
             String time[] = weekString.split(" ");
             Log.e("weeekarray", "" + time[0] + time[1] + time[2]);
             txt_doctorName.setText("Dr." + obj.getDoctorName());
             txt_createdDate.setText(time[0]);
             txt_CreatedTime.setText(time[1] + " " + time[2]);
+
+            String[] timeSplit = time[1].split(":");
+            if (isHourFormat){
+                clockTime = time[1];
+            }else{
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+time[2];
+                }else{
+                    clockTime = time[1]+" "+time[2];
+                }
+            }
 // edtFile.setText(obj.getFilePath());
             if(obj.getAttachmentLis().size()>0){
                 if (obj.getAttachmentLis().get(0).getFilePath() != null) {

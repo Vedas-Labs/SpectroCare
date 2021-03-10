@@ -32,11 +32,19 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.Diag
     Context context;
     TextView txtDelete,txtCount;
     String from="";
+    boolean isHourFormat;
 
-    public DiagnosisAdapter(Context context, TextView txtDelete, TextView txtCount) {
+   /* public DiagnosisAdapter(Context context, TextView txtDelete, TextView txtCount) {
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
+    }*/
+
+    public DiagnosisAdapter(Context context, TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.isHourFormat = isHourFormat;
     }
 
     public DiagnosisAdapter(Context context, String from) {
@@ -61,7 +69,7 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.Diag
         Log.e("string","date"+entredDate);
         long l = Long.parseLong(entredDate);
         Date currentDate = new Date(l);
-        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm aa");
         jdff.setTimeZone(TimeZone.getDefault());
         String java_date = jdff.format(currentDate);
         Date clickedDate = null;
@@ -77,12 +85,24 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.Diag
             String clockTime;
             //holder.txtDate.setText(two[0]);
             String[] timeSplit = two[1].split(":");
-            if (12 < Integer.parseInt(timeSplit[0])) {
+            Log.e("amORpm"," :: "+two[2]);
+            if (isHourFormat){
+               clockTime = two[1];
+            }else{
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+two[2];
+                }else{
+                    clockTime = two[1]+two[2];
+                }
+            }
+
+           /* if (12 < Integer.parseInt(timeSplit[0])) {
                 int hr = Integer.parseInt(timeSplit[0]) - 12;
                 clockTime = String.valueOf(hr) + ":" + timeSplit[1] + "PM";
             } else {
                 clockTime = two[1] + "AM";
-            }
+            }*/
             holder.time.setText(clockTime);
         }catch (ParseException e) {
             e.printStackTrace();

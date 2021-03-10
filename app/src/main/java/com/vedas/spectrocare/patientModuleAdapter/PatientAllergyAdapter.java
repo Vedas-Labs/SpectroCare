@@ -27,6 +27,9 @@ import java.util.Locale;
 public class PatientAllergyAdapter extends RecyclerView.Adapter<PatientAllergyAdapter.AllergyHolder> {
     Context context;
     TextView txtDelete,txtCount;
+    boolean isHourFormat;
+    String clockTime;
+
     public PatientAllergyAdapter(Context context) {
         this.context = context;
     }
@@ -35,6 +38,13 @@ public class PatientAllergyAdapter extends RecyclerView.Adapter<PatientAllergyAd
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
+    }
+
+    public PatientAllergyAdapter(Context context, TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.isHourFormat = isHourFormat;
     }
 
     @NonNull
@@ -48,18 +58,29 @@ public class PatientAllergyAdapter extends RecyclerView.Adapter<PatientAllergyAd
         holder.imgAllergyICon.setImageResource(R.drawable.allergy);
         holder.discription.setText(PatientMedicalRecordsController.getInstance().noteallergyArray.get(position).getNote());
         holder.allergyName.setText(PatientMedicalRecordsController.getInstance().noteallergyArray.get(position).getName());
-        long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().allergyObjectArrayList.get(0).getCreatedDate());
+        long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().allergyObjectArrayList.get(0).getTrackingList().get(position).getDate());
         Date d = new Date(millis);
-        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
+       // SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm aa", Locale.ENGLISH); //this is for am and pm in caps letters
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm a");
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
         Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
         //load settings date formate to date feild.
         String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,String.valueOf(millis));
         holder.date.setText(value);
-        //
+        String[] timeSplit = time[1].split(":");
+        if (isHourFormat){
+            clockTime = time[1];
+        }else{
+            if (12 < Integer.parseInt(timeSplit[0])){
+                int hr = Integer.parseInt(timeSplit[0])-12;
+                clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+time[2];
+            }else{
+                clockTime = time[1]+" "+time[2];
+            }
+        }
        // holder.date.setText(time[0]);
-        holder.time.setText(time[1]+" "+time[2]);
+        holder.time.setText(clockTime);
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,5 +119,4 @@ public class PatientAllergyAdapter extends RecyclerView.Adapter<PatientAllergyAd
 
         }
     }
-
 }

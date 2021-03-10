@@ -30,6 +30,7 @@ import com.google.gson.JsonParser;
 import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
+import com.vedas.spectrocare.PatientDocResponseModel.TrackingModel;
 import com.vedas.spectrocare.PatientServerApiModel.AllergyListObject;
 import com.vedas.spectrocare.PatientServerApiModel.AllergyObject;
 import com.vedas.spectrocare.PatientServerApiModel.PatientMedicalRecordsController;
@@ -57,6 +58,7 @@ public class AddPatientAllergyActivity extends AppCompatActivity implements Medi
     PatientAllergyAdapter allergyAdapter;
     RecyclerView recyclerView;
     ArrayList<String> typeList = new ArrayList<>();
+    ArrayList<TrackingModel> trackingModelList = new ArrayList<>();
     Button btn_save;
     int selectedPos = -1;
     EditText ed_allegyName, ed_allegyNote;
@@ -157,15 +159,16 @@ public class AddPatientAllergyActivity extends AppCompatActivity implements Medi
                                 allergieModel.setByWhomID(PatientLoginDataController.getInstance().currentPatientlProfile.getMedicalRecordId());
                                 allergieModel.setPatientID(PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
                                 allergieModel.setAllergies(PatientMedicalRecordsController.getInstance().noteallergyArray);
-                                PatientMedicalRecordsController.getInstance().allergyObjectArrayList.add(allergieModel);
-
                                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                                System.out.println(timestamp);
-                                Date date = new Date();
-                                System.out.println(new Timestamp(date.getTime()));
-                                System.out.println(timestamp.getTime());
-
                                 allergieModel.setCreatedDate(String.valueOf(timestamp.getTime()));
+                                TrackingModel trackingModel = new TrackingModel();
+                                trackingModel.setInfo("Allergy recorded added");
+                                trackingModel.setDate(String.valueOf(timestamp.getTime()));
+                                trackingModel.setByWhomID(PatientLoginDataController.getInstance().currentPatientlProfile.getMedicalRecordId());
+                                trackingModel.setByWhom("Patient");
+                                PatientMedicalRecordsController.getInstance().allergyObjectArrayList.get(0).getTrackingList().add(trackingModel);
+
+                                PatientMedicalRecordsController.getInstance().allergyObjectArrayList.add(allergieModel);
 
                                 if (PatientMedicalRecordsController.getInstance().allergyObjectArrayList.size() == 0) {
                                     allergieModel.setAllergy_record_id(jsonObject.getString("allergy_record_id"));

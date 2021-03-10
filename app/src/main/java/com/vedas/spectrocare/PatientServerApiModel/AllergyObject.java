@@ -1,4 +1,6 @@
 package com.vedas.spectrocare.PatientServerApiModel;
+import com.vedas.spectrocare.PatientDocResponseModel.TrackingModel;
+
 import java.util.ArrayList;
 
 public class AllergyObject {
@@ -10,6 +12,16 @@ public class AllergyObject {
     private String  createdDate;
     private String  updatedDate;
     private String  allergy_record_id;
+    private ArrayList<AllergyListObject> allergies;
+    private  ArrayList<TrackingModel> trackingList;
+
+    public ArrayList<TrackingModel> getTrackingList() {
+        return trackingList;
+    }
+
+    public void setTrackingList(ArrayList<TrackingModel> trackingList) {
+        this.trackingList = trackingList;
+    }
 
     public String getAllergy_record_id() {
         return allergy_record_id;
@@ -35,7 +47,6 @@ public class AllergyObject {
         this.updatedDate = updatedDate;
     }
 
-    private ArrayList<AllergyListObject> allergies;
 
     public String getHospital_reg_num() {
         return hospital_reg_num;

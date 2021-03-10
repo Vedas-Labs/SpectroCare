@@ -64,6 +64,8 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
     Button btnImmuneChange;
     RefreshShowingDialog refreshShowingDialog;
     TextView txt_doctorName,txt_createdDate,txt_CreatedTime;
+    String clockTime;
+    boolean isHourFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +93,7 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
         txt_CreatedTime=findViewById(R.id.txt_doc_time);
         edtName.setSelection(edtName.length());
         edtImmuneNote.setSelection(edtImmuneNote.length());
-
+        isHourFormat = getIntent().getBooleanExtra("isHourFormat",false);
     }
     private void loadCurrentObject(){
         if(PatientMedicalRecordsController.getInstance().selectedImmunizationObject!=null){
@@ -103,13 +105,26 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
             long millis = Long.parseLong(obj.getCreatedDate());
             Date d = new Date(millis);
             Log.e("time","stamp"+obj.getImmunizationDate());
-            SimpleDateFormat weekFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
+            SimpleDateFormat weekFormatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
             String weekString = weekFormatter.format(d);
             String time[]=weekString.split(" ");
             Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
             txt_doctorName.setText("Dr."+obj.getDoctorName());
             txt_createdDate.setText(time[0]);
             txt_CreatedTime.setText(time[1]+" "+time[2]);
+            String[] timeSplit = time[1].split(":");
+
+            if (isHourFormat){
+                clockTime = time[1];
+            }else{
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+time[2];
+                }else{
+                    clockTime = time[1]+" "+time[2];
+                }
+            }
+
         }
     }
     private void validations() {

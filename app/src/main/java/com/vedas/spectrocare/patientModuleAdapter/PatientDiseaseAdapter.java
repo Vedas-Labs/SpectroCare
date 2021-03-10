@@ -2,6 +2,7 @@ package com.vedas.spectrocare.patientModuleAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,20 +28,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAdapter.PatientDiseasHolder> {
-    ArrayList<IllnessPatientRecord> diseaseList;
     Context context;
+    ArrayList<IllnessPatientRecord> diseaseList;
     String clockTime;
     TextView txtDelete,txtCount;
+    boolean isHourFormat;
+
 
     public PatientDiseaseAdapter(Context context) {
         this.context = context;
     }
 
+/*
     public PatientDiseaseAdapter( Context context,ArrayList<IllnessPatientRecord> diseaseList, TextView txtDelete, TextView txtCount) {
         this.diseaseList = diseaseList;
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
+    }
+*/
+
+    public PatientDiseaseAdapter(Context context, ArrayList<IllnessPatientRecord> diseaseList, TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.diseaseList = diseaseList;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.isHourFormat = isHourFormat;
     }
 
     public PatientDiseaseAdapter(Context context, ArrayList<IllnessPatientRecord> diseaseList) {
@@ -64,14 +77,15 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
             public void onClick(View v) {
                 String position =  String.valueOf(holder.getAdapterPosition());
                 Log.e("illnessid","date"+diseaseList.get(holder.getAdapterPosition()).getIllnessID());
-                context.startActivity(new Intent(context, PatientDiseaseActivity.class).putExtra("position",position));
+                context.startActivity(new Intent(context, PatientDiseaseActivity.class)
+                        .putExtra("position",position).putExtra("isHourFormat",isHourFormat));
             }
         });
         String entredDate = diseaseList.get(position).getAddedDate();
         Log.e("string","date"+entredDate);
         long l = Long.parseLong(entredDate);
         Date currentDate = new Date(l);
-        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm a");
         jdff.setTimeZone(TimeZone.getDefault());
         String java_date = jdff.format(currentDate);
         Date clickedDate = null;
@@ -84,14 +98,17 @@ public class PatientDiseaseAdapter extends RecyclerView.Adapter<PatientDiseaseAd
             //load settings date formate to date feild.
             String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,entredDate);
             holder.txtDate.setText(value);
-            //
-            //holder.txtDate.setText(two[0]);
+
             String[] timeSplit = two[1].split(":");
-            if (12 < Integer.parseInt(timeSplit[0])){
-                int hr = Integer.parseInt(timeSplit[0])-12;
-                clockTime = String.valueOf(hr)+":"+timeSplit[1]+"PM";
+            if (isHourFormat){
+                clockTime = two[1];
             }else{
-                clockTime = two[1]+"AM";
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+two[2];
+                }else{
+                    clockTime = two[1]+" "+two[2];
+                }
             }
             holder.txtTime.setText(clockTime);
 

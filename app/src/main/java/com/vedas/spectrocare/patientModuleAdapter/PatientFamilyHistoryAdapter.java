@@ -32,20 +32,23 @@ public class PatientFamilyHistoryAdapter extends RecyclerView.Adapter<PatientFam
 
     Context context;
     String clockTime;
+    boolean isHourFormat;
     TextView txtDelete,txtCount;
     ArrayList<FamilyDetaislModel> familyDetailsList=new ArrayList<>();
 
-   /* public PatientFamilyHistoryAdapter(Context context, ArrayList<FamilyDetaislModel> familyDetailsList) {
-        this.context = context;
-        this.familyDetailsList = familyDetailsList;
-    }
-*/
-
-    public PatientFamilyHistoryAdapter(Context context, ArrayList<FamilyDetaislModel> familyDetailsList, TextView txtDelete, TextView txtCount) {
+   /* public PatientFamilyHistoryAdapter(Context context, ArrayList<FamilyDetaislModel> familyDetailsList, TextView txtDelete, TextView txtCount) {
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
         this.familyDetailsList = familyDetailsList;
+    }*/
+
+    public PatientFamilyHistoryAdapter(Context context, ArrayList<FamilyDetaislModel> familyDetailsList,TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.familyDetailsList = familyDetailsList;
+        this.isHourFormat = isHourFormat;
     }
 
     public PatientFamilyHistoryAdapter(Context context) {
@@ -71,7 +74,7 @@ public class PatientFamilyHistoryAdapter extends RecyclerView.Adapter<PatientFam
         Log.e("string","date"+entredDate);
         long l = Long.parseLong(entredDate);
         Date currentDate = new Date(l);
-        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat jdff = new SimpleDateFormat("yyyy/MM/dd HH:mm a");
         jdff.setTimeZone(TimeZone.getDefault());
         String java_date = jdff.format(currentDate);
         Date clickedDate = null;
@@ -87,12 +90,16 @@ public class PatientFamilyHistoryAdapter extends RecyclerView.Adapter<PatientFam
             //
                // holder.txtDate.setText(two[0]);
                 String[] timeSplit = two[1].split(":");
+            if (isHourFormat){
+                clockTime = two[1];
+            }else{
                 if (12 < Integer.parseInt(timeSplit[0])){
                     int hr = Integer.parseInt(timeSplit[0])-12;
-                     clockTime = String.valueOf(hr)+":"+timeSplit[1]+"PM";
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+two[2];
                 }else{
-                    clockTime = two[1]+"AM";
+                    clockTime = two[1]+" "+two[2];
                 }
+            }
                 holder.txtTime.setText(clockTime);
 
         } catch (ParseException e) {
@@ -105,7 +112,7 @@ public class PatientFamilyHistoryAdapter extends RecyclerView.Adapter<PatientFam
                 familyDetailsList.get(holder.getAdapterPosition());
                 String position = String.valueOf(holder.getAdapterPosition());
                 context.startActivity(new Intent(context, PatientFamilyHistoryActivity.class).
-                        putExtra("position",position));
+                        putExtra("position",position).putExtra("isHourFormat",isHourFormat));
             }
         });
 

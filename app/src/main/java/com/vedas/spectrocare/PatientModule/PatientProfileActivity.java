@@ -61,6 +61,7 @@ import com.google.gson.Gson;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.DataBase.MedicalProfileDataController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
 import com.vedas.spectrocare.DataBase.PatientProfileDataController;
@@ -126,6 +127,7 @@ public class PatientProfileActivity extends AppCompatActivity {
     CalendarView calendarView;
     PopupWindow popUp;
     View mView;
+    RefreshShowingDialog refreshShowingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -342,7 +344,9 @@ public class PatientProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e("hhhhhh","kkk");
-                alertDialog.show();
+               // alertDialog.show();
+                refreshShowingDialog.showAlert();
+
                 Objects.requireNonNull(alertDialog.getWindow()).setLayout(600, 500);
                 api();
             }
@@ -467,7 +471,8 @@ public class PatientProfileActivity extends AppCompatActivity {
         call.enqueue(new Callback<PatientDetailsModel>() {
             @Override
             public void onResponse(Call<PatientDetailsModel> call, Response<PatientDetailsModel> response) {
-                alertDialog.dismiss();
+               // alertDialog.dismiss();
+                refreshShowingDialog.hideRefreshDialog();
                 Log.e("responsee", "response" + response.body());
 
                 Log.e("responsee", "message" + response.message());
@@ -516,7 +521,8 @@ public class PatientProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PatientDetailsModel> call, Throwable t) {
-                alertDialog.dismiss();
+               // alertDialog.dismiss();
+                refreshShowingDialog.hideRefreshDialog();
             }
         });
 
@@ -860,6 +866,7 @@ public class PatientProfileActivity extends AppCompatActivity {
     }
 
     public void casting() {
+        refreshShowingDialog=new RefreshShowingDialog(PatientProfileActivity.this);
         txtPatientName = findViewById(R.id.txt_patient_name);
         profileImg = findViewById(R.id.img_patient_profile);
         btnUpdate = findViewById(R.id.update_btn);

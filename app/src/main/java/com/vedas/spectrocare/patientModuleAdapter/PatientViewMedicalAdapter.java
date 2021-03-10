@@ -43,7 +43,7 @@ public class PatientViewMedicalAdapter extends RecyclerView.Adapter<PatientViewM
         holder.txtMedicineName.setText(viewMedicalList.get(position).getName());
         holder.txtPurpose.setText(viewMedicalList.get(position).getPurpose());
         holder.txtFrequency.setText(viewMedicalList.get(position).getFreq());
-        holder.txtDuration.setText(viewMedicalList.get(position).getDurationDays());
+        holder.txtDuration.setText(viewMedicalList.get(position).getDurationDays()+" days");
         holder.txtDosage.setText(viewMedicalList.get(position).getDosage());
 
         holder.edit.setOnClickListener(new View.OnClickListener() {

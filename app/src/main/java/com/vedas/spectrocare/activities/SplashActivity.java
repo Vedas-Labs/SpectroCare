@@ -67,7 +67,7 @@ public class SplashActivity extends AppCompatActivity {
            accessInterfaceMethod();
        }
         SplashActivity.sharedPreferencesTOkenEditor.putString("deviceId", ID);
-        SplashActivity.sharedPreferencesTOkenEditor.commit();
+        SplashActivity.sharedPreferencesTOkenEditor.apply();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -98,14 +98,32 @@ public class SplashActivity extends AppCompatActivity {
                     } else if (getIntent().getStringExtra("isFromNotificaton") != null && getIntent().getStringExtra("isFromNotificaton").equals("appointment")) {
                         Intent intent = new Intent(getApplicationContext(), PatientHomeActivity.class);
                         startActivity(intent);
-                    } else if (!strAppointmentID.isEmpty()){
+                    } else if (getIntent().getStringExtra("messageType")!=null){
+                        if (getIntent().getStringExtra("messageType").equals("ChatMessage")){
+                            mSocket = SocketIOHelper.getInstance().socket;
+                            mSocket.connect();
+                            joinChat(PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId(),strAppointmentID);
+                            Gson gson = new Gson();
+                            String details = gson.toJson(docProfilemodel);
+                            Log.e("detailsDoc",":: "+details);
+                            Intent chatIntent = new Intent(SplashActivity.this, PatientChatActivity.class)
+                                    .putExtra("docName",docProfilemodel.getProfile().getUserProfile().getFirstName()+" "+
+                                            docProfilemodel.getProfile().getUserProfile().getLastName())
+                                    .putExtra("isOnline",true)
+                                    .putExtra("appointmentID",strAppointmentID)
+                                    .putExtra("docPic",docProfilemodel.getProfile().getUserProfile().getProfilePic())
+                                    .putExtra("docId",docProfilemodel.getProfile().getUserProfile().getMedical_personnel_id());
+                            startActivity(chatIntent);
+                        }else
+                        startActivity(new Intent(SplashActivity.this,PatientAppointmentsTabsActivity.class));
+                    }/*else if (getIntent().getStringExtra("messageType").equals("ChatMessage")){
                         mSocket = SocketIOHelper.getInstance().socket;
                         SocketIOHelper.getInstance().socketConnect();
                         joinChat(PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId(),strAppointmentID);
                         Gson gson = new Gson();
                         String details = gson.toJson(docProfilemodel);
                         Log.e("detailsDoc",":: "+details);
-                      Intent  chatIntent = new Intent(SplashActivity.this, PatientChatActivity.class)
+                        Intent chatIntent = new Intent(SplashActivity.this, PatientChatActivity.class)
                                 .putExtra("docName",docProfilemodel.getProfile().getUserProfile().getFirstName()+" "+
                                         docProfilemodel.getProfile().getUserProfile().getLastName())
                                 .putExtra("isOnline",true)
@@ -113,7 +131,7 @@ public class SplashActivity extends AppCompatActivity {
                                 .putExtra("docPic",docProfilemodel.getProfile().getUserProfile().getProfilePic())
                                 .putExtra("docId",docProfilemodel.getProfile().getUserProfile().getMedical_personnel_id());
                       startActivity(chatIntent);
-                    }
+                    }*/
                     else {
                         startActivity(new Intent(getApplicationContext(), PatientHomeActivity.class));
                         finish();

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,11 +40,14 @@ import com.vedas.spectrocare.Alert.RefreshShowingDialog;
 import com.vedas.spectrocare.Controllers.ApiCallDataController;
 import com.vedas.spectrocare.Controllers.PersonalInfoController;
 import com.vedas.spectrocare.DataBase.PatientLoginDataController;
+import com.vedas.spectrocare.DataBase.TrackInfoDataController;
 import com.vedas.spectrocare.DataBaseModels.PatientModel;
+import com.vedas.spectrocare.DataBaseModels.TrackInfoModel;
 import com.vedas.spectrocare.PatientAppointmentModule.AppointmentArrayModel;
 import com.vedas.spectrocare.PatientAppointmentModule.PatientAppointmentsDataController;
 import com.vedas.spectrocare.PatientChat.SocketIOHelper;
 import com.vedas.spectrocare.PatientChat.ViewController;
+import com.vedas.spectrocare.PatientDocResponseModel.TrackingModel;
 import com.vedas.spectrocare.PatientMoreModule.SettingsActivity;
 import com.vedas.spectrocare.PatientNotificationModule.PatientNotificationFragment;
 import com.vedas.spectrocare.PatientServerApiModel.AllergyListObject;
@@ -70,6 +74,7 @@ import com.vedas.spectrocare.PatinetControllers.PatientAppointmentController;
 import com.vedas.spectrocare.PatinetControllers.PatientFamilyDataController;
 import com.vedas.spectrocare.R;
 import com.vedas.spectrocare.ServerApi;
+import com.vedas.spectrocare.ServerApiModel.TrackingServerObject;
 import com.vedas.spectrocare.activities.ChangePasswordActivity;
 import com.vedas.spectrocare.activities.HomeActivity;
 import com.vedas.spectrocare.activities.LoginActivity;
@@ -94,6 +99,7 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
     IllnessPatientRecord illnessPatientRecord;
     ArrayList<IllnessPatientRecord> illnessList;
     BottomNavigationView bottomNavigation;
+    ArrayList<TrackingModel> trackingList = new ArrayList<>();
     PatientFamilyAddServerObject responseObject;
     PatientIllnessServerResponse serverResponse;
     ArrayList<AppointmentArrayModel> modelArrayList;
@@ -504,10 +510,13 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                 }*/
                 else if (curdOpetaton.equals("fetch")) {
                     Log.e("allergyresponse", "call" + jsonObject.toString());
+
                     try {
                         if (jsonObject.getString("response").equals("3")) {
                             JSONObject recordsObj = jsonObject.getJSONObject("records");
                             JSONArray allergiesArray = recordsObj.getJSONArray("allergies");
+
+                            trackingList.clear();
                             AllergyObject allergieModel = new AllergyObject();
                             allergieModel.setHospital_reg_num(PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
                             allergieModel.setMedical_record_id(PatientLoginDataController.getInstance().currentPatientlProfile.getMedicalRecordId());
@@ -522,10 +531,20 @@ public class PatientHomeActivity extends AppCompatActivity implements MedicalPer
                                     AllergyListObject allergyListObject = new AllergyListObject();
                                     allergyListObject.setNote(allergyObj.getString("note"));
                                     allergyListObject.setName(allergyObj.getString("name"));
+
+                                    JSONObject trackingObject = recordsObj.getJSONArray("tracking").getJSONObject(i);
+                                    TrackingModel trackingModel = new TrackingModel();
+                                    trackingModel.setInfo(trackingObject.getString("info"));
+                                    trackingModel.setByWhom(trackingObject.getString("byWhom"));
+                                    trackingModel.setByWhomID(trackingObject.getString("byWhomID"));
+                                    trackingModel.setDate(trackingObject.getString("date"));
+                                    PatientMedicalRecordsController.getInstance().trackingModelList.add(trackingModel);
                                     PatientMedicalRecordsController.getInstance().noteallergyArray.add(allergyListObject);
                                     Log.e("notesize", "call" + PatientMedicalRecordsController.getInstance().noteallergyArray.size());
                                 }
+                               // allergieModel.setTrackingList(trackingList);
                                 allergieModel.setAllergies(PatientMedicalRecordsController.getInstance().noteallergyArray);
+                                allergieModel.setTrackingList(PatientMedicalRecordsController.getInstance().trackingModelList);
                             } else {
                                 allergieModel.setAllergies(null);
                             }

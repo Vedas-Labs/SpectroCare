@@ -27,6 +27,8 @@ import java.util.Locale;
 public class PatientImmunizationAdapter extends RecyclerView.Adapter<PatientImmunizationAdapter.immunizationHolder> {
    Context context;
    TextView txtDelete,txtCount;
+   boolean isHourFormat;
+   String clockTime;
 
     public PatientImmunizationAdapter(Context context) {
         this.context = context;
@@ -36,6 +38,13 @@ public class PatientImmunizationAdapter extends RecyclerView.Adapter<PatientImmu
         this.context = context;
         this.txtDelete = txtDelete;
         this.txtCount = txtCount;
+    }
+
+    public PatientImmunizationAdapter(Context context, TextView txtDelete, TextView txtCount, boolean isHourFormat) {
+        this.context = context;
+        this.txtDelete = txtDelete;
+        this.txtCount = txtCount;
+        this.isHourFormat = isHourFormat;
     }
 
     @NonNull
@@ -54,22 +63,34 @@ public class PatientImmunizationAdapter extends RecyclerView.Adapter<PatientImmu
         holder.immunizationName.setText(PatientMedicalRecordsController.getInstance().immunizationArrayList.get(position).getImmunizationName());
         long millis = Long.parseLong(PatientMedicalRecordsController.getInstance().immunizationArrayList.get(position).getCreatedDate());
         Date d = new Date(millis);
-        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm a");
         String weekString = weekFormatter.format(d);
         String time[]=weekString.split(" ");
         Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
         //load settings date formate to date feild.
         String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,String.valueOf(millis));
         holder.date.setText(value);
-        //
+
        // holder.date.setText(time[0]);
-        holder.time.setText(time[1]+" "+time[2]);
+        String[] timeSplit = time[1].split(":");
+        if (isHourFormat){
+            clockTime = time[1]+" "+time[2];
+        }else{
+            if (12 < Integer.parseInt(timeSplit[0])){
+                int hr = Integer.parseInt(timeSplit[0])-12;
+                clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+time[2];
+            }else{
+                clockTime = time[1]+" "+time[2];
+            }
+        }
+        holder.time.setText(clockTime);
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PatientMedicalRecordsController.getInstance().selectedPos=holder.getAdapterPosition();
                 PatientMedicalRecordsController.getInstance().selectedImmunizationObject=PatientMedicalRecordsController.getInstance().immunizationArrayList.get(position);
-                context.startActivity(new Intent(context, PatientImmunizationActivity.class));
+                context.startActivity(new Intent(context, PatientImmunizationActivity.class)
+                        .putExtra("isHourFormat",isHourFormat));
             }
         });
     }

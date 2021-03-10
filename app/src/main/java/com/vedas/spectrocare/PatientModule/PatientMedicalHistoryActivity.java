@@ -9,7 +9,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
@@ -77,6 +79,8 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
     PatientImmunizationAdapter immunizationAdapter;
     PatientFamilyHistoryAdapter familyHistoryAdapter;
     PatientDiseaseAdapter diseaseAdapter;
+    SharedPreferences preferences;
+    boolean isHourFormat;
     ArrayList<FamilyDetaislModel> familyList;
     // ArrayList<IllnessPatientRecord> illnessList=new ArrayList<>();
     // FamilyDetaislModel familyDetaislModel;
@@ -221,11 +225,13 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
         txtDelete = findViewById(R.id.txt_delete);
         imgAdd = findViewById(R.id.img_add);
         diagnosisCardView = findViewById(R.id.diagnosis_card);
-        allergyAdapter = new PatientAllergyAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
+        preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        isHourFormat =preferences.getBoolean("is24Hour",false);
+        allergyAdapter = new PatientAllergyAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount,isHourFormat);
         // diseaseAdapter = new PatientDiseaseAdapter(PatientMedicalHistoryActivity.this);
-        immunizationAdapter = new PatientImmunizationAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
-        diagnosisAdapter = new DiagnosisAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
-        surgeryAdapter = new PatientSurgeryAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount);
+        immunizationAdapter = new PatientImmunizationAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount,isHourFormat);
+        diagnosisAdapter = new DiagnosisAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount,isHourFormat);
+        surgeryAdapter = new PatientSurgeryAdapter(PatientMedicalHistoryActivity.this, txtDelete, txtCount,isHourFormat);
         txtRecordName = findViewById(R.id.txt_records);
     }
 
@@ -321,7 +327,7 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
                 if (PatientFamilyDataController.getInstance().getIllnessServerResponse() != null) {
                     txtDelete.setVisibility(View.VISIBLE);
                     diseaseAdapter = new PatientDiseaseAdapter(PatientMedicalHistoryActivity.this,
-                            PatientFamilyDataController.getInstance().getIllnessServerResponse().getIllnessRecords(), txtDelete, txtCount);
+                            PatientFamilyDataController.getInstance().getIllnessServerResponse().getIllnessRecords(), txtDelete, txtCount,isHourFormat);
                     allRecycleViewList(diseaseAdapter);
                 } else {
                     txtDelete.setVisibility(View.GONE);
@@ -409,8 +415,12 @@ public class PatientMedicalHistoryActivity extends AppCompatActivity implements 
                     allRecycleView.setVisibility(View.VISIBLE);
                     familyList = PatientFamilyDataController.getInstance().getResponseObject().getRecords().getFamliyDiseases();
                     Log.e("list", "size" + familyList.size());
-                    familyHistoryAdapter = new PatientFamilyHistoryAdapter(PatientMedicalHistoryActivity.this, familyList, txtDelete, txtCount);
+                    familyHistoryAdapter = new PatientFamilyHistoryAdapter(PatientMedicalHistoryActivity.this, familyList, txtDelete, txtCount,isHourFormat);
                     allRecycleViewList(familyHistoryAdapter);
+                }else {
+                    txtDelete.setVisibility(View.GONE);
+                    txtCount.setText("(" + 0 + ")");
+                    allRecycleView.setVisibility(View.GONE);
                 }
                 txtRecordName.setText("Family History");
             }

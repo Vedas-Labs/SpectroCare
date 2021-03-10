@@ -92,6 +92,19 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txt_unread_count"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/background_color_circle_selector"
+                android:backgroundTint="@color/colorOrange"
+                android:text=""
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorWhite"
+                />
 
         </RelativeLayout>
 

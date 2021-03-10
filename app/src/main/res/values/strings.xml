@@ -67,7 +67,7 @@
     <string name="testmenutitle">TestMenu</string>
     <string name="testitems">Test Items</string>
     <string name="starttest">Start A New Test</string>
-    <string name="selecttest">Please select a testtype and testitem</string>
+    <string name="selecttest">Please select a test type and test item</string>
     <string name="testtype">Test Type</string>
     <string name="urinetest">Urine Test</string>
     <string name="bloodtest">Blood Test</string>

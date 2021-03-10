@@ -348,7 +348,7 @@ public class PersonalInfoController {
     public String[] convertTimestampToslashFormate(String stringData) throws ParseException {
         long yourmilliseconds = Long.parseLong(stringData);
         Log.e("yourmilliseconds", "" + yourmilliseconds);
-        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd hh:mm a", Locale.ENGLISH);
+        SimpleDateFormat weekFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm a", Locale.ENGLISH);
         Date resultdate = new Date(yourmilliseconds * 1000);
         String weekString = weekFormatter.format(resultdate);
         String array[] = weekString.split(" ");

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
@@ -49,7 +50,9 @@ import java.util.Objects;
 public class PatientMedicationRecordsAdapter extends RecyclerView.Adapter<PatientMedicationRecordsAdapter.VaccineViewHolde> {
     Context context;
     Dialog dialog;
-
+    boolean isHourFormat;
+    SharedPreferences preferences;
+    String clockTime;
     public PatientMedicationRecordsAdapter(Context context) {
         this.context = context;
     }
@@ -57,6 +60,8 @@ public class PatientMedicationRecordsAdapter extends RecyclerView.Adapter<Patien
     @Override
     public VaccineViewHolde onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vaccineView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_patient_medication_record,parent,false);
+        preferences =context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        isHourFormat =preferences.getBoolean("is24Hour",false);
         return new VaccineViewHolde(vaccineView);
     }
 
@@ -69,8 +74,20 @@ public class PatientMedicationRecordsAdapter extends RecyclerView.Adapter<Patien
         try {
             String array[]= PersonalInfoController.getInstance().convertTimestampToslashFormate(model.getDate());
             //load settings date formate to date feild.
+
             String value = PersonalInfoController.getInstance().loadSettingsDataFormateToEntireApp(context,model.getDate());
-            holder.prescribedText.setText(value+" "+array[1]+" "+array[2]);
+            String[] timeSplit = array[1].split(":");
+            if (isHourFormat){
+                clockTime = array[1];
+            }else{
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+array[2];
+                }else{
+                    clockTime = array[1]+" "+array[2];
+                }
+            }
+            holder.prescribedText.setText(value+" "+clockTime);
             //
           //  holder.prescribedText.setText(array[0]+" "+array[1]+" "+array[2]);
         } catch (ParseException e) {

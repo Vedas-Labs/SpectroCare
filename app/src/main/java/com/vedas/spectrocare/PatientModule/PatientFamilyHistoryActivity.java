@@ -65,6 +65,7 @@ public class PatientFamilyHistoryActivity extends AppCompatActivity implements M
     ArrayAdapter adapter;
     RefreshShowingDialog refreshShowingDialog;
     String clockTime;
+    boolean isHourFormat;
     ArrayList<FamilyDetaislModel> detaislModelArrayList;
     ArrayList<FamilyDetaislModel> detaislArrayList;
     FamilyDetaislModel editDetailItem;
@@ -72,6 +73,7 @@ public class PatientFamilyHistoryActivity extends AppCompatActivity implements M
     String selectedUserType="";
     String[] relationArray = {"", "Father", "Mother", "Husband","Wife","Sister","Brother"};
     int value;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,7 @@ public class PatientFamilyHistoryActivity extends AppCompatActivity implements M
         familyDetaislModel = new FamilyDetaislModel();
         Intent intent = getIntent();
         position = intent.getStringExtra("position");
+        isHourFormat = intent.getBooleanExtra("isHourFormat",false);
         value = Integer.parseInt(position);
         Log.e("position","empty"+position);
         casting();
@@ -105,7 +108,7 @@ public class PatientFamilyHistoryActivity extends AppCompatActivity implements M
         Log.e("string","date"+entredDate);
         long l = Long.parseLong(entredDate);
         Date currentDate = new Date(l);
-        SimpleDateFormat jdff = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat jdff = new SimpleDateFormat("dd/MM/yyyy HH:mm a");
         jdff.setTimeZone(TimeZone.getDefault());
         String java_date = jdff.format(currentDate);
         Date clickedDate = null;
@@ -117,11 +120,15 @@ public class PatientFamilyHistoryActivity extends AppCompatActivity implements M
             String[] two = formattedDate.split(" ");
             txtDate.setText(two[0]);
             String[] timeSplit = two[1].split(":");
-            if (12 < Integer.parseInt(timeSplit[0])){
-                int hr = Integer.parseInt(timeSplit[0])-12;
-                clockTime = String.valueOf(hr)+":"+timeSplit[1]+"PM";
+            if (isHourFormat){
+                clockTime = two[1];
             }else{
-                clockTime = two[1]+"AM";
+                if (12 < Integer.parseInt(timeSplit[0])){
+                    int hr = Integer.parseInt(timeSplit[0])-12;
+                    clockTime = String.valueOf(hr)+":"+timeSplit[1]+" "+two[2];
+                }else{
+                    clockTime = two[1]+" "+two[2];
+                }
             }
             txtTime.setText(clockTime);
 
