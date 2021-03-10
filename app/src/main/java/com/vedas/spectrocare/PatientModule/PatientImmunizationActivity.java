@@ -188,7 +188,6 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
                             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                             obj.setCreatedDate(String.valueOf(timestamp.getTime()));
                             obj.setUpdatedDate(String.valueOf(timestamp.getTime()));
-
                             PatientMedicalRecordsController.getInstance().immunizationArrayList.set(PatientMedicalRecordsController.getInstance().selectedPos,obj);
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             finish();
