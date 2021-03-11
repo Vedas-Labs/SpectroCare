@@ -77,6 +77,7 @@ public class ApiCallDataController {
       @Override
       public void onFailure(Call<JsonObject> call, Throwable t) {
         // Toast.makeText(context, "please check your network connection", Toast.LENGTH_SHORT).show();
+
         serverResponseInterface.failureCallBack(t.getMessage());
       }
     });
