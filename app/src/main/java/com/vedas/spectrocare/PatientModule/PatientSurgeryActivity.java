@@ -187,7 +187,7 @@ public class PatientSurgeryActivity extends AppCompatActivity implements Medical
             Log.e("weeekarray", "" + time[0] + time[1] + time[2]);
             txt_doctorName.setText("Dr." + obj.getDoctorName());
             txt_createdDate.setText(time[0]);
-            txt_CreatedTime.setText(time[1] + " " + time[2]);
+           // txt_CreatedTime.setText(time[1] + " " + time[2]);
 
             String[] timeSplit = time[1].split(":");
             if (isHourFormat){
@@ -200,6 +200,8 @@ public class PatientSurgeryActivity extends AppCompatActivity implements Medical
                     clockTime = time[1]+" "+time[2];
                 }
             }
+            txt_CreatedTime.setText(clockTime);
+
 // edtFile.setText(obj.getFilePath());
             if(obj.getAttachmentLis().size()>0){
                 if (obj.getAttachmentLis().get(0).getFilePath() != null) {

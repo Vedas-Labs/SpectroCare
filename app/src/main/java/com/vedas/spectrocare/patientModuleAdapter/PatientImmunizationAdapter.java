@@ -74,7 +74,7 @@ public class PatientImmunizationAdapter extends RecyclerView.Adapter<PatientImmu
        // holder.date.setText(time[0]);
         String[] timeSplit = time[1].split(":");
         if (isHourFormat){
-            clockTime = time[1]+" "+time[2];
+            clockTime = time[1];
         }else{
             if (12 < Integer.parseInt(timeSplit[0])){
                 int hr = Integer.parseInt(timeSplit[0])-12;

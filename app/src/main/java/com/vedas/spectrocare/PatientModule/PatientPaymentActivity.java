@@ -1,7 +1,9 @@
 package com.vedas.spectrocare.PatientModule;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.braintreepayments.api.dropin.DropInActivity;
+import com.braintreepayments.api.dropin.DropInRequest;
+import com.braintreepayments.api.dropin.DropInResult;
+import com.braintreepayments.api.interfaces.HttpResponseCallback;
+import com.braintreepayments.api.internal.HttpClient;
+import com.braintreepayments.api.models.PaymentMethodNonce;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -48,6 +57,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 import androidx.annotation.Nullable;
@@ -62,11 +72,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class PatientPaymentActivity extends AppCompatActivity {
     TextView txtAddPayment, txtAppointmentType, txtDate, txtAmount, txtTime;
     RecyclerView paymentRecycleView;
     ArrayList patientPaymentList;
+    ServerApi serverApi;
     Button btnPayNow;
+    String amount,token,strNonce;
+    private static final int REQUEST_CODE=1234;
+    HashMap<String,String> paramsHash;
     private static final int PAYPAL_REQUEST_CODE = 7777;
 
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -76,7 +93,7 @@ public class PatientPaymentActivity extends AppCompatActivity {
     ImageView imgBack, imgDown;
     ArrayList<AppointmetModel> appointmentList;
     AppointmetModel appointmetModel;
-    String strEmail, strCardNo, formattedDate;
+    String strEmail, strCardNo, formattedDate,paymentMethod,strCreditCardNo;
     TextView dcoName, docSpecial, txtReason;
     int i;
 
@@ -120,6 +137,8 @@ public class PatientPaymentActivity extends AppCompatActivity {
         txtAddPayment = findViewById(R.id.txt_add_payment);
         recylerview();
 
+        new getToken().execute();
+
         txtAddPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,9 +169,10 @@ public class PatientPaymentActivity extends AppCompatActivity {
                 } else {
                     PatientAppointmentController.getInstance().getAppointmentList().add(appointmetModel);
                 }
+                submitPayment();
                 // if(!strCardNo.isEmpty())
-                processPayment();
-                // startActivity(new Intent(PatientPaymentActivity.this, PaymentStatusActivity.class));
+               //  processPayment();
+                //  startActivity(new Intent(PatientPaymentActivity.this, PaymentStatusActivity.class));
             }
         });
     }
@@ -222,7 +242,7 @@ public class PatientPaymentActivity extends AppCompatActivity {
         paymentRecycleView.setAdapter(patientPaymentAdapter);
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PAYPAL_REQUEST_CODE) {
@@ -251,6 +271,36 @@ public class PatientPaymentActivity extends AppCompatActivity {
         } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID)
             Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
     }
+*/
+   @Override
+   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+       super.onActivityResult(requestCode, resultCode, data);
+       if (requestCode==REQUEST_CODE){
+           if (resultCode==RESULT_OK){
+               DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
+               PaymentMethodNonce nonce = result.getPaymentMethodNonce();
+               Gson gson = new Gson();
+               Log.e("data","is:: "+gson.toJson(result));
+               strNonce =nonce.getNonce();
+               if (!PaymentControll.getInstance().currentPaymentModel.getServiceCost().isEmpty()){
+                   amount = PaymentControll.getInstance().currentPaymentModel.getServiceCost();
+                   paramsHash = new HashMap<>();
+                   paramsHash.put("amount",amount);
+                   paramsHash.put("nonce",strNonce);
+                   Log.e("paymentt","details:: "+amount+", "+strNonce);
+
+                     sendPayments();
+               }else{
+                   Toast.makeText(this, "Please enter valid amount", Toast.LENGTH_SHORT).show();
+               }
+           }else if(requestCode==RESULT_CANCELED){
+               Toast.makeText(this, "User cancel", Toast.LENGTH_SHORT).show();
+           }else{
+               Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
+               Log.e("errorIs","excepton"+error.toString());
+           }
+       }
+   }
 
     private void updateInvoiceApi() {
         Log.e("updateinvoiceapi", "onResponse: call");
@@ -289,10 +339,11 @@ public class PatientPaymentActivity extends AppCompatActivity {
         });
     }
 
-    public void appointmentAddApi() {
+    public void appointmentAddApi(String txnStatus,String paymentMode,String txnAmount,String cardNo) {
         Log.e("linkaka", "dkkk1");
         JSONObject addObject = new JSONObject();
         JSONObject paymentDetaildObject = new JSONObject();
+        strCardNo = cardNo;
         //PaymentDetailsModel paymentDetails = new PaymentDetailsModel();
         try {
             addObject.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
@@ -317,10 +368,10 @@ public class PatientPaymentActivity extends AppCompatActivity {
                 paymentDetaildObject.put("paymentCard", "4213242602642202"/*PatientAppointmentController.getInstance().getAppointmentList().get(0).getCardNo()*/);
             }
             paymentDetaildObject.put("paymentDate", String.valueOf(System.currentTimeMillis()/*String.valueOf(Calendar.getInstance().getTimeInMillis()*/));
-            paymentDetaildObject.put("txnStatus", "Paypal");
-            paymentDetaildObject.put("txnAmount", "3.00");
+            paymentDetaildObject.put("txnStatus", txnStatus);
+            paymentDetaildObject.put("txnAmount", txnAmount);
             paymentDetaildObject.put("txnCurrency", "USD");
-            paymentDetaildObject.put("paymentMode", "Paypal");
+            paymentDetaildObject.put("paymentMode", paymentMode);
             paymentDetaildObject.put("txnStatus", "success");
             /*JsonParser paymentParse = new JsonParser();
             JsonObject paymentObject = (JsonObject) paymentParse.parse(paymentDetaildObject.toString());*/
@@ -352,4 +403,110 @@ public class PatientPaymentActivity extends AppCompatActivity {
             }
         });
     }
+    public class getToken extends AsyncTask {
+        android.app.ProgressDialog mDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDialog = new ProgressDialog(PatientPaymentActivity.this,android.R.style.Theme_DeviceDefault_Dialog);
+            mDialog.setCancelable(false);
+            mDialog.setMessage("Please wait");
+            mDialog.show();
+
+        }
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(ServerApi.home_url)
+                    .addConverterFactory(GsonConverterFactory.create()).build();
+            serverApi = retrofit.create(ServerApi.class);
+            Call<ResponseBody> call = serverApi.getUsers("paypal/client_token");
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        token = response.body().string();
+                        Log.e("response ","message:: "+token);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("response","da: "+t.getMessage());
+                }
+            });
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            mDialog.dismiss();
+        }
+    }
+    private void submitPayment() {
+        DropInRequest dropInRequest = new DropInRequest().clientToken(token);
+        startActivityForResult(dropInRequest.getIntent(this),REQUEST_CODE);
+    }
+
+    private void sendPayments() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ServerApi.home_url)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        serverApi = retrofit.create(ServerApi.class);
+        JSONObject object = new JSONObject();
+        try {
+            object.put("amount",amount);
+            object.put("paymentMethodNonce",strNonce);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(object.toString());
+        Call<JsonObject> call = serverApi.addPayment(jsonObject);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.toString().contains("3")){
+                    Log.e("responseLo","details:: "+response.body().getAsJsonObject("result")
+                            .getAsJsonObject("transaction").get("amount"));
+                    String currency = response.body().getAsJsonObject("result")
+                            .getAsJsonObject("transaction").get("amount").toString();
+
+                    if (response.body().getAsJsonObject("result")
+                            .getAsJsonObject("transaction").get("paymentInstrumentType").toString().contains("paypal_account")){
+                        paymentMethod = "Paypal";
+                        strCreditCardNo =response.body().getAsJsonObject("result")
+                                .getAsJsonObject("transaction").getAsJsonObject("paypal").get("payerEmail").toString();
+                    }else{
+                        paymentMethod = "Credit Card";
+                        strCreditCardNo = response.body().getAsJsonObject("result")
+                                .getAsJsonObject("transaction").getAsJsonObject("creditCard").get("maskedNumber").toString();
+                    }
+                    if (PatientMedicalRecordsController.getInstance().invoiceObject != null) {
+                        Log.e("updateInvoiceApi", "call");
+                        updateInvoiceApi();
+                    } else {
+                        Log.e("appointmentAddApi", "call");
+                        appointmentAddApi(paymentMethod,paymentMethod,currency,strCreditCardNo);
+                    }
+                    Log.e("paymentDetails","details"+paymentMethod+", "+strCreditCardNo+", "+currency);
+                    Toast.makeText(PatientPaymentActivity.this, "Transaction Success", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PatientPaymentActivity.this, PaymentStatusActivity.class));
+                }else{
+                    Toast.makeText(PatientPaymentActivity.this, "Transaction failed!", Toast.LENGTH_SHORT).show();
+                }
+                Log.e("response","toSting:: "+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("errorMessage",":: "+t.getMessage());
+            }
+        });
+
+    }
+
 }

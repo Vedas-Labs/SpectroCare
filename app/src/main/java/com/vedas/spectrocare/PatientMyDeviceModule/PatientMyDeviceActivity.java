@@ -230,11 +230,11 @@ public class PatientMyDeviceActivity extends AppCompatActivity implements Medica
             fetchObject.put("hospital_reg_num", PatientLoginDataController.getInstance().currentPatientlProfile.getHospital_reg_number());
             fetchObject.put("patientID", PatientLoginDataController.getInstance().currentPatientlProfile.getPatientId());
             fetchObject.put("deviceID", object.getDeviceID());
-            fetchObject.put("deviceModelNumber", object.getDeviceModelNumber());
+           /* fetchObject.put("deviceModelNumber", object.getDeviceModelNumber());
             fetchObject.put("deviceName", object.getDeviceName());
             fetchObject.put("deviceSerialNumber", object.getDeviceSerialNumber());
             fetchObject.put("deviceHardwareVersion", object.getDeviceHardwareVersion());
-            fetchObject.put("deviceSoftwareVersion", object.getDeviceSoftwareVersion());
+            fetchObject.put("deviceSoftwareVersion", object.getDeviceSoftwareVersion());*/
         } catch (JSONException e) {
             e.printStackTrace();
         }

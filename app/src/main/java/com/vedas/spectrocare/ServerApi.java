@@ -34,6 +34,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -41,6 +42,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Url;
 
 public interface ServerApi {
   String home_url = "http://34.231.177.197:3000/api/";
@@ -810,4 +812,10 @@ public interface ServerApi {
 
   @POST("hospital/getDoctorsByCategory")
   Call<JsonObject> getDoctorsByCategory(@Header("x-access-token") String accessToken, @Body JsonObject body);
+
+  // braintree payment API's
+  @GET
+  Call<ResponseBody> getUsers(@Url String url);
+  @POST("paypal/do_payment")
+  Call<JsonObject> addPayment(@Body JsonObject object);
 }

@@ -37,6 +37,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    rootProject.allprojects {
+        repositories {
+            maven {
+                url  "https://cardinalcommerce.bintray.com/android"
+                credentials {
+                    username 'braintree-team-sdk@cardinalcommerce'
+                    password '220cc9476025679c4e5c843666c27d97cfb0f951'
+                }
+            }
+        }
+    }
 
     buildTypes {
         release {
@@ -138,6 +149,7 @@ dependencies {
     implementation 'com.commit451:PhotoView:1.2.4'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
-    // braintree gradels
-    implementation 'com.braintreepayments.api:braintree:3.16.1'
+    // braintree payment gradle's
+    implementation 'com.braintreepayments.api:drop-in:4.6.0'
+    implementation 'com.braintreepayments.api:braintree:3.17.0'
 }

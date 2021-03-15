@@ -111,7 +111,7 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
             Log.e("weeekarray", "" + time[0]+time[1]+time[2]);
             txt_doctorName.setText("Dr."+obj.getDoctorName());
             txt_createdDate.setText(time[0]);
-            txt_CreatedTime.setText(time[1]+" "+time[2]);
+          //  txt_CreatedTime.setText(time[1]+" "+time[2]);
             String[] timeSplit = time[1].split(":");
 
             if (isHourFormat){
@@ -124,6 +124,7 @@ public class PatientImmunizationActivity extends AppCompatActivity implements Me
                     clockTime = time[1]+" "+time[2];
                 }
             }
+            txt_CreatedTime.setText(clockTime);
 
         }
     }
